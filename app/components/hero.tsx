@@ -1,17 +1,33 @@
+import Image from 'next/image'
+
+import avatar from '@/public/avatar.svg'
+import tech from '@/public/tech.svg'
+
 export default function Hero() {
   return (
-    <div className="hero min-h-screen bg-base-100">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Hello there</h1>
-          <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
+    <section className="hero">
+      <div className="hero-content text-center flex flex-col pb-0">
+        <div className="hero-body">
+          <h1 className="text-5xl font-bold">Hi, I am Benoit Bruynbroeck,</h1>
+          <h1 className="text-5xl">I am a Full Stack Developer</h1>
+          <div className="avatar ">
+            <Image
+              src={avatar}
+              alt="Benoit avatar"
+              priority={true}
+              className="mx-auto py-8"
+            />
+          </div>
+        </div>
+        <div className="hero-footer container">
+          <Image
+            src={tech}
+            alt="tech"
+            priority={true}
+            className="mx-auto pt-8"
+          />
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -8,7 +8,7 @@ module.exports = {
       sans: ['Inter var', ...defaultTheme.fontFamily.sans],
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
     themes: [
       {
