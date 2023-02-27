@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="hero-content text-center flex flex-col pb-0">
-        <div className="hero-body">
+        <div className="hero-body pt-16">
           <h1 className="text-5xl font-bold">Hi, I am Benoit Bruynbroeck,</h1>
           <h1 className="text-5xl">I am a Full Stack Developer</h1>
           <div className="avatar ">
@@ -24,7 +24,7 @@ export default function Hero() {
             src={tech}
             alt="tech"
             priority={true}
-            className="mx-auto pt-8"
+            className="mx-auto pt-6"
           />
         </div>
       </div>

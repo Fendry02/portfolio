@@ -24,5 +24,6 @@ export default function RootLayout({
 
 export const metadata = {
   title: 'Benoit Bruynbroeck | Fullstack developer',
-  description: 'Freelance Web Developer',
+  description: 'Benoit Bruynbroeck | Fullstack Web Developer',
+  content: 'Benoit Bruynbroeck porfolio',
 }

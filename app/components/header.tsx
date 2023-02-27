@@ -10,7 +10,12 @@ export default function Header() {
           <Image src={logo} alt="Benoit logo" width={60} priority={true} />
         </div>
         <div className="flex-none">
-          <button className="btn btn-secondary">Say Hello</button>
+          <a
+            href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
+            target="_blank"
+          >
+            <button className="btn btn-secondary">Say Hello</button>
+          </a>
         </div>
       </div>
     </header>
