@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import avatar from '@/public/avatar.svg'
+import profile from '@/public/profile.png'
 import tech from '@/public/tech.svg'
 
 export default function Hero() {
@@ -10,12 +10,12 @@ export default function Hero() {
         <div className="hero-body pt-16">
           <h1 className="text-5xl font-bold">Hi, I am Benoit Bruynbroeck,</h1>
           <h1 className="text-5xl">I am a Full Stack Developer</h1>
-          <div className="avatar ">
+          <div className="avatar max-w-[250px]">
             <Image
-              src={avatar}
-              alt="Benoit avatar"
+              src={profile}
+              alt="profile"
               priority={true}
-              className="mx-auto py-8"
+              className="py-8"
             />
           </div>
         </div>
