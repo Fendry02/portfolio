@@ -27,12 +27,10 @@ export default function Skills() {
               I like to code things from scratch, and enjoy bringing ideas to
               life in the browser
             </p>
-            <p className="text-secondary mt-8 sm:mt-16 md:mt-4">
-              Experience I have
-            </p>
+            <p className="text-secondary">Experience I have</p>
             <ul className="list-none">
               <li>VueJS</li>
-              <li>NuxtJS</li>
+              <li>NextJS</li>
               <li>Tailwind</li>
               <li>daisyUI</li>
               <li>Figma</li>
@@ -55,13 +53,11 @@ export default function Skills() {
             <p className="sm:h-24">
               I enjoy develop clean and efficient RESTful API
             </p>
-            <p className="text-secondary mt-8 sm:mt-16 md:mt-4">
-              Experience I have
-            </p>
+            <p className="text-secondary">Experience I have</p>
             <ul className="list-none">
               <li>NodeJS</li>
-              <li>HapiJS</li>
-              <li>es6</li>
+              <li>Typescript</li>
+              <li>AWS</li>
               <li>RabbitMQ</li>
               <li>Datadog</li>
             </ul>
@@ -84,9 +80,7 @@ export default function Skills() {
               I genuinely care about building efficient database, and love
               helping beginners to learn it
             </p>
-            <p className="text-secondary mt-8 sm:mt-16 md:mt-4">
-              Experience I have
-            </p>
+            <p className="text-secondary">Experience I have</p>
             <ul className="list-none">
               <li>Postgres</li>
               <li>Oracle</li>

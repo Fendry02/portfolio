@@ -54,7 +54,7 @@ export default function Footer() {
             />
           </a>
         </div>
-        <p>Copyright © 2023 - All right reserved</p>
+        <p>Copyright © 2025 - All right reserved</p>
       </div>
     </footer>
   )

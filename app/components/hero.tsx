@@ -8,9 +8,13 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-content text-center flex flex-col pb-0">
         <div className="hero-body pt-16">
-          <h1 className="text-5xl font-bold">Hi, I am Benoit Bruynbroeck,</h1>
-          <h1 className="text-5xl">I am a Full Stack Developer</h1>
-          <div className="avatar max-w-[250px]">
+          <h1 className="text-4xl font-bold mb-5 max-sm:text-2xl">
+            Hi, I am Benoit Bruynbroeck
+          </h1>
+          <h3 className="text-3xl max-sm:text-xl">
+            I am a Full Stack Developer
+          </h3>
+          <div className="avatar max-w-[250px] max-sm:max-w-[200px] max-sm:pt-8">
             <Image
               src={profile}
               alt="profile"
@@ -24,7 +28,7 @@ export default function Hero() {
             src={tech}
             alt="tech"
             priority={true}
-            className="mx-auto pt-6"
+            className="mx-auto pt-12 max-w-3xl max-sm:max-w-full"
           />
         </div>
       </div>
