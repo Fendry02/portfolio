@@ -14,6 +14,20 @@ export default function RootLayout({
     <html lang="en" data-theme="mytheme">
       <head>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "${metadata.title}",
+              "image": [ "https://bbenoit.fr/avatar.svg"  ],
+              "url": "https://bbenoit.fr/",
+              "dateModified": "${new Date().toISOString()}"
+            }`,
+          }}
+        ></script>
       </head>
       <body>
         <Header />
@@ -27,5 +41,28 @@ export default function RootLayout({
 
 export const metadata = {
   title: 'Benoit Bruynbroeck | Fullstack developer',
-  description: 'Benoit Bruynbroeck | Fullstack Web Developer',
+  description: 'Benoit Bruynbroeck Portfolio',
+  openGraph: {
+    title: 'Benoit Bruynbroeck | Fullstack developer',
+    description: 'Benoit Bruynbroeck Portfolio',
+    url: 'https://bbenoit.fr',
+    siteName: 'Benoit Bruynbroeck',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: 'https://bbenoit.fr/avatar.svg',
+      },
+    ],
+  },
+  twitter: {
+    title: 'Benoit Bruynbroeck | Fullstack developer',
+    description: 'Benoit Bruynbroeck Portfolio',
+    card: 'summary_large_image',
+    images: [
+      {
+        url: 'https://bbenoit.fr/avatar.svg',
+      },
+    ],
+  },
 }
