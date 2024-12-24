@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 import './styles/global.css'
 
 import Header from './components/header'
@@ -18,6 +20,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ''} />
     </html>
   )
 }
@@ -25,5 +28,4 @@ export default function RootLayout({
 export const metadata = {
   title: 'Benoit Bruynbroeck | Fullstack developer',
   description: 'Benoit Bruynbroeck | Fullstack Web Developer',
-  content: 'Benoit Bruynbroeck porfolio',
 }
