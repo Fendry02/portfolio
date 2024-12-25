@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
 import logo from '@/public/logo-white.png'
-import github from '@/public/github.svg'
-import linkedin from '@/public/linkedin.svg'
-import facebook from '@/public/facebook.svg'
+import github from '@/public/socials/github.svg'
+import linkedin from '@/public/socials/linkedin.svg'
+import facebook from '@/public/socials/facebook.svg'
 
 export default function Footer() {
   return (
