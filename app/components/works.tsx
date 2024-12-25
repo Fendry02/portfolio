@@ -6,7 +6,7 @@ import openclassrooms from '@/public/works/openclassrooms.png'
 
 export default function Works() {
   return (
-    <section className="bg-base-100 text-center pb-16">
+    <section className="text-center pb-16 px-16">
       <h1 className="text-5xl font-bold">Works</h1>
       <p className="text-xl p-8">
         Here are projects I have worked on. Want to see more?{' '}
@@ -17,8 +17,8 @@ export default function Works() {
           Email me.
         </a>
       </p>
-      <div className="flex flex-wrap max-w-[90%] mx-auto justify-center	gap-8">
-        <div className="flex-1 group/caption hover:bg-slate-900 ease-in duration-300 rounded-lg max-w-[300px] max-h-[300px]">
+      <div className="flex flex-wrap mx-auto justify-center	gap-8">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
           <a
             href="https://citizenplane.com/"
             target="_blank"
@@ -33,12 +33,12 @@ export default function Works() {
               />
               <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
                 <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
-                <p className="text-base	md:text-2xl pt-2">Fullstack developer</p>
+                <p className="text-base	md:text-2xl pt-2">Tech lead</p>
               </figcaption>
             </figure>
           </a>
         </div>
-        <div className="flex-1 group/caption hover:bg-slate-900 ease-in duration-300 rounded-lg max-w-[300px] max-h-[300px]">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
           <a
             href="https://www.businessdecision.com/fr-fr"
             target="_blank"
@@ -62,7 +62,7 @@ export default function Works() {
             </figure>
           </a>
         </div>
-        <div className="flex-1 group/caption hover:bg-slate-900 ease-in duration-300 rounded-lg max-w-[300px] max-h-[300px]">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
           <a
             href="https://openclassrooms.com/fr/"
             target="_blank"

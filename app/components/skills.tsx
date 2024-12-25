@@ -8,8 +8,8 @@ export default function Skills() {
   const imageSize = 72
 
   return (
-    <section className="text-center">
-      <div className="mx-auto px-16 columns-1 sm:columns-3 gap-x-8">
+    <section className="text-center px-16">
+      <div className="mx-auto columns-1 sm:columns-3 gap-x-8">
         <div className="relative rounded-t-lg border-0 sm:rounded-lg bg-base-100 shadow-lg -top-16">
           <figure>
             <Image

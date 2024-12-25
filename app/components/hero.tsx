@@ -12,14 +12,14 @@ export default function Hero() {
             Hi, I am Benoit Bruynbroeck
           </h1>
           <h3 className="text-3xl max-sm:text-xl">
-            I am a Full Stack Developer
+            I am a javascript tech lead full stack developer
           </h3>
           <div className="avatar max-w-[250px] max-sm:max-w-[200px] max-sm:pt-8">
             <Image
               src={profile}
               alt="profile"
               priority={true}
-              className="py-8"
+              className="pt-12"
             />
           </div>
         </div>
