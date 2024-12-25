@@ -10,13 +10,6 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
-    themes: [
-      {
-        cupcake: {
-          ...require('daisyui/src/colors/themes')['[data-theme=cupcake]'],
-          'base-100': 'white',
-        },
-      },
-    ],
+    themes: ['cupcake'],
   },
 }
