@@ -31,7 +31,7 @@ export default function Summary() {
               Clear Communication
             </h3>
             <p>
-              I'm committed to keeping you informed and involved every step of
+              I am committed to keeping you informed and involved every step of
               the way. Transparent, timely, and effective communication is key.
             </p>
           </div>
