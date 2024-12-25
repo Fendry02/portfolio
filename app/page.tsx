@@ -7,7 +7,7 @@ import Benefits from './components/benefits'
 
 export default function Home() {
   return (
-    <div className="bg-base-100">
+    <div>
       <Hero />
       <Presentation />
       <Skills />

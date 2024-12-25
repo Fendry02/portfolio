@@ -1,6 +1,6 @@
 export default function Experience() {
   return (
-    <section className="bg-primary text-white p-16 text-center">
+    <section className="bg-primary text-white p-16 max-sm:p-8 text-center">
       <h1 className="text-5xl font-bold">Experience</h1>
       <p className="text-xl py-8 mx-auto max-w-4xl">
         With extensive professional experience, I have honed deep expertise in

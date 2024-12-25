@@ -6,7 +6,7 @@ import openclassrooms from '@/public/works/openclassrooms.png'
 
 export default function Works() {
   return (
-    <section className="text-center pb-16 px-16">
+    <section className="text-center pb-16 px-16 max-sm:px-8">
       <h1 className="text-5xl font-bold">Works</h1>
       <p className="text-xl p-8">
         Here are projects I have worked on. Want to see more?{' '}
