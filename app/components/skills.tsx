@@ -9,7 +9,7 @@ export default function Skills() {
 
   return (
     <section className="text-center">
-      <div className="mx-auto max-w-[90%] columns-1 sm:columns-3 gap-x-8">
+      <div className="mx-auto px-16 columns-1 sm:columns-3 gap-x-8">
         <div className="relative rounded-t-lg border-0 sm:rounded-lg bg-base-100 shadow-lg -top-16">
           <figure>
             <Image
