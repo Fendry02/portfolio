@@ -18,7 +18,7 @@ export default function Works() {
         </a>
       </p>
       <div className="flex flex-wrap mx-auto justify-center	gap-8">
-        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]">
           <a
             href="https://citizenplane.com/"
             target="_blank"
@@ -29,7 +29,7 @@ export default function Works() {
                 src={citizenplane}
                 alt="citizenplane"
                 priority={true}
-                className="rounded-lg group-hover/caption:opacity-0 ease-in duration-300 w-full"
+                className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
               />
               <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
                 <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
@@ -38,7 +38,7 @@ export default function Works() {
             </figure>
           </a>
         </div>
-        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]">
           <a
             href="https://www.businessdecision.com/fr-fr"
             target="_blank"
@@ -49,7 +49,7 @@ export default function Works() {
                 src={businessDecision}
                 alt="businessDecision"
                 priority={true}
-                className="rounded-lg group-hover/caption:opacity-0 ease-in duration-300 w-full"
+                className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
               />
               <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
                 <h1 className="text-xl md:text-4xl font-bold">
@@ -62,7 +62,7 @@ export default function Works() {
             </figure>
           </a>
         </div>
-        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-lg ">
+        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]">
           <a
             href="https://openclassrooms.com/fr/"
             target="_blank"
@@ -73,7 +73,7 @@ export default function Works() {
                 src={openclassrooms}
                 alt="openclassrooms"
                 priority={true}
-                className="rounded-lg group-hover/caption:opacity-0 ease-in duration-300 w-full"
+                className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
               />
               <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
                 <h1 className="text-xl md:text-4xl font-bold">
