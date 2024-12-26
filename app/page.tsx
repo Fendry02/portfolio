@@ -7,13 +7,13 @@ import Benefits from './components/benefits'
 
 export default function Home() {
   return (
-    <div>
+    <main>
       <Hero />
       <Presentation />
       <Skills />
       <Works />
       <Experience />
       <Benefits />
-    </div>
+    </main>
   )
 }
