@@ -5,9 +5,9 @@ import Works from './components/works'
 import Experience from './components/experience'
 import Benefits from './components/benefits'
 
-export default function Home() {
+const Home = () => {
   return (
-    <main>
+    <main className="min-h-screen">
       <Hero />
       <Presentation />
       <Skills />
@@ -17,3 +17,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home
