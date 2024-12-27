@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 
 import citizenplane from '@/public/works/citizenplane.png'
@@ -5,6 +6,10 @@ import businessDecision from '@/public/works/business-decision.png'
 import openclassrooms from '@/public/works/openclassrooms.png'
 
 export default function Works() {
+  const handleClick = (elementId: string) => {
+    ;(document.getElementById(elementId) as HTMLDialogElement)?.showModal()
+  }
+
   return (
     <section className="text-center pb-16 px-16 max-sm:px-8">
       <h1 className="text-5xl font-bold">Works</h1>
@@ -18,25 +23,56 @@ export default function Works() {
         </a>
       </p>
       <div className="flex flex-wrap mx-auto justify-center	gap-8">
-        <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]">
-          <a
-            href="https://citizenplane.com/"
-            target="_blank"
-            className="cursor-pointer"
+        <div
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          onClick={(e) => handleClick('citizenplaneModal')}
+        >
+          <figure className="relative">
+            <Image
+              src={citizenplane}
+              alt="citizenplane"
+              priority={true}
+              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
+            />
+            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
+              <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
+              <p className="text-base	md:text-2xl pt-2">Tech lead</p>
+            </figcaption>
+          </figure>
+          <dialog
+            id="citizenplaneModal"
+            className="modal modal-bottom sm:modal-middle"
           >
-            <figure className="relative">
-              <Image
-                src={citizenplane}
-                alt="citizenplane"
-                priority={true}
-                className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
-              />
-              <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
-                <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
-                <p className="text-base	md:text-2xl pt-2">Tech lead</p>
-              </figcaption>
-            </figure>
-          </a>
+            <div className="modal-box">
+              <div className="flex items-center gap-4">
+                <Image
+                  src={citizenplane}
+                  alt="citizenplane"
+                  priority={true}
+                  className="rounded-2xl w-full max-h-[50px] max-w-[50px]"
+                />
+                <h3 className="font-bold text-lg">CitizenPlane</h3>
+              </div>
+              <p className="py-4 text-start">
+                As a Tech Lead, I combine hands-on technical expertise with
+                leadership to drive the design, development, and delivery of
+                scalable software solutions. My focus is on fostering
+                collaboration, guiding teams through complex technical
+                challenges, and ensuring alignment with business objectives. I
+                also focused on optimizing system performance, enhancing user
+                experience, and aligning technical efforts with business goals.
+              </p>
+              <p className="text-start">
+                <b>Stack:</b> VueJs, Node.js, PostgreSQL, Docker, Kubernetes,
+                AWS, RabbitMQ
+              </p>
+              <div className="modal-action">
+                <form method="dialog">
+                  <button className="btn">Close</button>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </div>
         <div className="flex-1 group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]">
           <a
