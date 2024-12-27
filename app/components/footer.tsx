@@ -6,6 +6,8 @@ import linkedin from '@/public/socials/linkedin.svg'
 import facebook from '@/public/socials/facebook.svg'
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear()
+
   return (
     <footer className="footer footer-center p-16 pt-32 max-sm:pt-40 bg-primary text-primary-content gap-y-6">
       <div>
@@ -54,7 +56,7 @@ export default function Footer() {
             />
           </a>
         </div>
-        <p>Copyright © 2025 - All right reserved</p>
+        <p>Copyright © {currentYear} - All right reserved</p>
       </div>
     </footer>
   )
