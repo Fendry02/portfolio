@@ -7,7 +7,7 @@ import facebook from '@/public/socials/facebook.svg'
 
 export default function Footer() {
   return (
-    <footer className="footer footer-center p-10 bg-primary text-primary-content gap-y-6">
+    <footer className="footer footer-center p-16 pt-32 max-sm:pt-40 bg-primary text-primary-content gap-y-6">
       <div>
         <Image src={logo} alt="Benoit logo" width={60} priority={true} />
         <p className="font-bold">Handcrafted by me</p>

@@ -10,7 +10,7 @@ export default function Skills() {
   return (
     <section className="text-center px-16 max-sm:px-8">
       <div className="mx-auto columns-1 sm:columns-3 gap-x-8">
-        <div className="relative rounded-t-lg border-0 sm:rounded-lg bg-base-100 shadow-lg -top-16">
+        <div className="relative rounded-t-xl border-0 sm:rounded-xl bg-base-100 shadow-lg -top-16">
           <figure>
             <Image
               src={frontend}
@@ -37,7 +37,7 @@ export default function Skills() {
             </ul>
           </div>
         </div>
-        <div className="relative overflow-auto border-t sm:border-0 sm:rounded-lg bg-base-100 shadow-lg -top-16">
+        <div className="relative overflow-auto border-t sm:border-0 sm:rounded-xl bg-base-100 shadow-lg -top-16">
           <figure>
             <Image
               src={portable}
@@ -63,7 +63,7 @@ export default function Skills() {
             </ul>
           </div>
         </div>
-        <div className="relative overflow-auto border-t sm:border-0 rounded-b-lg sm:rounded-lg bg-base-100 shadow-lg -top-16">
+        <div className="relative overflow-auto border-t sm:border-0 rounded-b-xl sm:rounded-xl bg-base-100 shadow-lg -top-16">
           <figure>
             <Image
               src={server}
