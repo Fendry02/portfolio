@@ -3,6 +3,7 @@ import Presentation from './components/presentation'
 import Skills from './components/skills'
 import Works from './components/works'
 import Experience from './components/experience'
+import Timeline from './components/timeline'
 import Benefits from './components/benefits'
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Skills />
       <Works />
       <Experience />
+      <Timeline />
       <Benefits />
     </main>
   )
