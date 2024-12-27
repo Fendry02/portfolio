@@ -1,6 +1,6 @@
 export default function Timeline() {
   return (
-    <section className="p-16 pt-0 max-sm:p-8 max-sm:pt-0">
+    <section className="p-16 max-sm:p-8">
       <h1 className="text-5xl font-bold text-center">Timeline</h1>
       <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical pt-8">
         <li>
