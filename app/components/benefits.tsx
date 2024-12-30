@@ -30,7 +30,7 @@ export default function Benefits() {
               needs.
             </p>
           </div>
-          <div className="divider lg:divider-horizontal divider-primary"></div>
+          <div className="divider lg:divider-horizontal divider-primary max-lg:hidden"></div>
           <div className="card rounded-box flex-grow place-items-center p-8 shadow-lg">
             <div className="relative w-full aspect-square max-w-[200px] max-h-[200px]">
               <Image
@@ -51,7 +51,7 @@ export default function Benefits() {
               compromising on quality.
             </p>
           </div>
-          <div className="divider lg:divider-horizontal divider-primary"></div>
+          <div className="divider lg:divider-horizontal divider-primary max-lg:hidden"></div>
           <div className="card rounded-box flex-grow place-items-center p-8 shadow-lg">
             <div className="relative w-full aspect-square max-w-[200px] max-h-[200px]">
               <Image
