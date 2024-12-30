@@ -24,7 +24,7 @@ export default function Works() {
       </p>
       <div className="flex w-full flex-col lg:flex-row justify-center gap-8 items-center">
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
           onClick={(e) => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
@@ -32,7 +32,7 @@ export default function Works() {
               src={citizenplane}
               alt="citizenplane"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
+              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-[300px] h-[300px]"
             />
             <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
@@ -49,7 +49,7 @@ export default function Works() {
                   src={citizenplane}
                   alt="citizenplane"
                   priority={true}
-                  className="rounded-2xl w-full max-h-[50px] max-w-[50px]"
+                  className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">CitizenPlane</h3>
               </div>
@@ -75,7 +75,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
           onClick={(e) => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
@@ -83,7 +83,7 @@ export default function Works() {
               src={businessDecision}
               alt="businessDecision"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
+              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300"
             />
             <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">
@@ -104,7 +104,7 @@ export default function Works() {
                   src={businessDecision}
                   alt="businessDecision"
                   priority={true}
-                  className="rounded-2xl w-full max-h-[50px] max-w-[50px]"
+                  className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Business & Decision</h3>
               </div>
@@ -132,7 +132,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
           onClick={(e) => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
@@ -140,7 +140,7 @@ export default function Works() {
               src={openclassrooms}
               alt="openclassrooms"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-full"
+              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 full w-[300px] h-[300px]"
             />
             <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">Openclassrooms</h1>
@@ -159,7 +159,7 @@ export default function Works() {
                   src={openclassrooms}
                   alt="openclassrooms"
                   priority={true}
-                  className="rounded-2xl w-full max-h-[50px] max-w-[50px]"
+                  className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Openclassrooms</h3>
               </div>
