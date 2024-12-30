@@ -24,7 +24,7 @@ export default function Works() {
       </p>
       <div className="flex w-full flex-col lg:flex-row justify-center gap-8 items-center">
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px] max-sm:max-w-[200px] max-sm:max-h-[200px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
           onClick={(e) => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
@@ -75,7 +75,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px] max-sm:max-w-[200px] max-sm:max-h-[200px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
           onClick={(e) => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
@@ -132,7 +132,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px] max-sm:max-w-[200px] max-sm:max-h-[200px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl w-[300px] h-[300px]"
           onClick={(e) => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
