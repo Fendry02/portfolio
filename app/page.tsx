@@ -6,6 +6,7 @@ import Experience from './components/experience'
 import Timeline from './components/timeline'
 import Benefits from './components/benefits'
 import Contact from './components/contact'
+
 const Home = () => {
   return (
     <main className="min-h-screen">

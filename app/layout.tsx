@@ -11,9 +11,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="cupcake">
+    <html lang="en" data-theme="cmyk">
       <head>
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
