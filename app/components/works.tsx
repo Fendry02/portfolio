@@ -4,16 +4,42 @@ import Image from 'next/image'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Works() {
   const handleClick = (elementId: string) => {
     ;(document.getElementById(elementId) as HTMLDialogElement)?.showModal()
   }
 
+  const { ref: titleRef, isVisible: titleVisible } =
+    useScrollAnimation<HTMLHeadingElement>()
+  const { ref: subtitleRef, isVisible: subtitleVisible } =
+    useScrollAnimation<HTMLParagraphElement>()
+  const { ref: citizenplaneRef, isVisible: citizenplaneVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: businessRef, isVisible: businessVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: openclassroomsRef, isVisible: openclassroomsVisible } =
+    useScrollAnimation<HTMLDivElement>()
+
   return (
-    <section className="text-center pb-16 px-16 max-sm:px-8">
-      <h1 className="text-5xl font-bold">Works</h1>
-      <p className="text-xl p-8">
+    <section id="works" className="text-center pb-16 px-16 max-sm:px-8">
+      <h1
+        ref={titleRef}
+        className={`text-5xl font-bold transition-all duration-700 ${
+          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        Works
+      </h1>
+      <p
+        ref={subtitleRef}
+        className={`text-xl p-8 transition-all duration-700 delay-200 ${
+          subtitleVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+        }`}
+      >
         Here are projects I have worked on. Want to see more?{' '}
         <a
           className="text-secondary cursor-pointer hover:underline hover:underline-offset-4"
@@ -22,9 +48,14 @@ export default function Works() {
           Email me.
         </a>
       </p>
-      <div className="flex w-full flex-col lg:flex-row justify-center gap-8 items-center">
+      <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center ">
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          ref={citizenplaneRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 hover:scale-105 ${
+            citizenplaneVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
@@ -32,9 +63,9 @@ export default function Works() {
               src={citizenplane}
               alt="citizenplane"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-[300px] h-[300px]"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
               <p className="text-base	md:text-2xl pt-2">Tech lead</p>
             </figcaption>
@@ -75,7 +106,12 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          ref={businessRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-200 hover:scale-105 ${
+            businessVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
@@ -83,9 +119,9 @@ export default function Works() {
               src={businessDecision}
               alt="businessDecision"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">
                 Business & Decision
               </h1>
@@ -132,7 +168,12 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          ref={openclassroomsRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-400 hover:scale-105 ${
+            openclassroomsVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
@@ -140,9 +181,9 @@ export default function Works() {
               src={openclassrooms}
               alt="openclassrooms"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 full w-[300px] h-[300px]"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">Openclassrooms</h1>
               <p className="hidden sm:block sm:text-base	md:text-2xl pt-2">
                 Mentor for Web Development
