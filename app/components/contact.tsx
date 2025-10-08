@@ -48,12 +48,26 @@ export default function Contact() {
                 : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="flex-none">
+            <div className="flex flex-col gap-4">
               <a
                 href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
                 target="_blank"
+                className="btn btn-lg btn-secondary"
               >
-                <button className="btn btn-lg btn-secondary">Say Hello</button>
+                LinkedIn
+              </a>
+              <a
+                href="mailto:bruy.benoit@gmail.com"
+                className="btn btn-lg btn-outline btn-secondary"
+              >
+                Email Me
+              </a>
+              <a
+                href="https://github.com/benoitbruynbroeck"
+                target="_blank"
+                className="btn btn-lg btn-outline btn-secondary"
+              >
+                GitHub
               </a>
             </div>
           </div>

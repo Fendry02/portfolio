@@ -21,7 +21,12 @@ export default function Presentation() {
         }`}
       >
         I am a passionate developer crafting functional and efficient web
-        solutions with modern JavaScript and scalable backend technologies
+        solutions with modern JavaScript and scalable backend technologies. My
+        philosophy centers on clean, maintainable code and functional
+        programming principles. I believe in the power of well-architected
+        systems that grow with your business needs, combining technical
+        excellence with strategic thinking to deliver solutions that truly make
+        a difference.
       </p>
     </section>
   )

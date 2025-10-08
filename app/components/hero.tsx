@@ -29,7 +29,8 @@ export default function Hero() {
             delay={200}
             className="transition-opacity duration-1000"
           >
-            I am a javascript tech lead full stack developer
+            I am a JavaScript Tech Lead who transforms complex ideas into
+            scalable web solutions
           </AnimatedTitle>
           <div
             ref={avatarRef}

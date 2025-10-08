@@ -4,6 +4,7 @@ import Skills from './components/skills'
 import Works from './components/works'
 import Experience from './components/experience'
 import Timeline from './components/timeline'
+import Philosophy from './components/philosophy'
 import Benefits from './components/benefits'
 import Contact from './components/contact'
 
@@ -16,6 +17,7 @@ const Home = () => {
       <Works />
       <Experience />
       <Timeline />
+      <Philosophy />
       <Benefits />
       <Contact />
     </main>

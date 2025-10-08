@@ -24,7 +24,7 @@ export default function Skills() {
       <div ref={sectionRef} className="mx-auto columns-1 lg:columns-3 gap-x-8">
         <div
           ref={frontendRef}
-          className={`relative rounded-t-xl border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 hover:scale-105 ${
+          className={`relative rounded-t-xl border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 ${
             frontendVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -47,19 +47,34 @@ export default function Skills() {
               I like to code things from scratch, and enjoy bringing ideas to
               life in the browser
             </p>
-            <p className="text-secondary">Experience I have</p>
-            <ul className="list-none">
-              <li>VueJS</li>
-              <li>NextJS</li>
-              <li>Tailwind</li>
-              <li>daisyUI</li>
-              <li>Figma</li>
+            <p className="text-secondary">Technologies & Experience</p>
+            <ul className="list-none space-y-2">
+              <li className="flex justify-between items-center">
+                <span>VueJS</span>
+                <span className="text-sm text-secondary">2+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>NextJS</span>
+                <span className="text-sm text-secondary">1+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Tailwind</span>
+                <span className="text-sm text-secondary">2+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>daisyUI</span>
+                <span className="text-sm text-secondary">2+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Figma</span>
+                <span className="text-sm text-secondary">3+ years</span>
+              </li>
             </ul>
           </div>
         </div>
         <div
           ref={backendRef}
-          className={`relative overflow-auto border-t lg:border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-200 hover:scale-105 ${
+          className={`relative overflow-auto border-t lg:border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-200 ${
             backendVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -81,19 +96,34 @@ export default function Skills() {
             <p className="sm:h-24">
               I enjoy develop clean and efficient RESTful API
             </p>
-            <p className="text-secondary">Experience I have</p>
-            <ul className="list-none">
-              <li>NodeJS</li>
-              <li>Typescript</li>
-              <li>AWS</li>
-              <li>RabbitMQ</li>
-              <li>Datadog</li>
+            <p className="text-secondary">Technologies & Experience</p>
+            <ul className="list-none space-y-2">
+              <li className="flex justify-between items-center">
+                <span>NodeJS</span>
+                <span className="text-sm text-secondary">6+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>TypeScript</span>
+                <span className="text-sm text-secondary">5+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>AWS</span>
+                <span className="text-sm text-secondary">4+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>RabbitMQ</span>
+                <span className="text-sm text-secondary">4+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Datadog</span>
+                <span className="text-sm text-secondary">3+ years</span>
+              </li>
             </ul>
           </div>
         </div>
         <div
           ref={databaseRef}
-          className={`relative overflow-auto border-t lg:border-0 rounded-b-xl lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-400 hover:scale-105 ${
+          className={`relative overflow-auto border-t lg:border-0 rounded-b-xl lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-400 ${
             databaseVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -116,13 +146,28 @@ export default function Skills() {
               I genuinely care about building efficient database, and love
               helping beginners to learn it
             </p>
-            <p className="text-secondary">Experience I have</p>
-            <ul className="list-none">
-              <li>Postgres</li>
-              <li>Oracle</li>
-              <li>Mongo</li>
-              <li>Redis</li>
-              <li>Objection</li>
+            <p className="text-secondary">Technologies & Experience</p>
+            <ul className="list-none space-y-2">
+              <li className="flex justify-between items-center">
+                <span>PostgreSQL</span>
+                <span className="text-sm text-secondary">6+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Oracle</span>
+                <span className="text-sm text-secondary">3+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>MongoDB</span>
+                <span className="text-sm text-secondary">3+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Redis</span>
+                <span className="text-sm text-secondary">3+ years</span>
+              </li>
+              <li className="flex justify-between items-center">
+                <span>Objection.js</span>
+                <span className="text-sm text-secondary">6+ years</span>
+              </li>
             </ul>
           </div>
         </div>
