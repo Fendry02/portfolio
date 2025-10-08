@@ -8,6 +8,7 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
+  allowedDevOrigins: ['192.168.1.58'],
 }
 
 module.exports = nextConfig
