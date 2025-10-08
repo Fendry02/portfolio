@@ -61,7 +61,7 @@ export default function Works() {
           <figure className="relative">
             <Image
               src={citizenplane}
-              alt="citizenplane"
+              alt="CitizenPlane project - Tech Lead role showcasing scalable web application development"
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
@@ -77,7 +77,7 @@ export default function Works() {
               <div className="flex items-center gap-4">
                 <Image
                   src={citizenplane}
-                  alt="citizenplane"
+                  alt="CitizenPlane project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">CitizenPlane</h3>
@@ -115,7 +115,7 @@ export default function Works() {
           <figure className="relative">
             <Image
               src={businessDecision}
-              alt="businessDecision"
+              alt="Business & Decision project - CRM Consultant role for Accor Hotels and other enterprise clients"
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
@@ -135,7 +135,7 @@ export default function Works() {
               <div className="flex items-center gap-4">
                 <Image
                   src={businessDecision}
-                  alt="businessDecision"
+                  alt="Business & Decision project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Business & Decision</h3>
@@ -175,7 +175,7 @@ export default function Works() {
           <figure className="relative">
             <Image
               src={openclassrooms}
-              alt="openclassrooms"
+              alt="OpenClassrooms project - Web Development Mentor role helping students learn React and modern JavaScript"
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
@@ -193,7 +193,7 @@ export default function Works() {
               <div className="flex items-center gap-4">
                 <Image
                   src={openclassrooms}
-                  alt="openclassrooms"
+                  alt="OpenClassrooms project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Openclassrooms</h3>

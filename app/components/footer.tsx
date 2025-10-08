@@ -42,7 +42,7 @@ export default function Footer() {
           >
             <Image
               src={github}
-              alt="github"
+              alt="GitHub profile - View Benoit's code repositories and projects"
               width={24}
               className="opacity-90"
             />
@@ -54,7 +54,7 @@ export default function Footer() {
           >
             <Image
               src={facebook}
-              alt="facebook"
+              alt="Facebook profile - Connect with Benoit on Facebook"
               width={24}
               className="opacity-90"
             />
@@ -66,7 +66,7 @@ export default function Footer() {
           >
             <Image
               src={linkedin}
-              alt="linkedin"
+              alt="LinkedIn profile - Connect with Benoit on LinkedIn for professional networking"
               width={24}
               className="opacity-90"
             />

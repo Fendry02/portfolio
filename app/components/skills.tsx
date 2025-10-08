@@ -32,7 +32,7 @@ export default function Skills() {
           <figure>
             <Image
               src={frontend}
-              alt="Benoit avatar"
+              alt="Frontend development icon"
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"
@@ -65,7 +65,7 @@ export default function Skills() {
           <figure>
             <Image
               src={portable}
-              alt="Benoit avatar"
+              alt="Backend development icon"
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"
@@ -97,7 +97,7 @@ export default function Skills() {
           <figure>
             <Image
               src={server}
-              alt="Benoit avatar"
+              alt="Database development icon"
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"

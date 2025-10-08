@@ -44,7 +44,7 @@ export default function Hero() {
           >
             <Image
               src={profile}
-              alt="profile"
+              alt="Benoit Bruynbroeck - JavaScript Tech Lead and Full Stack Developer"
               priority={true}
               className="pt-12"
             />
@@ -58,7 +58,7 @@ export default function Hero() {
         >
           <Image
             src={tech}
-            alt="tech"
+            alt="Technology stack illustration showing JavaScript, Vue.js, Next.js, Node.js, PostgreSQL, TypeScript, React, and other modern web development technologies"
             className="mx-auto pt-12 max-w-3xl max-sm:max-w-full"
           />
         </div>
