@@ -1,16 +1,34 @@
+'use client'
+
 import Image from 'next/image'
 
 import frontend from '@/public/front-end.webp'
 import portable from '@/public/portable.webp'
 import server from '@/public/server.webp'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Skills() {
   const imageSize = 72
+  const { ref: sectionRef, isVisible: sectionVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: frontendRef, isVisible: frontendVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: backendRef, isVisible: backendVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: databaseRef, isVisible: databaseVisible } =
+    useScrollAnimation<HTMLDivElement>()
 
   return (
     <section id="skills" className="text-center px-16 max-sm:px-8">
-      <div className="mx-auto columns-1 lg:columns-3 gap-x-8">
-        <div className="relative rounded-t-xl border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-transform duration-300 hover:scale-102">
+      <div ref={sectionRef} className="mx-auto columns-1 lg:columns-3 gap-x-8">
+        <div
+          ref={frontendRef}
+          className={`relative rounded-t-xl border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 hover:scale-105 ${
+            frontendVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <figure>
             <Image
               src={frontend}
@@ -36,7 +54,14 @@ export default function Skills() {
             </ul>
           </div>
         </div>
-        <div className="relative overflow-auto border-t lg:border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-transform duration-300 hover:scale-102">
+        <div
+          ref={backendRef}
+          className={`relative overflow-auto border-t lg:border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-200 hover:scale-105 ${
+            backendVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <figure>
             <Image
               src={portable}
@@ -61,7 +86,14 @@ export default function Skills() {
             </ul>
           </div>
         </div>
-        <div className="relative overflow-auto border-t lg:border-0 rounded-b-xl lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-transform duration-300 hover:scale-102">
+        <div
+          ref={databaseRef}
+          className={`relative overflow-auto border-t lg:border-0 rounded-b-xl lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-all duration-700 delay-400 hover:scale-105 ${
+            databaseVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
+        >
           <figure>
             <Image
               src={server}

@@ -4,16 +4,42 @@ import Image from 'next/image'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Works() {
   const handleClick = (elementId: string) => {
     ;(document.getElementById(elementId) as HTMLDialogElement)?.showModal()
   }
 
+  const { ref: titleRef, isVisible: titleVisible } =
+    useScrollAnimation<HTMLHeadingElement>()
+  const { ref: subtitleRef, isVisible: subtitleVisible } =
+    useScrollAnimation<HTMLParagraphElement>()
+  const { ref: citizenplaneRef, isVisible: citizenplaneVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: businessRef, isVisible: businessVisible } =
+    useScrollAnimation<HTMLDivElement>()
+  const { ref: openclassroomsRef, isVisible: openclassroomsVisible } =
+    useScrollAnimation<HTMLDivElement>()
+
   return (
     <section id="works" className="text-center pb-16 px-16 max-sm:px-8">
-      <h1 className="text-5xl font-bold">Works</h1>
-      <p className="text-xl p-8">
+      <h1
+        ref={titleRef}
+        className={`text-5xl font-bold transition-all duration-700 ${
+          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}
+      >
+        Works
+      </h1>
+      <p
+        ref={subtitleRef}
+        className={`text-xl p-8 transition-all duration-700 delay-200 ${
+          subtitleVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+        }`}
+      >
         Here are projects I have worked on. Want to see more?{' '}
         <a
           className="text-secondary cursor-pointer hover:underline hover:underline-offset-4"
@@ -24,7 +50,12 @@ export default function Works() {
       </p>
       <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center ">
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
+          ref={citizenplaneRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 hover:scale-105 ${
+            citizenplaneVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
@@ -75,7 +106,12 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
+          ref={businessRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-200 hover:scale-105 ${
+            businessVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
@@ -132,7 +168,12 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
+          ref={openclassroomsRef}
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-400 hover:scale-105 ${
+            openclassroomsVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-8'
+          }`}
           onClick={(e) => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
