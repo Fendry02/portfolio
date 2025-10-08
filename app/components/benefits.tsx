@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import technical from '@/public/benefits/technical.png'
-import methodology from '@/public/benefits/methodology.png'
-import communication from '@/public/benefits/communication.png'
+import technical from '@/public/benefits/technical.webp'
+import methodology from '@/public/benefits/methodology.webp'
+import communication from '@/public/benefits/communication.webp'
 
 export default function Benefits() {
   return (

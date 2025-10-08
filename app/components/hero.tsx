@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import profile from '@/public/profile.png'
+import profile from '@/public/profile.webp'
 import tech from '@/public/tech.svg'
 
 export default function Hero() {

@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import frontend from '@/public/front-end.png'
-import portable from '@/public/portable.png'
-import server from '@/public/server.png'
+import frontend from '@/public/front-end.webp'
+import portable from '@/public/portable.webp'
+import server from '@/public/server.webp'
 
 export default function Skills() {
   const imageSize = 72
