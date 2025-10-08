@@ -1,9 +1,9 @@
 'use client'
 import Image from 'next/image'
 
-import citizenplane from '@/public/works/citizenplane.png'
-import businessDecision from '@/public/works/business-decision.png'
-import openclassrooms from '@/public/works/openclassrooms.png'
+import citizenplane from '@/public/works/citizenplane.webp'
+import businessDecision from '@/public/works/business-decision.webp'
+import openclassrooms from '@/public/works/openclassrooms.webp'
 
 export default function Works() {
   const handleClick = (elementId: string) => {

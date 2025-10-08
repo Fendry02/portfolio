@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import logo from '@/public/logo-white.png'
+import logo from '@/public/logo-white.webp'
 import github from '@/public/socials/github.svg'
 import linkedin from '@/public/socials/linkedin.svg'
 import facebook from '@/public/socials/facebook.svg'
