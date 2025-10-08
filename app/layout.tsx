@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="cmyk">
+    <html lang="en" data-theme="corporate">
       <head>
         <script
           type="application/ld+json"
