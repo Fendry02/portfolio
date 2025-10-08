@@ -1,4 +1,5 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
+import type { Metadata } from 'next'
 
 import './styles/global.css'
 
@@ -22,8 +23,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "${metadata.title}",
               "image": [ "https://bbenoit.fr/avatar.svg"  ],
-              "url": "https://bbenoit.fr/",
-              "dateModified": "${new Date().toISOString()}"
+              "url": "https://bbenoit.fr/"
             }`,
           }}
         ></script>
@@ -38,7 +38,7 @@ export default function RootLayout({
   )
 }
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Benoit Bruynbroeck | Fullstack developer',
   description: 'Benoit Bruynbroeck Portfolio',
   openGraph: {
