@@ -22,7 +22,7 @@ export default function Works() {
           Email me.
         </a>
       </p>
-      <div className="flex w-full flex-col lg:flex-row justify-center gap-8 items-center">
+      <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center">
         <div
           className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
           onClick={(e) => handleClick('citizenplaneModal')}
