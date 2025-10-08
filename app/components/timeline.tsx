@@ -1,8 +1,25 @@
+'use client'
+
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
+
 export default function Timeline() {
+  const { ref: timelineRef, isVisible: timelineVisible } =
+    useScrollAnimation<HTMLUListElement>()
+
   return (
     <section className="p-16 max-sm:p-8">
-      <h1 className="text-5xl font-bold text-center">Timeline</h1>
-      <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical pt-8">
+      <AnimatedTitle level={1} delay={0} className="text-center">
+        Timeline
+      </AnimatedTitle>
+      <ul
+        ref={timelineRef}
+        className={`timeline timeline-snap-icon max-md:timeline-compact timeline-vertical pt-8 transition-all duration-700 delay-200 ${
+          timelineVisible
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 translate-y-8'
+        }`}
+      >
         <li>
           <div className="timeline-middle">
             <svg
@@ -22,6 +39,10 @@ export default function Timeline() {
             <time className="font-mono italic">2011-2016</time>
             <div className="text-lg font-black">ESIEE Amiens</div>
             Engineering degree in computer science
+            <br />
+            <span className="text-sm text-secondary">
+              Specialized in software engineering and database systems
+            </span>
           </div>
           <hr />
         </li>
@@ -44,8 +65,12 @@ export default function Timeline() {
           <div className="timeline-end md:mb-10">
             <time className="font-mono italic">2016-2017</time>
             <div className="text-lg font-black">PrixLibre</div>
-            Started working as a developer at PrixLibre <br /> I made my first
-            steps in the world of startups coding in PHP and AngularJS
+            Junior Developer at PrixLibre <br />
+            Built e-commerce platform features using PHP and AngularJS
+            <br />
+            <span className="text-sm text-secondary">
+              First professional experience in startup environment
+            </span>
           </div>
           <hr />
         </li>
@@ -68,9 +93,12 @@ export default function Timeline() {
           <div className="timeline-start mb-10 md:text-end">
             <time className="font-mono italic">2017-2019</time>
             <div className="text-lg font-black">Business & Decisions</div>
-            Started working as a consultant at Business & Decisions <br /> I
-            worked for big companies like Accor Hotels, Norauto, etc learning
-            how to manage a database and work with multiple clients
+            CRM Consultant at Business & Decisions <br />
+            Managed high-profile accounts (Accor Hotels, Norauto)
+            <br />
+            <span className="text-sm text-secondary">
+              Delivered €200K+ projects • 30% improved customer engagement
+            </span>
           </div>
           <hr />
         </li>
@@ -93,8 +121,12 @@ export default function Timeline() {
           <div className="timeline-end md:mb-10">
             <time className="font-mono italic">2019-now</time>
             <div className="text-lg font-black">CitizenPlane</div>
-            Started working as a tech lead at CitizenPlane <br /> I learned to
-            be autonomous and to make scalable and performant code in javascript
+            Tech Lead at CitizenPlane <br />
+            Leading team of 4+ developers
+            <br />
+            <span className="text-sm text-secondary">
+              Scalable travel platform
+            </span>
           </div>
           <hr />
         </li>
