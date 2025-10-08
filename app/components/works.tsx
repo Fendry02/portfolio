@@ -22,9 +22,9 @@ export default function Works() {
           Email me.
         </a>
       </p>
-      <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center">
+      <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center ">
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
           onClick={(e) => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
@@ -32,9 +32,9 @@ export default function Works() {
               src={citizenplane}
               alt="citizenplane"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 w-[300px] h-[300px]"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
               <p className="text-base	md:text-2xl pt-2">Tech lead</p>
             </figcaption>
@@ -75,7 +75,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
           onClick={(e) => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
@@ -83,9 +83,9 @@ export default function Works() {
               src={businessDecision}
               alt="businessDecision"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">
                 Business & Decision
               </h1>
@@ -132,7 +132,7 @@ export default function Works() {
           </dialog>
         </div>
         <div
-          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in duration-300 rounded-2xl max-w-[300px] max-h-[300px]"
+          className="flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-300 hover:scale-105"
           onClick={(e) => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
@@ -140,9 +140,9 @@ export default function Works() {
               src={openclassrooms}
               alt="openclassrooms"
               priority={true}
-              className="rounded-2xl group-hover/caption:opacity-0 ease-in duration-300 full w-[300px] h-[300px]"
+              className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
-            <figcaption className="ease-in duration-300 flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
+            <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
               <h1 className="text-xl md:text-4xl font-bold">Openclassrooms</h1>
               <p className="hidden sm:block sm:text-base	md:text-2xl pt-2">
                 Mentor for Web Development
