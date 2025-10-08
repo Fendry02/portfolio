@@ -2,3 +2,7 @@
 @plugin "daisyui" {
   themes: corporate;
 }
+
+html {
+  scroll-behavior: smooth;
+}

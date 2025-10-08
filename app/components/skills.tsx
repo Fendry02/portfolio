@@ -8,14 +8,13 @@ export default function Skills() {
   const imageSize = 72
 
   return (
-    <section className="text-center px-16 max-sm:px-8">
+    <section id="skills" className="text-center px-16 max-sm:px-8">
       <div className="mx-auto columns-1 lg:columns-3 gap-x-8">
         <div className="relative rounded-t-xl border-0 lg:rounded-xl bg-base-100 shadow-lg -top-16 transition-transform duration-300 hover:scale-102">
           <figure>
             <Image
               src={frontend}
               alt="Benoit avatar"
-              priority={true}
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"
@@ -42,7 +41,6 @@ export default function Skills() {
             <Image
               src={portable}
               alt="Benoit avatar"
-              priority={true}
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"
@@ -68,7 +66,6 @@ export default function Skills() {
             <Image
               src={server}
               alt="Benoit avatar"
-              priority={true}
               height={imageSize}
               width={imageSize}
               className="mx-auto pt-8"

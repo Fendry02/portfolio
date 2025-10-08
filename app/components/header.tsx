@@ -7,7 +7,9 @@ export default function Header() {
     <header>
       <div className="navbar p-4">
         <div className="flex-1">
-          <Image src={logo} alt="Benoit logo" width={60} priority={true} />
+          <a href="#home" className="cursor-pointer">
+            <Image src={logo} alt="Benoit logo" width={60} priority={true} />
+          </a>
         </div>
         <div className="flex-none">
           <a

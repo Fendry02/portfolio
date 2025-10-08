@@ -17,7 +17,6 @@ export default function Benefits() {
                 alt="Technical expertise illustration"
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"
-                priority
                 className="rounded-2xl object-contain"
               />
             </div>
@@ -38,7 +37,6 @@ export default function Benefits() {
                 alt="methodology illustration"
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"
-                priority
                 className="rounded-2xl object-contain"
               />
             </div>
@@ -59,7 +57,6 @@ export default function Benefits() {
                 alt="communication illustration"
                 fill
                 sizes="(max-width: 768px) 100vw, 300px"
-                priority
                 className="rounded-2xl object-contain"
               />
             </div>

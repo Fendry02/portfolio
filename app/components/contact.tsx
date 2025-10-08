@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <section className="px-32 max-sm:px-8 shadow-lg">
+    <section id="contact" className="px-32 max-sm:px-8 shadow-lg">
       <div className="bg-neutral rounded-xl text-white text-center p-8 relative top-16 max-sm:top-32">
         <div className="flex w-full flex-col lg:flex-row">
           <div className="card grid flex-grow place-items-center flex-1">
