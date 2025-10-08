@@ -65,10 +65,10 @@ export default function Philosophy() {
               Clean Code
             </AnimatedTitle>
             <p className="text-sm text-black">
-              Code is read more often than it's written. I prioritize clean,
-              self-documenting code with meaningful names, small functions, and
-              clear structure. This reduces technical debt and makes future
-              maintenance a breeze.
+              Code is read more often than it&apos;s written. I prioritize
+              clean, self-documenting code with meaningful names, small
+              functions, and clear structure. This reduces technical debt and
+              makes future maintenance a breeze.
             </p>
           </div>
         </div>

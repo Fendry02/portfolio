@@ -101,7 +101,7 @@ export default function Benefits() {
             I am committed to keeping you informed and involved every step of
             the way. With 24-hour response time guarantee, weekly progress
             reports, and transparent project tracking, I ensure 100% visibility
-            into your project's development process.
+            into your project&apos;s development process.
           </p>
         </div>
       </div>

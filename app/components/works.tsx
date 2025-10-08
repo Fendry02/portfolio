@@ -45,7 +45,7 @@ export default function Works() {
       <div className="flex w-full flex-col lg:flex-row justify-center lg:gap-32 gap-4 items-center ">
         <div
           ref={citizenplaneRef}
-          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 hover:scale-105 ${
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 rounded-2xl max-w-[300px] max-h-[300px] hover:scale-105 transition-all duration-300 ${
             citizenplaneVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -116,7 +116,7 @@ export default function Works() {
         </div>
         <div
           ref={businessRef}
-          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-200 hover:scale-105 ${
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 rounded-2xl max-w-[300px] max-h-[300px] hover:scale-105 transition-all duration-300 ${
             businessVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -191,7 +191,7 @@ export default function Works() {
         </div>
         <div
           ref={openclassroomsRef}
-          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 ease-in-out duration-300 rounded-2xl max-w-[300px] max-h-[300px] transition-all duration-700 delay-400 hover:scale-105 ${
+          className={`flex-1 cursor-pointer group/caption shadow-lg hover:bg-slate-900 rounded-2xl max-w-[300px] max-h-[300px] hover:scale-105 transition-all duration-300 ${
             openclassroomsVisible
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
@@ -242,7 +242,7 @@ export default function Works() {
                 courses and land their first developer jobs. I provide
                 personalized guidance on React, JavaScript, and modern web
                 development practices. My mentoring approach includes code
-                reviews, project feedback, and career guidance. I've helped
+                reviews, project feedback, and career guidance. I&apos;ve helped
                 students build portfolio projects that showcase real-world
                 applications, with several mentees securing positions at tech
                 companies including startups and established firms. I also
