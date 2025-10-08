@@ -5,14 +5,13 @@ import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
 
 export default function Works() {
   const handleClick = (elementId: string) => {
     ;(document.getElementById(elementId) as HTMLDialogElement)?.showModal()
   }
 
-  const { ref: titleRef, isVisible: titleVisible } =
-    useScrollAnimation<HTMLHeadingElement>()
   const { ref: subtitleRef, isVisible: subtitleVisible } =
     useScrollAnimation<HTMLParagraphElement>()
   const { ref: citizenplaneRef, isVisible: citizenplaneVisible } =
@@ -24,14 +23,9 @@ export default function Works() {
 
   return (
     <section id="works" className="text-center pb-16 px-16 max-sm:px-8">
-      <h1
-        ref={titleRef}
-        className={`text-5xl font-bold transition-all duration-700 ${
-          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <AnimatedTitle level={1} delay={0}>
         Works
-      </h1>
+      </AnimatedTitle>
       <p
         ref={subtitleRef}
         className={`text-xl p-8 transition-all duration-700 delay-200 ${
@@ -65,7 +59,13 @@ export default function Works() {
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
-              <h1 className="text-xl md:text-4xl font-bold">CitizenPlane</h1>
+              <AnimatedTitle
+                level={1}
+                delay={0}
+                className="text-xl md:text-4xl"
+              >
+                CitizenPlane
+              </AnimatedTitle>
               <p className="text-base	md:text-2xl pt-2">Tech lead</p>
             </figcaption>
           </figure>
@@ -80,7 +80,13 @@ export default function Works() {
                   alt="CitizenPlane project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
-                <h3 className="font-bold text-lg">CitizenPlane</h3>
+                <AnimatedTitle
+                  level={3}
+                  delay={0}
+                  className="font-bold text-lg"
+                >
+                  CitizenPlane
+                </AnimatedTitle>
               </div>
               <p className="py-4 text-start">
                 As a Tech Lead, I combine hands-on technical expertise with
@@ -119,9 +125,13 @@ export default function Works() {
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
-              <h1 className="text-xl md:text-4xl font-bold">
+              <AnimatedTitle
+                level={1}
+                delay={0}
+                className="text-xl md:text-4xl"
+              >
                 Business & Decision
-              </h1>
+              </AnimatedTitle>
               <p className="hidden sm:block sm:text-base	md:text-2xl pt-2">
                 Consultant for Accor Hotels
               </p>
@@ -138,7 +148,13 @@ export default function Works() {
                   alt="Business & Decision project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
-                <h3 className="font-bold text-lg">Business & Decision</h3>
+                <AnimatedTitle
+                  level={3}
+                  delay={0}
+                  className="font-bold text-lg"
+                >
+                  Business & Decision
+                </AnimatedTitle>
               </div>
               <p className="py-4 text-start">
                 At Business & Decision, I worked as a CRM Consultant, managing
@@ -179,7 +195,13 @@ export default function Works() {
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
-              <h1 className="text-xl md:text-4xl font-bold">Openclassrooms</h1>
+              <AnimatedTitle
+                level={1}
+                delay={0}
+                className="text-xl md:text-4xl"
+              >
+                Openclassrooms
+              </AnimatedTitle>
               <p className="hidden sm:block sm:text-base	md:text-2xl pt-2">
                 Mentor for Web Development
               </p>
@@ -196,7 +218,13 @@ export default function Works() {
                   alt="OpenClassrooms project logo"
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
-                <h3 className="font-bold text-lg">Openclassrooms</h3>
+                <AnimatedTitle
+                  level={3}
+                  delay={0}
+                  className="font-bold text-lg"
+                >
+                  Openclassrooms
+                </AnimatedTitle>
               </div>
               <p className="py-4 text-start">
                 At OpenClassrooms, I mentor students enrolled in web development

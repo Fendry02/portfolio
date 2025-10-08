@@ -1,23 +1,17 @@
 'use client'
 
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
 
 export default function Timeline() {
-  const { ref: titleRef, isVisible: titleVisible } =
-    useScrollAnimation<HTMLHeadingElement>()
   const { ref: timelineRef, isVisible: timelineVisible } =
     useScrollAnimation<HTMLUListElement>()
 
   return (
     <section className="p-16 max-sm:p-8">
-      <h1
-        ref={titleRef}
-        className={`text-5xl font-bold text-center transition-all duration-700 ${
-          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <AnimatedTitle level={1} delay={0} className="text-center">
         Timeline
-      </h1>
+      </AnimatedTitle>
       <ul
         ref={timelineRef}
         className={`timeline timeline-snap-icon max-md:timeline-compact timeline-vertical pt-8 transition-all duration-700 delay-200 ${

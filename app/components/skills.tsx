@@ -6,6 +6,7 @@ import frontend from '@/public/front-end.webp'
 import portable from '@/public/portable.webp'
 import server from '@/public/server.webp'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
 
 export default function Skills() {
   const imageSize = 72
@@ -39,7 +40,9 @@ export default function Skills() {
             />
           </figure>
           <div className="card-body overflow-auto	text-center">
-            <h2 className="card-title mx-auto">Frontend</h2>
+            <AnimatedTitle level={2} delay={0} className="card-title mx-auto">
+              Frontend
+            </AnimatedTitle>
             <p className="sm:h-24">
               I like to code things from scratch, and enjoy bringing ideas to
               life in the browser
@@ -72,7 +75,9 @@ export default function Skills() {
             />
           </figure>
           <div className="card-body text-center">
-            <h2 className="card-title mx-auto">Backend</h2>
+            <AnimatedTitle level={2} delay={0} className="card-title mx-auto">
+              Backend
+            </AnimatedTitle>
             <p className="sm:h-24">
               I enjoy develop clean and efficient RESTful API
             </p>
@@ -104,7 +109,9 @@ export default function Skills() {
             />
           </figure>
           <div className="card-body text-center">
-            <h2 className="card-title mx-auto">Database</h2>
+            <AnimatedTitle level={2} delay={0} className="card-title mx-auto">
+              Database
+            </AnimatedTitle>
             <p className="sm:h-24">
               I genuinely care about building efficient database, and love
               helping beginners to learn it

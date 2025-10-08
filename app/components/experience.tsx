@@ -1,23 +1,17 @@
 'use client'
 
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
 
 export default function Experience() {
-  const { ref: titleRef, isVisible: titleVisible } =
-    useScrollAnimation<HTMLHeadingElement>()
   const { ref: descriptionRef, isVisible: descriptionVisible } =
     useScrollAnimation<HTMLParagraphElement>()
 
   return (
     <section className="bg-primary text-white p-16 max-sm:p-8 text-center">
-      <h1
-        ref={titleRef}
-        className={`text-5xl font-bold transition-all duration-700 ${
-          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <AnimatedTitle level={1} delay={0}>
         Experience
-      </h1>
+      </AnimatedTitle>
       <p
         ref={descriptionRef}
         className={`text-xl py-8 mx-auto max-w-4xl transition-all duration-700 delay-200 ${

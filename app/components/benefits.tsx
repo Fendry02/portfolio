@@ -6,10 +6,9 @@ import technical from '@/public/benefits/technical.webp'
 import methodology from '@/public/benefits/methodology.webp'
 import communication from '@/public/benefits/communication.webp'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
+import { AnimatedTitle } from './ui'
 
 export default function Benefits() {
-  const { ref: titleRef, isVisible: titleVisible } =
-    useScrollAnimation<HTMLHeadingElement>()
   const { ref: technicalRef, isVisible: technicalVisible } =
     useScrollAnimation<HTMLDivElement>()
   const { ref: methodologyRef, isVisible: methodologyVisible } =
@@ -19,14 +18,9 @@ export default function Benefits() {
 
   return (
     <section className="text-center p-16 pt-0 max-sm:p-8 max-sm:pt-0">
-      <h1
-        ref={titleRef}
-        className={`text-5xl font-bold transition-all duration-700 ${
-          titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <AnimatedTitle level={1} delay={0}>
         Benefits of working with me
-      </h1>
+      </AnimatedTitle>
       <div className="flex flex-wrap mx-auto justify-center	gap-8 pt-8">
         <div className="flex w-full flex-col lg:flex-row">
           <div
@@ -46,9 +40,9 @@ export default function Benefits() {
                 className="rounded-2xl object-contain"
               />
             </div>
-            <h3 className="text-2xl font-bold py-4 text-secondary">
+            <AnimatedTitle level={3} delay={0} className="py-4 text-secondary">
               Technical Expertise
-            </h3>
+            </AnimatedTitle>
             <p>
               Mastery of modern JavaScript, PostgreSQL, and clean coding
               practices. I deliver robust, scalable solutions tailored to your
@@ -73,9 +67,9 @@ export default function Benefits() {
                 className="rounded-2xl object-contain"
               />
             </div>
-            <h3 className="text-2xl font-bold py-4 text-secondary">
+            <AnimatedTitle level={3} delay={0} className="py-4 text-secondary">
               Efficient Methodology
-            </h3>
+            </AnimatedTitle>
             <p>
               I follow a structured, functional approach that ensures your
               project is completed on time and within scope, without
@@ -100,9 +94,9 @@ export default function Benefits() {
                 className="rounded-2xl object-contain"
               />
             </div>
-            <h3 className="text-2xl font-bold py-4 text-secondary">
+            <AnimatedTitle level={3} delay={0} className="py-4 text-secondary">
               Clear Communication
-            </h3>
+            </AnimatedTitle>
             <p>
               I am committed to keeping you informed and involved every step of
               the way. Transparent, timely, and effective communication is key.
