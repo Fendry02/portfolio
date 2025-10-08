@@ -23,7 +23,7 @@ export default function Footer() {
           logoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <Image src={logo} alt="Benoit logo" width={60} priority={true} />
+        <Image src={logo} alt="Benoit logo" width={60} />
         <p className="font-bold">Handcrafted by me</p>
       </div>
       <div
@@ -44,7 +44,6 @@ export default function Footer() {
               src={github}
               alt="github"
               width={24}
-              priority={true}
               className="opacity-90"
             />
           </a>
@@ -57,7 +56,6 @@ export default function Footer() {
               src={facebook}
               alt="facebook"
               width={24}
-              priority={true}
               className="opacity-90"
             />
           </a>
@@ -70,7 +68,6 @@ export default function Footer() {
               src={linkedin}
               alt="linkedin"
               width={24}
-              priority={true}
               className="opacity-90"
             />
           </a>

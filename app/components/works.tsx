@@ -62,7 +62,6 @@ export default function Works() {
             <Image
               src={citizenplane}
               alt="citizenplane"
-              priority={true}
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2  opacity-0 group-hover/caption:opacity-100 text-white">
@@ -79,7 +78,6 @@ export default function Works() {
                 <Image
                   src={citizenplane}
                   alt="citizenplane"
-                  priority={true}
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">CitizenPlane</h3>
@@ -118,7 +116,6 @@ export default function Works() {
             <Image
               src={businessDecision}
               alt="businessDecision"
-              priority={true}
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
@@ -139,7 +136,6 @@ export default function Works() {
                 <Image
                   src={businessDecision}
                   alt="businessDecision"
-                  priority={true}
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Business & Decision</h3>
@@ -180,7 +176,6 @@ export default function Works() {
             <Image
               src={openclassrooms}
               alt="openclassrooms"
-              priority={true}
               className="rounded-2xl group-hover/caption:opacity-0 transition-opacity duration-300 ease-in-out w-[300px] h-[300px]"
             />
             <figcaption className="transition-opacity duration-300 ease-in-out flex flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 group-hover/caption:opacity-100 text-white">
@@ -199,7 +194,6 @@ export default function Works() {
                 <Image
                   src={openclassrooms}
                   alt="openclassrooms"
-                  priority={true}
                   className="rounded-2xl w-[50px] h-[50px]"
                 />
                 <h3 className="font-bold text-lg">Openclassrooms</h3>

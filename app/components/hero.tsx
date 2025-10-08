@@ -42,7 +42,12 @@ export default function Hero() {
               avatarVisible ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <Image src={profile} alt="profile" className="pt-12" />
+            <Image
+              src={profile}
+              alt="profile"
+              priority={true}
+              className="pt-12"
+            />
           </div>
         </div>
         <div
