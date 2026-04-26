@@ -6,11 +6,12 @@ import Experience from './components/experience'
 import Timeline from './components/timeline'
 import Philosophy from './components/philosophy'
 import Benefits from './components/benefits'
+import Testimonials from './components/testimonials'
 import Contact from './components/contact'
 
-const Home = () => {
+export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main id="main">
       <Hero />
       <Presentation />
       <Skills />
@@ -19,9 +20,8 @@ const Home = () => {
       <Timeline />
       <Philosophy />
       <Benefits />
+      <Testimonials />
       <Contact />
     </main>
   )
 }
-
-export default Home

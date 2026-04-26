@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       'JavaScript Tech Lead & Full Stack Developer specializing in Vue.js, Next.js, Node.js, and PostgreSQL.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#0ea5e9',
+    background_color: '#10131c',
+    theme_color: '#5fa6f5',
     icons: [
       { src: '/icon', sizes: '32x32', type: 'image/png' },
       { src: '/apple-icon', sizes: '180x180', type: 'image/png' },

@@ -19,20 +19,6 @@ export interface SkillCategory {
 
 export const SKILLS: readonly SkillCategory[] = [
   {
-    title: 'Frontend',
-    description:
-      'I like to code things from scratch, and enjoy bringing ideas to life in the browser',
-    icon: frontend,
-    iconAlt: 'Frontend development icon',
-    items: [
-      { name: 'VueJS', experience: '2+ years' },
-      { name: 'NextJS', experience: '1+ years' },
-      { name: 'Tailwind', experience: '2+ years' },
-      { name: 'daisyUI', experience: '2+ years' },
-      { name: 'Figma', experience: '3+ years' },
-    ],
-  },
-  {
     title: 'Backend',
     description: 'I enjoy develop clean and efficient RESTful API',
     icon: portable,
@@ -57,6 +43,20 @@ export const SKILLS: readonly SkillCategory[] = [
       { name: 'MongoDB', experience: '3+ years' },
       { name: 'Redis', experience: '3+ years' },
       { name: 'Objection.js', experience: '6+ years' },
+    ],
+  },
+  {
+    title: 'Frontend',
+    description:
+      'I like to code things from scratch, and enjoy bringing ideas to life in the browser',
+    icon: frontend,
+    iconAlt: 'Frontend development icon',
+    items: [
+      { name: 'Vue.js', experience: '6+ years' },
+      { name: 'Next.js', experience: '2+ years' },
+      { name: 'Tailwind CSS', experience: '4+ years' },
+      { name: 'React', experience: '5+ years' },
+      { name: 'Figma', experience: '3+ years' },
     ],
   },
 ]

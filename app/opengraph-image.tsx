@@ -2,9 +2,14 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 export const alt =
-  'Benoit Bruynbroeck - JavaScript Tech Lead & Full Stack Developer'
+  'Benoit Bruynbroeck — JavaScript Tech Lead & Full Stack Developer'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
+
+const INK = '#10131c'
+const PAPER = '#f4f0e6'
+const ACCENT = '#5fa6f5'
+const PAPER_DIM = '#9a9b8e'
 
 export default async function OpengraphImage() {
   return new ImageResponse(
@@ -13,70 +18,73 @@ export default async function OpengraphImage() {
         style={{
           width: '100%',
           height: '100%',
+          padding: '72px',
+          background: INK,
+          color: PAPER,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          padding: '96px',
-          background:
-            'linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #0ea5e9 100%)',
-          color: '#fff',
-          fontFamily: 'sans-serif',
+          justifyContent: 'space-between',
+          fontFamily: 'serif',
         }}
       >
         <div
           style={{
             display: 'flex',
-            fontSize: 28,
-            color: '#94a3b8',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            fontSize: 18,
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            marginBottom: 24,
+            color: PAPER_DIM,
           }}
         >
-          bbenoit.fr
+          <span>Benoit Bruynbroeck</span>
+          <span>BBenoit.fr · 2026</span>
         </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          <span
+            style={{
+              fontSize: 16,
+              letterSpacing: '0.25em',
+              textTransform: 'uppercase',
+              color: ACCENT,
+            }}
+          >
+            JavaScript Tech Lead
+          </span>
+          <span
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              fontSize: 110,
+              lineHeight: 1.02,
+              fontWeight: 400,
+              maxWidth: 1000,
+            }}
+          >
+            Engineering at the speed{' '}
+            <span
+              style={{ fontStyle: 'italic', color: ACCENT, marginLeft: 14 }}
+            >
+              of intent.
+            </span>
+          </span>
+        </div>
+
         <div
           style={{
             display: 'flex',
-            fontSize: 88,
-            fontWeight: 800,
-            lineHeight: 1.05,
-            marginBottom: 24,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            fontSize: 18,
+            color: PAPER_DIM,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
           }}
         >
-          Benoit Bruynbroeck
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 40,
-            fontWeight: 500,
-            color: '#e2e8f0',
-            lineHeight: 1.2,
-            maxWidth: 1000,
-          }}
-        >
-          JavaScript Tech Lead & Full Stack Developer
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            marginTop: 64,
-            gap: 24,
-            fontSize: 24,
-            color: '#bae6fd',
-          }}
-        >
-          <span>Vue.js</span>
-          <span>·</span>
-          <span>Next.js</span>
-          <span>·</span>
-          <span>Node.js</span>
-          <span>·</span>
-          <span>PostgreSQL</span>
-          <span>·</span>
-          <span>AWS</span>
+          <span>TypeScript · Vue · Next · Node · PostgreSQL · AWS</span>
+          <span style={{ color: ACCENT }}>↗</span>
         </div>
       </div>
     ),

@@ -1,6 +1,6 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter, Instrument_Serif, JetBrains_Mono } from 'next/font/google'
 
 import './styles/global.css'
 
@@ -11,6 +11,20 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-display',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
@@ -81,6 +95,14 @@ export const metadata: Metadata = {
   category: 'technology',
 }
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#10131c' },
+    { media: '(prefers-color-scheme: light)', color: '#10131c' },
+  ],
+  colorScheme: 'dark',
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -89,7 +111,10 @@ export default function RootLayout({
   const gaId = process.env.GOOGLE_ANALYTICS_ID
 
   return (
-    <html lang="en" data-theme="corporate" className={inter.variable}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrains.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -155,9 +180,22 @@ export default function RootLayout({
           }}
         ></script>
       </head>
-      <body className="font-sans">
+      <body className="font-sans antialiased bg-ink text-paper relative overflow-x-hidden">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed top-0 left-0 right-0 h-px bg-line z-40"
+        >
+          <div className="scroll-progress h-full bg-accent" />
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-0 opacity-[0.05] mix-blend-overlay grain"
+        />
         <Header />
-        {children}
+        <div className="relative z-10">{children}</div>
         <Footer />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}

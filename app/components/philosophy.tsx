@@ -1,47 +1,48 @@
 import { PILLARS } from '../data/philosophy'
-import { AnimatedTitle, FadeIn } from './ui'
-
-const DELAYS = [300, 400, 500] as const
+import { FadeIn, SectionHeader } from './ui'
 
 export default function Philosophy() {
   return (
-    <section className="bg-primary text-white p-16 max-sm:p-8">
-      <AnimatedTitle level={1} className="text-center mb-16">
-        My Development Philosophy
-      </AnimatedTitle>
+    <section className="px-6 md:px-12 py-[var(--space-section)] bg-ink-2/40 border-y border-line">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeader
+          num="06"
+          eyebrow="How I work"
+          title={
+            <>
+              A <span className="italic text-accent">deliberate</span> craft
+            </>
+          }
+        />
 
-      <FadeIn
-        delay={200}
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-      >
-        {PILLARS.map((pillar, idx) => (
-          <FadeIn
-            key={pillar.title}
-            delay={DELAYS[idx]}
-            className="card bg-base-100 rounded-xl shadow-lg p-6"
-          >
-            <div className="card-body text-center">
-              <div aria-hidden="true" className="text-4xl mb-4">
-                {pillar.emoji}
-              </div>
-              <AnimatedTitle level={3} className="text-secondary mb-4">
+        <div className="mt-16 grid md:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+          {PILLARS.map((pillar, idx) => (
+            <FadeIn
+              key={pillar.title}
+              delay={(idx * 100) as 0 | 100 | 200}
+              className="bg-ink-2 p-8 md:p-10 hover:bg-ink-3 transition-colors"
+            >
+              <p className="font-mono text-xs text-paper-mute tracking-widest uppercase">
+                Principle · 0{idx + 1}
+              </p>
+              <h3 className="mt-3 font-display text-3xl text-paper">
                 {pillar.title}
-              </AnimatedTitle>
-              <p className="text-sm text-black">{pillar.description}</p>
-            </div>
-          </FadeIn>
-        ))}
-      </FadeIn>
+              </h3>
+              <p className="mt-4 text-paper-dim leading-relaxed">
+                {pillar.description}
+              </p>
+            </FadeIn>
+          ))}
+        </div>
 
-      <FadeIn delay={600} className="text-center mt-12">
-        <p className="text-lg max-w-4xl mx-auto">
-          <strong>My approach:</strong> Every line of code should serve a
-          purpose, every architecture decision should be justified, and every
-          solution should be built to last. I believe in the power of
-          well-crafted software to transform businesses and create lasting
-          value.
-        </p>
-      </FadeIn>
+        <FadeIn delay={300} className="mt-12 max-w-3xl">
+          <p className="font-display text-2xl md:text-3xl text-paper leading-snug">
+            <span className="italic text-accent">Every line of code</span>{' '}
+            should serve a purpose. Every architecture decision should be
+            justified. Every solution should be built to last.
+          </p>
+        </FadeIn>
+      </div>
     </section>
   )
 }

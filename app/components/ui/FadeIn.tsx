@@ -1,24 +1,25 @@
-'use client'
-
 import React from 'react'
 
-import { useScrollAnimation } from '../../hooks/useScrollAnimation'
+type Delay = 0 | 100 | 200 | 300 | 400 | 500 | 600
 
 type FadeInProps<T extends React.ElementType> = {
   as?: T
-  delay?: 0 | 100 | 200 | 300 | 400 | 500 | 600
+  delay?: Delay
   className?: string
   children: React.ReactNode
-} & Omit<React.ComponentPropsWithoutRef<T>, 'as' | 'delay' | 'className' | 'children'>
+} & Omit<
+  React.ComponentPropsWithoutRef<T>,
+  'as' | 'delay' | 'className' | 'children'
+>
 
-const DELAY_CLASSES: Record<NonNullable<FadeInProps<'div'>['delay']>, string> = {
-  0: '',
-  100: 'delay-100',
-  200: 'delay-200',
-  300: 'delay-300',
-  400: 'delay-400',
-  500: 'delay-500',
-  600: 'delay-700',
+const RANGE_BY_DELAY: Record<Delay, string> = {
+  0: 'entry 0% cover 25%',
+  100: 'entry 5% cover 28%',
+  200: 'entry 10% cover 30%',
+  300: 'entry 14% cover 33%',
+  400: 'entry 18% cover 36%',
+  500: 'entry 22% cover 38%',
+  600: 'entry 26% cover 40%',
 }
 
 export function FadeIn<T extends React.ElementType = 'div'>({
@@ -26,19 +27,19 @@ export function FadeIn<T extends React.ElementType = 'div'>({
   delay = 0,
   className = '',
   children,
+  style,
   ...rest
 }: FadeInProps<T>) {
-  const { ref, isVisible } = useScrollAnimation<HTMLElement>()
   const Tag = (as || 'div') as React.ElementType
-
-  const visibility = isVisible
-    ? 'opacity-100 translate-y-0'
-    : 'opacity-0 translate-y-8'
-
   return (
     <Tag
-      ref={ref}
-      className={`transition-all duration-700 ${DELAY_CLASSES[delay]} ${visibility} ${className}`}
+      className={`fade-up ${className}`}
+      style={
+        {
+          ...(style as object),
+          ['--fade-range' as string]: RANGE_BY_DELAY[delay],
+        } as React.CSSProperties
+      }
       {...rest}
     >
       {children}

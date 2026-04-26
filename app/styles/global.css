@@ -1,24 +1,219 @@
 @import 'tailwindcss';
 
-@plugin "daisyui" {
-  themes: corporate;
-}
-
+/* ---------- Design tokens ---------- */
 @theme {
+  --color-ink: oklch(13% 0.01 260);
+  --color-ink-2: oklch(17% 0.012 260);
+  --color-ink-3: oklch(22% 0.014 260);
+  --color-line: oklch(28% 0.014 260);
+  --color-paper: oklch(96% 0.005 90);
+  --color-paper-dim: oklch(78% 0.008 90);
+  --color-paper-mute: oklch(62% 0.01 90);
+  --color-accent: oklch(76% 0.16 240);
+  --color-accent-soft: oklch(76% 0.16 240 / 0.22);
+  --color-warn: oklch(78% 0.16 50);
+
   --font-sans:
     var(--font-inter), ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display:
+    var(--font-display), 'EB Garamond', Georgia, ui-serif, serif;
+  --font-mono:
+    var(--font-mono), ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo,
+    Consolas, monospace;
+
+  --text-display-xl: clamp(3.25rem, 1rem + 9vw, 9.5rem);
+  --text-display-lg: clamp(2.5rem, 1rem + 5vw, 5.5rem);
+  --text-display-md: clamp(2rem, 1rem + 3vw, 3.25rem);
+  --text-eyebrow: 0.78rem;
+
+  --space-section: clamp(5rem, 3rem + 6vw, 10rem);
+
+  --duration-fast: 200ms;
+  --duration-normal: 400ms;
+  --duration-slow: 800ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --radius-card: 18px;
+  --radius-pill: 999px;
 }
 
+/* ---------- Base ---------- */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip link — visible only when focused */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: translateY(-150%);
+  transition: transform 200ms var(--ease-out-expo);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------- Utility helpers ---------- */
+@utility font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-paper-mute);
+}
+
+@utility hairline {
+  border: 1px solid var(--color-line);
+}
+
+@utility surface {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklch, var(--color-ink-2), transparent 0%) 0%,
+    color-mix(in oklch, var(--color-ink-3), transparent 0%) 100%
+  );
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-card);
+}
+
+/* ---------- Background grain ---------- */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+.accent-glow::before {
+  content: '';
+  position: absolute;
+  inset: -10% -20% auto auto;
+  width: 60vmax;
+  height: 60vmax;
+  background: radial-gradient(
+    closest-side,
+    var(--color-accent-soft),
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------- Scroll-driven animations ---------- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Default state: visible (fallback when scroll-timeline isn't supported) */
+.fade-up {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-up {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: var(--fade-range, entry 0% cover 25%);
+    }
+  }
+}
+
+.scroll-progress {
+  animation: scroll-progress linear;
+  animation-timeline: scroll(root block);
+  transform-origin: left center;
+}
+
+/* ---------- Animations (modal etc.) ---------- */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.pop-in {
+  animation: pop-in 280ms var(--ease-out-expo) both;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.overlay-in {
+  animation: overlay-in 220ms var(--ease-out-expo) both;
+}
+
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-
   *,
   *::before,
   *::after {

@@ -1,48 +1,61 @@
 import Image from 'next/image'
 
-import logo from '@/public/logo-white.webp'
 import github from '@/public/socials/github.svg'
 import linkedin from '@/public/socials/linkedin.svg'
 import facebook from '@/public/socials/facebook.svg'
 import { LINKS } from '../constants'
-import { FadeIn } from './ui'
 
 const SOCIALS = [
-  { href: LINKS.GITHUB, icon: github, alt: "GitHub profile - View Benoit's code repositories and projects" },
-  { href: LINKS.FACEBOOK, icon: facebook, alt: 'Facebook profile - Connect with Benoit on Facebook' },
-  { href: LINKS.LINKEDIN, icon: linkedin, alt: 'LinkedIn profile - Connect with Benoit on LinkedIn for professional networking' },
+  { href: LINKS.GITHUB, icon: github, label: 'GitHub' },
+  { href: LINKS.LINKEDIN, icon: linkedin, label: 'LinkedIn' },
+  { href: LINKS.FACEBOOK, icon: facebook, label: 'Facebook' },
 ] as const
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="footer footer-center p-16 pt-32 max-sm:pt-40 bg-primary text-primary-content gap-y-6">
-      <FadeIn>
-        <Image src={logo} alt="Benoit logo" width={60} />
-        <p className="font-bold">Handcrafted by me</p>
-      </FadeIn>
-      <FadeIn delay={200}>
-        <div className="grid grid-flow-col gap-4">
-          {SOCIALS.map((social) => (
-            <a
-              key={social.href}
-              className="cursor-pointer"
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={social.icon}
-                alt={social.alt}
-                width={24}
-                className="opacity-90"
-              />
-            </a>
-          ))}
+    <footer className="px-6 md:px-12 py-16 border-t border-line">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-12 gap-8 items-end">
+          <div className="md:col-span-7">
+            <p className="font-display text-paper text-4xl md:text-5xl leading-[1]">
+              Built by hand,
+              <br />
+              <span className="italic text-accent">shipped with care</span>.
+            </p>
+          </div>
+          <div className="md:col-span-5 md:text-right">
+            <ul className="flex md:justify-end gap-6">
+              {SOCIALS.map((social) => (
+                <li key={social.href}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="group inline-flex items-center gap-2 text-paper-dim hover:text-paper transition-colors"
+                  >
+                    <Image
+                      src={social.icon}
+                      alt=""
+                      width={18}
+                      className="opacity-70 group-hover:opacity-100 invert"
+                    />
+                    <span className="font-mono text-[11px] tracking-widest uppercase">
+                      {social.label}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-        <p>Copyright © {currentYear} - All right reserved</p>
-      </FadeIn>
+        <div className="mt-12 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-4 font-mono text-[11px] text-paper-mute tracking-widest uppercase">
+          <span>© {currentYear} Benoit Bruynbroeck</span>
+          <span>Made in France · v2026</span>
+        </div>
+      </div>
     </footer>
   )
 }
