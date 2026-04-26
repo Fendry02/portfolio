@@ -23,14 +23,14 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-| Command            | What it does                          |
-| ------------------ | ------------------------------------- |
-| `npm run dev`      | Local dev server                      |
-| `npm run build`    | Production build                      |
-| `npm run start`    | Run production build                  |
-| `npm run lint`     | ESLint                                |
-| `npm run format`   | Prettier check                        |
-| `npm run analyze`  | Production build with bundle analyzer |
+| Command           | What it does                          |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Local dev server                      |
+| `npm run build`   | Production build                      |
+| `npm run start`   | Run production build                  |
+| `npm run lint`    | ESLint                                |
+| `npm run format`  | Prettier check                        |
+| `npm run analyze` | Production build with bundle analyzer |
 
 ## Project layout
 
