@@ -15,11 +15,11 @@ export default function Philosophy() {
           }
         />
 
-        <div className="mt-16 grid md:grid-cols-3 gap-px bg-line border border-line rounded-2xl overflow-hidden">
+        <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-2xl overflow-hidden">
           {PILLARS.map((pillar, idx) => (
             <FadeIn
               key={pillar.title}
-              delay={(idx * 100) as 0 | 100 | 200}
+              delay={(idx * 100) as 0 | 100 | 200 | 300}
               className="bg-ink-2 p-8 md:p-10 hover:bg-ink-3 transition-colors"
             >
               <p className="font-mono text-xs text-paper-mute tracking-widest uppercase">

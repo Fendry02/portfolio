@@ -23,4 +23,10 @@ export const PILLARS: readonly Pillar[] = [
     description:
       'I design systems that grow with your business. From microservices to database optimization, I ensure your architecture can handle increased load, new features, and team growth without breaking a sweat.',
   },
+  {
+    emoji: '🤝',
+    title: 'Human-led, AI-assisted',
+    description:
+      'AI tools are part of my craft — drafting, refactoring, surfacing edge cases, stress-testing decisions. The interesting work stays human: judgment, design intent, the call to ship. I use AI to multiply my taste, not replace it.',
+  },
 ]
