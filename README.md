@@ -1,241 +1,82 @@
-# Portfolio - Benoit Bruynbroeck
+# Portfolio — Benoit Bruynbroeck
 
-A modern, high-performance portfolio website built with Next.js, showcasing my expertise as a JavaScript Tech Lead and Full Stack Developer.
+Personal site of Benoit Bruynbroeck — JavaScript Tech Lead & Full Stack Developer.
 
-## 🚀 Live Demo
+🌐 [bbenoit.fr](https://bbenoit.fr)
 
-[View Portfolio](https://bbenoit.fr) <!-- Replace with your actual URL -->
+## Stack
 
-## ✨ Features
+- **Framework**: Next.js 15 (App Router, RSC) · React 19 · TypeScript
+- **Styling**: Tailwind CSS 4 (custom theme, no UI kit)
+- **Typography**: Instrument Serif (display) · Inter (sans) · JetBrains Mono
+- **Animations**: native CSS scroll-driven anims (`animation-timeline: view()`)
+- **Tooling**: Prettier · ESLint · GitHub Actions CI
 
-- **Modern Tech Stack**: Next.js 15, React 19, TypeScript
-- **Optimized Performance**: WebP images, responsive design, Core Web Vitals optimized
-- **Beautiful UI**: TailwindCSS with DaisyUI components
-- **SEO Optimized**: Meta tags, structured data, sitemap
-- **Mobile First**: Fully responsive design
-- **Accessibility**: WCAG compliant with proper alt texts and semantic HTML
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: TailwindCSS + DaisyUI
-- **Icons**: Custom SVG icons
-- **Fonts**: Optimized Google Fonts
-
-### Development Tools
-
-- **Linting**: ESLint with Next.js config
-- **Formatting**: Prettier
-- **Image Processing**: Sharp for WebP conversion
-- **Build**: Next.js optimized build
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm, yarn, or pnpm
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
+## Getting started
 
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-3. Run the development server:
-
-```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-## 📁 Project Structure
+## Scripts
+
+| Command            | What it does                          |
+| ------------------ | ------------------------------------- |
+| `npm run dev`      | Local dev server                      |
+| `npm run build`    | Production build                      |
+| `npm run start`    | Run production build                  |
+| `npm run lint`     | ESLint                                |
+| `npm run format`   | Prettier check                        |
+| `npm run analyze`  | Production build with bundle analyzer |
+
+## Project layout
 
 ```
-portfolio/
-├── app/
-│   ├── components/          # React components
-│   │   ├── benefits.tsx     # Benefits section
-│   │   ├── contact.tsx      # Contact form
-│   │   ├── experience.tsx   # Work experience
-│   │   ├── footer.tsx       # Footer component
-│   │   ├── header.tsx       # Navigation header
-│   │   ├── hero.tsx         # Hero section
-│   │   ├── presentation.tsx # About section
-│   │   ├── skills.tsx       # Skills showcase
-│   │   ├── timeline.tsx     # Career timeline
-│   │   └── works.tsx        # Portfolio projects
-│   ├── styles/
-│   │   └── global.css       # Global styles
-│   ├── layout.tsx           # Root layout
-│   └── page.tsx             # Home page
-├── public/                  # Static assets
-│   ├── benefits/            # Benefit icons (WebP)
-│   ├── works/               # Project images (WebP)
-│   ├── socials/             # Social media icons (SVG)
-│   └── *.webp               # Optimized images
-└── scripts/                 # Build and optimization scripts
-    ├── convert-images.js    # PNG to WebP conversion
-    └── generate-responsive-images.js # Responsive image generation
+app/
+├── components/         # UI sections + design primitives
+│   └── ui/             # FadeIn, Surface, Eyebrow, SectionHeader
+├── data/               # Typed content (skills, works, timeline, …)
+├── styles/global.css   # Design tokens (colors, type, motion)
+├── icon.tsx            # Generated favicon (32×32)
+├── apple-icon.tsx      # Generated Apple touch icon (180×180)
+├── opengraph-image.tsx # Generated OG image (1200×630)
+├── manifest.ts         # PWA manifest
+├── robots.ts           # robots.txt
+├── sitemap.ts          # sitemap.xml
+├── layout.tsx          # Root layout (metadata, fonts, skip-link, grain)
+├── page.tsx            # Home page
+├── error.tsx           # Error boundary UI
+├── loading.tsx         # Loading state
+└── not-found.tsx       # 404 page
+public/                 # Static assets (webp images, svg icons)
+.github/workflows/ci.yml
 ```
 
-## 🖼️ Image Optimization
+## Design system
 
-This portfolio implements advanced image optimization techniques for maximum performance:
+**Palette** — `oklch()` ink scale + warm paper, electric blue accent  
+**Type** — fluid `clamp()` scales, serif italics for emphasis  
+**Surfaces** — single `<Surface>` primitive, hairline borders, no shadows  
+**Motion** — view-timeline based fades, no JS animation libraries  
+**A11y** — skip-link, focus-visible accent ring, modal focus trap, reduced-motion respected
 
-### WebP Conversion
+## Content TODO
 
-- **92.6% size reduction** on profile image (500KB → 37KB)
-- **91.2% size reduction** on project images (800KB → 70KB)
-- **85% quality** for optimal balance between size and visual quality
+A few placeholders are wired but empty until you add real content:
 
-### Responsive Images
+- `app/data/testimonials.ts` — 2–3 quotes (LinkedIn recos, ex-colleagues, mentees)
+- `app/constants/index.ts › OPTIONAL_LINKS.CV` — set to `'/cv.pdf'` after dropping a PDF in `public/`
+- `app/constants/index.ts › OPTIONAL_LINKS.CALENDLY` — set your booking URL
 
-- Multiple sizes: 640px, 768px, 1024px, 1280px, 1920px
-- Automatic format selection (WebP/AVIF with PNG/JPG fallback)
-- Lazy loading for non-critical images
+## Deployment
 
-### Available Scripts
+Hosted on Vercel. CI runs on every push (format / lint / typecheck / build).
 
-```bash
-# Convert PNG images to WebP
-npm run convert-images
+## Contact
 
-# Generate responsive image versions
-npm run generate-responsive
-```
-
-## 🎨 Design System
-
-### Color Palette
-
-- **Primary**: Custom brand colors
-- **Secondary**: Complementary accent colors
-- **Neutral**: TailwindCSS gray scale
-- **Status**: Success, warning, error states
-
-### Typography
-
-- **Headings**: Bold, hierarchical sizing
-- **Body**: Optimized readability
-- **Code**: Monospace for technical content
-
-### Components
-
-- **Cards**: Consistent spacing and shadows
-- **Buttons**: Interactive states and accessibility
-- **Modals**: Project details and interactions
-- **Navigation**: Responsive and accessible
-
-## 📱 Responsive Design
-
-- **Mobile First**: Optimized for mobile devices
-- **Breakpoints**: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)
-- **Touch Friendly**: Appropriate touch targets
-- **Performance**: Optimized for slower connections
-
-## ⚡ Performance
-
-### Core Web Vitals
-
-- **LCP**: < 2.5s (Largest Contentful Paint)
-- **FID**: < 100ms (First Input Delay)
-- **CLS**: < 0.1 (Cumulative Layout Shift)
-
-### Optimization Techniques
-
-- Image optimization with WebP/AVIF
-- Code splitting and lazy loading
-- Font optimization
-- CSS purging
-- Static generation where possible
-
-## 🔧 Available Scripts
-
-```bash
-# Development
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-
-# Code Quality
-npm run format       # Check code formatting
-npm run format:fix   # Fix code formatting
-
-# Image Optimization
-npm run convert-images        # Convert PNG to WebP
-npm run generate-responsive   # Generate responsive images
-```
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically on every push
-
-### Other Platforms
-
-- **Netlify**: Compatible with Next.js
-- **AWS Amplify**: Full-stack deployment
-- **Docker**: Containerized deployment
-
-## 📊 Performance Metrics
-
-| Metric         | Score | Status       |
-| -------------- | ----- | ------------ |
-| Performance    | 95+   | ✅ Excellent |
-| Accessibility  | 100   | ✅ Perfect   |
-| Best Practices | 95+   | ✅ Excellent |
-| SEO            | 100   | ✅ Perfect   |
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📞 Contact
-
-**Benoit Bruynbroeck**
-
-- **Email**: [bruy.benoit@gmail.com](mailto:bruy.benoit@gmail.com)
-- **LinkedIn**: [linkedin.com/in/benoit-bruynbroeck-a21214b4](https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/)
-- **GitHub**: [github.com/Fendry02](https://github.com/Fendry02)
-
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React framework
-- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
-- [DaisyUI](https://daisyui.com/) - Component library
-- [Sharp](https://sharp.pixelplumbing.com/) - Image processing
-- [Vercel](https://vercel.com/) - Deployment platform
-
----
-
-⭐ **Star this repository if you found it helpful!**
+- LinkedIn — [benoit-bruynbroeck](https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/)
+- GitHub — [@Fendry02](https://github.com/Fendry02)
+- Email — [bruy.benoit@gmail.com](mailto:bruy.benoit@gmail.com)
