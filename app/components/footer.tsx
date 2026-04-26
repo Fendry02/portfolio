@@ -9,7 +9,7 @@ import facebook from '@/public/socials/facebook.svg'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Footer() {
-  const currentYear = 2025
+  const currentYear = new Date().getFullYear()
   const { ref: logoRef, isVisible: logoVisible } =
     useScrollAnimation<HTMLDivElement>()
   const { ref: socialsRef, isVisible: socialsVisible } =
@@ -39,6 +39,7 @@ export default function Footer() {
             className="cursor-pointer"
             href="https://github.com/Fendry02"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src={github}
@@ -51,6 +52,7 @@ export default function Footer() {
             className="cursor-pointer"
             href="https://www.facebook.com/benoit.bruynbroeck/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src={facebook}
@@ -63,6 +65,7 @@ export default function Footer() {
             className="cursor-pointer"
             href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <Image
               src={linkedin}

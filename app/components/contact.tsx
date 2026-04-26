@@ -52,6 +52,7 @@ export default function Contact() {
               <a
                 href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-lg btn-secondary"
               >
                 LinkedIn
@@ -63,8 +64,9 @@ export default function Contact() {
                 Email Me
               </a>
               <a
-                href="https://github.com/benoitbruynbroeck"
+                href="https://github.com/Fendry02"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-lg btn-outline btn-secondary"
               >
                 GitHub

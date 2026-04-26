@@ -95,11 +95,9 @@ portfolio/
 │   ├── works/               # Project images (WebP)
 │   ├── socials/             # Social media icons (SVG)
 │   └── *.webp               # Optimized images
-├── scripts/                 # Build and optimization scripts
-│   ├── convert-images.js    # PNG to WebP conversion
-│   └── generate-responsive-images.js # Responsive image generation
-└── docs/                    # Documentation
-    └── IMAGE_OPTIMIZATION.md # Image optimization guide
+└── scripts/                 # Build and optimization scripts
+    ├── convert-images.js    # PNG to WebP conversion
+    └── generate-responsive-images.js # Responsive image generation
 ```
 
 ## 🖼️ Image Optimization
@@ -127,8 +125,6 @@ npm run convert-images
 # Generate responsive image versions
 npm run generate-responsive
 ```
-
-For detailed image optimization documentation, see [IMAGE_OPTIMIZATION.md](./IMAGE_OPTIMIZATION.md).
 
 ## 🎨 Design System
 
@@ -223,10 +219,6 @@ npm run generate-responsive   # Generate responsive images
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 

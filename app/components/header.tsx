@@ -7,7 +7,7 @@ export default function Header() {
     <header>
       <div className="navbar p-4">
         <div className="flex-1">
-          <a href="#home" className="cursor-pointer">
+          <a href="#home" className="cursor-pointer" aria-label="Back to top">
             <Image src={logo} alt="Benoit logo" width={60} priority={true} />
           </a>
         </div>
@@ -15,8 +15,10 @@ export default function Header() {
           <a
             href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
             target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary"
           >
-            <button className="btn btn-secondary">Say Hello</button>
+            Say Hello
           </a>
         </div>
       </div>

@@ -50,7 +50,7 @@ export default function Works() {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
           }`}
-          onClick={(e) => handleClick('citizenplaneModal')}
+          onClick={() => handleClick('citizenplaneModal')}
         >
           <figure className="relative">
             <Image
@@ -121,7 +121,7 @@ export default function Works() {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
           }`}
-          onClick={(e) => handleClick('businessDecisionModal')}
+          onClick={() => handleClick('businessDecisionModal')}
         >
           <figure className="relative">
             <Image
@@ -196,7 +196,7 @@ export default function Works() {
               ? 'opacity-100 translate-y-0'
               : 'opacity-0 translate-y-8'
           }`}
-          onClick={(e) => handleClick('openclassroomsModal')}
+          onClick={() => handleClick('openclassroomsModal')}
         >
           <figure className="relative">
             <Image
