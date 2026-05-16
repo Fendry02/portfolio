@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" data-theme="corporate">
+    <html lang="fr" data-theme="corporate">
       <head>
         <script
           type="application/ld+json"
@@ -21,9 +21,9 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Benoit Bruynbroeck',
-              jobTitle: 'JavaScript Tech Lead & Full Stack Developer',
+              jobTitle: 'Développeur full stack JavaScript & Tech Lead',
               description:
-                'Experienced JavaScript Tech Lead and Full Stack Developer specializing in Vue.js, Next.js, Node.js, and PostgreSQL. Leading development teams with expertise in scalable web applications.',
+                'Développeur full stack JavaScript spécialisé dans la création de sites web, applications métier et plateformes web sur mesure avec Next.js, Vue.js, Node.js et PostgreSQL.',
               url: 'https://bbenoit.fr',
               image: 'https://bbenoit.fr/profile.webp',
               sameAs: [
@@ -83,19 +83,22 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID || ''} />
+      {process.env.GOOGLE_ANALYTICS_ID && (
+        <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
+      )}
     </html>
   )
 }
 
 export const metadata: Metadata = {
-  title: 'Benoit Bruynbroeck | JavaScript Tech Lead & Full Stack Developer',
+  title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
   description:
-    'Experienced JavaScript Tech Lead and Full Stack Developer specializing in Vue.js, Next.js, Node.js, and PostgreSQL. Leading development teams at CitizenPlane with expertise in scalable web applications, RESTful APIs, and modern JavaScript frameworks.',
+    'Création de sites web professionnels, applications métier et plateformes web sur mesure. Développeur full stack JavaScript spécialisé en Next.js, Vue.js, Node.js et PostgreSQL.',
   keywords: [
     'JavaScript',
-    'Tech Lead',
-    'Full Stack Developer',
+    'Développeur full stack',
+    'Création site web',
+    'Application web sur mesure',
     'Vue.js',
     'Next.js',
     'Node.js',
@@ -126,27 +129,27 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Benoit Bruynbroeck | JavaScript Tech Lead & Full Stack Developer',
+    title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
     description:
-      'Experienced JavaScript Tech Lead and Full Stack Developer specializing in Vue.js, Next.js, Node.js, and PostgreSQL. Leading development teams with expertise in scalable web applications.',
+      'Création de sites web professionnels, applications métier et plateformes web sur mesure avec Next.js, Vue.js, Node.js et PostgreSQL.',
     url: 'https://bbenoit.fr',
     siteName: 'Benoit Bruynbroeck Portfolio',
-    locale: 'en_US',
+    locale: 'fr_FR',
     type: 'website',
     images: [
       {
         url: 'https://bbenoit.fr/profile.webp',
         width: 1200,
         height: 630,
-        alt: 'Benoit Bruynbroeck - JavaScript Tech Lead & Full Stack Developer',
+        alt: 'Benoit Bruynbroeck - Développeur full stack JavaScript',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Benoit Bruynbroeck | JavaScript Tech Lead & Full Stack Developer',
+    title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
     description:
-      'Experienced JavaScript Tech Lead and Full Stack Developer specializing in Vue.js, Next.js, Node.js, and PostgreSQL.',
+      'Création de sites web professionnels, applications métier et plateformes web sur mesure.',
     images: ['https://bbenoit.fr/profile.webp'],
     creator: '@benoit_bruynbroeck',
   },

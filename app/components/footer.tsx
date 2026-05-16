@@ -9,7 +9,7 @@ import facebook from '@/public/socials/facebook.svg'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 export default function Footer() {
-  const currentYear = 2025
+  const currentYear = 2026
   const { ref: logoRef, isVisible: logoVisible } =
     useScrollAnimation<HTMLDivElement>()
   const { ref: socialsRef, isVisible: socialsVisible } =
@@ -24,7 +24,7 @@ export default function Footer() {
         }`}
       >
         <Image src={logo} alt="Benoit logo" width={60} />
-        <p className="font-bold">Handcrafted by me</p>
+        <p className="font-bold">Conçu et développé par mes soins</p>
       </div>
       <div
         ref={socialsRef}
@@ -44,7 +44,7 @@ export default function Footer() {
               src={github}
               alt="GitHub profile - View Benoit's code repositories and projects"
               width={24}
-              className="opacity-90"
+              className="opacity-90 brightness-0 invert transition hover:opacity-100"
             />
           </a>
           <a
@@ -56,7 +56,7 @@ export default function Footer() {
               src={facebook}
               alt="Facebook profile - Connect with Benoit on Facebook"
               width={24}
-              className="opacity-90"
+              className="opacity-90 brightness-0 invert transition hover:opacity-100"
             />
           </a>
           <a
@@ -68,7 +68,7 @@ export default function Footer() {
               src={linkedin}
               alt="LinkedIn profile - Connect with Benoit on LinkedIn for professional networking"
               width={24}
-              className="opacity-90"
+              className="opacity-90 brightness-0 invert transition hover:opacity-100"
             />
           </a>
         </div>
