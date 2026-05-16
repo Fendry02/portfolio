@@ -194,12 +194,12 @@ export default function Jobs() {
 
             <h1
               id="jobs-hero-heading"
-              className="mt-7 text-[clamp(2.4rem,5vw,4.75rem)] font-bold leading-[1.04] tracking-tight"
+              className="mt-7 text-[clamp(2.4rem,5vw,4.75rem)] font-bold leading-[1.12] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
                 JavaScript Tech Lead, full-stack developer and{' '}
-                <span className="text-gradient-accent italic">
+                <span className="text-gradient-accent inline-block px-1 py-1 italic leading-[1.18]">
                   AI-augmented
                 </span>{' '}
                 builder.
