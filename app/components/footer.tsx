@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import logo from '@/public/logo-white.webp'
+import BrandLogo from './brand-logo'
 import github from '@/public/socials/github.svg'
 import linkedin from '@/public/socials/linkedin.svg'
 import facebook from '@/public/socials/facebook.svg'
@@ -23,7 +23,7 @@ export default function Footer() {
           logoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}
       >
-        <Image src={logo} alt="Benoit logo" width={60} />
+        <BrandLogo tone="light" size="lg" />
         <p className="font-bold">Conçu et développé par mes soins</p>
       </div>
       <div

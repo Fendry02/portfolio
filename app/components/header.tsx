@@ -7,7 +7,7 @@ export default function Header() {
     <header>
       <div className="navbar p-4">
         <div className="flex-1">
-          <BrandLogo priority />
+          <BrandLogo />
         </div>
         <div className="flex flex-none items-center gap-2">
           <Link href="/jobs" className="btn btn-ghost">

@@ -6,7 +6,6 @@ import profile from '@/public/profile.webp'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
-import BrandLogo from './components/brand-logo'
 
 type Service = {
   eyebrow: string
