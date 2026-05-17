@@ -10,7 +10,8 @@
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "convert-images": "node scripts/convert-images.js",
-    "generate-responsive": "node scripts/generate-responsive-images.js"
+    "generate-responsive": "node scripts/generate-responsive-images.js",
+    "build:card": "node business-card/build-pdf.js"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.6",
@@ -36,6 +37,7 @@
     "daisyui": "^5.1.29",
     "postcss": "^8.5.14",
     "prettier": "^3.6.2",
+    "puppeteer": "^25.0.2",
     "tailwindcss": "^4.1.14"
   }
 }
