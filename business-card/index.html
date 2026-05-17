@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte de visite — Benoit Bruynbroeck</title>
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Caveat:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============================================================
+         FORMAT VISTAPRINT — Standard EU
+         Trim       : 85 × 55 mm
+         Bleed (3mm): 91 × 61 mm   ← taille du document
+         Safe area  : 79 × 49 mm   (6mm du bord du document)
+         Résolution : 300 DPI
+         ============================================================ */
+
+      :root {
+        --primary: #0a1224;
+        --primary-700: #11182f;
+        --blue: #1e4dd8;
+        --blue-soft: #5a82ff;
+        --text: #0a1224;
+        --muted: #5c6779;
+        --line: #e2e7ee;
+        --paper: #ffffff;
+      }
+
+      @page {
+        size: 91mm 61mm;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-feature-settings: 'ss01', 'cv11';
+        background: #ebeef3;
+        color: var(--text);
+      }
+
+      /* -------- Écran : maquette de visualisation -------- */
+      .preview {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        gap: 28px;
+        padding: 48px 20px 80px;
+      }
+
+      .preview h1 {
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 4px;
+      }
+
+      .preview .hint {
+        font-size: 12px;
+        color: var(--muted);
+        max-width: 420px;
+        text-align: center;
+        line-height: 1.55;
+      }
+
+      .preview .pair {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+        justify-items: center;
+      }
+
+      @media (min-width: 980px) {
+        .preview .pair {
+          grid-template-columns: auto auto;
+        }
+      }
+
+      /* -------- La carte -------- */
+      .card {
+        width: 91mm;
+        height: 61mm;
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+        border-radius: 1mm;
+        box-shadow:
+          0 1px 2px rgba(10, 18, 36, 0.08),
+          0 12px 28px rgba(10, 18, 36, 0.14);
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .preview {
+          min-height: auto;
+          padding: 0;
+          gap: 0;
+        }
+        .preview h1,
+        .preview .hint,
+        .preview-text {
+          display: none;
+        }
+        .preview .pair {
+          display: block;
+        }
+        .card {
+          border-radius: 0;
+          box-shadow: none;
+          page-break-after: always;
+          break-after: page;
+        }
+        .card:last-child {
+          page-break-after: auto;
+        }
+      }
+
+      /* ============================================================
+         RECTO
+         ============================================================ */
+      .recto {
+        background:
+          radial-gradient(
+            120% 80% at 110% -10%,
+            rgba(30, 77, 216, 0.22),
+            transparent 55%
+          ),
+          radial-gradient(
+            90% 60% at -10% 110%,
+            rgba(30, 77, 216, 0.18),
+            transparent 60%
+          ),
+          var(--primary);
+        color: #ffffff;
+      }
+
+      .recto .grid-bg {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.04) 1px,
+            transparent 1px
+          );
+        background-size: 6mm 6mm;
+        mask-image: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0.9),
+          transparent 75%
+        );
+      }
+
+      .recto .inner {
+        position: relative;
+        height: 100%;
+        padding: 6mm 6mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 3mm;
+      }
+
+      .top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3mm;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 1.6mm;
+        padding: 1mm 2.2mm;
+        border-radius: 999px;
+        border: 0.3mm solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 5pt;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.85);
+        white-space: nowrap;
+      }
+
+      .pill .dot {
+        width: 1.2mm;
+        height: 1.2mm;
+        border-radius: 50%;
+        background: var(--blue-soft);
+        box-shadow: 0 0 0 0.8mm rgba(90, 130, 255, 0.18);
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+        font-size: 5pt;
+        letter-spacing: 0.08em;
+        color: rgba(255, 255, 255, 0.55);
+        white-space: nowrap;
+      }
+
+      .name {
+        margin: 0;
+        line-height: 0.95;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        font-size: 22pt;
+      }
+
+      .name .first {
+        display: block;
+      }
+
+      .name .last {
+        display: block;
+        color: rgba(255, 255, 255, 0.62);
+        font-weight: 600;
+        font-size: 11pt;
+        margin-top: 1.2mm;
+        letter-spacing: -0.005em;
+      }
+
+      .name .accent {
+        font-family: 'Instrument Serif', 'Times New Roman', serif;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--blue-soft);
+      }
+
+      .value-block {
+        max-width: 65mm;
+      }
+
+      .role-eyebrow {
+        display: block;
+        font-size: 5pt;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 1.4mm;
+      }
+
+      .role-value {
+        display: block;
+        font-size: 11pt;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 1.18;
+        color: #ffffff;
+      }
+
+      .role-accent {
+        font-family: 'Instrument Serif', 'Times New Roman', serif;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--blue-soft);
+        padding: 0 0.4mm;
+      }
+
+      /* ============================================================
+         VERSO
+         ============================================================ */
+      .verso {
+        background: var(--paper);
+        color: var(--text);
+      }
+
+      .verso .accent-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4mm;
+        background: linear-gradient(
+          180deg,
+          var(--primary) 0%,
+          var(--primary) 55%,
+          var(--blue) 55%,
+          var(--blue) 100%
+        );
+      }
+
+      .verso .inner {
+        position: relative;
+        height: 100%;
+        padding: 6mm 6mm 6mm 9mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 2.5mm;
+      }
+
+      .eyebrow {
+        font-size: 5pt;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+
+      .verso h2 {
+        margin: 1.5mm 0 0;
+        font-size: 10pt;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+        color: var(--primary);
+        max-width: 60mm;
+      }
+
+      .verso h2 em {
+        font-family: 'Instrument Serif', 'Times New Roman', serif;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--blue);
+      }
+
+      .contact {
+        display: grid;
+        gap: 1.2mm;
+        margin-top: 0;
+      }
+
+      .contact a,
+      .contact span {
+        font-size: 7pt;
+        color: var(--text);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 1.8mm;
+        line-height: 1.2;
+      }
+
+      .contact .ico {
+        width: 2.8mm;
+        height: 2.8mm;
+        flex-shrink: 0;
+        color: var(--blue);
+      }
+
+      .contact .label {
+        font-weight: 600;
+        letter-spacing: -0.005em;
+      }
+
+      .verso .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 4mm;
+      }
+
+      .monogram {
+        font-family: 'Caveat', 'Inter', cursive;
+        font-weight: 700;
+        font-size: 18pt;
+        letter-spacing: -0.01em;
+        color: var(--primary);
+        line-height: 1;
+      }
+
+      .monogram .slash {
+        color: var(--blue);
+        margin: 0 0.6mm;
+      }
+
+      .tagline-row {
+        text-align: right;
+      }
+
+      .tagline-row .stack {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 5pt;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .tagline-row .available {
+        font-size: 5pt;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--primary);
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2mm;
+      }
+
+      .tagline-row .available .dot {
+        width: 1.2mm;
+        height: 1.2mm;
+        border-radius: 50%;
+        background: #16a34a;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview">
+      <div class="preview-text">
+        <h1>Carte de visite · Format Vistaprint EU</h1>
+        <p class="hint">
+          91 × 61 mm (85 × 55 mm + 3 mm de fond perdu) · 300 DPI · Imprimer en
+          PDF via <strong>Cmd/Ctrl + P</strong> puis l'envoyer à Vistaprint.
+          Les pointillés bleus représentent la zone de sécurité (rien
+          d'important au-delà).
+        </p>
+      </div>
+
+      <div class="pair">
+        <!-- ============ RECTO ============ -->
+        <article class="card recto" aria-label="Recto de la carte">
+          <div class="grid-bg" aria-hidden="true"></div>
+          <div class="inner">
+            <div class="top-row">
+              <span class="pill">
+                <span class="dot" aria-hidden="true"></span>
+                Lyon · France
+              </span>
+              <span class="mono">bbenoit.fr</span>
+            </div>
+
+            <h1 class="name">
+              <span class="first">
+                Benoit<span class="accent">.</span>
+              </span>
+              <span class="last">Bruynbroeck</span>
+            </h1>
+
+            <div class="value-block">
+              <span class="role-eyebrow">Développeur full stack</span>
+              <span class="role-value">
+                Sites &amp; produits web qui
+                <span class="role-accent">vendent</span>.
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ============ VERSO ============ -->
+        <article class="card verso" aria-label="Verso de la carte">
+          <div class="accent-bar" aria-hidden="true"></div>
+          <div class="inner">
+            <div>
+              <p class="eyebrow">Contact</p>
+              <h2>
+                Un seul <em>interlocuteur</em>,<br />
+                du cadrage à la mise en ligne.
+              </h2>
+            </div>
+
+            <ul class="contact" style="list-style: none; padding: 0; margin: 0;">
+              <li>
+                <a href="mailto:bruy.benoit@gmail.com">
+                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                  <span class="label">bruy.benoit@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://bbenoit.fr">
+                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+                  </svg>
+                  <span class="label">bbenoit.fr</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/">
+                  <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.45 3H3.55A.55.55 0 0 0 3 3.55v16.9c0 .3.25.55.55.55h16.9a.55.55 0 0 0 .55-.55V3.55A.55.55 0 0 0 20.45 3ZM8.34 18.34H5.67V9.75h2.67v8.59ZM7 8.58A1.55 1.55 0 1 1 7 5.5a1.55 1.55 0 0 1 0 3.08Zm11.34 9.76h-2.66v-4.18c0-1 0-2.28-1.39-2.28s-1.6 1.08-1.6 2.2v4.26H10V9.75h2.56v1.17h.04a2.8 2.8 0 0 1 2.53-1.39c2.7 0 3.21 1.78 3.21 4.1v4.71Z" />
+                  </svg>
+                  <span class="label">in/benoit-bruynbroeck</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Fendry02">
+                  <svg class="ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2a10 10 0 0 0-3.16 19.5c.5.1.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.12-1.46-1.12-1.46-.92-.62.07-.6.07-.6 1.02.07 1.55 1.04 1.55 1.04.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.1.64-1.35-2.22-.25-4.56-1.11-4.56-4.95 0-1.1.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .26.18.58.69.48A10 10 0 0 0 12 2Z" />
+                  </svg>
+                  <span class="label">github.com/Fendry02</span>
+                </a>
+              </li>
+            </ul>
+
+            <div class="footer">
+              <div class="monogram">
+                B<span class="slash">/</span>B
+              </div>
+              <div class="tagline-row">
+                <div class="available">
+                  <span class="dot" aria-hidden="true"></span>
+                  Disponible
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
