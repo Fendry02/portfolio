@@ -7,9 +7,9 @@ type BrandLogoProps = {
 }
 
 const sizeClass: Record<NonNullable<BrandLogoProps['size']>, string> = {
-  sm: 'text-xl',
-  md: 'text-2xl md:text-[1.75rem]',
-  lg: 'text-3xl md:text-4xl',
+  sm: 'text-[1.75rem]',
+  md: 'text-[2.25rem] md:text-[2.5rem]',
+  lg: 'text-[2.75rem] md:text-[3.5rem]',
 }
 
 export default function BrandLogo({
@@ -17,8 +17,7 @@ export default function BrandLogo({
   tone = 'dark',
   size = 'md',
 }: BrandLogoProps) {
-  const textColor =
-    tone === 'light' ? 'text-primary-content' : 'text-primary'
+  const textColor = tone === 'light' ? 'text-primary-content' : 'text-primary'
 
   return (
     <Link
@@ -27,11 +26,9 @@ export default function BrandLogo({
       aria-label="Benoit Bruynbroeck — retour à l'accueil"
     >
       <span
-        className={`brand-logo-mark font-extrabold tracking-tighter ${sizeClass[size]} ${textColor}`}
+        className={`brand-logo-mark font-[family-name:var(--font-handwriting)] font-bold tracking-tight ${sizeClass[size]} ${textColor}`}
       >
-        B
-        <span className="mx-[1px] text-secondary">/</span>
-        B
+        B<span className="mx-[2px] text-secondary">/</span>B
       </span>
     </Link>
   )

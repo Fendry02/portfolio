@@ -185,7 +185,7 @@ export default function Jobs() {
         <div className="bg-grid-light pointer-events-none absolute inset-0 opacity-60" />
         <div className="pointer-events-none absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-secondary/10 blur-3xl" />
 
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pb-20 pt-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20 lg:px-16 lg:pb-28 lg:pt-20">
+        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pb-24 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-16 lg:pb-32 lg:pt-20">
           <div className="flex flex-col justify-center">
             <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-base-300 bg-base-100/80 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/70 shadow-sm backdrop-blur">
               <span className="status-dot" aria-hidden="true" />
@@ -194,7 +194,7 @@ export default function Jobs() {
 
             <h1
               id="jobs-hero-heading"
-              className="mt-7 text-[clamp(2.4rem,5vw,4.75rem)] font-bold leading-[1.12] tracking-tight"
+              className="mt-7 text-[clamp(2.6rem,5.6vw,5.25rem)] font-bold leading-[1.04] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
@@ -243,7 +243,7 @@ export default function Jobs() {
           </div>
 
           <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="relative aspect-square w-full max-w-[380px]">
+            <div className="relative aspect-square w-full max-w-[420px]">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-6 rounded-full bg-secondary/8 blur-3xl"
@@ -253,7 +253,7 @@ export default function Jobs() {
                 alt="Portrait of Benoit Bruynbroeck"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 380px"
+                sizes="(max-width: 1024px) 100vw, 420px"
                 className="relative object-contain"
               />
             </div>

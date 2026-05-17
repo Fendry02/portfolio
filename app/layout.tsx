@@ -1,10 +1,18 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 import type { Metadata } from 'next'
+import { Caveat } from 'next/font/google'
 
 import './styles/global.css'
 
 import Header from './components/header'
 import Footer from './components/footer'
+
+const handwriting = Caveat({
+  subsets: ['latin'],
+  weight: ['700'],
+  variable: '--font-handwriting',
+  display: 'swap',
+})
 
 export default function RootLayout({
   children,
@@ -12,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" data-theme="corporate">
+    <html lang="fr" data-theme="corporate" className={handwriting.variable}>
       <head>
         <script
           type="application/ld+json"
