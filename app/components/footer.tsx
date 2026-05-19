@@ -1,78 +1,64 @@
-'use client'
-
 import Image from 'next/image'
 
 import BrandLogo from './brand-logo'
 import github from '@/public/socials/github.svg'
 import linkedin from '@/public/socials/linkedin.svg'
 import facebook from '@/public/socials/facebook.svg'
-import { useScrollAnimation } from '../hooks/useScrollAnimation'
+
+const currentYear = 2026
+
+const socials = [
+  {
+    href: 'https://github.com/Fendry02',
+    src: github,
+    alt: 'GitHub — Benoit Bruynbroeck',
+  },
+  {
+    href: 'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
+    src: linkedin,
+    alt: 'LinkedIn — Benoit Bruynbroeck',
+  },
+  {
+    href: 'https://www.facebook.com/benoit.bruynbroeck/',
+    src: facebook,
+    alt: 'Facebook — Benoit Bruynbroeck',
+  },
+]
 
 export default function Footer() {
-  const currentYear = 2026
-  const { ref: logoRef, isVisible: logoVisible } =
-    useScrollAnimation<HTMLDivElement>()
-  const { ref: socialsRef, isVisible: socialsVisible } =
-    useScrollAnimation<HTMLDivElement>()
-
   return (
-    <footer className="footer footer-center p-16 pt-32 max-sm:pt-40 bg-primary text-primary-content gap-y-6">
-      <div
-        ref={logoRef}
-        className={`transition-all duration-700 ${
-          logoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <BrandLogo tone="light" size="lg" />
-        <p className="font-bold">Conçu et développé par mes soins</p>
-      </div>
-      <div
-        ref={socialsRef}
-        className={`transition-all duration-700 delay-200 ${
-          socialsVisible
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <div className="grid grid-flow-col gap-4">
-          <a
-            className="cursor-pointer"
-            href="https://github.com/Fendry02"
-            target="_blank"
-          >
-            <Image
-              src={github}
-              alt="GitHub profile - View Benoit's code repositories and projects"
-              width={24}
-              className="opacity-90 brightness-0 invert transition hover:opacity-100"
-            />
-          </a>
-          <a
-            className="cursor-pointer"
-            href="https://www.facebook.com/benoit.bruynbroeck/"
-            target="_blank"
-          >
-            <Image
-              src={facebook}
-              alt="Facebook profile - Connect with Benoit on Facebook"
-              width={24}
-              className="opacity-90 brightness-0 invert transition hover:opacity-100"
-            />
-          </a>
-          <a
-            className="cursor-pointer"
-            href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
-            target="_blank"
-          >
-            <Image
-              src={linkedin}
-              alt="LinkedIn profile - Connect with Benoit on LinkedIn for professional networking"
-              width={24}
-              className="opacity-90 brightness-0 invert transition hover:opacity-100"
-            />
-          </a>
+    <footer className="border-t border-base-300">
+      <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-10 sm:flex-row sm:items-center lg:px-10">
+        <div className="flex items-center gap-4">
+          <BrandLogo size="sm" />
+          <p className="text-sm text-base-content/55">
+            Conçu et développé par mes soins.
+          </p>
         </div>
-        <p>Copyright © {currentYear} - All right reserved</p>
+
+        <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.href}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="interactive opacity-50 hover:opacity-100"
+                aria-label={s.alt}
+              >
+                <Image
+                  src={s.src}
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="h-4 w-4"
+                />
+              </a>
+            ))}
+          </div>
+          <p className="text-xs text-base-content/45">© {currentYear}</p>
+        </div>
       </div>
     </footer>
   )

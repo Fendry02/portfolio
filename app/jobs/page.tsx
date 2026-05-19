@@ -173,6 +173,15 @@ const principles = [
   },
 ]
 
+const eyebrow =
+  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
+const heading2 =
+  'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
+const btnPrimary =
+  'interactive inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+const btnGhost =
+  'interactive inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+
 export default function Jobs() {
   return (
     <main className="bg-base-100 text-base-content">
@@ -180,61 +189,48 @@ export default function Jobs() {
       <section
         id="home"
         aria-labelledby="jobs-hero-heading"
-        className="relative overflow-hidden"
+        className="relative"
       >
-        <div className="bg-grid-light pointer-events-none absolute inset-0 opacity-60" />
-        <div className="pointer-events-none absolute -top-32 right-[-10%] h-[420px] w-[420px] rounded-full bg-secondary/10 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pb-24 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-16 lg:pb-32 lg:pt-20">
+        <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="flex flex-col justify-center">
-            <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-base-300 bg-base-100/80 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/70 shadow-sm backdrop-blur">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
               <span className="status-dot" aria-hidden="true" />
               About · résumé
             </div>
 
             <h1
               id="jobs-hero-heading"
-              className="mt-7 text-[clamp(2.6rem,5.6vw,5.25rem)] font-bold leading-[1.04] tracking-tight"
+              className="mt-6 text-[clamp(2.25rem,4.8vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
                 JavaScript Tech Lead, full-stack developer and{' '}
-                <span className="text-gradient-accent inline-block px-1 py-1 italic leading-[1.18]">
-                  AI-augmented
-                </span>{' '}
+                <span className="italic text-secondary">AI-augmented</span>{' '}
                 builder.
               </span>
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-8 text-base-content/70 md:text-xl">
+            <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
               I turn complex product ideas into scalable web platforms — from
               the database up to the interface. I care about clean code, sane
               architecture and shipping things that actually get used.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link
-                href="/#services"
-                className="btn btn-primary btn-lg rounded-full px-7 shadow-lg shadow-primary/20"
-              >
+            <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
+              <Link href="/#services" className={btnPrimary}>
                 See what I build
                 <span aria-hidden="true">→</span>
               </Link>
-              <a
-                href="mailto:bruy.benoit@gmail.com"
-                className="btn btn-ghost btn-lg rounded-full px-6 text-base-content/80 hover:bg-base-200"
-              >
+              <a href="mailto:bruy.benoit@gmail.com" className={btnGhost}>
                 Get in touch
               </a>
             </div>
 
-            <dl className="mt-12 grid max-w-xl grid-cols-3 gap-x-6 gap-y-2 border-t border-base-300 pt-8">
+            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
               {stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="text-xs uppercase tracking-wider text-base-content/50">
-                    {s.label}
-                  </dt>
-                  <dd className="mt-1 text-2xl font-bold tracking-tight">
+                  <dt className={eyebrow}>{s.label}</dt>
+                  <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                     {s.value}
                   </dd>
                 </div>
@@ -243,18 +239,14 @@ export default function Jobs() {
           </div>
 
           <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="relative aspect-square w-full max-w-[420px]">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-6 rounded-full bg-secondary/8 blur-3xl"
-              />
+            <div className="relative aspect-square w-full max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait of Benoit Bruynbroeck"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="relative object-contain"
+                sizes="(max-width: 1024px) 100vw, 400px"
+                className="object-contain"
               />
             </div>
           </div>
@@ -264,35 +256,31 @@ export default function Jobs() {
       {/* ──────────────────── AI-AUGMENTED WORKFLOW ──────────────────── */}
       <section
         aria-labelledby="ai-heading"
-        className="px-6 py-20 lg:px-16 lg:py-24"
+        className="px-6 py-12 lg:px-10 lg:py-16"
       >
-        <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden rounded-[2rem] bg-primary p-10 text-primary-content shadow-2xl shadow-primary/20 md:p-16">
-            <div className="bg-grid-soft pointer-events-none absolute inset-0 opacity-40" />
-            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-secondary/35 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-32 -left-10 h-72 w-72 rounded-full bg-secondary/20 blur-3xl" />
-
-            <div className="relative grid gap-12 lg:grid-cols-[0.42fr_0.58fr] lg:gap-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="relative overflow-hidden rounded-2xl bg-primary p-8 text-primary-content md:p-12">
+            <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
-                <div className="inline-flex items-center gap-2.5 rounded-full border border-primary-content/20 bg-primary-content/5 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-primary-content/85 backdrop-blur">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary-content/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-primary-content/75">
                   <span className="status-dot" aria-hidden="true" />
                   AI-augmented · 2024 →
                 </div>
 
                 <h2
                   id="ai-heading"
-                  className="mt-6 text-[clamp(2rem,3.6vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+                  className="mt-5 text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-tight"
                 >
                   AI is wired into how I ship.
                 </h2>
 
-                <p className="mt-6 max-w-md text-base leading-7 text-primary-content/75 md:text-lg">
+                <p className="mt-5 max-w-md text-base leading-7 text-primary-content/65">
                   I treat modern AI tools the way I treat my IDE: a permanent
                   part of the workflow. Faster shipping, fewer dumb mistakes,
                   and more headspace for the calls that actually matter.
                 </p>
 
-                <div className="mt-8 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-1.5">
                   {[
                     'Claude Code',
                     'Cursor',
@@ -305,7 +293,7 @@ export default function Jobs() {
                   ].map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-primary-content/20 bg-primary-content/5 px-3 py-1 text-xs font-medium text-primary-content/80"
+                      className="rounded-md border border-primary-content/15 px-2 py-0.5 text-xs font-medium text-primary-content/70"
                     >
                       {tag}
                     </span>
@@ -313,20 +301,20 @@ export default function Jobs() {
                 </div>
               </div>
 
-              <ol className="grid gap-3">
+              <ol className="grid gap-2">
                 {aiPractices.map((p, i) => (
                   <li
                     key={p.title}
-                    className="group flex gap-5 rounded-2xl border border-primary-content/15 bg-primary-content/[0.04] p-5 transition hover:border-primary-content/30 hover:bg-primary-content/[0.07]"
+                    className="flex gap-4 rounded-lg border border-primary-content/10 p-4"
                   >
-                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-primary-content/20 bg-primary-content/10 font-mono text-xs font-bold text-primary-content/70">
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary-content/15 font-mono text-[10px] font-semibold text-primary-content/60">
                       0{i + 1}
                     </span>
                     <div>
-                      <h3 className="text-lg font-bold leading-tight tracking-tight">
+                      <h3 className="text-base font-semibold leading-tight tracking-tight">
                         {p.title}
                       </h3>
-                      <p className="mt-1.5 text-sm leading-6 text-primary-content/70">
+                      <p className="mt-1.5 text-sm leading-6 text-primary-content/65">
                         {p.text}
                       </p>
                     </div>
@@ -341,41 +329,36 @@ export default function Jobs() {
       {/* ──────────────────── APPROACH / PHILOSOPHY ──────────────────── */}
       <section
         aria-labelledby="approach-heading"
-        className="border-t border-base-300 bg-base-200/40 px-6 py-24 lg:px-16 lg:py-28"
+        className="border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:gap-16">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-                How I work
-              </p>
-              <h2
-                id="approach-heading"
-                className="mt-4 text-[clamp(2rem,3.2vw,3rem)] font-bold leading-[1.05] tracking-tight"
-              >
+              <p className={eyebrow}>How I work</p>
+              <h2 id="approach-heading" className={`mt-3 ${heading2}`}>
                 Three principles, applied consistently.
               </h2>
-              <p className="mt-6 max-w-md text-base leading-7 text-base-content/70">
+              <p className="mt-5 max-w-md text-sm leading-6 text-base-content/65">
                 Every line of code should serve a purpose. Every architecture
                 decision should be justified. Every solution should outlive the
                 meeting where it was decided.
               </p>
             </div>
 
-            <ol className="grid gap-4">
+            <ol className="grid gap-3">
               {principles.map((p, i) => (
                 <li
                   key={p.title}
-                  className="group flex gap-5 rounded-2xl border border-base-300 bg-base-100 p-6 transition hover:border-secondary/40 hover:shadow-sm"
+                  className="interactive flex gap-5 rounded-xl border border-base-300 bg-base-100 p-5 hover:border-base-content/15"
                 >
-                  <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-base-300 bg-base-200 font-mono text-xs font-bold text-base-content/65">
+                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-base-300 font-mono text-[10px] font-semibold text-base-content/55">
                     0{i + 1}
                   </span>
                   <div>
-                    <h3 className="text-lg font-bold tracking-tight">
+                    <h3 className="text-base font-semibold tracking-tight">
                       {p.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-6 text-base-content/70">
+                    <p className="mt-1.5 text-sm leading-6 text-base-content/65">
                       {p.text}
                     </p>
                   </div>
@@ -390,44 +373,37 @@ export default function Jobs() {
       <section
         id="skills"
         aria-labelledby="skills-heading"
-        className="px-6 py-24 lg:px-16 lg:py-28"
+        className="px-6 py-20 lg:px-10 lg:py-28"
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-              Stack
-            </p>
-            <h2
-              id="skills-heading"
-              className="mt-4 text-[clamp(2rem,3.2vw,3rem)] font-bold leading-[1.05] tracking-tight"
-            >
+            <p className={eyebrow}>Stack</p>
+            <h2 id="skills-heading" className={`mt-3 ${heading2}`}>
               From the database up to the browser.
             </h2>
           </div>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
             {skills.map((group) => (
               <article
                 key={group.title}
-                className="flex flex-col rounded-3xl border border-base-300 bg-base-100 p-7 transition hover:border-secondary/40 hover:shadow-lg"
+                className="interactive flex flex-col rounded-xl border border-base-300 bg-base-100 p-6 hover:border-base-content/15"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-                  {group.title}
-                </p>
-                <p className="mt-3 text-base leading-6 text-base-content/70">
+                <p className={eyebrow}>{group.title}</p>
+                <p className="mt-2.5 text-sm leading-6 text-base-content/65">
                   {group.pitch}
                 </p>
 
-                <ul className="mt-6 space-y-2 border-t border-base-300 pt-5">
+                <ul className="mt-5 space-y-1.5 border-t border-base-300 pt-4">
                   {group.items.map((item) => (
                     <li
                       key={item.name}
                       className="flex items-center justify-between text-sm"
                     >
-                      <span className="font-semibold tracking-tight">
+                      <span className="font-medium tracking-tight">
                         {item.name}
                       </span>
-                      <span className="font-mono text-xs text-base-content/55">
+                      <span className="font-mono text-xs text-base-content/50">
                         {item.detail}
                       </span>
                     </li>
@@ -439,69 +415,64 @@ export default function Jobs() {
         </div>
       </section>
 
-      {/* ──────────────────── EXPERIENCE (timeline + works combined) ──────────────────── */}
+      {/* ──────────────────── EXPERIENCE ──────────────────── */}
       <section
         id="experience"
         aria-labelledby="experience-heading"
-        className="bg-base-200/40 px-6 py-24 lg:px-16 lg:py-28"
+        className="bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-              Experience
-            </p>
-            <h2
-              id="experience-heading"
-              className="mt-4 text-[clamp(2rem,3.2vw,3rem)] font-bold leading-[1.05] tracking-tight"
-            >
+            <p className={eyebrow}>Experience</p>
+            <h2 id="experience-heading" className={`mt-3 ${heading2}`}>
               Roles, projects and teams I’ve worked with.
             </h2>
           </div>
 
-          <ol className="mt-12 space-y-4">
+          <ol className="mt-10 space-y-3">
             {roles.map((role) => (
               <li key={`${role.period}-${role.company}`}>
-                <article className="group relative grid gap-6 rounded-3xl border border-base-300 bg-base-100 p-6 transition hover:border-secondary/40 hover:shadow-lg md:grid-cols-[180px_1fr_minmax(0,140px)] md:items-start md:gap-8 md:p-8">
-                  <div className="flex items-center gap-4 md:flex-col md:items-start md:gap-3">
+                <article className="interactive group relative grid gap-5 rounded-xl border border-base-300 bg-base-100 p-5 hover:border-base-content/15 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">
+                  <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2.5">
                     {role.image ? (
                       <Image
                         src={role.image}
                         alt={`${role.company} logo`}
-                        width={56}
-                        height={56}
-                        className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                        width={48}
+                        height={48}
+                        className="h-12 w-12 shrink-0 rounded-md object-cover"
                       />
                     ) : (
                       <div
                         aria-hidden="true"
-                        className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-base-300 bg-base-200 font-mono text-xs font-bold text-base-content/55"
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-base-300 font-mono text-xs font-semibold text-base-content/50"
                       >
                         {role.company.slice(0, 2).toUpperCase()}
                       </div>
                     )}
-                    <time className="font-mono text-xs uppercase tracking-wider text-base-content/55">
+                    <time className="font-mono text-[11px] uppercase tracking-wider text-base-content/55">
                       {role.period}
                     </time>
                   </div>
 
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary">
                       {role.company}
                     </p>
-                    <h3 className="mt-1.5 text-2xl font-bold tracking-tight">
+                    <h3 className="mt-1 text-xl font-semibold tracking-tight">
                       {role.title}
                     </h3>
-                    <p className="mt-3 text-base leading-7 text-base-content/70">
+                    <p className="mt-2.5 text-sm leading-6 text-base-content/65">
                       {role.summary}
                     </p>
 
                     {role.highlights.length > 0 && (
-                      <ul className="mt-5 space-y-1.5 text-sm text-base-content/75">
+                      <ul className="mt-4 space-y-1 text-sm text-base-content/70">
                         {role.highlights.map((h) => (
                           <li key={h} className="flex items-start gap-2.5">
                             <span
                               aria-hidden="true"
-                              className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-base-content/40"
+                              className="mt-2 inline-block h-1 w-1 shrink-0 rounded-full bg-base-content/30"
                             />
                             <span>{h}</span>
                           </li>
@@ -510,11 +481,11 @@ export default function Jobs() {
                     )}
 
                     {role.stack.length > 0 && (
-                      <div className="mt-5 flex flex-wrap gap-1.5">
+                      <div className="mt-4 flex flex-wrap gap-1">
                         {role.stack.map((s) => (
                           <span
                             key={s}
-                            className="rounded-full border border-base-300 bg-base-200/60 px-2.5 py-0.5 text-xs font-medium text-base-content/70"
+                            className="rounded-md border border-base-300 px-2 py-0.5 text-xs font-medium text-base-content/65"
                           >
                             {s}
                           </span>
@@ -529,7 +500,7 @@ export default function Jobs() {
                         href={role.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-secondary transition hover:underline"
+                        className="text-sm font-medium text-secondary hover:underline"
                       >
                         Visit ↗
                       </a>
@@ -546,31 +517,28 @@ export default function Jobs() {
       <section
         id="contact"
         aria-labelledby="jobs-contact-heading"
-        className="border-t border-base-300 px-6 py-24 lg:px-16 lg:py-28"
+        className="border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/70 shadow-sm">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
             <span className="status-dot" aria-hidden="true" />
             Open to interesting work
           </div>
 
           <h2
             id="jobs-contact-heading"
-            className="mt-6 text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+            className="mt-5 text-[clamp(1.875rem,3.5vw,3rem)] font-semibold leading-[1.1] tracking-tight"
           >
             Let’s talk.
           </h2>
 
-          <p className="mt-5 max-w-xl text-base leading-7 text-base-content/70 md:text-lg">
+          <p className="mt-4 max-w-xl text-base leading-7 text-base-content/65">
             Whether you’re hiring, scoping a project or just want to chat about
             JavaScript, drop me a line.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            <a
-              href="mailto:bruy.benoit@gmail.com"
-              className="btn btn-primary btn-lg rounded-full px-7 shadow-lg shadow-primary/20"
-            >
+          <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">
+            <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
               Email me
               <span aria-hidden="true">→</span>
             </a>
@@ -578,7 +546,7 @@ export default function Jobs() {
               href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
               target="_blank"
               rel="noreferrer"
-              className="btn btn-ghost btn-lg rounded-full px-6 text-base-content/80 hover:bg-base-200"
+              className={btnGhost}
             >
               LinkedIn
             </a>
@@ -586,7 +554,7 @@ export default function Jobs() {
               href="https://github.com/Fendry02"
               target="_blank"
               rel="noreferrer"
-              className="btn btn-ghost btn-lg rounded-full px-6 text-base-content/80 hover:bg-base-200"
+              className={btnGhost}
             >
               GitHub
             </a>

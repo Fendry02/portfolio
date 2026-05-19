@@ -128,103 +128,88 @@ export const metadata: Metadata = {
   },
 }
 
+const eyebrow =
+  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
+const heading2 =
+  'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
+const btnPrimary =
+  'interactive inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+const btnGhost =
+  'interactive inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
       {/* ─────────────────────────── HERO ─────────────────────────── */}
-      <section
-        id="home"
-        aria-labelledby="hero-heading"
-        className="relative overflow-hidden"
-      >
-        <div className="bg-grid-light pointer-events-none absolute inset-0 opacity-60" />
-        <div className="pointer-events-none absolute -top-32 right-[-10%] h-[480px] w-[480px] rounded-full bg-secondary/10 blur-3xl" />
-
-        <div className="relative mx-auto grid max-w-7xl gap-16 px-6 pb-24 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-16 lg:pb-32 lg:pt-20">
+      <section id="home" aria-labelledby="hero-heading" className="relative">
+        <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="flex flex-col justify-center">
-            <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-base-300 bg-base-100/80 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/70 shadow-sm backdrop-blur">
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
               <span className="status-dot" aria-hidden="true" />
               Disponible pour de nouveaux projets
             </div>
 
             <h1
               id="hero-heading"
-              className="mt-7 text-[clamp(2.6rem,5.6vw,5.25rem)] font-bold leading-[1.02] tracking-tight"
+              className="mt-6 text-[clamp(2.25rem,4.8vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Des sites et des produits web qui{' '}
-              <span className="text-gradient-accent italic">vendent</span>,
-              <br className="hidden sm:block" />
-              construits par{' '}
-              <em className="not-italic underline decoration-secondary decoration-4 underline-offset-[6px]">
-                un seul interlocuteur
-              </em>
-              .
+              <span className="italic text-secondary">vendent</span>, construits
+              par un seul interlocuteur.
             </h1>
 
-            <p className="mt-7 max-w-xl text-lg leading-8 text-base-content/70 md:text-xl">
+            <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
               Site professionnel, application métier ou plateforme complète. Je
               vous accompagne du cadrage à la mise en ligne, avec une base
               technique fiable et un objectif clair&nbsp;: générer des clients,
               des revenus ou du temps gagné.
             </p>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="mailto:bruy.benoit@gmail.com"
-                className="btn btn-primary btn-lg rounded-full px-7 shadow-lg shadow-primary/20 transition-transform hover:-translate-y-0.5 motion-reduce:transform-none"
-              >
+            <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
+              <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
                 Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </a>
-              <Link
-                href="/jobs"
-                className="btn btn-ghost btn-lg rounded-full px-6 text-base-content/80 hover:bg-base-200"
-              >
+              <Link href="/jobs" className={btnGhost}>
                 Voir mon parcours
               </Link>
             </div>
 
-            <dl className="mt-12 grid max-w-xl grid-cols-3 gap-x-6 gap-y-2 border-t border-base-300 pt-8">
+            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
               <div>
-                <dt className="text-xs uppercase tracking-wider text-base-content/50">
-                  Expérience
-                </dt>
-                <dd className="mt-1 text-2xl font-bold tracking-tight">
+                <dt className={eyebrow}>Expérience</dt>
+                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                   6+ ans
                 </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wider text-base-content/50">
-                  Mentorés
-                </dt>
-                <dd className="mt-1 text-2xl font-bold tracking-tight">50+</dd>
+                <dt className={eyebrow}>Mentorés</dt>
+                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
+                  50+
+                </dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wider text-base-content/50">
-                  En production
-                </dt>
-                <dd className="mt-1 text-2xl font-bold tracking-tight">100%</dd>
+                <dt className={eyebrow}>En production</dt>
+                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
+                  100%
+                </dd>
               </div>
             </dl>
           </div>
 
-          {/* Right-hand portrait — round, no frame */}
+          {/* Right-hand portrait — clean, no decoration */}
           <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="relative aspect-square w-full max-w-[420px]">
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-6 rounded-full bg-secondary/8 blur-3xl"
-              />
+            <div className="relative aspect-square w-full max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait de Benoit Bruynbroeck, développeur full stack JavaScript"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="relative object-contain"
+                sizes="(max-width: 1024px) 100vw, 400px"
+                className="object-contain"
               />
 
-              <div className="absolute -right-2 top-6 inline-flex items-center gap-2 rounded-full border border-base-300 bg-base-100/90 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider text-base-content/75 shadow-sm backdrop-blur md:right-4 lg:right-2">
+              <div className="absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
@@ -237,22 +222,22 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-4 grid w-full max-w-sm grid-cols-3 overflow-hidden rounded-2xl border border-base-300 bg-base-100 text-center shadow-sm">
-              <div className="border-r border-base-300 px-3 py-4">
-                <p className="text-lg font-bold leading-none">Node</p>
-                <p className="mt-1 text-[10px] uppercase tracking-wider text-base-content/55">
+            <div className="mt-4 grid w-full max-w-sm grid-cols-3 overflow-hidden rounded-lg border border-base-300 bg-base-100 text-center">
+              <div className="border-r border-base-300 px-3 py-3">
+                <p className="text-sm font-semibold leading-none">Node</p>
+                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
                   6+ ans
                 </p>
               </div>
-              <div className="border-r border-base-300 px-3 py-4">
-                <p className="text-lg font-bold leading-none">TypeScript</p>
-                <p className="mt-1 text-[10px] uppercase tracking-wider text-base-content/55">
+              <div className="border-r border-base-300 px-3 py-3">
+                <p className="text-sm font-semibold leading-none">TypeScript</p>
+                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
                   5+ ans
                 </p>
               </div>
-              <div className="px-3 py-4">
-                <p className="text-lg font-bold leading-none">Postgres</p>
-                <p className="mt-1 text-[10px] uppercase tracking-wider text-base-content/55">
+              <div className="px-3 py-3">
+                <p className="text-sm font-semibold leading-none">Postgres</p>
+                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
                   Prod ready
                 </p>
               </div>
@@ -264,42 +249,42 @@ export default function Home() {
       {/* ──────────────────── TRUST STRIP / CLIENTS ──────────────────── */}
       <section
         aria-label="Ils m'ont fait confiance"
-        className="border-y border-base-300 bg-base-200/60 py-10"
+        className="border-y border-base-300 py-8"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-16">
-          <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-base-content/55 md:text-left">
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <p className={`${eyebrow} text-center md:text-left`}>
             Ils m’ont fait confiance
           </p>
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 md:justify-start lg:flex-nowrap lg:gap-x-10">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 md:justify-start lg:flex-nowrap lg:gap-x-9">
             {trustLogos.map((entry) => (
               <a
                 key={entry.name}
                 href={entry.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap transition"
+                className="interactive group inline-flex shrink-0 items-center gap-2 whitespace-nowrap"
               >
                 {entry.src ? (
                   <>
                     <Image
                       src={entry.src}
                       alt={entry.name}
-                      width={32}
-                      height={32}
-                      className="h-8 w-8 rounded-md object-cover opacity-70 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7 rounded object-cover opacity-65 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
                     />
-                    <span className="text-sm font-semibold tracking-tight text-base-content/75 transition group-hover:text-base-content">
+                    <span className="text-sm font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
                       {entry.name}
                     </span>
                   </>
                 ) : (
                   <>
-                    <span className="text-sm font-semibold tracking-tight text-base-content/75 transition group-hover:text-base-content">
+                    <span className="text-sm font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
                       {entry.name}
                     </span>
                     <span
                       aria-hidden="true"
-                      className="text-xs text-base-content/40 transition group-hover:text-secondary"
+                      className="text-xs text-base-content/35 transition group-hover:text-secondary"
                     >
                       ↗
                     </span>
@@ -312,87 +297,75 @@ export default function Home() {
       </section>
 
       {/* ──────────────────── PROMISE / VALUE STATEMENT ──────────────────── */}
-      <section className="px-6 py-24 lg:px-16 lg:py-32">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.4fr_0.6fr] lg:gap-20">
+      <section className="px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.35fr_0.65fr] lg:gap-16">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-              Pourquoi me confier votre projet
-            </p>
-            <div className="hairline mt-6 max-w-[60%]" />
+            <p className={eyebrow}>Pourquoi me confier votre projet</p>
+            <div className="hairline mt-5 max-w-[40%]" />
           </div>
-          <div>
-            <p className="text-2xl font-medium leading-[1.35] tracking-tight text-base-content md:text-[2rem] md:leading-[1.25]">
-              La plupart des projets web échouent parce qu’ils livrent du code,
-              pas un produit.{' '}
-              <span className="text-base-content/55">
-                Mon approche démarre par votre client final, votre offre et
-                votre modèle économique — la technique vient ensuite, comme un
-                moyen, jamais comme une fin.
-              </span>
-            </p>
-          </div>
+          <p className="text-xl font-normal leading-[1.4] tracking-tight text-base-content md:text-[1.625rem] md:leading-[1.35]">
+            La plupart des projets web échouent parce qu’ils livrent du code,
+            pas un produit.{' '}
+            <span className="text-base-content/45">
+              Mon approche démarre par votre client final, votre offre et votre
+              modèle économique — la technique vient ensuite, comme un moyen,
+              jamais comme une fin.
+            </span>
+          </p>
         </div>
       </section>
 
-      {/* ──────────────────── SERVICES — BENTO ──────────────────── */}
+      {/* ──────────────────── SERVICES ──────────────────── */}
       <section
         id="services"
         aria-labelledby="services-heading"
-        className="bg-base-200/40 px-6 py-24 lg:px-16 lg:py-32"
+        className="bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-                Ce que je construis
-              </p>
-              <h2
-                id="services-heading"
-                className="mt-4 text-[clamp(2rem,3.5vw,3.25rem)] font-bold leading-[1.05] tracking-tight"
-              >
+              <p className={eyebrow}>Ce que je construis</p>
+              <h2 id="services-heading" className={`mt-3 ${heading2}`}>
                 Trois formats, un même standard de qualité.
               </h2>
             </div>
-            <p className="max-w-sm text-base text-base-content/70">
-              Chaque format est cadré et livré comme un produit&nbsp;: pas de
-              scope inutile, pas de dette technique offerte.
+            <p className="max-w-sm text-sm leading-6 text-base-content/65">
+              Chaque format est cadré et livré comme un produit : pas de scope
+              inutile, pas de dette technique offerte.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-5 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-2">
+          <div className="mt-10 grid gap-4 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-2">
             {/* Featured card — spans both rows on left */}
-            <article className="group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-primary p-8 text-primary-content shadow-xl shadow-primary/20 lg:row-span-2 lg:p-10">
-              <div className="bg-grid-soft pointer-events-none absolute inset-0 opacity-40" />
-              <div className="pointer-events-none absolute -bottom-20 -right-20 h-72 w-72 rounded-full bg-secondary/30 blur-3xl" />
-
+            <article className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
               <div className="relative">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-content/70">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-content/55">
                   {services[0].eyebrow}
                 </p>
-                <h3 className="mt-5 text-3xl font-bold leading-tight lg:text-4xl">
+                <h3 className="mt-4 text-2xl font-semibold leading-tight tracking-tight lg:text-[1.75rem]">
                   {services[0].title}
                 </h3>
-                <p className="mt-5 text-base leading-7 text-primary-content/80 lg:text-lg">
+                <p className="mt-4 text-sm leading-6 text-primary-content/70 lg:text-base lg:leading-7">
                   {services[0].pitch}
                 </p>
 
-                <ul className="mt-8 space-y-3 text-sm lg:text-base">
+                <ul className="mt-7 space-y-2.5 text-sm">
                   {services[0].outcomes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span
                         aria-hidden="true"
-                        className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-secondary"
+                        className="mt-2 inline-block h-1 w-1 rounded-full bg-primary-content/40"
                       />
-                      <span className="text-primary-content/85">{item}</span>
+                      <span className="text-primary-content/80">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="relative mt-10 border-t border-primary-content/15 pt-6">
+              <div className="relative mt-8 border-t border-primary-content/10 pt-5">
                 <a
                   href="mailto:bruy.benoit@gmail.com"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary-content transition hover:text-secondary"
+                  className="interactive inline-flex items-center gap-1.5 text-sm font-medium text-primary-content hover:text-secondary"
                 >
                   En parler
                   <span aria-hidden="true">→</span>
@@ -400,29 +373,28 @@ export default function Home() {
               </div>
             </article>
 
-            {/* Two stacked smaller cards */}
             {services.slice(1).map((service) => (
               <article
                 key={service.title}
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-base-300 bg-base-100 p-8 transition hover:-translate-y-1 hover:border-secondary/40 hover:shadow-xl motion-reduce:transform-none"
+                className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
               >
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                     {service.eyebrow}
                   </p>
-                  <h3 className="mt-4 text-2xl font-bold leading-tight">
+                  <h3 className="mt-3 text-xl font-semibold leading-tight tracking-tight">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-base leading-7 text-base-content/70">
+                  <p className="mt-3 text-sm leading-6 text-base-content/65">
                     {service.pitch}
                   </p>
 
-                  <ul className="mt-6 space-y-2 text-sm text-base-content/75">
+                  <ul className="mt-5 space-y-2 text-sm text-base-content/70">
                     {service.outcomes.map((item) => (
                       <li key={item} className="flex items-start gap-3">
                         <span
                           aria-hidden="true"
-                          className="mt-2 inline-block h-1 w-1 rounded-full bg-base-content/40"
+                          className="mt-2 inline-block h-1 w-1 rounded-full bg-base-content/30"
                         />
                         <span>{item}</span>
                       </li>
@@ -430,10 +402,10 @@ export default function Home() {
                   </ul>
                 </div>
 
-                <div className="mt-8 border-t border-base-300 pt-5">
+                <div className="mt-7 border-t border-base-300 pt-4">
                   <a
                     href="mailto:bruy.benoit@gmail.com"
-                    className="text-sm font-semibold text-secondary transition group-hover:underline"
+                    className="text-sm font-medium text-secondary hover:underline"
                   >
                     En parler →
                   </a>
@@ -448,79 +420,69 @@ export default function Home() {
       <section
         id="realizations"
         aria-labelledby="realizations-heading"
-        className="px-6 py-24 lg:px-16 lg:py-32"
+        className="px-6 py-20 lg:px-10 lg:py-28"
       >
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
-                Réalisations récentes
-              </p>
-              <h2
-                id="realizations-heading"
-                className="mt-4 text-[clamp(2rem,3.5vw,3.25rem)] font-bold leading-[1.05] tracking-tight"
-              >
+              <p className={eyebrow}>Réalisations récentes</p>
+              <h2 id="realizations-heading" className={`mt-3 ${heading2}`}>
                 Des projets en ligne, livrés et utilisés.
               </h2>
             </div>
-            <p className="max-w-sm text-base text-base-content/70">
-              Deux exemples concrets, en production aujourd’hui. Cliquez pour
-              voir les sites en vrai.
+            <p className="max-w-sm text-sm leading-6 text-base-content/65">
+              Deux exemples concrets, en production. Cliquez pour voir les sites
+              en vrai.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          <div className="mt-10 grid gap-4 lg:grid-cols-2">
             {realizations.map((r) => (
               <a
                 key={r.href}
                 href={r.href}
                 target="_blank"
                 rel="noreferrer"
-                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-base-300 bg-base-100 p-8 transition hover:-translate-y-1 hover:border-secondary/40 hover:shadow-2xl motion-reduce:transform-none lg:p-10"
+                className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
               >
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-secondary/0 blur-3xl transition duration-500 group-hover:bg-secondary/10"
-                />
-
-                <div className="relative flex items-start justify-between gap-4">
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
                       {r.type}
                     </p>
-                    <h3 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
+                    <h3 className="mt-2.5 text-2xl font-semibold tracking-tight md:text-[1.625rem]">
                       {r.title}
                     </h3>
                   </div>
                   <span
                     aria-hidden="true"
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-base-300 text-lg text-base-content/65 transition group-hover:rotate-[-45deg] group-hover:border-secondary group-hover:bg-secondary group-hover:text-secondary-content"
+                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-base-300 text-base text-base-content/55 transition group-hover:-rotate-45 group-hover:border-base-content group-hover:text-base-content"
                   >
                     →
                   </span>
                 </div>
 
-                <p className="relative mt-6 text-base leading-7 text-base-content/70 md:text-lg">
+                <p className="mt-5 text-sm leading-6 text-base-content/65 md:text-base md:leading-7">
                   {r.summary}
                 </p>
 
-                <div className="relative mt-8 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-1.5">
                   {r.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-base-300 bg-base-200/60 px-3 py-1 text-xs font-medium text-base-content/70"
+                      className="rounded-md border border-base-300 px-2 py-0.5 text-xs font-medium text-base-content/65"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="relative mt-8 flex items-center justify-between gap-3 border-t border-base-300 pt-5">
-                  <span className="font-mono text-sm text-base-content/55 transition group-hover:text-secondary">
+                <div className="mt-7 flex items-center justify-between gap-3 border-t border-base-300 pt-4">
+                  <span className="font-mono text-xs text-base-content/55 transition group-hover:text-base-content">
                     {r.domain}
                   </span>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-base-content/45 transition group-hover:text-secondary">
-                    Voir le site live ↗
+                  <span className="text-[11px] font-medium uppercase tracking-wider text-base-content/40 transition group-hover:text-secondary">
+                    Voir le site ↗
                   </span>
                 </div>
               </a>
@@ -533,32 +495,29 @@ export default function Home() {
       <section
         id="contact"
         aria-labelledby="contact-heading"
-        className="border-t border-base-300 px-6 py-24 lg:px-16 lg:py-28"
+        className="border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
-        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/70 shadow-sm">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
             <span className="status-dot" aria-hidden="true" />
             Réponse sous 24h ouvrées
           </div>
 
           <h2
             id="contact-heading"
-            className="mt-6 text-[clamp(2rem,4vw,3.5rem)] font-bold leading-[1.05] tracking-tight"
+            className="mt-5 text-[clamp(1.875rem,3.5vw,3rem)] font-semibold leading-[1.1] tracking-tight"
           >
             Parlons de votre projet.
           </h2>
 
-          <p className="mt-5 max-w-xl text-base leading-7 text-base-content/70 md:text-lg">
+          <p className="mt-4 max-w-xl text-base leading-7 text-base-content/65">
             Quelques lignes sur votre activité, votre objectif et vos
             contraintes — je vous réponds avec une première lecture, sans
             engagement.
           </p>
 
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="mailto:bruy.benoit@gmail.com"
-              className="btn btn-primary btn-lg rounded-full px-7 shadow-lg shadow-primary/20"
-            >
+          <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
+            <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
               bruy.benoit@gmail.com
               <span aria-hidden="true">→</span>
             </a>
@@ -566,7 +525,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
               target="_blank"
               rel="noreferrer"
-              className="btn btn-ghost btn-lg rounded-full px-6 text-base-content/80 hover:bg-base-200"
+              className={btnGhost}
             >
               LinkedIn
             </a>

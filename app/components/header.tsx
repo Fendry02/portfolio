@@ -10,21 +10,24 @@ export default function Header() {
   const onJobs = pathname?.startsWith('/jobs') ?? false
 
   return (
-    <header>
-      <div className="navbar p-4">
-        <div className="flex-1">
-          <BrandLogo />
-        </div>
-        <div className="flex flex-none items-center gap-2">
-          <Link href={onJobs ? '/' : '/jobs'} className="btn btn-ghost">
+    <header className="border-b border-base-300">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
+        <BrandLogo />
+
+        <div className="flex items-center gap-1">
+          <Link
+            href={onJobs ? '/' : '/jobs'}
+            className="interactive rounded-lg px-3 py-2 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content"
+          >
             {onJobs ? 'Accueil' : 'Parcours'}
           </Link>
           <a
             href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
             target="_blank"
             rel="noreferrer"
+            className="interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-content hover:bg-primary/92"
           >
-            <button className="btn btn-primary">Me contacter</button>
+            Me contacter
           </a>
         </div>
       </div>
