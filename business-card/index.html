@@ -4,15 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carte de visite — Benoit Bruynbroeck</title>
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Caveat:wght@700&display=swap"
       rel="stylesheet"
@@ -74,6 +67,7 @@
         text-transform: uppercase;
         color: var(--muted);
         margin: 0 0 4px;
+        text-align: center;
       }
 
       .preview .hint {
@@ -142,147 +136,129 @@
       .recto {
         background:
           radial-gradient(
-            120% 80% at 110% -10%,
-            rgba(30, 77, 216, 0.22),
-            transparent 55%
+            130% 90% at 115% -15%,
+            rgba(30, 77, 216, 0.3),
+            transparent 50%
           ),
           radial-gradient(
-            90% 60% at -10% 110%,
-            rgba(30, 77, 216, 0.18),
-            transparent 60%
+            80% 60% at -15% 115%,
+            rgba(90, 130, 255, 0.16),
+            transparent 55%
           ),
           var(--primary);
         color: #ffffff;
       }
 
-      .recto .grid-bg {
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.04) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.04) 1px,
-            transparent 1px
-          );
-        background-size: 6mm 6mm;
-        mask-image: radial-gradient(
-          ellipse at center,
-          rgba(0, 0, 0, 0.9),
-          transparent 75%
-        );
-      }
-
       .recto .inner {
         position: relative;
         height: 100%;
-        padding: 6mm 6mm;
+        padding: 6mm;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 3mm;
       }
 
-      .top-row {
+      /* Bloc central : identité */
+      .identity {
+        flex: 1;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 3mm;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 1.6mm;
-        padding: 1mm 2.2mm;
-        border-radius: 999px;
-        border: 0.3mm solid rgba(255, 255, 255, 0.22);
-        background: rgba(255, 255, 255, 0.05);
-        font-size: 5pt;
-        font-weight: 600;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.85);
-        white-space: nowrap;
-      }
-
-      .pill .dot {
-        width: 1.2mm;
-        height: 1.2mm;
-        border-radius: 50%;
-        background: var(--blue-soft);
-        box-shadow: 0 0 0 0.8mm rgba(90, 130, 255, 0.18);
-      }
-
-      .mono {
-        font-family: 'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
-        font-size: 5pt;
-        letter-spacing: 0.08em;
-        color: rgba(255, 255, 255, 0.55);
-        white-space: nowrap;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
       }
 
       .name {
         margin: 0;
-        line-height: 0.95;
+        line-height: 1;
         font-weight: 800;
-        letter-spacing: -0.02em;
-        font-size: 22pt;
+        letter-spacing: -0.03em;
+        font-size: 18.5pt;
+        white-space: nowrap;
       }
 
-      .name .first {
-        display: block;
+      .role {
+        margin-top: 2mm;
+        font-size: 5.4pt;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
       }
 
-      .name .last {
-        display: block;
-        color: rgba(255, 255, 255, 0.62);
-        font-weight: 600;
+      .value {
+        margin-top: 3.4mm;
         font-size: 11pt;
-        margin-top: 1.2mm;
-        letter-spacing: -0.005em;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.12;
+        white-space: nowrap;
       }
 
-      .name .accent {
+      .value .accent {
         font-family: 'Instrument Serif', 'Times New Roman', serif;
         font-style: italic;
         font-weight: 400;
+        font-size: 14pt;
         color: var(--blue-soft);
+        padding: 0 0.4mm;
       }
 
-      .value-block {
-        max-width: 65mm;
+      .services {
+        margin: 3.4mm 0 0;
+        font-size: 5.8pt;
+        font-weight: 600;
+        letter-spacing: -0.005em;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.78);
+        white-space: nowrap;
       }
 
-      .role-eyebrow {
-        display: block;
-        font-size: 5pt;
+      .services .sep {
+        color: var(--blue-soft);
+        margin: 0 0.9mm;
+      }
+
+      /* Pied : monogramme (comme au verso) + coordonnées */
+      .recto .foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 4mm;
+        padding-top: 3mm;
+        border-top: 0.3mm solid rgba(255, 255, 255, 0.12);
+      }
+
+      .recto .foot .mono {
+        font-family: 'Caveat', cursive;
         font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.55);
-        margin-bottom: 1.4mm;
-      }
-
-      .role-value {
-        display: block;
-        font-size: 11pt;
-        font-weight: 700;
-        letter-spacing: -0.015em;
-        line-height: 1.18;
+        font-size: 16pt;
+        line-height: 1;
+        letter-spacing: -0.01em;
         color: #ffffff;
       }
 
-      .role-accent {
-        font-family: 'Instrument Serif', 'Times New Roman', serif;
-        font-style: italic;
-        font-weight: 400;
+      .recto .foot .mono .slash {
         color: var(--blue-soft);
-        padding: 0 0.4mm;
+        margin: 0 0.5mm;
+      }
+
+      .recto .foot .coords {
+        text-align: right;
+        font-size: 6.5pt;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        line-height: 1.4;
+      }
+
+      .recto .foot .coords .web {
+        display: block;
+        color: #ffffff;
+      }
+
+      .recto .foot .coords .tel {
+        display: block;
+        color: rgba(255, 255, 255, 0.7);
+        font-variant-numeric: tabular-nums;
       }
 
       /* ============================================================
@@ -298,12 +274,12 @@
         top: 0;
         left: 0;
         bottom: 0;
-        width: 4mm;
+        width: 3.5mm;
         background: linear-gradient(
           180deg,
           var(--primary) 0%,
-          var(--primary) 55%,
-          var(--blue) 55%,
+          var(--primary) 52%,
+          var(--blue) 52%,
           var(--blue) 100%
         );
       }
@@ -311,11 +287,10 @@
       .verso .inner {
         position: relative;
         height: 100%;
-        padding: 6mm 6mm 6mm 9mm;
+        padding: 6mm 5.5mm 6mm 8.5mm;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        gap: 2.5mm;
+        gap: 1.6mm;
       }
 
       .eyebrow {
@@ -324,16 +299,17 @@
         letter-spacing: 0.22em;
         text-transform: uppercase;
         color: var(--blue);
+        margin: 0;
       }
 
       .verso h2 {
-        margin: 1.5mm 0 0;
-        font-size: 10pt;
+        margin: 1mm 0 0;
+        font-size: 9.5pt;
         font-weight: 700;
         letter-spacing: -0.015em;
-        line-height: 1.2;
+        line-height: 1.15;
         color: var(--primary);
-        max-width: 60mm;
+        max-width: 62mm;
       }
 
       .verso h2 em {
@@ -343,46 +319,94 @@
         color: var(--blue);
       }
 
-      .contact {
+      /* Corps : deux colonnes */
+      .verso .body {
+        flex: 1;
         display: grid;
-        gap: 0.2mm;
-        margin-top: 0;
+        grid-template-columns: 1fr auto;
+        gap: 5mm;
+        align-items: center;
       }
 
-      .contact a,
-      .contact span {
+      .contact {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 3mm;
+      }
+
+      .contact li {
+        display: flex;
+        line-height: 1;
+      }
+
+      .contact a {
         font-size: 7pt;
         color: var(--text);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 1.8mm;
-        line-height: 1.2;
-      }
-
-      .contact .ico {
-        width: 2.8mm;
-        height: 2.8mm;
-        flex-shrink: 0;
-        color: var(--blue);
-      }
-
-      .contact .label {
+        gap: 2.2mm;
+        line-height: 1;
         font-weight: 600;
         letter-spacing: -0.005em;
       }
 
+      .contact .ico {
+        width: 3mm;
+        height: 3mm;
+        flex-shrink: 0;
+        color: var(--blue);
+      }
+
+      /* QR */
+      .qr-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.6mm;
+      }
+
+      .qr-box {
+        width: 20mm;
+        height: 20mm;
+        padding: 1.4mm;
+        border: 0.3mm solid var(--line);
+        border-radius: 1.5mm;
+        background: #fff;
+      }
+
+      .qr-box svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .qr-caption {
+        font-size: 4.6pt;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.3;
+      }
+
+      /* Footer */
       .verso .footer {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
         gap: 4mm;
+        padding-top: 1.6mm;
+        border-top: 0.3mm solid var(--line);
       }
 
       .monogram {
         font-family: 'Caveat', 'Inter', cursive;
         font-weight: 700;
-        font-size: 18pt;
+        font-size: 15pt;
         letter-spacing: -0.01em;
         color: var(--primary);
         line-height: 1;
@@ -393,20 +417,7 @@
         margin: 0 0.6mm;
       }
 
-      .tagline-row {
-        text-align: right;
-      }
-
-      .tagline-row .stack {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        font-size: 5pt;
-        letter-spacing: 0.06em;
-        color: var(--muted);
-        text-transform: uppercase;
-        white-space: nowrap;
-      }
-
-      .tagline-row .available {
+      .available {
         font-size: 5pt;
         font-weight: 600;
         letter-spacing: 0.14em;
@@ -417,7 +428,7 @@
         gap: 1.2mm;
       }
 
-      .tagline-row .available .dot {
+      .available .dot {
         width: 1.2mm;
         height: 1.2mm;
         border-radius: 50%;
@@ -432,37 +443,34 @@
         <p class="hint">
           91 × 61 mm (85 × 55 mm + 3 mm de fond perdu) · 300 DPI · Imprimer en
           PDF via <strong>Cmd/Ctrl + P</strong> puis l'envoyer à Vistaprint.
-          Les pointillés bleus représentent la zone de sécurité (rien
-          d'important au-delà).
         </p>
       </div>
 
       <div class="pair">
         <!-- ============ RECTO ============ -->
         <article class="card recto" aria-label="Recto de la carte">
-          <div class="grid-bg" aria-hidden="true"></div>
           <div class="inner">
-            <div class="top-row">
-              <span class="pill">
-                <span class="dot" aria-hidden="true"></span>
-                Lyon · France
-              </span>
-              <span class="mono">bbenoit.fr</span>
+            <div class="identity">
+              <h1 class="name">Benoit Bruynbroeck</h1>
+              <span class="role">Développeur full stack</span>
+
+              <p class="value">
+                Sites &amp; produits web qui
+                <span class="accent">vendent</span>.
+              </p>
+
+              <p class="services">
+                Sites professionnels<span class="sep">·</span>Applications
+                métier<span class="sep">·</span>Plateformes web sur mesure
+              </p>
             </div>
 
-            <h1 class="name">
-              <span class="first">
-                Benoit<span class="accent">.</span>
-              </span>
-              <span class="last">Bruynbroeck</span>
-            </h1>
-
-            <div class="value-block">
-              <span class="role-eyebrow">Développeur full stack</span>
-              <span class="role-value">
-                Sites &amp; produits web qui
-                <span class="role-accent">vendent</span>.
-              </span>
+            <div class="foot">
+              <span class="mono" aria-hidden="true">B<span class="slash">/</span>B</span>
+              <div class="coords">
+                <span class="web">bbenoit.fr</span>
+                <span class="tel">06 98 48 11 21</span>
+              </div>
             </div>
           </div>
         </article>
@@ -479,44 +487,49 @@
               </h2>
             </div>
 
-            <ul class="contact" style="list-style: none; padding: 0; margin: 0;">
-              <li>
-                <a href="tel:+33698481121">
-                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
-                  </svg>
-                  <span class="label">06 98 48 11 21</span>
-                </a>
-              </li>
-              <li>
-                <a href="mailto:bruy.benoit@gmail.com">
-                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="3" y="5" width="18" height="14" rx="2" />
-                    <path d="m3 7 9 6 9-6" />
-                  </svg>
-                  <span class="label">bruy.benoit@gmail.com</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://bbenoit.fr">
-                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-                  </svg>
-                  <span class="label">bbenoit.fr</span>
-                </a>
-              </li>
-            </ul>
+            <div class="body">
+              <ul class="contact">
+                <li>
+                  <a href="tel:+33698481121">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
+                    </svg>
+                    <span class="label">06 98 48 11 21</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:bruy.benoit@gmail.com">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="m3 7 9 6 9-6" />
+                    </svg>
+                    <span class="label">bruy.benoit@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://bbenoit.fr">
+                    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+                    </svg>
+                    <span class="label">bbenoit.fr</span>
+                  </a>
+                </li>
+              </ul>
+
+              <div class="qr-block">
+                <div class="qr-box">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" shape-rendering="crispEdges"><path stroke="#0a1224" d="M0 0.5h7m1 0h3m2 0h1m4 0h7M0 1.5h1m5 0h1m1 0h2m1 0h2m1 0h1m3 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h6m4 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m2 0h2m1 0h3m1 0h1m1 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M10 7.5h2m2 0h3M0 8.5h1m2 0h6m1 0h1m2 0h2m1 0h2m2 0h1m1 0h3M0 9.5h1m2 0h3m1 0h2m2 0h2m1 0h3m2 0h5M1 10.5h2m1 0h1m1 0h2m3 0h1m2 0h2m1 0h2m2 0h1m2 0h1M3 11.5h3m1 0h2m2 0h1m2 0h1m2 0h1m3 0h4M0 12.5h1m1 0h3m1 0h3m1 0h2m1 0h3m2 0h2m4 0h1M0 13.5h2m2 0h1m3 0h2m2 0h1m2 0h2m3 0h1m2 0h1M0 14.5h2m2 0h4m1 0h2m3 0h2m1 0h2m1 0h5M0 15.5h1m1 0h1m2 0h1m2 0h3m1 0h3m1 0h4m1 0h2m1 0h1M0 16.5h1m2 0h1m1 0h3m2 0h3m3 0h5m1 0h2M8 17.5h2m1 0h1m4 0h1m3 0h1m1 0h2M0 18.5h7m1 0h1m3 0h3m1 0h1m1 0h1m1 0h1m3 0h1M0 19.5h1m5 0h1m1 0h4m1 0h1m1 0h2m3 0h1M0 20.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h6m3 0h1M0 21.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m1 0h2m4 0h2M0 22.5h1m1 0h3m1 0h1m3 0h2m1 0h1m2 0h2m2 0h5M0 23.5h1m5 0h1m2 0h5m5 0h2m1 0h3M0 24.5h7m1 0h1m2 0h3m2 0h2m3 0h1m2 0h1"/></svg>
+                </div>
+                <p class="qr-caption">Scannez<br />pour visiter</p>
+              </div>
+            </div>
 
             <div class="footer">
-              <div class="monogram">
-                B<span class="slash">/</span>B
-              </div>
-              <div class="tagline-row">
-                <div class="available">
-                  <span class="dot" aria-hidden="true"></span>
-                  Disponible
-                </div>
+              <div class="monogram">B<span class="slash">/</span>B</div>
+              <div class="available">
+                <span class="dot" aria-hidden="true"></span>
+                Disponible
               </div>
             </div>
           </div>
