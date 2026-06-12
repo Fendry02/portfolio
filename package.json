@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "convert-images": "node scripts/convert-images.js",
@@ -14,32 +14,32 @@
     "build:card": "node business-card/build-pdf.js"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.6",
-    "@tailwindcss/postcss": "^4.1.14",
-    "@tailwindcss/typography": "^0.5.19",
-    "@types/node": "24.7.0",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.1",
+    "@next/third-parties": "^16.2.9",
     "@vercel/analytics": "^2.0.1",
-    "cssnano": "^7.1.1",
-    "eslint": "9.37.0",
-    "eslint-config-next": "^16.2.6",
-    "next": "^16.2.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "sharp": "^0.34.4",
-    "typescript": "5.9.3"
-  },
-  "overrides": {
-    "postcss": "^8.5.14"
+    "next": "^16.2.9",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sharp": "^0.35.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "daisyui": "^5.1.29",
-    "postcss": "^8.5.14",
-    "prettier": "^3.6.2",
-    "puppeteer": "^25.0.2",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/node": "^25.9.3",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.5.0",
+    "cssnano": "^8.0.2",
+    "daisyui": "^5.5.23",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.9",
+    "postcss": "^8.5.15",
+    "prettier": "^3.8.4",
+    "puppeteer": "^25.1.0",
     "qrcode": "^1.5.4",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "postcss": "$postcss"
   }
 }

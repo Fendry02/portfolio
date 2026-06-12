@@ -133,18 +133,24 @@ const eyebrow =
 const heading2 =
   'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
 const btnPrimary =
-  'interactive inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+  'interactive qclay-button inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
 const btnGhost =
-  'interactive inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+  'interactive qclay-button inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
       {/* ─────────────────────────── HERO ─────────────────────────── */}
-      <section id="home" aria-labelledby="hero-heading" className="relative">
+      <section
+        id="home"
+        aria-labelledby="hero-heading"
+        className="qclay-hero relative overflow-hidden"
+      >
+        <div className="qclay-ambient qclay-ambient-a" aria-hidden="true" />
+        <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
         <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
-          <div className="flex flex-col justify-center">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
+          <div className="qclay-reveal-stack flex flex-col justify-center">
+            <div className="qclay-pill inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
               <span className="status-dot" aria-hidden="true" />
               Disponible pour de nouveaux projets
             </div>
@@ -175,7 +181,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
+            <dl className="qclay-metrics mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
               <div>
                 <dt className={eyebrow}>Expérience</dt>
                 <dd className="mt-1.5 text-xl font-semibold tracking-tight">
@@ -198,8 +204,9 @@ export default function Home() {
           </div>
 
           {/* Right-hand portrait — clean, no decoration */}
-          <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="relative aspect-square w-full max-w-[400px]">
+          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
+            <div className="qclay-orbit" aria-hidden="true" />
+            <div className="qclay-portrait relative aspect-square w-full max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait de Benoit Bruynbroeck, développeur full stack JavaScript"
@@ -209,7 +216,7 @@ export default function Home() {
                 className="object-contain"
               />
 
-              <div className="absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
+              <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
@@ -222,7 +229,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mt-4 grid w-full max-w-sm grid-cols-3 overflow-hidden rounded-lg border border-base-300 bg-base-100 text-center">
+            <div className="qclay-tech-strip mt-4 grid w-full max-w-sm grid-cols-3 overflow-hidden rounded-lg border border-base-300 bg-base-100 text-center">
               <div className="border-r border-base-300 px-3 py-3">
                 <p className="text-sm font-semibold leading-none">Node</p>
                 <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
@@ -249,13 +256,13 @@ export default function Home() {
       {/* ──────────────────── TRUST STRIP / CLIENTS ──────────────────── */}
       <section
         aria-label="Ils m'ont fait confiance"
-        className="border-y border-base-300 py-8"
+        className="qclay-trust border-y border-base-300 py-8"
       >
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
           <p className={`${eyebrow} text-center md:text-left`}>
             Ils m’ont fait confiance
           </p>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 md:justify-start lg:flex-nowrap lg:gap-x-9">
+          <div className="qclay-logo-row mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 md:justify-start lg:flex-nowrap lg:gap-x-9">
             {trustLogos.map((entry) => (
               <a
                 key={entry.name}
@@ -297,7 +304,7 @@ export default function Home() {
       </section>
 
       {/* ──────────────────── PROMISE / VALUE STATEMENT ──────────────────── */}
-      <section className="px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.35fr_0.65fr] lg:gap-16">
           <div>
             <p className={eyebrow}>Pourquoi me confier votre projet</p>
@@ -319,7 +326,7 @@ export default function Home() {
       <section
         id="services"
         aria-labelledby="services-heading"
-        className="bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
@@ -337,7 +344,7 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-2">
             {/* Featured card — spans both rows on left */}
-            <article className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
+            <article className="interactive qclay-card qclay-card-primary group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
               <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-content/55">
                   {services[0].eyebrow}
@@ -376,7 +383,7 @@ export default function Home() {
             {services.slice(1).map((service) => (
               <article
                 key={service.title}
-                className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
+                className="interactive qclay-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
               >
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
@@ -420,7 +427,7 @@ export default function Home() {
       <section
         id="realizations"
         aria-labelledby="realizations-heading"
-        className="px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
@@ -443,7 +450,7 @@ export default function Home() {
                 href={r.href}
                 target="_blank"
                 rel="noreferrer"
-                className="interactive group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
+                className="interactive qclay-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -495,10 +502,10 @@ export default function Home() {
       <section
         id="contact"
         aria-labelledby="contact-heading"
-        className="border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
-        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
+        <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
+          <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
             <span className="status-dot" aria-hidden="true" />
             Réponse sous 24h ouvrées
           </div>
