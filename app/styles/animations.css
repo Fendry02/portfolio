@@ -98,6 +98,45 @@
   }
 }
 
+@keyframes qclay-ink-flow {
+  0%,
+  100% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes qclay-line-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes qclay-chip-scan {
+  from {
+    transform: translate3d(-110%, 0, 0);
+  }
+  to {
+    transform: translate3d(110%, 0, 0);
+  }
+}
+
+@keyframes qclay-scroll-rise {
+  from {
+    opacity: 0.94;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 /* ─── Brand logo entry ───────────────────────────────────────────────── */
 @keyframes brand-logo-enter {
   from {
@@ -175,7 +214,7 @@
   content: '';
   background:
     radial-gradient(
-      circle at 78% 16%,
+      circle at var(--spot-x, 78%) var(--spot-y, 16%),
       oklch(48.8% 0.243 264.376 / 0.12),
       transparent 26rem
     ),
@@ -222,6 +261,36 @@
   height: 5.25rem;
   border-radius: 1.4rem;
   animation-delay: -5s;
+}
+
+.qclay-ink {
+  position: relative;
+  display: inline-block;
+  background-image: linear-gradient(
+    90deg,
+    oklch(48.8% 0.243 264.376),
+    oklch(48.8% 0.243 264.376),
+    oklch(20.8% 0.042 265.755),
+    oklch(48.8% 0.243 264.376)
+  );
+  background-size: 220% 100%;
+  background-clip: text;
+  animation: qclay-ink-flow 8s var(--ease-qclay) infinite;
+  -webkit-text-fill-color: transparent;
+}
+
+.qclay-ink::after {
+  position: absolute;
+  right: 0.02em;
+  bottom: 0.03em;
+  left: 0.06em;
+  height: 0.08em;
+  content: '';
+  background-color: oklch(48.8% 0.243 264.376);
+  border-radius: 9999px;
+  opacity: 0.14;
+  transform-origin: left;
+  animation: qclay-line-draw 820ms var(--ease-qclay) 620ms both;
 }
 
 .qclay-reveal-stack > * {
@@ -283,6 +352,35 @@
 .qclay-metrics > div {
   opacity: 0;
   animation: qclay-reveal var(--duration-reveal) var(--ease-qclay) both;
+}
+
+.qclay-metric {
+  position: relative;
+}
+
+.qclay-metric::after {
+  position: absolute;
+  right: 35%;
+  bottom: -1.45rem;
+  left: 0;
+  height: 1px;
+  content: '';
+  background: linear-gradient(
+    90deg,
+    oklch(48.8% 0.243 264.376 / 0.34),
+    transparent
+  );
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    opacity var(--duration-slow) var(--ease-qclay),
+    transform var(--duration-slow) var(--ease-qclay);
+}
+
+.qclay-metric:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 
 .qclay-metrics > :nth-child(1) {
@@ -349,6 +447,26 @@
   background-color: oklch(48.8% 0.243 264.376 / 0.72);
 }
 
+.qclay-orbit-secondary {
+  top: 45%;
+  width: min(86vw, 25.5rem);
+  border-style: dashed;
+  border-color: oklch(20.8% 0.042 265.755 / 0.06);
+  border-radius: 57% 43% 55% 45%;
+  animation-duration: 32s;
+  animation-direction: reverse;
+}
+
+.qclay-orbit-secondary::after {
+  top: auto;
+  right: auto;
+  bottom: 19%;
+  left: 17%;
+  width: 0.34rem;
+  height: 0.34rem;
+  background-color: oklch(52.7% 0.154 150.069 / 0.7);
+}
+
 .qclay-float-badge {
   animation: qclay-float-soft 5.4s var(--ease-qclay) 1s infinite;
   box-shadow:
@@ -362,14 +480,37 @@
 }
 
 .qclay-tech-strip > div {
+  position: relative;
+  overflow: hidden;
   transition:
     background-color var(--duration-base) var(--ease-spring),
     transform var(--duration-base) var(--ease-spring);
 }
 
+.qclay-tech-strip > div::before {
+  position: absolute;
+  inset: 0;
+  width: 55%;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(100% 0 0 / 0.74),
+    transparent
+  );
+  opacity: 0;
+  transform: translate3d(-110%, 0, 0);
+}
+
 .qclay-tech-strip > div:hover {
   background-color: oklch(96.8% 0.007 247.896 / 0.72);
   transform: translate3d(0, -2px, 0);
+}
+
+.qclay-tech-strip > div:hover::before {
+  opacity: 1;
+  animation: qclay-chip-scan 820ms var(--ease-qclay);
 }
 
 .qclay-trust {
@@ -407,9 +548,12 @@
 }
 
 .qclay-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   box-shadow:
     inset 0 1px 0 oklch(100% 0 0 / 0.72),
     0 18px 40px oklch(20.8% 0.042 265.755 / 0.04);
+  transform-style: preserve-3d;
 }
 
 .qclay-card::before {
@@ -462,6 +606,64 @@
     0 24px 60px oklch(20.8% 0.042 265.755 / 0.08);
 }
 
+.qclay-card > * {
+  position: relative;
+}
+
+.qclay-subtle-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color var(--duration-base) var(--ease-spring),
+    box-shadow var(--duration-base) var(--ease-spring),
+    background-color var(--duration-base) var(--ease-spring);
+}
+
+.qclay-subtle-card::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 2px;
+  content: '';
+  background-color: oklch(48.8% 0.243 264.376 / 0.58);
+  opacity: 0;
+  transform: scaleY(0.45);
+  transform-origin: center;
+  transition:
+    opacity var(--duration-base) var(--ease-spring),
+    transform var(--duration-slow) var(--ease-qclay);
+}
+
+.qclay-subtle-card:hover {
+  background-color: oklch(100% 0 0);
+  border-color: oklch(20.8% 0.042 265.755 / 0.16);
+  box-shadow: 0 14px 32px oklch(20.8% 0.042 265.755 / 0.045);
+}
+
+.qclay-subtle-card:hover::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.qclay-subtle-card > * {
+  position: relative;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal.is-visible {
+  animation: qclay-scroll-rise 820ms var(--ease-qclay) both;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qclay-tilt:hover {
+    transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
+      translate3d(0, -2px, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
   .brand-logo,
@@ -474,24 +676,34 @@
   .qclay-orbit,
   .qclay-float-badge,
   .qclay-tech-strip,
-  .qclay-logo-row > a {
+  .qclay-logo-row > a,
+  .qclay-ink,
+  .qclay-ink::after,
+  .qclay-motion-ready .qclay-scroll-reveal.is-visible {
     animation: none;
   }
   .brand-logo-mark,
   .interactive,
   .qclay-tech-strip > div,
-  .qclay-card::before {
+  .qclay-tech-strip > div::before,
+  .qclay-card::before,
+  .qclay-metric::after,
+  .qclay-subtle-card,
+  .qclay-subtle-card::before {
     transition: none;
   }
   .interactive:hover,
   .interactive:active,
-  .qclay-tech-strip > div:hover {
+  .qclay-tech-strip > div:hover,
+  .qclay-tilt:hover,
+  .qclay-motion-ready .qclay-scroll-reveal {
     transform: none;
   }
   .qclay-reveal-stack > *,
   .qclay-metrics > div,
   .qclay-portrait-wrap,
-  .qclay-logo-row > a {
+  .qclay-logo-row > a,
+  .qclay-motion-ready .qclay-scroll-reveal {
     opacity: 1;
     filter: none;
   }

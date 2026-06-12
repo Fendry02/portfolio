@@ -6,6 +6,7 @@ import profile from '@/public/profile.webp'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import QClayMotion from './components/qclay-motion'
 
 type Service = {
   eyebrow: string
@@ -140,6 +141,7 @@ const btnGhost =
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
+      <QClayMotion />
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
         id="home"
@@ -160,8 +162,8 @@ export default function Home() {
               className="mt-6 text-[clamp(2.25rem,4.8vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Des sites et des produits web qui{' '}
-              <span className="italic text-secondary">vendent</span>, construits
-              par un seul interlocuteur.
+              <span className="qclay-ink italic text-secondary">vendent</span>,
+              construits par un seul interlocuteur.
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
@@ -182,19 +184,19 @@ export default function Home() {
             </div>
 
             <dl className="qclay-metrics mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
-              <div>
+              <div className="qclay-metric">
                 <dt className={eyebrow}>Expérience</dt>
                 <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                   6+ ans
                 </dd>
               </div>
-              <div>
+              <div className="qclay-metric">
                 <dt className={eyebrow}>Mentorés</dt>
                 <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                   50+
                 </dd>
               </div>
-              <div>
+              <div className="qclay-metric">
                 <dt className={eyebrow}>En production</dt>
                 <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                   100%
@@ -206,6 +208,10 @@ export default function Home() {
           {/* Right-hand portrait — clean, no decoration */}
           <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
             <div className="qclay-orbit" aria-hidden="true" />
+            <div
+              className="qclay-orbit qclay-orbit-secondary"
+              aria-hidden="true"
+            />
             <div className="qclay-portrait relative aspect-square w-full max-w-[400px]">
               <Image
                 src={profile}
@@ -304,7 +310,7 @@ export default function Home() {
       </section>
 
       {/* ──────────────────── PROMISE / VALUE STATEMENT ──────────────────── */}
-      <section className="qclay-section px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.35fr_0.65fr] lg:gap-16">
           <div>
             <p className={eyebrow}>Pourquoi me confier votre projet</p>
@@ -326,7 +332,7 @@ export default function Home() {
       <section
         id="services"
         aria-labelledby="services-heading"
-        className="qclay-section bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
@@ -344,7 +350,7 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-2">
             {/* Featured card — spans both rows on left */}
-            <article className="interactive qclay-card qclay-card-primary group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
+            <article className="interactive qclay-card qclay-card-primary qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
               <div className="relative">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-content/55">
                   {services[0].eyebrow}
@@ -383,7 +389,7 @@ export default function Home() {
             {services.slice(1).map((service) => (
               <article
                 key={service.title}
-                className="interactive qclay-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
+                className="interactive qclay-card qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
               >
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
@@ -427,7 +433,7 @@ export default function Home() {
       <section
         id="realizations"
         aria-labelledby="realizations-heading"
-        className="qclay-section px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
@@ -450,7 +456,7 @@ export default function Home() {
                 href={r.href}
                 target="_blank"
                 rel="noreferrer"
-                className="interactive qclay-card group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
+                className="interactive qclay-card qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -502,7 +508,7 @@ export default function Home() {
       <section
         id="contact"
         aria-labelledby="contact-heading"
-        className="qclay-section border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section qclay-scroll-reveal border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
         <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
           <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">

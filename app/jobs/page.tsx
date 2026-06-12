@@ -6,6 +6,7 @@ import profile from '@/public/profile.webp'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import QClayMotion from '../components/qclay-motion'
 
 export const metadata: Metadata = {
   title: 'About | Benoit Bruynbroeck — JavaScript Tech Lead',
@@ -178,22 +179,25 @@ const eyebrow =
 const heading2 =
   'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
 const btnPrimary =
-  'interactive inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+  'interactive qclay-button inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
 const btnGhost =
-  'interactive inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+  'interactive qclay-button inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 
 export default function Jobs() {
   return (
     <main className="bg-base-100 text-base-content">
+      <QClayMotion />
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
         id="home"
         aria-labelledby="jobs-hero-heading"
-        className="relative"
+        className="qclay-hero relative overflow-hidden"
       >
+        <div className="qclay-ambient qclay-ambient-a" aria-hidden="true" />
+        <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
         <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
-          <div className="flex flex-col justify-center">
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
+          <div className="qclay-reveal-stack flex flex-col justify-center">
+            <div className="qclay-pill inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
               <span className="status-dot" aria-hidden="true" />
               About · résumé
             </div>
@@ -205,7 +209,9 @@ export default function Jobs() {
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
                 JavaScript Tech Lead, full-stack developer and{' '}
-                <span className="italic text-secondary">AI-augmented</span>{' '}
+                <span className="qclay-ink italic text-secondary">
+                  AI-augmented
+                </span>{' '}
                 builder.
               </span>
             </h1>
@@ -226,9 +232,9 @@ export default function Jobs() {
               </a>
             </div>
 
-            <dl className="mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
+            <dl className="qclay-metrics mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
               {stats.map((s) => (
-                <div key={s.label}>
+                <div key={s.label} className="qclay-metric">
                   <dt className={eyebrow}>{s.label}</dt>
                   <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                     {s.value}
@@ -238,8 +244,13 @@ export default function Jobs() {
             </dl>
           </div>
 
-          <div className="relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="relative aspect-square w-full max-w-[400px]">
+          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
+            <div className="qclay-orbit" aria-hidden="true" />
+            <div
+              className="qclay-orbit qclay-orbit-secondary"
+              aria-hidden="true"
+            />
+            <div className="qclay-portrait relative aspect-square w-full max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait of Benoit Bruynbroeck"
@@ -256,10 +267,10 @@ export default function Jobs() {
       {/* ──────────────────── AI-AUGMENTED WORKFLOW ──────────────────── */}
       <section
         aria-labelledby="ai-heading"
-        className="px-6 py-12 lg:px-10 lg:py-16"
+        className="qclay-section qclay-scroll-reveal px-6 py-12 lg:px-10 lg:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-2xl bg-primary p-8 text-primary-content md:p-12">
+          <div className="interactive qclay-card qclay-card-primary qclay-tilt relative overflow-hidden rounded-2xl bg-primary p-8 text-primary-content md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-primary-content/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-primary-content/75">
@@ -329,7 +340,7 @@ export default function Jobs() {
       {/* ──────────────────── APPROACH / PHILOSOPHY ──────────────────── */}
       <section
         aria-labelledby="approach-heading"
-        className="border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:gap-16">
@@ -349,7 +360,7 @@ export default function Jobs() {
               {principles.map((p, i) => (
                 <li
                   key={p.title}
-                  className="interactive flex gap-5 rounded-xl border border-base-300 bg-base-100 p-5 hover:border-base-content/15"
+                  className="qclay-subtle-card flex gap-5 rounded-xl border border-base-300 bg-base-100 p-5"
                 >
                   <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-base-300 font-mono text-[10px] font-semibold text-base-content/55">
                     0{i + 1}
@@ -373,7 +384,7 @@ export default function Jobs() {
       <section
         id="skills"
         aria-labelledby="skills-heading"
-        className="px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
@@ -387,7 +398,7 @@ export default function Jobs() {
             {skills.map((group) => (
               <article
                 key={group.title}
-                className="interactive flex flex-col rounded-xl border border-base-300 bg-base-100 p-6 hover:border-base-content/15"
+                className="qclay-subtle-card flex flex-col rounded-xl border border-base-300 bg-base-100 p-6"
               >
                 <p className={eyebrow}>{group.title}</p>
                 <p className="mt-2.5 text-sm leading-6 text-base-content/65">
@@ -419,7 +430,7 @@ export default function Jobs() {
       <section
         id="experience"
         aria-labelledby="experience-heading"
-        className="bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
@@ -432,7 +443,7 @@ export default function Jobs() {
           <ol className="mt-10 space-y-3">
             {roles.map((role) => (
               <li key={`${role.period}-${role.company}`}>
-                <article className="interactive group relative grid gap-5 rounded-xl border border-base-300 bg-base-100 p-5 hover:border-base-content/15 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">
+                <article className="qclay-subtle-card group relative grid gap-5 rounded-xl border border-base-300 bg-base-100 p-5 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">
                   <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2.5">
                     {role.image ? (
                       <Image
@@ -517,10 +528,10 @@ export default function Jobs() {
       <section
         id="contact"
         aria-labelledby="jobs-contact-heading"
-        className="border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section qclay-scroll-reveal border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
-        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
+        <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
+          <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
             <span className="status-dot" aria-hidden="true" />
             Open to interesting work
           </div>
