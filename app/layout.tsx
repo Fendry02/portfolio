@@ -37,7 +37,7 @@ export default function RootLayout({
               image: 'https://bbenoit.fr/profile.webp',
               sameAs: [
                 'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
-                'https://github.com/benoit-bruynbroeck',
+                'https://github.com/Fendry02',
               ],
               knowsAbout: [
                 'JavaScript',
@@ -83,6 +83,44 @@ export default function RootLayout({
                   'Software Architecture',
                 ],
               },
+              makesOffer: [
+                {
+                  '@type': 'Offer',
+                  itemOffered: {
+                    '@type': 'Service',
+                    name: 'Site web vitrine',
+                    description:
+                      'Création de sites web vitrines professionnels, rapides et optimisés SEO, conçus pour convertir les visiteurs en prospects.',
+                  },
+                },
+                {
+                  '@type': 'Offer',
+                  itemOffered: {
+                    '@type': 'Service',
+                    name: 'Application web et mobile',
+                    description:
+                      'Développement d’applications web et mobiles sur mesure répondant à un besoin métier spécifique, du cadrage au déploiement.',
+                  },
+                },
+                {
+                  '@type': 'Offer',
+                  itemOffered: {
+                    '@type': 'Service',
+                    name: 'Audit et automatisation IA',
+                    description:
+                      'Audit des process pour identifier les opportunités d’IA, puis mise en place d’automatisations concrètes et mesurables.',
+                  },
+                },
+                {
+                  '@type': 'Offer',
+                  itemOffered: {
+                    '@type': 'Service',
+                    name: 'Formation IA',
+                    description:
+                      'Formations pratiques pour rendre les équipes autonomes avec l’intelligence artificielle au quotidien.',
+                  },
+                },
+              ],
             }),
           }}
         ></script>
@@ -101,6 +139,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://bbenoit.fr'),
   title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
   description:
     'Création de sites web professionnels, applications métier et plateformes web sur mesure. Développeur full stack JavaScript spécialisé en Next.js, Vue.js, Node.js et PostgreSQL.',
@@ -146,21 +185,12 @@ export const metadata: Metadata = {
     siteName: 'Benoit Bruynbroeck Portfolio',
     locale: 'fr_FR',
     type: 'website',
-    images: [
-      {
-        url: 'https://bbenoit.fr/profile.webp',
-        width: 1200,
-        height: 630,
-        alt: 'Benoit Bruynbroeck - Développeur full stack JavaScript',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
     description:
       'Création de sites web professionnels, applications métier et plateformes web sur mesure.',
-    images: ['https://bbenoit.fr/profile.webp'],
     creator: '@benoit_bruynbroeck',
   },
   alternates: {

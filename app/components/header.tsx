@@ -25,7 +25,7 @@ export default function Header() {
             href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
             target="_blank"
             rel="noreferrer"
-            className="interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-content hover:bg-primary/92"
+            className="interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-medium text-white hover:bg-[#1d4ed8]"
           >
             Me contacter
           </a>

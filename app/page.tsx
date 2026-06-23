@@ -1,83 +1,87 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import type { Metadata } from 'next'
 
 import profile from '@/public/profile.webp'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import petitnid from '@/app/assets/petitnid.png'
+import electreau from '@/app/assets/electreau.png'
 import QClayMotion from './components/qclay-motion'
+import OffersAccordion from './components/offers-accordion'
 
-type Service = {
-  eyebrow: string
+type Offer = {
+  accent: string
+  emoji: string
   title: string
-  pitch: string
-  outcomes: string[]
+  desc: string
+  detail: string
+  bullets: string[]
 }
 
-const services: Service[] = [
+const offers: Offer[] = [
   {
-    eyebrow: '01 — Plateforme web',
-    title: 'Le produit complet, prêt à scaler.',
-    pitch:
-      'Espace client, paiements, API, intégrations, base de données. Un produit web fiable, mesurable, conçu pour durer.',
-    outcomes: [
-      'Architecture & base de données',
-      'Authentification & espace utilisateur',
-      'Intégrations tierces & paiements',
-      'Mise en production, monitoring, suivi',
-    ],
-  },
-  {
-    eyebrow: '02 — Site professionnel',
-    title: 'Vitrine qui convertit.',
-    pitch:
-      'Un site clair, rapide, structuré pour le SEO. Construit pour rassurer et déclencher la prise de contact.',
-    outcomes: [
+    accent: '#2563eb',
+    emoji: '🌐',
+    title: 'Site web vitrine',
+    desc: 'Une présence en ligne claire et rapide qui inspire confiance et déclenche la prise de contact.',
+    detail:
+      'Un site clair et rapide, pensé pour convertir vos visiteurs en prospects. Je m’occupe de tout, du design à la mise en ligne, pour une présence professionnelle qui vous ressemble.',
+    bullets: [
       'Design responsive sur mesure',
-      'SEO local & structure technique',
-      'Formulaires & analytics',
+      'Optimisation SEO & performance',
+      'Formulaire de contact & analytics',
+      'Hébergement & mise en ligne',
     ],
   },
   {
-    eyebrow: '03 — Application métier',
-    title: 'Outil interne taillé à votre process.',
-    pitch:
-      'Tableau de bord, workflow, automatisation. On supprime les tâches répétitives et on centralise vos données.',
-    outcomes: [
-      'Cadrage des process & priorités',
-      'Tableaux de bord & rôles',
-      'Automatisations & exports',
+    accent: '#2563eb',
+    emoji: '📱',
+    title: 'Application web et mobile',
+    desc: 'Un outil sur mesure, web et mobile, conçu pour répondre à un besoin métier spécifique et s’intégrer à votre activité.',
+    detail:
+      'Une application taillée pour votre métier, accessible sur le web comme sur mobile, qui s’intègre à vos outils existants et évolue avec votre activité.',
+    bullets: [
+      'Cadrage du besoin & des parcours',
+      'Espace utilisateur & back-office',
+      'Intégrations & API tierces',
+      'Déploiement web et mobile',
     ],
   },
-]
-
-const realizations = [
   {
-    title: 'Electreau Lyon',
-    type: 'Site professionnel',
-    href: 'https://www.electreau-lyon.fr/',
-    domain: 'electreau-lyon.fr',
-    summary:
-      'Présence en ligne claire pour un électricien lyonnais : services expliqués, confiance renforcée, prise de contact facilitée.',
-    tags: ['Site vitrine', 'SEO local', 'Responsive'],
+    accent: '#2563eb',
+    emoji: '🤖',
+    title: 'Audit et automatisation IA',
+    desc: 'J’identifie où l’IA crée de la valeur concrète dans vos process, puis j’automatise vos tâches répétitives pour vous faire gagner du temps.',
+    detail:
+      'J’examine vos process pour repérer les tâches à fort potentiel, puis je mets en place des automatisations concrètes et mesurables, sans gadget ni usine à gaz.',
+    bullets: [
+      'Audit des process & opportunités',
+      'Sélection des outils IA adaptés',
+      'Mise en place des automatisations',
+      'Mesure du temps & des gains',
+    ],
   },
   {
-    title: 'Petit Nid',
-    type: 'Application web',
-    href: 'https://petitnid.app',
-    domain: 'petitnid.app',
-    summary:
-      'Application produit pensée pour un usage régulier. Parcours direct, UX épurée, logique métier au centre.',
-    tags: ['App produit', 'UX', 'Parcours récurrents'],
+    accent: '#2563eb',
+    emoji: '🎓',
+    title: 'Formation IA',
+    desc: 'Je forme vos équipes à utiliser l’IA au quotidien, concrètement et sans jargon.',
+    detail:
+      'Des sessions pratiques pour rendre vos équipes autonomes avec l’IA, adaptées à votre secteur et à vos cas d’usage réels, du débutant au plus avancé.',
+    bullets: [
+      'Ateliers adaptés à vos métiers',
+      'Cas d’usage concrets & prompts',
+      'Bonnes pratiques & limites',
+      'Support & suivi post-formation',
+    ],
   },
 ]
 
 type TrustEntry = {
   name: string
   href: string
-  src?: typeof citizenplane
-  domain?: string
+  src: typeof citizenplane
 }
 
 const trustLogos: TrustEntry[] = [
@@ -98,12 +102,12 @@ const trustLogos: TrustEntry[] = [
   },
   {
     name: 'Electreau Lyon',
-    domain: 'electreau-lyon.fr',
+    src: electreau,
     href: 'https://www.electreau-lyon.fr/',
   },
   {
     name: 'Petit Nid',
-    domain: 'petitnid.app',
+    src: petitnid,
     href: 'https://petitnid.app',
   },
 ]
@@ -129,19 +133,23 @@ export const metadata: Metadata = {
   },
 }
 
+/* ─── Shared typography tokens (kept consistent across sections) ───────── */
 const eyebrow =
   'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
-const heading2 =
-  'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
-const btnPrimary =
-  'interactive qclay-button inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+const sectionTitle =
+  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+const bodyText = 'text-base leading-7 text-base-content/65'
+const accent = '#2563eb'
 const btnGhost =
-  'interactive qclay-button inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+const btnBlue =
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
 
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
       <QClayMotion />
+
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
         id="home"
@@ -150,23 +158,18 @@ export default function Home() {
       >
         <div className="qclay-ambient qclay-ambient-a" aria-hidden="true" />
         <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
-        <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
-            <div className="qclay-pill inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-              <span className="status-dot" aria-hidden="true" />
-              Disponible pour de nouveaux projets
-            </div>
-
             <h1
               id="hero-heading"
-              className="mt-6 text-[clamp(2.25rem,4.8vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Des sites et des produits web qui{' '}
-              <span className="qclay-ink italic text-secondary">vendent</span>,
-              construits par un seul interlocuteur.
+              <span style={{ color: accent }}>vendent</span>, développés par un
+              seul interlocuteur.
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
+            <p className={`mt-6 max-w-xl ${bodyText} md:text-lg md:leading-8`}>
               Site professionnel, application métier ou plateforme complète. Je
               vous accompagne du cadrage à la mise en ligne, avec une base
               technique fiable et un objectif clair&nbsp;: générer des clients,
@@ -174,51 +177,27 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-              <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
+              <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
                 Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </a>
-              <Link href="/jobs" className={btnGhost}>
-                Voir mon parcours
-              </Link>
             </div>
-
-            <dl className="qclay-metrics mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
-              <div className="qclay-metric">
-                <dt className={eyebrow}>Expérience</dt>
-                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
-                  6+ ans
-                </dd>
-              </div>
-              <div className="qclay-metric">
-                <dt className={eyebrow}>Mentorés</dt>
-                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
-                  50+
-                </dd>
-              </div>
-              <div className="qclay-metric">
-                <dt className={eyebrow}>En production</dt>
-                <dd className="mt-1.5 text-xl font-semibold tracking-tight">
-                  100%
-                </dd>
-              </div>
-            </dl>
           </div>
 
           {/* Right-hand portrait — clean, no decoration */}
-          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="qclay-orbit" aria-hidden="true" />
+          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-xs flex-col items-center sm:max-w-md lg:max-w-none">
+            <div className="qclay-orbit hidden lg:block" aria-hidden="true" />
             <div
-              className="qclay-orbit qclay-orbit-secondary"
+              className="qclay-orbit qclay-orbit-secondary hidden lg:block"
               aria-hidden="true"
             />
-            <div className="qclay-portrait relative aspect-square w-full max-w-[400px]">
+            <div className="qclay-portrait relative aspect-square w-full max-w-[240px] sm:max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait de Benoit Bruynbroeck, développeur full stack JavaScript"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 400px"
+                sizes="(max-width: 640px) 320px, 400px"
                 className="object-contain"
               />
 
@@ -226,7 +205,8 @@ export default function Home() {
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
-                  className="h-3 w-3 text-secondary"
+                  className="h-3 w-3"
+                  style={{ color: accent }}
                   fill="currentColor"
                 >
                   <path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.05 7.92 4.22 8.12a.36.36 0 0 0 .56 0C8.45 13.92 12.5 9.2 12.5 6A4.5 4.5 0 0 0 8 1.5Zm0 6.25A1.75 1.75 0 1 1 8 4.25a1.75 1.75 0 0 1 0 3.5Z" />
@@ -235,26 +215,20 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="qclay-tech-strip mt-4 grid w-full max-w-sm grid-cols-3 overflow-hidden rounded-lg border border-base-300 bg-base-100 text-center">
-              <div className="border-r border-base-300 px-3 py-3">
-                <p className="text-sm font-semibold leading-none">Node</p>
-                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
-                  6+ ans
-                </p>
-              </div>
-              <div className="border-r border-base-300 px-3 py-3">
-                <p className="text-sm font-semibold leading-none">TypeScript</p>
-                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
-                  5+ ans
-                </p>
-              </div>
-              <div className="px-3 py-3">
-                <p className="text-sm font-semibold leading-none">Postgres</p>
-                <p className="mt-1.5 text-[10px] uppercase tracking-wider text-base-content/55">
-                  Prod ready
-                </p>
-              </div>
-            </div>
+            <dl className="mt-7 flex items-center gap-3.5 rounded-2xl border border-base-300 bg-base-100 px-5 py-3.5 shadow-[0_10px_30px_oklch(20.8%_0.042_265.755/0.06)]">
+              <dd
+                className="text-3xl font-bold leading-none tracking-tight"
+                style={{ color: accent }}
+              >
+                10
+                <span className="align-top text-xl">+</span>
+              </dd>
+              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/55">
+                ans
+                <br />
+                d&apos;expérience
+              </dt>
+            </dl>
           </div>
         </div>
       </section>
@@ -268,239 +242,50 @@ export default function Home() {
           <p className={`${eyebrow} text-center md:text-left`}>
             Ils m’ont fait confiance
           </p>
-          <div className="qclay-logo-row mt-4 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 md:justify-start lg:flex-nowrap lg:gap-x-9">
-            {trustLogos.map((entry) => (
-              <a
-                key={entry.name}
-                href={entry.href}
-                target="_blank"
-                rel="noreferrer"
-                className="interactive group inline-flex shrink-0 items-center gap-2 whitespace-nowrap"
-              >
-                {entry.src ? (
-                  <>
-                    <Image
-                      src={entry.src}
-                      alt={entry.name}
-                      width={28}
-                      height={28}
-                      className="h-7 w-7 rounded object-cover opacity-65 grayscale transition group-hover:opacity-100 group-hover:grayscale-0"
-                    />
-                    <span className="text-sm font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
-                      {entry.name}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-sm font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
-                      {entry.name}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="text-xs text-base-content/35 transition group-hover:text-secondary"
+          <div className="qclay-marquee relative mt-6 overflow-hidden">
+            <div className="qclay-marquee-track flex w-max items-center">
+              {Array.from({ length: 6 }, () => trustLogos)
+                .flat()
+                .map((entry, index) => {
+                  const isClone = index >= trustLogos.length
+                  return (
+                    <a
+                      key={`${entry.name}-${index}`}
+                      href={entry.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-hidden={isClone || undefined}
+                      tabIndex={isClone ? -1 : undefined}
+                      className="interactive group mr-12 inline-flex shrink-0 items-center gap-3 whitespace-nowrap lg:mr-20"
                     >
-                      ↗
-                    </span>
-                  </>
-                )}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ──────────────────── PROMISE / VALUE STATEMENT ──────────────────── */}
-      <section className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.35fr_0.65fr] lg:gap-16">
-          <div>
-            <p className={eyebrow}>Pourquoi me confier votre projet</p>
-            <div className="hairline mt-5 max-w-[40%]" />
-          </div>
-          <p className="text-xl font-normal leading-[1.4] tracking-tight text-base-content md:text-[1.625rem] md:leading-[1.35]">
-            La plupart des projets web échouent parce qu’ils livrent du code,
-            pas un produit.{' '}
-            <span className="text-base-content/45">
-              Mon approche démarre par votre client final, votre offre et votre
-              modèle économique — la technique vient ensuite, comme un moyen,
-              jamais comme une fin.
-            </span>
-          </p>
-        </div>
-      </section>
-
-      {/* ──────────────────── SERVICES ──────────────────── */}
-      <section
-        id="services"
-        aria-labelledby="services-heading"
-        className="qclay-section qclay-scroll-reveal bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
-      >
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className={eyebrow}>Ce que je construis</p>
-              <h2 id="services-heading" className={`mt-3 ${heading2}`}>
-                Trois formats, un même standard de qualité.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-base-content/65">
-              Chaque format est cadré et livré comme un produit : pas de scope
-              inutile, pas de dette technique offerte.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-4 lg:grid-cols-[1.3fr_1fr] lg:grid-rows-2">
-            {/* Featured card — spans both rows on left */}
-            <article className="interactive qclay-card qclay-card-primary qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl bg-primary p-7 text-primary-content lg:row-span-2 lg:p-9">
-              <div className="relative">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-content/55">
-                  {services[0].eyebrow}
-                </p>
-                <h3 className="mt-4 text-2xl font-semibold leading-tight tracking-tight lg:text-[1.75rem]">
-                  {services[0].title}
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-primary-content/70 lg:text-base lg:leading-7">
-                  {services[0].pitch}
-                </p>
-
-                <ul className="mt-7 space-y-2.5 text-sm">
-                  {services[0].outcomes.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 inline-block h-1 w-1 rounded-full bg-primary-content/40"
+                      <Image
+                        src={entry.src}
+                        alt={isClone ? '' : entry.name}
+                        width={44}
+                        height={44}
+                        className="h-11 w-11 rounded-lg object-cover transition group-hover:scale-105"
                       />
-                      <span className="text-primary-content/80">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="relative mt-8 border-t border-primary-content/10 pt-5">
-                <a
-                  href="mailto:bruy.benoit@gmail.com"
-                  className="interactive inline-flex items-center gap-1.5 text-sm font-medium text-primary-content hover:text-secondary"
-                >
-                  En parler
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </article>
-
-            {services.slice(1).map((service) => (
-              <article
-                key={service.title}
-                className="interactive qclay-card qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15"
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                    {service.eyebrow}
-                  </p>
-                  <h3 className="mt-3 text-xl font-semibold leading-tight tracking-tight">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-base-content/65">
-                    {service.pitch}
-                  </p>
-
-                  <ul className="mt-5 space-y-2 text-sm text-base-content/70">
-                    {service.outcomes.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <span
-                          aria-hidden="true"
-                          className="mt-2 inline-block h-1 w-1 rounded-full bg-base-content/30"
-                        />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-7 border-t border-base-300 pt-4">
-                  <a
-                    href="mailto:bruy.benoit@gmail.com"
-                    className="text-sm font-medium text-secondary hover:underline"
-                  >
-                    En parler →
-                  </a>
-                </div>
-              </article>
-            ))}
+                      <span className="text-base font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
+                        {entry.name}
+                      </span>
+                    </a>
+                  )
+                })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ──────────────────── REALIZATIONS / LIVE PROJECTS ──────────────────── */}
+      {/* ──────────────────── OFFRES / PROPOSITIONS ──────────────────── */}
       <section
-        id="realizations"
-        aria-labelledby="realizations-heading"
-        className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28"
+        id="offres"
+        aria-label="Mes offres"
+        className="qclay-section qclay-scroll-reveal cv-auto py-20 lg:py-28"
       >
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className={eyebrow}>Réalisations récentes</p>
-              <h2 id="realizations-heading" className={`mt-3 ${heading2}`}>
-                Des projets en ligne, livrés et utilisés.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm leading-6 text-base-content/65">
-              Deux exemples concrets, en production. Cliquez pour voir les sites
-              en vrai.
-            </p>
-          </div>
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <p className={eyebrow}>Mes offres</p>
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
-            {realizations.map((r) => (
-              <a
-                key={r.href}
-                href={r.href}
-                target="_blank"
-                rel="noreferrer"
-                className="interactive qclay-card qclay-tilt group relative flex flex-col justify-between overflow-hidden rounded-xl border border-base-300 bg-base-100 p-7 hover:border-base-content/15 lg:p-8"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
-                      {r.type}
-                    </p>
-                    <h3 className="mt-2.5 text-2xl font-semibold tracking-tight md:text-[1.625rem]">
-                      {r.title}
-                    </h3>
-                  </div>
-                  <span
-                    aria-hidden="true"
-                    className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-base-300 text-base text-base-content/55 transition group-hover:-rotate-45 group-hover:border-base-content group-hover:text-base-content"
-                  >
-                    →
-                  </span>
-                </div>
-
-                <p className="mt-5 text-sm leading-6 text-base-content/65 md:text-base md:leading-7">
-                  {r.summary}
-                </p>
-
-                <div className="mt-6 flex flex-wrap gap-1.5">
-                  {r.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-md border border-base-300 px-2 py-0.5 text-xs font-medium text-base-content/65"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-7 flex items-center justify-between gap-3 border-t border-base-300 pt-4">
-                  <span className="font-mono text-xs text-base-content/55 transition group-hover:text-base-content">
-                    {r.domain}
-                  </span>
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-base-content/40 transition group-hover:text-secondary">
-                    Voir le site ↗
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
+          <OffersAccordion offers={offers} />
         </div>
       </section>
 
@@ -508,7 +293,7 @@ export default function Home() {
       <section
         id="contact"
         aria-labelledby="contact-heading"
-        className="qclay-section qclay-scroll-reveal border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
         <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
           <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
@@ -516,21 +301,18 @@ export default function Home() {
             Réponse sous 24h ouvrées
           </div>
 
-          <h2
-            id="contact-heading"
-            className="mt-5 text-[clamp(1.875rem,3.5vw,3rem)] font-semibold leading-[1.1] tracking-tight"
-          >
+          <h2 id="contact-heading" className={`mt-5 ${sectionTitle}`}>
             Parlons de votre projet.
           </h2>
 
-          <p className="mt-4 max-w-xl text-base leading-7 text-base-content/65">
+          <p className={`mt-4 max-w-xl ${bodyText}`}>
             Quelques lignes sur votre activité, votre objectif et vos
             contraintes — je vous réponds avec une première lecture, sans
             engagement.
           </p>
 
-          <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
-            <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
+          <div className="mt-7 flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
+            <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
               bruy.benoit@gmail.com
               <span aria-hidden="true">→</span>
             </a>

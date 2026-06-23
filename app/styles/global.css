@@ -38,3 +38,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Skip rendering work for below-the-fold sections until they're near the viewport. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
