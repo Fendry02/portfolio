@@ -196,7 +196,7 @@ export default function Jobs() {
       >
         <div className="qclay-ambient qclay-ambient-a" aria-hidden="true" />
         <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
-        <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
             <div className="qclay-pill inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
               <span className="status-dot" aria-hidden="true" />
@@ -242,22 +242,50 @@ export default function Jobs() {
             </dl>
           </div>
 
-          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-md flex-col items-center lg:max-w-none">
-            <div className="qclay-orbit" aria-hidden="true" />
+          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-xs flex-col items-center sm:max-w-md lg:max-w-none">
+            <div className="qclay-orbit hidden lg:block" aria-hidden="true" />
             <div
-              className="qclay-orbit qclay-orbit-secondary"
+              className="qclay-orbit qclay-orbit-secondary hidden lg:block"
               aria-hidden="true"
             />
-            <div className="qclay-portrait relative aspect-square w-full max-w-[400px]">
+            <div className="qclay-portrait relative aspect-square w-full max-w-[240px] sm:max-w-[400px]">
               <Image
                 src={profile}
                 alt="Portrait of Benoit Bruynbroeck"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 400px"
+                sizes="(max-width: 640px) 320px, 400px"
                 className="object-contain"
               />
+
+              <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 16 16"
+                  className="h-3 w-3"
+                  style={{ color: accent }}
+                  fill="currentColor"
+                >
+                  <path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.05 7.92 4.22 8.12a.36.36 0 0 0 .56 0C8.45 13.92 12.5 9.2 12.5 6A4.5 4.5 0 0 0 8 1.5Zm0 6.25A1.75 1.75 0 1 1 8 4.25a1.75 1.75 0 0 1 0 3.5Z" />
+                </svg>
+                Lyon · France
+              </div>
             </div>
+
+            <dl className="mt-7 flex items-center gap-3.5 rounded-2xl border border-base-300 bg-base-100 px-5 py-3.5 shadow-[0_10px_30px_oklch(20.8%_0.042_265.755/0.06)]">
+              <dd
+                className="text-3xl font-bold leading-none tracking-tight"
+                style={{ color: accent }}
+              >
+                10
+                <span className="align-top text-xl">+</span>
+              </dd>
+              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/55">
+                years
+                <br />
+                experience
+              </dt>
+            </dl>
           </div>
         </div>
       </section>
@@ -268,7 +296,7 @@ export default function Jobs() {
         className="qclay-section qclay-scroll-reveal cv-auto px-6 py-12 lg:px-10 lg:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="interactive qclay-card qclay-card-primary qclay-tilt relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
+          <div className="relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
