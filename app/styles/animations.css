@@ -416,9 +416,22 @@
   animation-delay: 610ms;
 }
 
+@keyframes qclay-fade-soft {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 .qclay-portrait-wrap {
   opacity: 0;
-  animation: qclay-reveal 860ms var(--ease-qclay) 220ms both;
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  animation: qclay-fade-soft 860ms var(--ease-qclay) 220ms both;
+  will-change: transform;
 }
 
 .qclay-portrait {

@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react'
 
+import { computeParallaxY } from '@/app/lib/parallax'
+
 export default function QClayMotion() {
   useEffect(() => {
     const root = document.documentElement
@@ -35,10 +37,53 @@ export default function QClayMotion() {
 
     revealTargets.forEach((target) => observer.observe(target))
 
+    // Subtle hero parallax: drive --parallax-y on the portrait column while it
+    // is on screen. rAF-throttled, gated by an IntersectionObserver.
+    const PARALLAX_INTENSITY = 0.12
+    const PARALLAX_MAX_PX = 40
+    const portrait = document.querySelector<HTMLElement>('.qclay-portrait-wrap')
+    let parallaxVisible = false
+    let parallaxFrame = 0
+
+    const parallaxObserver = portrait
+      ? new IntersectionObserver(
+          ([entry]) => {
+            parallaxVisible = entry.isIntersecting
+          },
+          { threshold: 0 },
+        )
+      : null
+
+    const updateParallax = () => {
+      if (!portrait || !parallaxVisible || parallaxFrame) return
+      parallaxFrame = window.requestAnimationFrame(() => {
+        parallaxFrame = 0
+        const offset = computeParallaxY(
+          portrait.getBoundingClientRect().top,
+          PARALLAX_INTENSITY,
+          PARALLAX_MAX_PX,
+        )
+        portrait.style.setProperty('--parallax-y', `${offset.toFixed(1)}px`)
+      })
+    }
+
+    if (portrait && parallaxObserver) {
+      parallaxObserver.observe(portrait)
+      window.addEventListener('scroll', updateParallax, { passive: true })
+      updateParallax()
+    }
+
+    const teardownParallax = () => {
+      parallaxObserver?.disconnect()
+      window.removeEventListener('scroll', updateParallax)
+      if (parallaxFrame) window.cancelAnimationFrame(parallaxFrame)
+    }
+
     if (!canUsePointerEffects) {
       return () => {
         root.classList.remove('qclay-motion-ready')
         observer.disconnect()
+        teardownParallax()
       }
     }
 
@@ -81,6 +126,7 @@ export default function QClayMotion() {
     return () => {
       root.classList.remove('qclay-motion-ready')
       observer.disconnect()
+      teardownParallax()
       window.removeEventListener('pointermove', updatePointer)
       window.removeEventListener('mousemove', updatePointer)
       if (frame) window.cancelAnimationFrame(frame)
