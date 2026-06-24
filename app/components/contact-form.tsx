@@ -34,7 +34,7 @@ export default function ContactForm() {
       <div
         role="status"
         aria-live="polite"
-        className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-8 text-center"
+        className="qclay-feedback-in qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-8 text-center"
       >
         <p className="text-lg font-semibold tracking-tight">
           Message envoyé, merci&nbsp;!
@@ -157,7 +157,11 @@ export default function ContactForm() {
       </div>
 
       {state.status === 'error' && state.message && (
-        <p role="alert" aria-live="assertive" className="text-sm text-red-600">
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="qclay-feedback-in text-sm text-red-600"
+        >
           {state.message}
         </p>
       )}
@@ -167,8 +171,17 @@ export default function ContactForm() {
         disabled={pending}
         className="interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {pending ? 'Envoi…' : 'Envoyer le message'}
-        {!pending && <span aria-hidden="true">→</span>}
+        {pending ? (
+          <>
+            <span className="qclay-spinner" aria-hidden="true" />
+            Envoi…
+          </>
+        ) : (
+          <>
+            Envoyer le message
+            <span aria-hidden="true">→</span>
+          </>
+        )}
       </button>
     </form>
   )
