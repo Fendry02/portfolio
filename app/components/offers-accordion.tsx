@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import { OFFER_VISUALS } from './offer-visuals'
+
 type Offer = {
   accent: string
   emoji: string
@@ -20,6 +22,7 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
       {offers.map((offer, index) => {
         const isOpen = openIndex === index
         const panelId = `offer-panel-${index}`
+        const Visual = OFFER_VISUALS[index]
         return (
           <div
             key={offer.title}
@@ -80,6 +83,15 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
             >
               <div className="overflow-hidden">
                 <div className="px-6 pb-7 sm:px-7">
+                  {Visual && (
+                    <div
+                      aria-hidden="true"
+                      className="qov-frame mb-5 flex items-center justify-center rounded-xl border border-base-300/70 py-5"
+                      style={{ color: offer.accent }}
+                    >
+                      <Visual />
+                    </div>
+                  )}
                   <div className="hairline mb-5" />
                   <p className="max-w-2xl text-base leading-7 text-base-content/70 sm:text-lg sm:leading-8">
                     {offer.detail}

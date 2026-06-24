@@ -597,6 +597,34 @@
   }
 }
 
+/* ─── Offer visuals: build when the panel opens ──────────────────────── */
+@keyframes qov-build {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.qclay-offer-visual {
+  width: clamp(7rem, 22vw, 9rem);
+  height: auto;
+}
+
+.qov-shape {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.qclay-offer.is-open .qov-shape {
+  animation: qov-build 520ms var(--ease-qclay) both;
+  animation-delay: calc(140ms + var(--qov-i, 0) * 90ms);
+}
+
 /* ─── Infinite logo marquee ──────────────────────────────────────────── */
 .qclay-marquee {
   -webkit-mask-image: linear-gradient(
@@ -844,7 +872,8 @@
   .qclay-ai-card::after,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-step,
-  .qclay-motion-ready .qclay-scroll-reveal.is-visible {
+  .qclay-motion-ready .qclay-scroll-reveal.is-visible,
+  .qclay-offer.is-open .qov-shape {
     animation: none;
   }
   .brand-logo-mark,
@@ -871,7 +900,8 @@
   .qclay-logo-row > a,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal .qclay-ai-step,
-  .qclay-motion-ready .qclay-scroll-reveal {
+  .qclay-motion-ready .qclay-scroll-reveal,
+  .qov-shape {
     opacity: 1;
     filter: none;
   }
