@@ -206,8 +206,6 @@ export default function Jobs() {
         aria-labelledby="jobs-hero-heading"
         className="qclay-hero relative overflow-hidden"
       >
-        <div className="qclay-ambient qclay-ambient-a" aria-hidden="true" />
-        <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
             <h1
