@@ -185,6 +185,13 @@ const heroHeadline: readonly WordSegment[] = [
   { text: 'interlocuteur.' },
 ]
 
+const contactHeading: readonly WordSegment[] = [
+  { text: 'Parlons' },
+  { text: 'de' },
+  { text: 'votre' },
+  { text: 'projet.', accent: true },
+]
+
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
@@ -338,7 +345,7 @@ export default function Home() {
           </div>
 
           <h2 id="contact-heading" className={`mt-5 ${sectionTitle}`}>
-            Parlons de votre projet.
+            <RevealWords segments={contactHeading} />
           </h2>
 
           <p className={`mt-4 max-w-xl ${bodyText}`}>
