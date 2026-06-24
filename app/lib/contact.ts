@@ -9,7 +9,11 @@ export const PROJECT_TYPES = [
 ] as const
 
 export const contactSchema = z.object({
-  name: z.string().trim().min(2, 'Indiquez votre nom.').max(80, 'Nom trop long.'),
+  name: z
+    .string()
+    .trim()
+    .min(2, 'Indiquez votre nom.')
+    .max(80, 'Nom trop long.'),
   email: z.string().trim().email('Email invalide.'),
   projectType: z.enum(PROJECT_TYPES, {
     message: 'Choisissez un type de projet.',
