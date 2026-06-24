@@ -198,14 +198,9 @@ export default function Jobs() {
         <div className="qclay-ambient qclay-ambient-b" aria-hidden="true" />
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
-            <div className="qclay-pill inline-flex w-fit items-center gap-2 rounded-full border border-base-300 bg-base-100 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-              <span className="status-dot" aria-hidden="true" />
-              About · résumé
-            </div>
-
             <h1
               id="jobs-hero-heading"
-              className="mt-6 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
