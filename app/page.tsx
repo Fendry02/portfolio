@@ -185,7 +185,7 @@ export default function Home() {
           </div>
 
           {/* Right-hand portrait — clean, no decoration */}
-          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-xs flex-col items-center sm:max-w-md lg:max-w-none">
+          <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-xs flex-col items-center sm:max-w-md lg:max-w-none lg:self-start">
             <div className="qclay-orbit hidden lg:block" aria-hidden="true" />
             <div
               className="qclay-orbit qclay-orbit-secondary hidden lg:block"
