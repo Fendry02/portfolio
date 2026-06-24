@@ -18,6 +18,7 @@ type Offer = {
   desc: string
   detail: string
   bullets: string[]
+  examples: string[]
 }
 
 const offers: Offer[] = [
@@ -34,6 +35,10 @@ const offers: Offer[] = [
       'Formulaire de contact & analytics',
       'Hébergement & mise en ligne',
     ],
+    examples: [
+      'Le site d’un cabinet (kiné, avocat, architecte) avec prise de rendez-vous',
+      'La vitrine d’un artisan ou restaurant avec galerie, menu et formulaire de contact',
+    ],
   },
   {
     accent: '#2563eb',
@@ -47,6 +52,10 @@ const offers: Offer[] = [
       'Espace utilisateur & back-office',
       'Intégrations & API tierces',
       'Déploiement web et mobile',
+    ],
+    examples: [
+      'Un outil de gestion de plannings pour une équipe terrain',
+      'Une application de mise en devis rapide pour un menuisier',
     ],
   },
   {
@@ -62,6 +71,10 @@ const offers: Offer[] = [
       'Mise en place des automatisations',
       'Mesure du temps & des gains',
     ],
+    examples: [
+      'Relance automatique des devis non signés par email',
+      'Tri et résumé automatique des demandes entrantes (mails, formulaires)',
+    ],
   },
   {
     accent: '#2563eb',
@@ -75,6 +88,10 @@ const offers: Offer[] = [
       'Cas d’usage concrets & prompts',
       'Bonnes pratiques & limites',
       'Support & suivi post-formation',
+    ],
+    examples: [
+      'Former une équipe marketing à rédiger plus vite avec l’IA',
+      'Atelier « prompts » pour automatiser les réponses du support client',
     ],
   },
 ]

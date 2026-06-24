@@ -9,6 +9,7 @@ type Offer = {
   desc: string
   detail: string
   bullets: string[]
+  examples: string[]
 }
 
 export default function OffersAccordion({ offers }: { offers: Offer[] }) {
@@ -98,6 +99,32 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
                       </li>
                     ))}
                   </ul>
+                  {offer.examples.length > 0 && (
+                    <div
+                      className="mt-6 rounded-xl border-l-2 px-4 py-3"
+                      style={{
+                        borderColor: offer.accent,
+                        backgroundColor: `color-mix(in oklch, ${offer.accent} 6%, transparent)`,
+                      }}
+                    >
+                      <p
+                        className="text-xs font-semibold uppercase tracking-wide"
+                        style={{ color: offer.accent }}
+                      >
+                        Par exemple
+                      </p>
+                      <ul className="mt-2 flex flex-col gap-1.5">
+                        {offer.examples.map((example) => (
+                          <li
+                            key={example}
+                            className="text-sm italic leading-6 text-base-content/70 sm:text-base"
+                          >
+                            {example}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                   <a
                     href="mailto:bruy.benoit@gmail.com"
                     className="interactive mt-6 inline-flex items-center gap-1.5 text-sm font-medium"
