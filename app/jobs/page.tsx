@@ -177,11 +177,12 @@ const principles = [
 const eyebrow =
   'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
 const heading2 =
-  'text-[clamp(1.875rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-tight'
-const btnPrimary =
-  'interactive qclay-button inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-primary/92'
+  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+const accent = '#2563eb'
+const btnBlue =
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
 const btnGhost =
-  'interactive qclay-button inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 
 export default function Jobs() {
   return (
@@ -204,15 +205,12 @@ export default function Jobs() {
 
             <h1
               id="jobs-hero-heading"
-              className="mt-6 text-[clamp(2.25rem,4.8vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="mt-6 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/55">
                 JavaScript Tech Lead, full-stack developer and{' '}
-                <span className="qclay-ink italic text-secondary">
-                  AI-augmented
-                </span>{' '}
-                builder.
+                <span style={{ color: accent }}>AI-augmented</span> builder.
               </span>
             </h1>
 
@@ -223,7 +221,7 @@ export default function Jobs() {
             </p>
 
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-              <Link href="/#services" className={btnPrimary}>
+              <Link href="/#offres" className={btnBlue}>
                 See what I build
                 <span aria-hidden="true">→</span>
               </Link>
@@ -267,13 +265,13 @@ export default function Jobs() {
       {/* ──────────────────── AI-AUGMENTED WORKFLOW ──────────────────── */}
       <section
         aria-labelledby="ai-heading"
-        className="qclay-section qclay-scroll-reveal px-6 py-12 lg:px-10 lg:py-16"
+        className="qclay-section qclay-scroll-reveal cv-auto px-6 py-12 lg:px-10 lg:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="interactive qclay-card qclay-card-primary qclay-tilt relative overflow-hidden rounded-2xl bg-primary p-8 text-primary-content md:p-12">
+          <div className="interactive qclay-card qclay-card-primary qclay-tilt relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary-content/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-primary-content/75">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
                   <span className="status-dot" aria-hidden="true" />
                   AI-augmented · 2024 →
                 </div>
@@ -285,7 +283,7 @@ export default function Jobs() {
                   AI is wired into how I ship.
                 </h2>
 
-                <p className="mt-5 max-w-md text-base leading-7 text-primary-content/65">
+                <p className="mt-5 max-w-md text-base leading-7 text-white/65">
                   I treat modern AI tools the way I treat my IDE: a permanent
                   part of the workflow. Faster shipping, fewer dumb mistakes,
                   and more headspace for the calls that actually matter.
@@ -304,7 +302,7 @@ export default function Jobs() {
                   ].map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md border border-primary-content/15 px-2 py-0.5 text-xs font-medium text-primary-content/70"
+                      className="rounded-md border border-white/15 px-2 py-0.5 text-xs font-medium text-white/70"
                     >
                       {tag}
                     </span>
@@ -316,16 +314,16 @@ export default function Jobs() {
                 {aiPractices.map((p, i) => (
                   <li
                     key={p.title}
-                    className="flex gap-4 rounded-lg border border-primary-content/10 p-4"
+                    className="flex gap-4 rounded-lg border border-white/10 p-4"
                   >
-                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary-content/15 font-mono text-[10px] font-semibold text-primary-content/60">
+                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 font-mono text-[10px] font-semibold text-white/60">
                       0{i + 1}
                     </span>
                     <div>
                       <h3 className="text-base font-semibold leading-tight tracking-tight">
                         {p.title}
                       </h3>
-                      <p className="mt-1.5 text-sm leading-6 text-primary-content/65">
+                      <p className="mt-1.5 text-sm leading-6 text-white/65">
                         {p.text}
                       </p>
                     </div>
@@ -340,7 +338,7 @@ export default function Jobs() {
       {/* ──────────────────── APPROACH / PHILOSOPHY ──────────────────── */}
       <section
         aria-labelledby="approach-heading"
-        className="qclay-section qclay-scroll-reveal border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:gap-16">
@@ -384,7 +382,7 @@ export default function Jobs() {
       <section
         id="skills"
         aria-labelledby="skills-heading"
-        className="qclay-section qclay-scroll-reveal px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
@@ -430,7 +428,7 @@ export default function Jobs() {
       <section
         id="experience"
         aria-labelledby="experience-heading"
-        className="qclay-section qclay-scroll-reveal bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
@@ -467,7 +465,7 @@ export default function Jobs() {
                   </div>
 
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-secondary">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
                       {role.company}
                     </p>
                     <h3 className="mt-1 text-xl font-semibold tracking-tight">
@@ -511,7 +509,7 @@ export default function Jobs() {
                         href={role.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm font-medium text-secondary hover:underline"
+                        className="text-sm font-medium text-[#2563eb] hover:underline"
                       >
                         Visit ↗
                       </a>
@@ -528,7 +526,7 @@ export default function Jobs() {
       <section
         id="contact"
         aria-labelledby="jobs-contact-heading"
-        className="qclay-section qclay-scroll-reveal border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
       >
         <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
           <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
@@ -549,7 +547,7 @@ export default function Jobs() {
           </p>
 
           <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">
-            <a href="mailto:bruy.benoit@gmail.com" className={btnPrimary}>
+            <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
               Email me
               <span aria-hidden="true">→</span>
             </a>
