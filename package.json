@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
+    "test": "node --test \"app/**/*.test.ts\"",
     "convert-images": "node scripts/convert-images.js",
     "generate-responsive": "node scripts/generate-responsive-images.js",
     "build:card": "node business-card/build-pdf.js"
@@ -19,7 +20,9 @@
     "next": "^16.2.9",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "sharp": "^0.35.1"
+    "resend": "^6.14.0",
+    "sharp": "^0.35.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.0",
