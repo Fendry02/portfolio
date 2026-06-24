@@ -9,6 +9,7 @@ import petitnid from '@/app/assets/petitnid.png'
 import electreau from '@/app/assets/electreau.png'
 import QClayMotion from './components/qclay-motion'
 import OffersAccordion from './components/offers-accordion'
+import ContactForm from './components/contact-form'
 
 type Offer = {
   accent: string
@@ -140,8 +141,6 @@ const sectionTitle =
   'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'
 const accent = '#2563eb'
-const btnGhost =
-  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
 
@@ -311,19 +310,27 @@ export default function Home() {
             engagement.
           </p>
 
-          <div className="mt-7 flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
-            <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
-              bruy.benoit@gmail.com
-              <span aria-hidden="true">→</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
-              target="_blank"
-              rel="noreferrer"
-              className={btnGhost}
-            >
-              LinkedIn
-            </a>
+          <div className="mt-8 w-full max-w-xl">
+            <ContactForm />
+
+            <p className="mt-6 text-center text-sm text-base-content/55">
+              Vous préférez l’email&nbsp;?{' '}
+              <a
+                href="mailto:bruy.benoit@gmail.com"
+                className="font-medium text-[#2563eb] hover:underline"
+              >
+                bruy.benoit@gmail.com
+              </a>{' '}
+              ·{' '}
+              <a
+                href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-[#2563eb] hover:underline"
+              >
+                LinkedIn
+              </a>
+            </p>
           </div>
         </div>
       </section>
