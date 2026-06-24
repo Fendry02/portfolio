@@ -23,11 +23,13 @@
 ### Task 1: Dependencies, env example, test runner
 
 **Files:**
+
 - Modify: `package.json` (deps + test script)
 - Create: `.env.example`
 - Create: `vitest.config.ts`
 
 **Interfaces:**
+
 - Produces: `resend`, `zod` available at runtime; `vitest` + `npm test` for later tasks; `RESEND_API_KEY` documented.
 
 - [ ] **Step 1: Install runtime + dev dependencies**
@@ -83,10 +85,12 @@ git commit -m "chore: add resend, zod, vitest and env example for contact form"
 ### Task 2: Pure contact logic (schema, anti-spam, email builders)
 
 **Files:**
+
 - Create: `app/lib/contact.ts`
 - Test: `app/lib/contact.test.ts`
 
 **Interfaces:**
+
 - Produces:
   - `PROJECT_TYPES: readonly string[]`
   - `contactSchema` (Zod) and `type ContactInput = { name; email; projectType; message }`
@@ -158,9 +162,7 @@ describe('isLikelyBot', () => {
 
 describe('escapeHtml', () => {
   it('escapes angle brackets and quotes', () => {
-    expect(escapeHtml('<script>"&\'')).toBe(
-      '&lt;script&gt;&quot;&amp;&#39;',
-    )
+    expect(escapeHtml('<script>"&\'')).toBe('&lt;script&gt;&quot;&amp;&#39;')
   })
 })
 
@@ -269,9 +271,11 @@ git commit -m "feat: contact form validation, anti-spam and email builders"
 ### Task 3: Server Action
 
 **Files:**
+
 - Create: `app/actions/contact.ts`
 
 **Interfaces:**
+
 - Consumes: `contactSchema`, `isLikelyBot`, `buildSubject`, `buildHtml` from `@/app/lib/contact`.
 - Produces:
   - `type ContactState = { status: 'idle' | 'success' | 'error'; message?: string; errors?: Partial<Record<'name'|'email'|'projectType'|'message', string>> }`
@@ -392,9 +396,11 @@ git commit -m "feat: contact form Server Action with Resend"
 ### Task 4: Client form component
 
 **Files:**
+
 - Create: `app/components/contact-form.tsx`
 
 **Interfaces:**
+
 - Consumes: `submitContact`, `ContactState` from `@/app/actions/contact`; `PROJECT_TYPES` from `@/app/lib/contact`.
 - Produces: default export `ContactForm` (no props).
 
@@ -595,9 +601,11 @@ git commit -m "feat: contact form client component with useActionState"
 ### Task 5: Integrate into the home page contact section
 
 **Files:**
+
 - Modify: `app/page.tsx` (contact section, around the `#contact` block)
 
 **Interfaces:**
+
 - Consumes: default export `ContactForm` from `./components/contact-form`.
 
 - [ ] **Step 1: Import the component**

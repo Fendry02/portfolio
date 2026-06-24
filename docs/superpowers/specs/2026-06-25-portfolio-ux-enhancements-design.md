@@ -17,6 +17,7 @@ are passive.
 **Out of scope:** projects gallery (dropped by user for now).
 
 **Constraints (non-negotiable):**
+
 - No new dependencies — CSS + existing vanilla-JS IntersectionObserver only.
 - Animate `transform` / `opacity` / `clip-path` only (compositor-friendly).
 - Full `prefers-reduced-motion` fallback on every module.
@@ -28,17 +29,20 @@ are passive.
 ### Module 1 — Geometric offer compositions (build-on-expand)
 
 One abstract animated SVG composition per offer, evoking the service:
+
 - **Site web** → grid/blocks assembling
 - **App mobile** → device frame + layers sliding in
 - **AI audit** → node network connecting
 - **Formation** → progressing steps/chevrons
 
 Behaviour:
+
 - **Collapsed:** accordion stays clean/unchanged (at most a small static glyph).
 - **Expanded:** the composition "builds" — shapes enter via `transform`/`opacity`
   with a stagger, tinted `--color-primary` / `--color-secondary`.
 
 Architecture:
+
 - New folder `app/components/offer-visuals/` — one small SVG component per offer
   plus an `index.ts` mapping offer id → component.
 - `offers-accordion.tsx` triggers the animation via the existing `is-open` class.
@@ -50,6 +54,7 @@ Portrait + orbiting circles shift subtly (`translateY` via `transform`) with scr
 progress.
 
 Architecture:
+
 - New hook `app/hooks/useScrollParallax.ts` — rAF-driven, gated by IntersectionObserver
   so work only happens while the hero is visible (no scroll-handler churn).
 - Hook drives a CSS custom property (e.g. `--parallax-y`) consumed by the hero styles.
@@ -58,10 +63,12 @@ Architecture:
 ### Module 3 — Inline form feedback
 
 Contact form (existing Server Action + Resend) gets animated states:
+
 - Button: idle → spinner (submitting) → green checkmark (success) / red cross (error).
 - Status message fades in via `opacity` / `translateY`.
 
 Architecture:
+
 - Handled in the form component via the Server Action state
   (`useFormStatus` / returned action state). No toast, no library.
 - Transitions added to `app/styles/animations.css`.
@@ -72,6 +79,7 @@ Apply the existing `.qclay-scroll-reveal` system to still-static headings
 (offers, contact, footer eyebrows).
 
 Architecture:
+
 - Mostly class markup; optionally a "heading" variant of the existing reveal keyframe.
 - Low risk — reuses existing machinery.
 

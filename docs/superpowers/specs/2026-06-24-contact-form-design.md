@@ -20,14 +20,14 @@ budget field, contact form on the jobs page.
 
 ## Fields
 
-| Field | Type | Required | Notes |
-|-------|------|----------|-------|
-| Nom | text | yes | 2–80 chars |
-| Email | email | yes | valid email |
-| Type de projet | select | yes | Site vitrine / App web & mobile / Audit & automatisation IA / Formation IA / Autre |
-| Message | textarea | yes | 10–2000 chars |
-| `website` | hidden | — | honeypot, must stay empty |
-| `_ts` | hidden | — | render timestamp, time-trap |
+| Field          | Type     | Required | Notes                                                                              |
+| -------------- | -------- | -------- | ---------------------------------------------------------------------------------- |
+| Nom            | text     | yes      | 2–80 chars                                                                         |
+| Email          | email    | yes      | valid email                                                                        |
+| Type de projet | select   | yes      | Site vitrine / App web & mobile / Audit & automatisation IA / Formation IA / Autre |
+| Message        | textarea | yes      | 10–2000 chars                                                                      |
+| `website`      | hidden   | —        | honeypot, must stay empty                                                          |
+| `_ts`          | hidden   | —        | render timestamp, time-trap                                                        |
 
 ## Architecture
 

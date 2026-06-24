@@ -24,6 +24,7 @@
 ### Task 1: Offer visual SVG components + registry
 
 **Files:**
+
 - Create: `app/components/offer-visuals/index.ts`
 - Create: `app/components/offer-visuals/SiteWebVisual.tsx`
 - Create: `app/components/offer-visuals/AppVisual.tsx`
@@ -32,6 +33,7 @@
 - Test: `app/components/offer-visuals/index.test.ts`
 
 **Interfaces:**
+
 - Produces: `OFFER_VISUALS: readonly React.ComponentType[]` (length 4, index-aligned with the `offers` array in `app/page.tsx`) and `step(i: number): React.CSSProperties` (sets the `--qov-i` stagger custom property). Consumed by Task 2.
 
 - [ ] **Step 1: Write the failing test**
@@ -94,15 +96,89 @@ import { step } from './index'
 // Browser window whose content blocks assemble row by row.
 export default function SiteWebVisual() {
   return (
-    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true" className="qclay-offer-visual">
-      <rect className="qov-shape" style={step(0)} x="9" y="11" width="102" height="58" rx="7" stroke="currentColor" strokeWidth="2" />
-      <line className="qov-shape" style={step(1)} x1="9" y1="25" x2="111" y2="25" stroke="currentColor" strokeWidth="2" />
-      <circle className="qov-shape" style={step(1)} cx="17" cy="18" r="1.8" fill="currentColor" />
-      <circle className="qov-shape" style={step(1)} cx="24" cy="18" r="1.8" fill="currentColor" />
-      <circle className="qov-shape" style={step(1)} cx="31" cy="18" r="1.8" fill="currentColor" />
-      <rect className="qov-shape" style={step(2)} x="18" y="34" width="46" height="6" rx="3" fill="currentColor" />
-      <rect className="qov-shape" style={step(3)} x="18" y="45" width="84" height="4" rx="2" fill="currentColor" opacity="0.55" />
-      <rect className="qov-shape" style={step(4)} x="18" y="54" width="64" height="4" rx="2" fill="currentColor" opacity="0.4" />
+    <svg
+      viewBox="0 0 120 80"
+      fill="none"
+      aria-hidden="true"
+      className="qclay-offer-visual"
+    >
+      <rect
+        className="qov-shape"
+        style={step(0)}
+        x="9"
+        y="11"
+        width="102"
+        height="58"
+        rx="7"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <line
+        className="qov-shape"
+        style={step(1)}
+        x1="9"
+        y1="25"
+        x2="111"
+        y2="25"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <circle
+        className="qov-shape"
+        style={step(1)}
+        cx="17"
+        cy="18"
+        r="1.8"
+        fill="currentColor"
+      />
+      <circle
+        className="qov-shape"
+        style={step(1)}
+        cx="24"
+        cy="18"
+        r="1.8"
+        fill="currentColor"
+      />
+      <circle
+        className="qov-shape"
+        style={step(1)}
+        cx="31"
+        cy="18"
+        r="1.8"
+        fill="currentColor"
+      />
+      <rect
+        className="qov-shape"
+        style={step(2)}
+        x="18"
+        y="34"
+        width="46"
+        height="6"
+        rx="3"
+        fill="currentColor"
+      />
+      <rect
+        className="qov-shape"
+        style={step(3)}
+        x="18"
+        y="45"
+        width="84"
+        height="4"
+        rx="2"
+        fill="currentColor"
+        opacity="0.55"
+      />
+      <rect
+        className="qov-shape"
+        style={step(4)}
+        x="18"
+        y="54"
+        width="64"
+        height="4"
+        rx="2"
+        fill="currentColor"
+        opacity="0.4"
+      />
     </svg>
   )
 }
@@ -115,13 +191,74 @@ import { step } from './index'
 // Phone frame with UI layers sliding in.
 export default function AppVisual() {
   return (
-    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true" className="qclay-offer-visual">
-      <rect className="qov-shape" style={step(0)} x="44" y="8" width="32" height="64" rx="8" stroke="currentColor" strokeWidth="2" />
-      <line className="qov-shape" style={step(0)} x1="55" y1="13" x2="65" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      <rect className="qov-shape" style={step(1)} x="50" y="22" width="20" height="12" rx="3" fill="currentColor" opacity="0.5" />
-      <rect className="qov-shape" style={step(2)} x="50" y="38" width="20" height="6" rx="3" fill="currentColor" />
-      <rect className="qov-shape" style={step(3)} x="50" y="48" width="20" height="6" rx="3" fill="currentColor" opacity="0.55" />
-      <circle className="qov-shape" style={step(4)} cx="60" cy="64" r="3" fill="currentColor" />
+    <svg
+      viewBox="0 0 120 80"
+      fill="none"
+      aria-hidden="true"
+      className="qclay-offer-visual"
+    >
+      <rect
+        className="qov-shape"
+        style={step(0)}
+        x="44"
+        y="8"
+        width="32"
+        height="64"
+        rx="8"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <line
+        className="qov-shape"
+        style={step(0)}
+        x1="55"
+        y1="13"
+        x2="65"
+        y2="13"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <rect
+        className="qov-shape"
+        style={step(1)}
+        x="50"
+        y="22"
+        width="20"
+        height="12"
+        rx="3"
+        fill="currentColor"
+        opacity="0.5"
+      />
+      <rect
+        className="qov-shape"
+        style={step(2)}
+        x="50"
+        y="38"
+        width="20"
+        height="6"
+        rx="3"
+        fill="currentColor"
+      />
+      <rect
+        className="qov-shape"
+        style={step(3)}
+        x="50"
+        y="48"
+        width="20"
+        height="6"
+        rx="3"
+        fill="currentColor"
+        opacity="0.55"
+      />
+      <circle
+        className="qov-shape"
+        style={step(4)}
+        cx="60"
+        cy="64"
+        r="3"
+        fill="currentColor"
+      />
     </svg>
   )
 }
@@ -134,16 +271,98 @@ import { step } from './index'
 // Node network whose links and nodes connect.
 export default function AiAuditVisual() {
   return (
-    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true" className="qclay-offer-visual">
-      <line className="qov-shape" style={step(0)} x1="24" y1="24" x2="60" y2="40" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-      <line className="qov-shape" style={step(0)} x1="24" y1="56" x2="60" y2="40" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-      <line className="qov-shape" style={step(1)} x1="60" y1="40" x2="96" y2="24" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-      <line className="qov-shape" style={step(1)} x1="60" y1="40" x2="96" y2="56" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-      <circle className="qov-shape" style={step(2)} cx="24" cy="24" r="5" fill="currentColor" />
-      <circle className="qov-shape" style={step(2)} cx="24" cy="56" r="5" fill="currentColor" />
-      <circle className="qov-shape" style={step(3)} cx="60" cy="40" r="7" fill="currentColor" />
-      <circle className="qov-shape" style={step(4)} cx="96" cy="24" r="5" fill="currentColor" opacity="0.7" />
-      <circle className="qov-shape" style={step(4)} cx="96" cy="56" r="5" fill="currentColor" opacity="0.7" />
+    <svg
+      viewBox="0 0 120 80"
+      fill="none"
+      aria-hidden="true"
+      className="qclay-offer-visual"
+    >
+      <line
+        className="qov-shape"
+        style={step(0)}
+        x1="24"
+        y1="24"
+        x2="60"
+        y2="40"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity="0.5"
+      />
+      <line
+        className="qov-shape"
+        style={step(0)}
+        x1="24"
+        y1="56"
+        x2="60"
+        y2="40"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity="0.5"
+      />
+      <line
+        className="qov-shape"
+        style={step(1)}
+        x1="60"
+        y1="40"
+        x2="96"
+        y2="24"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity="0.5"
+      />
+      <line
+        className="qov-shape"
+        style={step(1)}
+        x1="60"
+        y1="40"
+        x2="96"
+        y2="56"
+        stroke="currentColor"
+        strokeWidth="2"
+        opacity="0.5"
+      />
+      <circle
+        className="qov-shape"
+        style={step(2)}
+        cx="24"
+        cy="24"
+        r="5"
+        fill="currentColor"
+      />
+      <circle
+        className="qov-shape"
+        style={step(2)}
+        cx="24"
+        cy="56"
+        r="5"
+        fill="currentColor"
+      />
+      <circle
+        className="qov-shape"
+        style={step(3)}
+        cx="60"
+        cy="40"
+        r="7"
+        fill="currentColor"
+      />
+      <circle
+        className="qov-shape"
+        style={step(4)}
+        cx="96"
+        cy="24"
+        r="5"
+        fill="currentColor"
+        opacity="0.7"
+      />
+      <circle
+        className="qov-shape"
+        style={step(4)}
+        cx="96"
+        cy="56"
+        r="5"
+        fill="currentColor"
+        opacity="0.7"
+      />
     </svg>
   )
 }
@@ -156,12 +375,63 @@ import { step } from './index'
 // Ascending steps + progress chevron.
 export default function FormationVisual() {
   return (
-    <svg viewBox="0 0 120 80" fill="none" aria-hidden="true" className="qclay-offer-visual">
-      <rect className="qov-shape" style={step(0)} x="20" y="52" width="18" height="16" rx="3" fill="currentColor" opacity="0.45" />
-      <rect className="qov-shape" style={step(1)} x="44" y="40" width="18" height="28" rx="3" fill="currentColor" opacity="0.65" />
-      <rect className="qov-shape" style={step(2)} x="68" y="26" width="18" height="42" rx="3" fill="currentColor" opacity="0.85" />
-      <path className="qov-shape" style={step(3)} d="M22 30 L52 20 L82 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path className="qov-shape" style={step(4)} d="M74 10 L84 9 L83 19" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    <svg
+      viewBox="0 0 120 80"
+      fill="none"
+      aria-hidden="true"
+      className="qclay-offer-visual"
+    >
+      <rect
+        className="qov-shape"
+        style={step(0)}
+        x="20"
+        y="52"
+        width="18"
+        height="16"
+        rx="3"
+        fill="currentColor"
+        opacity="0.45"
+      />
+      <rect
+        className="qov-shape"
+        style={step(1)}
+        x="44"
+        y="40"
+        width="18"
+        height="28"
+        rx="3"
+        fill="currentColor"
+        opacity="0.65"
+      />
+      <rect
+        className="qov-shape"
+        style={step(2)}
+        x="68"
+        y="26"
+        width="18"
+        height="42"
+        rx="3"
+        fill="currentColor"
+        opacity="0.85"
+      />
+      <path
+        className="qov-shape"
+        style={step(3)}
+        d="M22 30 L52 20 L82 10"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        className="qov-shape"
+        style={step(4)}
+        d="M74 10 L84 9 L83 19"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }
@@ -189,11 +459,13 @@ git commit -m "feat(offers): add geometric SVG visuals + registry for each offer
 ### Task 2: Wire offer visuals into the accordion (build-on-expand)
 
 **Files:**
+
 - Modify: `app/components/offers-accordion.tsx` (add `index`-keyed visual into the expanded panel; lines 81-86 region)
 - Modify: `app/styles/animations.css` (add `.qclay-offer-visual` / `.qov-shape` rules + keyframe; extend the reduced-motion block at lines 827-878)
 - Verify: browser screenshots (no unit test — presentational/CSS)
 
 **Interfaces:**
+
 - Consumes: `OFFER_VISUALS`, `step` from Task 1.
 - Produces: no exported API; renders `OFFER_VISUALS[index]` inside each panel.
 
@@ -261,12 +533,12 @@ Append to `app/styles/animations.css` (after the offers block, around line 598):
 In the `@media (prefers-reduced-motion: reduce)` block in `app/styles/animations.css`, add `.qov-shape` to the `animation: none` selector list (the group starting at line 828) and to the `opacity: 1` group (line 867), so shapes are simply shown without motion:
 
 ```css
-  /* add to the existing `animation: none;` selector list */
-  .qclay-offer.is-open .qov-shape,
+/* add to the existing `animation: none;` selector list */
+.qclay-offer.is-open .qov-shape,
   /* add to the existing `opacity: 1; filter: none;` selector list */
   .qov-shape {
-    /* opacity: 1 in the second group; animation: none in the first */
-  }
+  /* opacity: 1 in the second group; animation: none in the first */
+}
 ```
 
 (Concretely: append `.qclay-offer.is-open .qov-shape` before the closing `{ animation: none; }` of the first group, and append `.qov-shape` before the closing `{ opacity: 1; filter: none; }` of the last group.)
@@ -274,6 +546,7 @@ In the `@media (prefers-reduced-motion: reduce)` block in `app/styles/animations
 - [ ] **Step 4: Visual verification**
 
 Run: `npm run dev` (background), then use the browse tool to:
+
 1. Open `http://localhost:3000`, scroll to `#offres`.
 2. Click each of the 4 offer headers; screenshot the expanded panel. Expected: a geometric composition in an accent-tinted frame "builds" with a staggered fade/scale.
 3. Emulate `prefers-reduced-motion: reduce`, re-open a panel; screenshot. Expected: shapes fully visible, no motion.
@@ -296,10 +569,12 @@ git commit -m "feat(offers): build-on-expand geometric visual per offer"
 ### Task 3: Word-by-word reveal on the contact heading
 
 **Files:**
+
 - Modify: `app/page.tsx` (add `contactHeading` segments near `heroHeadline` at line 172; replace the plain `<h2>` text at lines 340-342)
 - Verify: browser screenshot (reuses existing `RevealWords` + `.qclay-word` CSS, already reduced-motion-safe)
 
 **Interfaces:**
+
 - Consumes: existing `RevealWords` component and `WordSegment` type (already imported in `app/page.tsx` at lines 14-15).
 
 - [ ] **Step 1: Define the heading segments**
@@ -355,11 +630,13 @@ git commit -m "feat(contact): word-by-word reveal on the contact heading"
 ### Task 4: Animated contact-form feedback
 
 **Files:**
+
 - Modify: `app/components/contact-form.tsx` (success card lines 32-47; error message lines 159-163; submit button lines 165-172)
 - Modify: `app/styles/animations.css` (add spinner + feedback-in keyframes; extend reduced-motion block)
 - Verify: browser screenshots of pending / success / error states
 
 **Interfaces:**
+
 - Consumes: existing `useActionState` state (`state.status`, `pending`) — no signature changes.
 
 - [ ] **Step 1: Add feedback CSS**
@@ -404,7 +681,8 @@ Append to `app/styles/animations.css` (before the reduced-motion block):
 In `app/components/contact-form.tsx`, add `qclay-feedback-in` to the success card `className` (line 37):
 
 ```tsx
-className="qclay-feedback-in qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-8 text-center"
+className =
+  'qclay-feedback-in qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-8 text-center'
 ```
 
 - [ ] **Step 3: Animate the error message**
@@ -426,17 +704,19 @@ Replace the error `<p>` (lines 160-162) className:
 Replace the button body (lines 169-172) so it shows an animated spinner while pending:
 
 ```tsx
-{pending ? (
-  <>
-    <span className="qclay-spinner" aria-hidden="true" />
-    Envoi…
-  </>
-) : (
-  <>
-    Envoyer le message
-    <span aria-hidden="true">→</span>
-  </>
-)}
+{
+  pending ? (
+    <>
+      <span className="qclay-spinner" aria-hidden="true" />
+      Envoi…
+    </>
+  ) : (
+    <>
+      Envoyer le message
+      <span aria-hidden="true">→</span>
+    </>
+  )
+}
 ```
 
 - [ ] **Step 5: Add reduced-motion fallback**
@@ -446,6 +726,7 @@ In the reduced-motion block of `app/styles/animations.css`, add `.qclay-spinner`
 - [ ] **Step 6: Visual verification**
 
 Run: `npm run dev`. Using the browse tool:
+
 1. Submit empty form → validation errors render (per-field) and the `role="alert"` message fades in. Screenshot.
 2. Submit valid data (dev: Resend may fail without key — confirm error path shows the animated `state.status === 'error'` message). Screenshot the spinner during the in-flight request.
 3. If a success can be triggered, screenshot the success card entrance.
@@ -468,10 +749,12 @@ git commit -m "feat(contact): animated submit spinner + success/error feedback"
 ### Task 5: Parallax math (pure function + unit test)
 
 **Files:**
+
 - Create: `app/lib/parallax.ts`
 - Test: `app/lib/parallax.test.ts`
 
 **Interfaces:**
+
 - Produces: `computeParallaxY(rectTop: number, intensity: number, maxPx: number): number`. Consumed by Task 6.
 
 - [ ] **Step 1: Write the failing test**
@@ -546,11 +829,13 @@ git commit -m "feat(hero): add pure computeParallaxY helper with tests"
 ### Task 6: Wire hero scroll parallax into QClayMotion
 
 **Files:**
+
 - Modify: `app/components/qclay-motion.tsx` (add a scroll handler driving `--parallax-y` on `.qclay-portrait-wrap`)
 - Modify: `app/styles/animations.css` (free the portrait-wrap transform for parallax; add reduced-motion safety)
 - Verify: browser screenshots while scrolling
 
 **Interfaces:**
+
 - Consumes: `computeParallaxY` from Task 5.
 
 - [ ] **Step 1: Free the portrait-wrap transform + consume the var**
@@ -638,6 +923,7 @@ if (parallaxFrame) window.cancelAnimationFrame(parallaxFrame)
 - [ ] **Step 3: Visual verification**
 
 Run: `npm run dev`. Using the browse tool:
+
 1. Open the site at 1440px; scroll the hero out of view slowly; capture 2-3 screenshots at different scroll positions. Expected: the portrait + orbits + stat card drift downward subtly (max ~40px), smoothly, no jank, no layout shift.
 2. Confirm the entrance fade still plays on load (opacity/blur), with no upward "snap" conflicting with parallax.
 3. Reduced-motion pass: no drift; portrait static.
@@ -660,6 +946,7 @@ git commit -m "feat(hero): subtle scroll parallax on the portrait column"
 ## Self-Review
 
 **Spec coverage:**
+
 - Module 1 (geometric offer compositions, build-on-expand) → Tasks 1-2. ✓
 - Module 2 (hero scroll parallax) → Tasks 5-6. ✓ Deviation: implemented inside the existing `QClayMotion` controller instead of a new `useScrollParallax` hook, because `app/page.tsx` is a Server Component and `QClayMotion` is the established single client motion controller. Pure math still extracted + unit-tested (`app/lib/parallax.ts`). Documented in Task 6.
 - Module 3 (inline form feedback) → Task 4. ✓
