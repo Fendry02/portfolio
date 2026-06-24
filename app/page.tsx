@@ -176,7 +176,7 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
-              <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
+              <a href="#contact" className={btnBlue}>
                 Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </a>
