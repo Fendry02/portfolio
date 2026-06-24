@@ -11,6 +11,8 @@ import viko from '@/public/works/viko.jpg'
 import QClayMotion from './components/qclay-motion'
 import OffersAccordion from './components/offers-accordion'
 import ContactForm from './components/contact-form'
+import RevealWords from './components/reveal-words'
+import type { WordSegment } from './components/reveal-words'
 
 type Offer = {
   accent: string
@@ -167,6 +169,22 @@ const accent = '#2563eb'
 const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
 
+const heroHeadline: readonly WordSegment[] = [
+  { text: 'Des' },
+  { text: 'sites' },
+  { text: 'et' },
+  { text: 'des' },
+  { text: 'produits' },
+  { text: 'web' },
+  { text: 'qui' },
+  { text: 'vendent,', accent: true },
+  { text: 'développés' },
+  { text: 'par' },
+  { text: 'un' },
+  { text: 'seul' },
+  { text: 'interlocuteur.' },
+]
+
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
@@ -179,14 +197,12 @@ export default function Home() {
         className="qclay-hero relative overflow-hidden"
       >
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
-          <div className="qclay-reveal-stack flex flex-col justify-center">
+          <div className="qclay-reveal-stack qclay-reveal-stack--hero flex flex-col justify-center">
             <h1
               id="hero-heading"
               className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
-              Des sites et des produits web qui{' '}
-              <span style={{ color: accent }}>vendent</span>, développés par un
-              seul interlocuteur.
+              <RevealWords segments={heroHeadline} />
             </h1>
 
             <p className={`mt-6 max-w-xl ${bodyText} md:text-lg md:leading-8`}>
