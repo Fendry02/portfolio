@@ -291,7 +291,7 @@ export default function Jobs() {
         className="qclay-section qclay-scroll-reveal cv-auto px-6 py-12 lg:px-10 lg:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
+          <div className="qclay-ai-card relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
@@ -337,7 +337,7 @@ export default function Jobs() {
                 {aiPractices.map((p, i) => (
                   <li
                     key={p.title}
-                    className="flex gap-4 rounded-lg border border-white/10 p-4"
+                    className="qclay-ai-step flex gap-4 rounded-lg border border-white/10 p-4"
                   >
                     <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 font-mono text-[10px] font-semibold text-white/60">
                       0{i + 1}

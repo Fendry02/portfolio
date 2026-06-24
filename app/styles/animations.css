@@ -722,6 +722,80 @@
   animation: qclay-scroll-rise 820ms var(--ease-qclay) both;
 }
 
+/* ── AI-augmented card: one-pass light sweep + staggered step reveal ── */
+@keyframes qclay-ai-sheen {
+  0% {
+    opacity: 0;
+    transform: translate3d(-160%, 0, 0) rotate(8deg);
+  }
+  18% {
+    opacity: 1;
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(280%, 0, 0) rotate(8deg);
+  }
+}
+
+.qclay-ai-card::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 38%;
+  pointer-events: none;
+  content: '';
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    oklch(100% 0 0 / 0.16) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-card::after {
+  animation: qclay-ai-sheen 1150ms var(--ease-qclay) 360ms both;
+}
+
+.qclay-ai-step {
+  transition:
+    border-color var(--duration-normal) var(--ease-qclay),
+    background-color var(--duration-normal) var(--ease-qclay),
+    transform var(--duration-normal) var(--ease-qclay);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .qclay-ai-step:hover {
+    border-color: oklch(100% 0 0 / 0.32);
+    background-color: oklch(100% 0 0 / 0.06);
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+.qclay-motion-ready .qclay-scroll-reveal .qclay-ai-step {
+  opacity: 0;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-step {
+  animation: qclay-reveal 620ms var(--ease-qclay) both;
+  animation-delay: calc(420ms + var(--qclay-step, 0) * 110ms);
+}
+
+.qclay-ai-step:nth-child(1) {
+  --qclay-step: 0;
+}
+.qclay-ai-step:nth-child(2) {
+  --qclay-step: 1;
+}
+.qclay-ai-step:nth-child(3) {
+  --qclay-step: 2;
+}
+.qclay-ai-step:nth-child(4) {
+  --qclay-step: 3;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .qclay-tilt:hover {
     transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
@@ -745,6 +819,9 @@
   .qclay-marquee-track,
   .qclay-ink,
   .qclay-ink::after,
+  .qclay-ai-card::after,
+  .qclay-ai-step,
+  .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal.is-visible {
     animation: none;
   }
@@ -769,6 +846,8 @@
   .qclay-metrics > div,
   .qclay-portrait-wrap,
   .qclay-logo-row > a,
+  .qclay-ai-step,
+  .qclay-motion-ready .qclay-scroll-reveal .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal {
     opacity: 1;
     filter: none;
