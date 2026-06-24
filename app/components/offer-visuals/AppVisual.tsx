@@ -1,0 +1,76 @@
+import { step } from './step'
+
+// Phone frame with UI layers sliding in.
+export default function AppVisual() {
+  return (
+    <svg
+      viewBox="0 0 120 80"
+      fill="none"
+      aria-hidden="true"
+      className="qclay-offer-visual"
+    >
+      <rect
+        className="qov-shape"
+        style={step(0)}
+        x="44"
+        y="8"
+        width="32"
+        height="64"
+        rx="8"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <line
+        className="qov-shape"
+        style={step(0)}
+        x1="55"
+        y1="13"
+        x2="65"
+        y2="13"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <rect
+        className="qov-shape"
+        style={step(1)}
+        x="50"
+        y="22"
+        width="20"
+        height="12"
+        rx="3"
+        fill="currentColor"
+        opacity="0.5"
+      />
+      <rect
+        className="qov-shape"
+        style={step(2)}
+        x="50"
+        y="38"
+        width="20"
+        height="6"
+        rx="3"
+        fill="currentColor"
+      />
+      <rect
+        className="qov-shape"
+        style={step(3)}
+        x="50"
+        y="48"
+        width="20"
+        height="6"
+        rx="3"
+        fill="currentColor"
+        opacity="0.55"
+      />
+      <circle
+        className="qov-shape"
+        style={step(4)}
+        cx="60"
+        cy="64"
+        r="3"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
