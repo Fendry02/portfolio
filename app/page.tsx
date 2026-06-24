@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
-import profile from '@/public/profile.webp'
+import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
-import petitnid from '@/app/assets/petitnid.png'
-import electreau from '@/app/assets/electreau.png'
+import electreau from '@/public/works/electreau.png'
+import petitnid from '@/public/works/petitnid.png'
+import viko from '@/public/works/viko.jpg'
 import QClayMotion from './components/qclay-motion'
 import OffersAccordion from './components/offers-accordion'
 import ContactForm from './components/contact-form'
@@ -128,6 +129,11 @@ const trustLogos: TrustEntry[] = [
     src: petitnid,
     href: 'https://petitnid.app',
   },
+  {
+    name: 'Chez Viko',
+    src: viko,
+    href: 'https://chezviko.fr',
+  },
 ]
 
 export const metadata: Metadata = {
@@ -214,7 +220,7 @@ export default function Home() {
                 fill
                 priority
                 sizes="(max-width: 640px) 320px, 400px"
-                className="object-contain"
+                className="rounded-full object-cover object-[center_32%]"
               />
 
               <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useActionState, useEffect, useState } from 'react'
+import { useActionState, useEffect, useRef } from 'react'
 
 import { submitContact, type ContactState } from '@/app/actions/contact'
 import { PROJECT_TYPES } from '@/app/lib/contact'
@@ -21,10 +21,12 @@ export default function ContactForm() {
     submitContact,
     initialState,
   )
-  const [startedAt, setStartedAt] = useState(0)
+  const startedAtRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    setStartedAt(Date.now())
+    if (startedAtRef.current) {
+      startedAtRef.current.value = String(Date.now())
+    }
   }, [])
 
   if (state.status === 'success') {
@@ -48,7 +50,7 @@ export default function ContactForm() {
 
   return (
     <form action={formAction} className="grid gap-4 text-left" noValidate>
-      <input type="hidden" name="_ts" value={startedAt} readOnly />
+      <input ref={startedAtRef} type="hidden" name="_ts" defaultValue="0" />
       {/* Honeypot: off-screen, off accessibility tree, off tab order */}
       <div aria-hidden="true" className="absolute left-[-9999px]">
         <label htmlFor="website">Ne pas remplir</label>

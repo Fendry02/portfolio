@@ -2,10 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-import profile from '@/public/profile.webp'
+import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
+import viko from '@/public/works/viko.jpg'
 import QClayMotion from '../components/qclay-motion'
 
 export const metadata: Metadata = {
@@ -101,6 +102,17 @@ const roles: Role[] = [
     stack: ['React', 'JavaScript', 'Node.js', 'Git', 'HTML', 'CSS'],
     href: 'https://openclassrooms.com',
     image: openclassrooms,
+  },
+  {
+    period: 'Freelance',
+    company: 'Chez Viko',
+    title: 'Website Project',
+    summary:
+      'Public website project for Chez Viko, from implementation to online presence.',
+    highlights: [],
+    stack: [],
+    href: 'https://chezviko.fr',
+    image: viko,
   },
   {
     period: '2017 — 2019',
@@ -250,7 +262,7 @@ export default function Jobs() {
                 fill
                 priority
                 sizes="(max-width: 640px) 320px, 400px"
-                className="object-contain"
+                className="rounded-full object-cover object-[center_32%]"
               />
 
               <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">

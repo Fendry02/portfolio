@@ -34,7 +34,7 @@ export default function RootLayout({
               description:
                 'Développeur full stack JavaScript spécialisé dans la création de sites web, applications métier et plateformes web sur mesure avec Next.js, Vue.js, Node.js et PostgreSQL.',
               url: 'https://bbenoit.fr',
-              image: 'https://bbenoit.fr/profile.webp',
+              image: 'https://bbenoit.fr/profile.jpg',
               sameAs: [
                 'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
                 'https://github.com/Fendry02',
