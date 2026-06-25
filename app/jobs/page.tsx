@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
 
 import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
@@ -8,15 +7,49 @@ import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
 import viko from '@/public/works/viko.jpg'
 import QClayMotion from '../components/qclay-motion'
+import JsonLd from '../components/json-ld'
+import {
+  buildPageMetadata,
+  createBreadcrumbJsonLd,
+  createJsonLdGraph,
+  createProfilePageJsonLd,
+  jobsOpenGraphImage,
+} from '../lib/seo'
 
-export const metadata: Metadata = {
-  title: 'About | Benoit Bruynbroeck — JavaScript Tech Lead',
-  description:
-    'JavaScript Tech Lead and full-stack developer. Background, skills, roles and approach to building maintainable web products.',
-  alternates: {
-    canonical: 'https://bbenoit.fr/jobs',
-  },
-}
+const jobsTitle = 'JavaScript Tech Lead and full-stack developer'
+const jobsDescription =
+  'Background, skills, roles and engineering approach of Benoit Bruynbroeck, JavaScript Tech Lead and full-stack developer building maintainable web products.'
+
+export const metadata = buildPageMetadata({
+  title: jobsTitle,
+  description: jobsDescription,
+  path: '/jobs',
+  image: jobsOpenGraphImage,
+  locale: 'en_US',
+  keywords: [
+    'JavaScript Tech Lead',
+    'full-stack developer',
+    'TypeScript',
+    'Node.js',
+    'React',
+    'Next.js',
+    'Vue.js',
+    'software architecture',
+    'AI-augmented developer',
+  ],
+})
+
+const jobsJsonLd = createJsonLdGraph([
+  createProfilePageJsonLd({
+    path: '/jobs',
+    name: jobsTitle,
+    description: jobsDescription,
+  }),
+  createBreadcrumbJsonLd([
+    { name: 'Accueil', path: '/' },
+    { name: 'Parcours', path: '/jobs' },
+  ]),
+])
 
 const stats = [
   { value: '6+', label: 'years Node.js' },
@@ -199,6 +232,7 @@ const btnGhost =
 export default function Jobs() {
   return (
     <main className="bg-base-100 text-base-content">
+      <JsonLd data={jobsJsonLd} />
       <QClayMotion />
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section

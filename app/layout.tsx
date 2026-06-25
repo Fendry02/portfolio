@@ -7,6 +7,16 @@ import './styles/global.css'
 
 import Header from './components/header'
 import Footer from './components/footer'
+import JsonLd from './components/json-ld'
+import {
+  createJsonLdGraph,
+  defaultOpenGraphImage,
+  personJsonLd,
+  professionalServiceJsonLd,
+  seoKeywords,
+  siteConfig,
+  websiteJsonLd,
+} from './lib/seo'
 
 const handwriting = Caveat({
   subsets: ['latin'],
@@ -22,110 +32,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" data-theme="corporate" className={handwriting.variable}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Benoit Bruynbroeck',
-              jobTitle: 'Développeur full stack JavaScript & Tech Lead',
-              description:
-                'Développeur full stack JavaScript spécialisé dans la création de sites web, applications métier et plateformes web sur mesure avec Next.js, Vue.js, Node.js et PostgreSQL.',
-              url: 'https://bbenoit.fr',
-              image: 'https://bbenoit.fr/profile.jpg',
-              sameAs: [
-                'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
-                'https://github.com/Fendry02',
-              ],
-              knowsAbout: [
-                'JavaScript',
-                'Vue.js',
-                'Next.js',
-                'Node.js',
-                'PostgreSQL',
-                'TypeScript',
-                'React',
-                'Web Development',
-                'Software Engineering',
-                'Team Leadership',
-                'API Development',
-                'Database Design',
-                'AWS',
-                'Docker',
-                'Kubernetes',
-              ],
-              worksFor: {
-                '@type': 'Organization',
-                name: 'CitizenPlane',
-                url: 'https://citizenplane.com',
-              },
-              alumniOf: {
-                '@type': 'Organization',
-                name: 'Business & Decision',
-              },
-              hasOccupation: {
-                '@type': 'Occupation',
-                name: 'JavaScript Tech Lead',
-                occupationLocation: {
-                  '@type': 'Country',
-                  name: 'France',
-                },
-                skills: [
-                  'JavaScript',
-                  'Vue.js',
-                  'Next.js',
-                  'Node.js',
-                  'PostgreSQL',
-                  'TypeScript',
-                  'Team Leadership',
-                  'Software Architecture',
-                ],
-              },
-              makesOffer: [
-                {
-                  '@type': 'Offer',
-                  itemOffered: {
-                    '@type': 'Service',
-                    name: 'Site web vitrine',
-                    description:
-                      'Création de sites web vitrines professionnels, rapides et optimisés SEO, conçus pour convertir les visiteurs en prospects.',
-                  },
-                },
-                {
-                  '@type': 'Offer',
-                  itemOffered: {
-                    '@type': 'Service',
-                    name: 'Application web et mobile',
-                    description:
-                      'Développement d’applications web et mobiles sur mesure répondant à un besoin métier spécifique, du cadrage au déploiement.',
-                  },
-                },
-                {
-                  '@type': 'Offer',
-                  itemOffered: {
-                    '@type': 'Service',
-                    name: 'Audit et automatisation IA',
-                    description:
-                      'Audit des process pour identifier les opportunités d’IA, puis mise en place d’automatisations concrètes et mesurables.',
-                  },
-                },
-                {
-                  '@type': 'Offer',
-                  itemOffered: {
-                    '@type': 'Service',
-                    name: 'Formation IA',
-                    description:
-                      'Formations pratiques pour rendre les équipes autonomes avec l’intelligence artificielle au quotidien.',
-                  },
-                },
-              ],
-            }),
-          }}
-        ></script>
-      </head>
       <body>
+        <JsonLd
+          data={createJsonLdGraph([
+            personJsonLd,
+            websiteJsonLd,
+            professionalServiceJsonLd,
+          ])}
+        />
         <Header />
         {children}
         <Footer />
@@ -139,33 +53,31 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://bbenoit.fr'),
-  title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
-  description:
-    'Création de sites web professionnels, applications métier et plateformes web sur mesure. Développeur full stack JavaScript spécialisé en Next.js, Vue.js, Node.js et PostgreSQL.',
-  keywords: [
-    'JavaScript',
-    'Développeur full stack',
-    'Création site web',
-    'Application web sur mesure',
-    'Vue.js',
-    'Next.js',
-    'Node.js',
-    'PostgreSQL',
-    'TypeScript',
-    'React',
-    'Web Development',
-    'Software Engineering',
-    'Team Leadership',
-    'API Development',
-    'Database Design',
-    'AWS',
-    'Docker',
-    'Kubernetes',
-  ],
-  authors: [{ name: 'Benoit Bruynbroeck' }],
-  creator: 'Benoit Bruynbroeck',
-  publisher: 'Benoit Bruynbroeck',
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.defaultTitle,
+    template: siteConfig.titleTemplate,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.name,
+  keywords: seoKeywords,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  referrer: 'origin-when-cross-origin',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  manifest: '/manifest.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -178,23 +90,23 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
-    description:
-      'Création de sites web professionnels, applications métier et plateformes web sur mesure avec Next.js, Vue.js, Node.js et PostgreSQL.',
-    url: 'https://bbenoit.fr',
-    siteName: 'Benoit Bruynbroeck Portfolio',
-    locale: 'fr_FR',
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     type: 'website',
+    images: [defaultOpenGraphImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Benoit Bruynbroeck | Sites web et applications sur mesure',
-    description:
-      'Création de sites web professionnels, applications métier et plateformes web sur mesure.',
-    creator: '@benoit_bruynbroeck',
+    title: siteConfig.defaultTitle,
+    description: siteConfig.description,
+    creator: siteConfig.twitterHandle,
+    images: [defaultOpenGraphImage.url],
   },
   alternates: {
-    canonical: 'https://bbenoit.fr',
+    canonical: siteConfig.url,
   },
   category: 'technology',
 }

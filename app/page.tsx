@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import type { Metadata } from 'next'
 
 import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
@@ -13,6 +12,13 @@ import OffersAccordion from './components/offers-accordion'
 import ContactForm from './components/contact-form'
 import RevealWords from './components/reveal-words'
 import type { WordSegment } from './components/reveal-words'
+import JsonLd from './components/json-ld'
+import {
+  buildPageMetadata,
+  createBreadcrumbJsonLd,
+  createJsonLdGraph,
+  createWebPageJsonLd,
+} from './lib/seo'
 
 type Offer = {
   accent: string
@@ -138,11 +144,15 @@ const trustLogos: TrustEntry[] = [
   },
 ]
 
-export const metadata: Metadata = {
-  title:
-    'Création de sites web et applications sur mesure | Benoit Bruynbroeck',
-  description:
-    'Développeur web full stack pour créer un site professionnel, une application métier ou une plateforme web sur mesure, avec Next.js, React, Vue.js, Node.js et PostgreSQL.',
+const homeTitle =
+  'Création de sites web et applications sur mesure | Benoit Bruynbroeck'
+const homeDescription =
+  'Développeur web full stack à Lyon pour créer un site professionnel, une application métier ou une plateforme web sur mesure, avec Next.js, React, Vue.js, Node.js et PostgreSQL.'
+
+export const metadata = buildPageMetadata({
+  title: homeTitle,
+  description: homeDescription,
+  path: '/',
   keywords: [
     'création site internet',
     'création site web professionnel',
@@ -154,10 +164,16 @@ export const metadata: Metadata = {
     'Node.js',
     'PostgreSQL',
   ],
-  alternates: {
-    canonical: 'https://bbenoit.fr',
-  },
-}
+})
+
+const homeJsonLd = createJsonLdGraph([
+  createWebPageJsonLd({
+    path: '/',
+    name: homeTitle,
+    description: homeDescription,
+  }),
+  createBreadcrumbJsonLd([{ name: 'Accueil', path: '/' }]),
+])
 
 /* ─── Shared typography tokens (kept consistent across sections) ───────── */
 const eyebrow =
@@ -195,6 +211,7 @@ const contactHeading: readonly WordSegment[] = [
 export default function Home() {
   return (
     <main className="bg-base-100 text-base-content">
+      <JsonLd data={homeJsonLd} />
       <QClayMotion />
 
       {/* ─────────────────────────── HERO ─────────────────────────── */}

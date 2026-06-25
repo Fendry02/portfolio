@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
+    "seo:audit": "node scripts/seo-audit.mjs",
     "test": "node --test \"app/**/*.test.ts\"",
     "convert-images": "node scripts/convert-images.js",
     "generate-responsive": "node scripts/generate-responsive-images.js",

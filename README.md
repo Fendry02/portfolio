@@ -8,7 +8,7 @@ A modern, high-performance portfolio website built with Next.js, showcasing my e
 
 ## ✨ Features
 
-- **Modern Tech Stack**: Next.js 15, React 19, TypeScript
+- **Modern Tech Stack**: Next.js 16, React 19, TypeScript
 - **Optimized Performance**: WebP images, responsive design, Core Web Vitals optimized
 - **Beautiful UI**: TailwindCSS with DaisyUI components
 - **SEO Optimized**: Meta tags, structured data, sitemap
@@ -19,7 +19,7 @@ A modern, high-performance portfolio website built with Next.js, showcasing my e
 
 ### Frontend
 
-- **Framework**: Next.js 15 with App Router
+- **Framework**: Next.js 16 with App Router
 - **Language**: TypeScript
 - **Styling**: TailwindCSS + DaisyUI
 - **Icons**: Custom SVG icons
@@ -36,7 +36,7 @@ A modern, high-performance portfolio website built with Next.js, showcasing my e
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20.9+
 - npm, yarn, or pnpm
 
 ### Installation
@@ -188,9 +188,31 @@ npm run lint         # Run ESLint
 npm run format       # Check code formatting
 npm run format:fix   # Fix code formatting
 
+# SEO
+npm run seo:audit    # Audit production SEO tags, sitemap, robots and social images
+
 # Image Optimization
 npm run convert-images        # Convert PNG to WebP
 npm run generate-responsive   # Generate responsive images
+```
+
+## 🔎 SEO Routine
+
+A weekly GitHub Action runs every Monday at 07:00 UTC and checks the production
+site with `npm run seo:audit`.
+
+The audit covers:
+
+- homepage and `/jobs` titles, descriptions and canonicals
+- Open Graph and Twitter metadata
+- JSON-LD structured data
+- `sitemap.xml`, `robots.txt` and `manifest.webmanifest`
+- generated social images
+
+To audit another environment locally:
+
+```bash
+SEO_AUDIT_BASE_URL=http://localhost:3000 npm run seo:audit
 ```
 
 ## 🚀 Deployment
