@@ -39,6 +39,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Native <button> defaults to cursor:default; make every clickable control
+   read as clickable. Disabled controls keep their not-allowed/default cursor. */
+button:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+label[for],
+summary {
+  cursor: pointer;
+}
+
 /* Skip rendering work for below-the-fold sections until they're near the viewport. */
 .cv-auto {
   content-visibility: auto;
