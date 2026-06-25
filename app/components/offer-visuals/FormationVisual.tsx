@@ -54,7 +54,7 @@ export default function FormationVisual() {
       <path
         className="qov-shape"
         style={step(4)}
-        d="M74 10 L84 9 L83 19"
+        d="M72 8 L82 10 L75 17"
         stroke="currentColor"
         strokeWidth="2.5"
         strokeLinecap="round"
