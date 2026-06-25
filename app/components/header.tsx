@@ -2,35 +2,133 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 
 import BrandLogo from './brand-logo'
 
+const websiteCreationPath = '/services/creation-site-web-lyon'
+
+type NavItem = {
+  label: string
+  href: string
+  key: 'home' | 'services' | 'jobs' | 'contact'
+  primary?: boolean
+}
+
+const navItems: NavItem[] = [
+  { label: 'Accueil', href: '/', key: 'home' },
+  { label: 'Services', href: websiteCreationPath, key: 'services' },
+  { label: 'Parcours', href: '/jobs', key: 'jobs' },
+  { label: 'Contact', href: '/#contact', key: 'contact', primary: true },
+]
+
 export default function Header() {
   const pathname = usePathname()
-  const onJobs = pathname?.startsWith('/jobs') ?? false
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const activeKey =
+    pathname === '/'
+      ? 'home'
+      : pathname?.startsWith('/services')
+        ? 'services'
+        : pathname?.startsWith('/jobs')
+          ? 'jobs'
+          : undefined
 
   return (
     <header className="border-b border-base-300">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
         <BrandLogo />
 
-        <div className="flex items-center gap-1">
-          <Link
-            href={onJobs ? '/' : '/jobs'}
-            className="interactive rounded-lg px-3 py-2 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content"
+        <nav
+          aria-label="Navigation principale"
+          className="hidden items-center gap-1 sm:flex"
+        >
+          {navItems.map((item) => (
+            <Link
+              key={item.key}
+              href={item.href}
+              aria-current={activeKey === item.key ? 'page' : undefined}
+              className={
+                item.primary
+                  ? 'interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+                  : 'interactive rounded-lg px-3 py-2 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content aria-[current=page]:bg-base-200 aria-[current=page]:text-base-content'
+              }
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <button
+          type="button"
+          aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setMenuOpen((isOpen) => !isOpen)}
+          className="interactive inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-base-300 bg-base-100 sm:hidden"
+        >
+          <span className="sr-only">
+            {menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          </span>
+          <span
+            aria-hidden="true"
+            className={`relative block h-4 w-5 text-base-content transition-transform duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none ${
+              menuOpen ? 'rotate-90' : 'rotate-0'
+            }`}
           >
-            {onJobs ? 'Accueil' : 'Parcours'}
-          </Link>
-          <a
-            href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
-            target="_blank"
-            rel="noreferrer"
-            className="interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-medium text-white hover:bg-[#1d4ed8]"
-          >
-            Me contacter
-          </a>
-        </div>
+            <span
+              className={`absolute left-0 top-0 h-0.5 w-5 origin-center rounded-full bg-current transition-[transform,width] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none ${
+                menuOpen ? 'w-5 translate-y-[7px] rotate-45' : 'w-5'
+              }`}
+            />
+            <span
+              className={`absolute left-0 top-[7px] h-0.5 rounded-full bg-current transition-[opacity,transform,width] duration-200 ease-[var(--ease-qclay)] motion-reduce:transition-none ${
+                menuOpen
+                  ? 'w-2 translate-x-3 opacity-0'
+                  : 'w-5 translate-x-0 opacity-100'
+              }`}
+            />
+            <span
+              className={`absolute bottom-0 left-0 h-0.5 w-5 origin-center rounded-full bg-current transition-transform duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none ${
+                menuOpen ? '-translate-y-[7px] -rotate-45' : ''
+              }`}
+            />
+          </span>
+        </button>
       </div>
+
+      <nav
+        id="mobile-navigation"
+        aria-label="Navigation mobile"
+        aria-hidden={!menuOpen}
+        className={`grid overflow-hidden border-t border-base-300 px-4 transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none sm:hidden ${
+          menuOpen
+            ? 'grid-rows-[1fr] translate-y-0 opacity-100'
+            : 'pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0'
+        }`}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="grid gap-1 pb-4 pt-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.key}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                tabIndex={menuOpen ? undefined : -1}
+                aria-current={activeKey === item.key ? 'page' : undefined}
+                className={
+                  item.primary
+                    ? 'interactive mt-2 inline-flex items-center justify-center rounded-lg bg-[#2563eb] px-4 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+                    : 'interactive rounded-lg px-3 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content aria-[current=page]:bg-base-200 aria-[current=page]:text-base-content'
+                }
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
     </header>
   )
 }

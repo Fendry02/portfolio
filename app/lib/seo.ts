@@ -67,6 +67,10 @@ export const jobsOpenGraphImage = {
   alt: 'Benoit Bruynbroeck - JavaScript Tech Lead and full-stack developer',
 } satisfies OpenGraphImage
 
+export const serviceRoutes = {
+  websiteCreationLyon: '/services/creation-site-web-lyon',
+} as const
+
 export const serviceOffers = [
   {
     name: 'Création de site web vitrine',
@@ -338,6 +342,54 @@ export function createBreadcrumbJsonLd(
       position: index + 1,
       name: item.name,
       item: absoluteUrl(item.path),
+    })),
+  }
+}
+
+export function createServiceJsonLd({
+  path,
+  name,
+  description,
+}: {
+  path: string
+  name: string
+  description: string
+}): JsonLdNode {
+  return {
+    '@type': 'Service',
+    '@id': `${absoluteUrl(path)}#service`,
+    name,
+    description,
+    serviceType: 'Création de site web professionnel',
+    areaServed: [
+      {
+        '@type': 'City',
+        name: siteConfig.location.city,
+      },
+      {
+        '@type': 'Country',
+        name: siteConfig.location.country,
+      },
+    ],
+    provider: {
+      '@id': professionalServiceId,
+    },
+    url: absoluteUrl(path),
+  }
+}
+
+export function createFaqPageJsonLd(
+  questions: Array<{ question: string; answer: string }>,
+): JsonLdNode {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: questions.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
     })),
   }
 }

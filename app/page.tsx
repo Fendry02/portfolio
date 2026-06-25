@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
@@ -18,6 +19,7 @@ import {
   createBreadcrumbJsonLd,
   createJsonLdGraph,
   createWebPageJsonLd,
+  serviceRoutes,
 } from './lib/seo'
 
 type Offer = {
@@ -346,6 +348,25 @@ export default function Home() {
           <p className={eyebrow}>Mes offres</p>
 
           <OffersAccordion offers={offers} />
+
+          <div className="mt-8 rounded-xl border border-base-300 bg-base-100 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6">
+            <div>
+              <h2 className="text-lg font-semibold tracking-tight">
+                Création de site web à Lyon
+              </h2>
+              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+                Une page détaillée sur ma façon de cadrer, développer et
+                référencer un site professionnel local.
+              </p>
+            </div>
+            <Link
+              href={serviceRoutes.websiteCreationLyon}
+              className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563eb] hover:underline sm:mt-0"
+            >
+              Lire la page service
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </section>
 

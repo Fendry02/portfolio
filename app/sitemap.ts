@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-import { absoluteUrl, siteLastModified } from './lib/seo'
+import { absoluteUrl, serviceRoutes, siteLastModified } from './lib/seo'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: siteLastModified,
       changeFrequency: 'monthly',
       priority: 0.85,
+    },
+    {
+      url: absoluteUrl(serviceRoutes.websiteCreationLyon),
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
     },
   ]
 }

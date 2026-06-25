@@ -33,6 +33,21 @@ const pages = [
       'BreadcrumbList',
     ],
   },
+  {
+    path: '/services/creation-site-web-lyon',
+    title: 'Création de site web à Lyon | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/services/creation-site-web-lyon`,
+    descriptionIncludes: 'Création de site web professionnel à Lyon',
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'WebPage',
+      'Service',
+      'FAQPage',
+      'BreadcrumbList',
+    ],
+  },
 ]
 
 const failures = []
@@ -204,6 +219,10 @@ async function auditSitemap() {
 
   report(locs.includes(publicUrl('/')), 'sitemap includes homepage')
   report(locs.includes(publicUrl('/jobs')), 'sitemap includes /jobs')
+  report(
+    locs.includes(publicUrl('/services/creation-site-web-lyon')),
+    'sitemap includes /services/creation-site-web-lyon',
+  )
   report(
     locs.every((loc) => !loc.includes('#')),
     'sitemap has no fragment URLs',
