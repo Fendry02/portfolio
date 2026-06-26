@@ -2,7 +2,7 @@ const fetchBaseUrl = stripTrailingSlash(
   process.env.SEO_AUDIT_BASE_URL ?? 'https://bbenoit.fr',
 )
 const siteUrl = stripTrailingSlash(
-  process.env.SEO_SITE_URL ?? 'https://bbenoit.fr',
+  process.env.SEO_SITE_URL ?? 'https://www.bbenoit.fr',
 )
 
 const pages = [

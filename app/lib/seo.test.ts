@@ -13,8 +13,8 @@ import {
 } from './seo.ts'
 
 test('absoluteUrl resolves paths from the site origin', () => {
-  assert.equal(absoluteUrl('/jobs'), 'https://bbenoit.fr/jobs')
-  assert.equal(absoluteUrl('/#offres'), 'https://bbenoit.fr/#offres')
+  assert.equal(absoluteUrl('/jobs'), 'https://www.bbenoit.fr/jobs')
+  assert.equal(absoluteUrl('/#offres'), 'https://www.bbenoit.fr/#offres')
 })
 
 test('buildPageMetadata keeps page title concise and brands social titles', () => {
@@ -55,7 +55,7 @@ test('createServiceJsonLd describes a service page', () => {
   assert.equal(service['@type'], 'Service')
   assert.equal(
     service.url,
-    'https://bbenoit.fr/services/creation-site-web-lyon',
+    'https://www.bbenoit.fr/services/creation-site-web-lyon',
   )
 })
 

@@ -4,7 +4,7 @@ export type JsonLdNode = Record<string, unknown>
 
 export const siteConfig = {
   name: 'Benoit Bruynbroeck',
-  url: 'https://bbenoit.fr',
+  url: 'https://www.bbenoit.fr',
   email: 'bruy.benoit@gmail.com',
   locale: 'fr_FR',
   language: 'fr-FR',
