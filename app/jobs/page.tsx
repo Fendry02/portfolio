@@ -5,7 +5,6 @@ import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
-import viko from '@/public/works/viko.jpg'
 import QClayMotion from '../components/qclay-motion'
 import JsonLd from '../components/json-ld'
 import {
@@ -107,7 +106,7 @@ type Role = {
 
 const roles: Role[] = [
   {
-    period: '2019 — now',
+    period: '2019 - now',
     company: 'CitizenPlane',
     title: 'Tech Lead JavaScript',
     summary:
@@ -122,7 +121,7 @@ const roles: Role[] = [
     image: citizenplane,
   },
   {
-    period: '2020 — now',
+    period: '2020 - now',
     company: 'OpenClassrooms',
     title: 'Mentor & Reviewer',
     summary:
@@ -137,18 +136,7 @@ const roles: Role[] = [
     image: openclassrooms,
   },
   {
-    period: 'Freelance',
-    company: 'Chez Viko',
-    title: 'Website Project',
-    summary:
-      'Public website project for Chez Viko, from implementation to online presence.',
-    highlights: [],
-    stack: [],
-    href: 'https://chezviko.fr',
-    image: viko,
-  },
-  {
-    period: '2017 — 2019',
+    period: '2017 - 2019',
     company: 'Business & Decision',
     title: 'CRM Consultant',
     summary:
@@ -163,7 +151,7 @@ const roles: Role[] = [
     image: businessDecision,
   },
   {
-    period: '2016 — 2017',
+    period: '2016 - 2017',
     company: 'PrixLibre',
     title: 'Junior Developer',
     summary:
@@ -175,7 +163,7 @@ const roles: Role[] = [
     stack: ['PHP', 'AngularJS', 'MySQL'],
   },
   {
-    period: '2011 — 2016',
+    period: '2011 - 2016',
     company: 'ESIEE Amiens',
     title: 'Computer Science Engineer',
     summary:
@@ -188,11 +176,11 @@ const roles: Role[] = [
 const aiPractices = [
   {
     title: 'Pair programming, every day',
-    text: 'Claude Code, Cursor and Copilot are part of my daily workflow — for scaffolding, refactoring, exploring unfamiliar codebases and reviewing my own work.',
+    text: 'Claude Code, Cursor and Copilot are part of my daily workflow. I use them for scaffolding, refactoring, exploring unfamiliar codebases and reviewing my own work.',
   },
   {
     title: 'Shipping AI features in production',
-    text: 'Hands-on with the OpenAI and Anthropic SDKs: prompt engineering, function calling, RAG pipelines and agentic patterns — built for real users, not just demos.',
+    text: 'Hands-on with the OpenAI and Anthropic SDKs: prompt engineering, function calling, RAG pipelines and agentic patterns, built for real users, not just demos.',
   },
   {
     title: 'Quality goes up, not down',
@@ -200,7 +188,7 @@ const aiPractices = [
   },
   {
     title: 'Staying current is the job',
-    text: 'I track new models, tools and protocols — MCP, agentic workflows, eval frameworks — so the teams I work with always have the right tool for the right problem.',
+    text: 'I track new models, tools and protocols, including MCP, agentic workflows and eval frameworks, so the teams I work with always have the right tool for the right problem.',
   },
 ]
 
@@ -215,7 +203,7 @@ const principles = [
   },
   {
     title: 'Built to grow',
-    text: 'Architecture decisions should support load, new features and team growth — without rewriting the foundations every year.',
+    text: 'Architecture decisions should support load, new features and team growth, without rewriting the foundations every year.',
   },
 ]
 
@@ -254,8 +242,8 @@ export default function Jobs() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
-              I turn complex product ideas into scalable web platforms — from
-              the database up to the interface. I care about clean code, sane
+              I turn complex product ideas into scalable web platforms, from the
+              database up to the interface. I care about clean code, sane
               architecture and shipping things that actually get used.
             </p>
 
@@ -339,8 +327,7 @@ export default function Jobs() {
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
-                  <span className="status-dot" aria-hidden="true" />
-                  AI-augmented · 2024 →
+                  AI-augmented workflow
                 </div>
 
                 <h2
@@ -378,22 +365,17 @@ export default function Jobs() {
               </div>
 
               <ol className="grid gap-2">
-                {aiPractices.map((p, i) => (
+                {aiPractices.map((p) => (
                   <li
                     key={p.title}
-                    className="qclay-ai-step flex gap-4 rounded-lg border border-white/10 p-4"
+                    className="qclay-ai-step rounded-lg border border-white/10 p-4"
                   >
-                    <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/15 font-mono text-[10px] font-semibold text-white/60">
-                      0{i + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-base font-semibold leading-tight tracking-tight">
-                        {p.title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-6 text-white/65">
-                        {p.text}
-                      </p>
-                    </div>
+                    <h3 className="text-base font-semibold leading-tight tracking-tight">
+                      {p.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-6 text-white/65">
+                      {p.text}
+                    </p>
                   </li>
                 ))}
               </ol>
@@ -421,23 +403,15 @@ export default function Jobs() {
               </p>
             </div>
 
-            <ol className="grid gap-3">
-              {principles.map((p, i) => (
-                <li
-                  key={p.title}
-                  className="qclay-subtle-card flex gap-5 rounded-xl border border-base-300 bg-base-100 p-5"
-                >
-                  <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-base-300 font-mono text-[10px] font-semibold text-base-content/55">
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-6 text-base-content/65">
-                      {p.text}
-                    </p>
-                  </div>
+            <ol className="border-t border-base-300">
+              {principles.map((p) => (
+                <li key={p.title} className="border-b border-base-300 py-6">
+                  <h3 className="text-base font-semibold tracking-tight">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-base-content/65">
+                    {p.text}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -459,11 +433,11 @@ export default function Jobs() {
             </h2>
           </div>
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          <div className="mt-10 grid divide-y divide-base-300 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
             {skills.map((group) => (
               <article
                 key={group.title}
-                className="qclay-subtle-card flex flex-col rounded-xl border border-base-300 bg-base-100 p-6"
+                className="flex flex-col py-8 lg:px-8 lg:first:pl-0 lg:last:pr-0"
               >
                 <p className={eyebrow}>{group.title}</p>
                 <p className="mt-2.5 text-sm leading-6 text-base-content/65">
@@ -615,7 +589,7 @@ export default function Jobs() {
 
           <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">
             <a href="mailto:bruy.benoit@gmail.com" className={btnBlue}>
-              Email me
+              Get in touch
               <span aria-hidden="true">→</span>
             </a>
             <a

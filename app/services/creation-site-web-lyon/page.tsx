@@ -162,7 +162,7 @@ export default function WebsiteCreationLyonPage() {
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/#contact" className={btnBlue}>
-                Parler de mon site
+                Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </Link>
               <Link href="/#offres" className={btnGhost}>
@@ -221,8 +221,7 @@ export default function WebsiteCreationLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
-            <p className={eyebrow}>Le vrai enjeu</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+            <h2 className={sectionTitle}>
               Un site web ne sert pas seulement à exister en ligne.
             </h2>
           </div>
@@ -281,31 +280,25 @@ export default function WebsiteCreationLyonPage() {
       </section>
 
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
-        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
-          <div>
-            <p className={eyebrow}>Méthode</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-2xl">
+            <h2 className={sectionTitle}>
               Un accompagnement simple, du cadrage à la mise en ligne.
             </h2>
           </div>
 
-          <ol className="grid gap-4">
-            {processSteps.map((step, index) => (
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2">
+            {processSteps.map((step) => (
               <li
                 key={step.title}
-                className="qclay-subtle-card grid gap-4 rounded-xl border border-base-300 bg-base-100 p-5 sm:grid-cols-[56px_1fr]"
+                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
               >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-base-300 font-mono text-xs font-semibold text-base-content/55">
-                  0{index + 1}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold tracking-tight">
-                    {step.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-base-content/65">
-                    {step.text}
-                  </p>
-                </div>
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-base-content/65">
+                  {step.text}
+                </p>
               </li>
             ))}
           </ol>
@@ -315,8 +308,7 @@ export default function WebsiteCreationLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
           <div>
-            <p className={eyebrow}>Pour qui</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+            <h2 className={sectionTitle}>
               Une approche utile pour les activités qui doivent inspirer
               confiance vite.
             </h2>
@@ -324,19 +316,32 @@ export default function WebsiteCreationLyonPage() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              'Cabinets, professions libérales et indépendants',
-              'Artisans et entreprises locales',
-              'Restaurants, lieux et activités de proximité',
-              'PME qui veulent clarifier une offre ou un service',
+              {
+                title: 'Cabinets, professions libérales et indépendants',
+                text: 'Rassurer avant un premier rendez-vous, avec une offre claire, des preuves visibles et un contact simple.',
+              },
+              {
+                title: 'Artisans et entreprises locales',
+                text: 'Être trouvé sur votre zone d’intervention et déclencher des demandes de devis plus qualifiées.',
+              },
+              {
+                title: 'Restaurants, lieux et activités de proximité',
+                text: 'Donner envie dès les premières secondes et rendre les infos pratiques immédiates.',
+              },
+              {
+                title: 'PME qui veulent clarifier une offre ou un service',
+                text: 'Clarifier votre proposition pour appuyer la prospection et faciliter les premiers échanges commerciaux.',
+              },
             ].map((item) => (
               <div
-                key={item}
+                key={item.title}
                 className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
               >
-                <p className="text-base font-semibold tracking-tight">{item}</p>
+                <p className="text-base font-semibold tracking-tight">
+                  {item.title}
+                </p>
                 <p className="mt-2 text-sm leading-6 text-base-content/60">
-                  Objectif&nbsp;: être compris rapidement, rassurer et
-                  déclencher une demande qualifiée.
+                  {item.text}
                 </p>
               </div>
             ))}
@@ -347,8 +352,7 @@ export default function WebsiteCreationLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
-            <p className={eyebrow}>Questions fréquentes</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+            <h2 className={sectionTitle}>
               Les points à clarifier avant de lancer un site.
             </h2>
           </div>
@@ -371,7 +375,6 @@ export default function WebsiteCreationLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
           <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-            <span className="status-dot" aria-hidden="true" />
             Réponse sous 24h ouvrées
           </div>
           <h2 className={`mt-5 ${sectionTitle}`}>
@@ -387,9 +390,6 @@ export default function WebsiteCreationLyonPage() {
               Discuter de mon projet
               <span aria-hidden="true">→</span>
             </Link>
-            <a href="mailto:bruy.benoit@gmail.com" className={btnGhost}>
-              Envoyer un email
-            </a>
           </div>
         </div>
       </section>
