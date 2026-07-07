@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { MapPinIcon } from '@phosphor-icons/react/dist/ssr'
 
 import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
@@ -11,6 +12,7 @@ import viko from '@/public/works/viko.jpg'
 import QClayMotion from './components/qclay-motion'
 import OffersAccordion from './components/offers-accordion'
 import ContactForm from './components/contact-form'
+import CaseStudies from './components/case-studies'
 import RevealWords from './components/reveal-words'
 import type { WordSegment } from './components/reveal-words'
 import JsonLd from './components/json-ld'
@@ -24,7 +26,7 @@ import {
 
 type Offer = {
   accent: string
-  emoji: string
+  icon: 'website' | 'app' | 'automation' | 'training'
   title: string
   desc: string
   detail: string
@@ -35,7 +37,7 @@ type Offer = {
 const offers: Offer[] = [
   {
     accent: '#2563eb',
-    emoji: '🌐',
+    icon: 'website',
     title: 'Site web vitrine',
     desc: 'Une présence en ligne claire et rapide qui inspire confiance et déclenche la prise de contact.',
     detail:
@@ -53,7 +55,7 @@ const offers: Offer[] = [
   },
   {
     accent: '#2563eb',
-    emoji: '📱',
+    icon: 'app',
     title: 'Application web et mobile',
     desc: 'Un outil sur mesure, web et mobile, conçu pour répondre à un besoin métier spécifique et s’intégrer à votre activité.',
     detail:
@@ -71,7 +73,7 @@ const offers: Offer[] = [
   },
   {
     accent: '#2563eb',
-    emoji: '🤖',
+    icon: 'automation',
     title: 'Audit et automatisation IA',
     desc: 'J’identifie où l’IA crée de la valeur concrète dans vos process, puis j’automatise vos tâches répétitives pour vous faire gagner du temps.',
     detail:
@@ -89,7 +91,7 @@ const offers: Offer[] = [
   },
   {
     accent: '#2563eb',
-    emoji: '🎓',
+    icon: 'training',
     title: 'Formation IA',
     desc: 'Je forme vos équipes à utiliser l’IA au quotidien, concrètement et sans jargon.',
     detail:
@@ -181,7 +183,7 @@ const homeJsonLd = createJsonLdGraph([
 const eyebrow =
   'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
 const sectionTitle =
-  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+  'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'
 const accent = '#2563eb'
 const btnBlue =
@@ -190,17 +192,11 @@ const btnBlue =
 const heroHeadline: readonly WordSegment[] = [
   { text: 'Des' },
   { text: 'sites' },
-  { text: 'et' },
-  { text: 'des' },
-  { text: 'produits' },
   { text: 'web' },
+  { text: 'et' },
+  { text: 'apps' },
   { text: 'qui' },
-  { text: 'vendent,', accent: true },
-  { text: 'développés' },
-  { text: 'par' },
-  { text: 'un' },
-  { text: 'seul' },
-  { text: 'interlocuteur.' },
+  { text: 'vendent.', accent: true },
 ]
 
 const contactHeading: readonly WordSegment[] = [
@@ -226,7 +222,7 @@ export default function Home() {
           <div className="qclay-reveal-stack qclay-reveal-stack--hero flex flex-col justify-center">
             <h1
               id="hero-heading"
-              className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="font-display text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               <RevealWords segments={heroHeadline} />
             </h1>
@@ -246,7 +242,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right-hand portrait — clean, no decoration */}
+          {/* Right-hand portrait, clean and restrained */}
           <div className="qclay-portrait-wrap relative mx-auto flex w-full max-w-xs flex-col items-center sm:max-w-md lg:max-w-none lg:self-start">
             <div className="qclay-orbit hidden lg:block" aria-hidden="true" />
             <div
@@ -264,15 +260,13 @@ export default function Home() {
               />
 
               <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
-                <svg
+                <MapPinIcon
                   aria-hidden="true"
-                  viewBox="0 0 16 16"
-                  className="h-3 w-3"
-                  style={{ color: accent }}
-                  fill="currentColor"
-                >
-                  <path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.05 7.92 4.22 8.12a.36.36 0 0 0 .56 0C8.45 13.92 12.5 9.2 12.5 6A4.5 4.5 0 0 0 8 1.5Zm0 6.25A1.75 1.75 0 1 1 8 4.25a1.75 1.75 0 0 1 0 3.5Z" />
-                </svg>
+                  size={12}
+                  weight="regular"
+                  strokeWidth={1.5}
+                  color={accent}
+                />
                 Lyon · France
               </div>
             </div>
@@ -351,7 +345,7 @@ export default function Home() {
 
           <div className="mt-8 rounded-xl border border-base-300 bg-base-100 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6">
             <div>
-              <h2 className="text-lg font-semibold tracking-tight">
+              <h2 className="font-display text-lg font-semibold tracking-tight">
                 Création de site web à Lyon
               </h2>
               <p className="mt-1.5 text-sm leading-6 text-base-content/60">
@@ -370,6 +364,8 @@ export default function Home() {
         </div>
       </section>
 
+      <CaseStudies />
+
       {/* ──────────────────── SIMPLE CONTACT CTA ──────────────────── */}
       <section
         id="contact"
@@ -378,7 +374,6 @@ export default function Home() {
       >
         <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
           <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-            <span className="status-dot" aria-hidden="true" />
             Réponse sous 24h ouvrées
           </div>
 
@@ -388,7 +383,7 @@ export default function Home() {
 
           <p className={`mt-4 max-w-xl ${bodyText}`}>
             Quelques lignes sur votre activité, votre objectif et vos
-            contraintes — je vous réponds avec une première lecture, sans
+            contraintes, je vous réponds avec une première lecture, sans
             engagement.
           </p>
 

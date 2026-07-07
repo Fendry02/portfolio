@@ -1,7 +1,7 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
-import { Caveat } from 'next/font/google'
+import { Caveat, Geist } from 'next/font/google'
 
 import './styles/global.css'
 
@@ -25,13 +25,23 @@ const handwriting = Caveat({
   display: 'swap',
 })
 
+const display = Geist({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" data-theme="corporate" className={handwriting.variable}>
+    <html
+      lang="fr"
+      data-theme="corporate"
+      className={`${handwriting.variable} ${display.variable}`}
+    >
       <body>
         <JsonLd
           data={createJsonLdGraph([

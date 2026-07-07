@@ -1,17 +1,31 @@
 'use client'
 
+import {
+  DeviceMobile,
+  GlobeHemisphereWest,
+  GraduationCap,
+  Robot,
+  type Icon,
+} from '@phosphor-icons/react'
 import { useState } from 'react'
 
-import { OFFER_VISUALS } from './offer-visuals'
+type OfferIcon = 'website' | 'app' | 'automation' | 'training'
 
 type Offer = {
   accent: string
-  emoji: string
+  icon: OfferIcon
   title: string
   desc: string
   detail: string
   bullets: string[]
   examples: string[]
+}
+
+const offerIcons: Record<OfferIcon, Icon> = {
+  website: GlobeHemisphereWest,
+  app: DeviceMobile,
+  automation: Robot,
+  training: GraduationCap,
 }
 
 export default function OffersAccordion({ offers }: { offers: Offer[] }) {
@@ -22,7 +36,7 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
       {offers.map((offer, index) => {
         const isOpen = openIndex === index
         const panelId = `offer-panel-${index}`
-        const Visual = OFFER_VISUALS[index]
+        const Icon = offerIcons[offer.icon]
         return (
           <div
             key={offer.title}
@@ -45,12 +59,17 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
             >
               <span
                 aria-hidden="true"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14 sm:text-3xl"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-[#2563eb] transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
                 style={{
                   backgroundColor: `color-mix(in oklch, ${offer.accent} 14%, transparent)`,
                 }}
               >
-                {offer.emoji}
+                <Icon
+                  size={30}
+                  weight="regular"
+                  strokeWidth={1.5}
+                  color="currentColor"
+                />
               </span>
               <span className="flex-1">
                 <span
@@ -83,15 +102,6 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
             >
               <div className="overflow-hidden">
                 <div className="px-6 pb-7 sm:px-7">
-                  {Visual && (
-                    <div
-                      aria-hidden="true"
-                      className="qov-frame mb-5 flex items-center justify-center rounded-xl border border-base-300/70 py-5"
-                      style={{ color: offer.accent }}
-                    >
-                      <Visual />
-                    </div>
-                  )}
                   <div className="hairline mb-5" />
                   <p className="max-w-2xl text-base leading-7 text-base-content/70 sm:text-lg sm:leading-8">
                     {offer.detail}
@@ -138,11 +148,11 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
                     </div>
                   )}
                   <a
-                    href="mailto:bruy.benoit@gmail.com"
+                    href="#contact"
                     className="interactive mt-6 inline-flex items-center gap-1.5 text-sm font-medium"
                     style={{ color: offer.accent }}
                   >
-                    En parler
+                    Discuter de mon projet
                     <span aria-hidden="true">→</span>
                   </a>
                 </div>

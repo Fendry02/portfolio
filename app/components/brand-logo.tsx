@@ -23,7 +23,7 @@ export default function BrandLogo({
     <Link
       href="/#home"
       className={`brand-logo inline-flex items-baseline leading-none ${className}`}
-      aria-label="Benoit Bruynbroeck — retour à l'accueil"
+      aria-label="Benoit Bruynbroeck - retour à l'accueil"
     >
       <span
         className={`brand-logo-mark font-[family-name:var(--font-handwriting)] font-bold tracking-tight ${sizeClass[size]} ${textColor}`}

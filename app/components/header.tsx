@@ -19,7 +19,12 @@ const navItems: NavItem[] = [
   { label: 'Accueil', href: '/', key: 'home' },
   { label: 'Services', href: websiteCreationPath, key: 'services' },
   { label: 'Parcours', href: '/jobs', key: 'jobs' },
-  { label: 'Contact', href: '/#contact', key: 'contact', primary: true },
+  {
+    label: 'Discuter de mon projet',
+    href: '/#contact',
+    key: 'contact',
+    primary: true,
+  },
 ]
 
 export default function Header() {

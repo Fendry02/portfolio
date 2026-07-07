@@ -11,17 +11,17 @@ const socials = [
   {
     href: 'https://github.com/Fendry02',
     src: github,
-    alt: 'GitHub — Benoit Bruynbroeck',
+    alt: 'GitHub - Benoit Bruynbroeck',
   },
   {
     href: 'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
     src: linkedin,
-    alt: 'LinkedIn — Benoit Bruynbroeck',
+    alt: 'LinkedIn - Benoit Bruynbroeck',
   },
   {
     href: 'https://www.facebook.com/benoit.bruynbroeck/',
     src: facebook,
-    alt: 'Facebook — Benoit Bruynbroeck',
+    alt: 'Facebook - Benoit Bruynbroeck',
   },
 ]
 

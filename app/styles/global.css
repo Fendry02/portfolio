@@ -39,6 +39,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.font-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
 /* Native <button> defaults to cursor:default; make every clickable control
    read as clickable. Disabled controls keep their not-allowed/default cursor. */
 button:not(:disabled),
