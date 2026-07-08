@@ -13,7 +13,8 @@ export const metadata = buildPageMetadata({
   path: pagePath,
 })
 
-const heading = 'font-display text-xl font-semibold tracking-tight text-base-content'
+const heading =
+  'font-display text-xl font-semibold tracking-tight text-base-content'
 const body = 'text-base leading-7 text-base-content/70'
 
 export default function ConfidentialitePage() {
@@ -90,8 +91,8 @@ export default function ConfidentialitePage() {
           <p className={body}>
             Ce site utilise Google Analytics et Vercel Analytics pour mesurer sa
             fréquentation et améliorer son contenu. Ces outils peuvent déposer
-            des cookies ou identifiants de mesure. Vous pouvez vous y opposer via
-            les réglages de votre navigateur.
+            des cookies ou identifiants de mesure. Vous pouvez vous y opposer
+            via les réglages de votre navigateur.
           </p>
         </section>
 

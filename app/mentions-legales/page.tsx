@@ -13,7 +13,8 @@ export const metadata = buildPageMetadata({
   path: pagePath,
 })
 
-const heading = 'font-display text-xl font-semibold tracking-tight text-base-content'
+const heading =
+  'font-display text-xl font-semibold tracking-tight text-base-content'
 const body = 'text-base leading-7 text-base-content/70'
 const term = 'font-medium text-base-content'
 
@@ -86,11 +87,11 @@ export default function MentionsLegalesPage() {
           <h2 className={heading}>Propriété intellectuelle</h2>
           <p className={body}>
             L’ensemble des contenus présents sur ce site (textes, images, mise
-            en page, code) est protégé par le droit d’auteur. Toute
-            reproduction ou réutilisation sans autorisation préalable est
-            interdite. Les marques, logos et captures de sites clients restent
-            la propriété de leurs titulaires respectifs et sont utilisés à
-            titre d’illustration avec leur accord.
+            en page, code) est protégé par le droit d’auteur. Toute reproduction
+            ou réutilisation sans autorisation préalable est interdite. Les
+            marques, logos et captures de sites clients restent la propriété de
+            leurs titulaires respectifs et sont utilisés à titre d’illustration
+            avec leur accord.
           </p>
         </section>
 

@@ -9,8 +9,11 @@ import {
   buildHtml,
 } from '@/app/lib/contact'
 
-const FROM = 'onboarding@resend.dev'
-const TO = 'bruy.benoit@gmail.com'
+// Sender must be an address on a domain verified in Resend. Set CONTACT_FROM
+// (e.g. contact@bbenoit.fr) in the environment once the domain is verified;
+// until then it falls back to Resend's shared test sender.
+const FROM = process.env.CONTACT_FROM ?? 'onboarding@resend.dev'
+const TO = process.env.CONTACT_TO ?? 'bruy.benoit@gmail.com'
 
 type FieldKey = 'name' | 'email' | 'projectType' | 'message'
 
