@@ -338,7 +338,7 @@ export default function Home() {
         aria-label="Mes offres"
         className="qclay-section qclay-scroll-reveal cv-auto py-20 lg:py-28"
       >
-        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+        <div className="qclay-reveal-grid mx-auto max-w-6xl px-6 lg:px-10">
           <p className={eyebrow}>Mes offres</p>
 
           <OffersAccordion offers={offers} />

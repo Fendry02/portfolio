@@ -261,7 +261,7 @@ export default function WebsiteCreationLyonPage() {
             </h2>
           </div>
 
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="qclay-reveal-grid mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => (
               <li
                 key={item}
@@ -287,7 +287,7 @@ export default function WebsiteCreationLyonPage() {
             </h2>
           </div>
 
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2">
+          <ol className="qclay-reveal-grid mt-10 grid gap-4 sm:grid-cols-2">
             {processSteps.map((step) => (
               <li
                 key={step.title}
@@ -314,7 +314,7 @@ export default function WebsiteCreationLyonPage() {
             </h2>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="qclay-reveal-grid grid gap-4 sm:grid-cols-2">
             {[
               {
                 title: 'Cabinets, professions libérales et indépendants',
@@ -357,7 +357,7 @@ export default function WebsiteCreationLyonPage() {
             </h2>
           </div>
 
-          <div className="divide-y divide-base-300 border-y border-base-300">
+          <div className="qclay-reveal-grid divide-y divide-base-300 border-y border-base-300">
             {faqItems.map((item) => (
               <article key={item.question} className="py-6">
                 <h3 className="text-lg font-semibold tracking-tight">

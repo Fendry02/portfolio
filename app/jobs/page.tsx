@@ -364,7 +364,7 @@ export default function Jobs() {
                 </div>
               </div>
 
-              <ol className="grid gap-2">
+              <ol className="qclay-reveal-grid grid gap-2">
                 {aiPractices.map((p) => (
                   <li
                     key={p.title}
@@ -403,7 +403,7 @@ export default function Jobs() {
               </p>
             </div>
 
-            <ol className="border-t border-base-300">
+            <ol className="qclay-reveal-grid border-t border-base-300">
               {principles.map((p) => (
                 <li key={p.title} className="border-b border-base-300 py-6">
                   <h3 className="text-base font-semibold tracking-tight">
@@ -433,7 +433,7 @@ export default function Jobs() {
             </h2>
           </div>
 
-          <div className="mt-10 grid divide-y divide-base-300 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          <div className="qclay-reveal-grid mt-10 grid divide-y divide-base-300 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
             {skills.map((group) => (
               <article
                 key={group.title}
@@ -479,7 +479,7 @@ export default function Jobs() {
             </h2>
           </div>
 
-          <ol className="mt-10 space-y-3">
+          <ol className="qclay-reveal-grid mt-10 space-y-3">
             {roles.map((role) => (
               <li key={`${role.period}-${role.company}`}>
                 <article className="qclay-subtle-card group relative grid gap-5 rounded-xl border border-base-300 bg-base-100 p-5 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">

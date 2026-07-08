@@ -96,7 +96,10 @@ export default function CaseStudies() {
           </p>
         </div>
 
-        <article className={`mt-10 ${cardClass}`}>
+        <article
+          className={`qclay-reveal-item mt-10 ${cardClass}`}
+          style={{ '--qclay-reveal-i': 0 } as React.CSSProperties}
+        >
           <figure className="grid gap-2 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center">
             <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-base-300 bg-base-200">
               <Image
@@ -125,8 +128,12 @@ export default function CaseStudies() {
         </article>
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {compactCases.map((caseStudy) => (
-            <article key={caseStudy.title} className={cardClass}>
+          {compactCases.map((caseStudy, index) => (
+            <article
+              key={caseStudy.title}
+              className={`qclay-reveal-item ${cardClass}`}
+              style={{ '--qclay-reveal-i': index + 1 } as React.CSSProperties}
+            >
               <figure className="flex h-full flex-col">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-base-300 bg-base-200">
                   <Image
@@ -158,7 +165,8 @@ export default function CaseStudies() {
 
         <aside
           aria-labelledby="testimonials-heading"
-          className="mt-6 rounded-2xl border border-base-300 bg-base-200 p-5 sm:p-6"
+          className="qclay-reveal-item mt-6 rounded-2xl border border-base-300 bg-base-200 p-5 sm:p-6"
+          style={{ '--qclay-reveal-i': 3 } as React.CSSProperties}
         >
           <h3
             id="testimonials-heading"

@@ -784,6 +784,66 @@
   animation: qclay-scroll-rise 820ms var(--ease-qclay) both;
 }
 
+/* ── Staggered arrival: direct items rise one-by-one when their section
+      enters. Index is passed inline via --qclay-reveal-i. ─────────────── */
+.qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-item {
+  opacity: 0;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-item {
+  animation: qclay-reveal 720ms var(--ease-qclay) both;
+  animation-delay: calc(140ms + var(--qclay-reveal-i, 0) * 110ms);
+}
+
+/* ── Auto-staggered grid: direct children rise in sequence when their
+      section enters. Add the class to a grid/list container; indices are
+      resolved via :nth-child, so no inline index is needed. ──────────── */
+.qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-grid > * {
+  opacity: 0;
+}
+
+.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-grid > * {
+  animation: qclay-reveal 640ms var(--ease-qclay) both;
+  animation-delay: calc(120ms + var(--qclay-reveal-i, 0) * 80ms);
+}
+
+.qclay-reveal-grid > :nth-child(1) {
+  --qclay-reveal-i: 0;
+}
+.qclay-reveal-grid > :nth-child(2) {
+  --qclay-reveal-i: 1;
+}
+.qclay-reveal-grid > :nth-child(3) {
+  --qclay-reveal-i: 2;
+}
+.qclay-reveal-grid > :nth-child(4) {
+  --qclay-reveal-i: 3;
+}
+.qclay-reveal-grid > :nth-child(5) {
+  --qclay-reveal-i: 4;
+}
+.qclay-reveal-grid > :nth-child(6) {
+  --qclay-reveal-i: 5;
+}
+.qclay-reveal-grid > :nth-child(7) {
+  --qclay-reveal-i: 6;
+}
+.qclay-reveal-grid > :nth-child(8) {
+  --qclay-reveal-i: 7;
+}
+.qclay-reveal-grid > :nth-child(9) {
+  --qclay-reveal-i: 8;
+}
+.qclay-reveal-grid > :nth-child(10) {
+  --qclay-reveal-i: 9;
+}
+.qclay-reveal-grid > :nth-child(11) {
+  --qclay-reveal-i: 10;
+}
+.qclay-reveal-grid > :nth-child(12) {
+  --qclay-reveal-i: 11;
+}
+
 /* ── AI-augmented card: one-pass light sweep + staggered step reveal ── */
 @keyframes qclay-ai-sheen {
   0% {
@@ -916,6 +976,8 @@
   .qclay-ai-card::after,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-step,
+  .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-item,
+  .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-grid > *,
   .qclay-motion-ready .qclay-scroll-reveal.is-visible,
   .qclay-offer.is-open .qov-shape,
   .qclay-spinner,
@@ -946,6 +1008,8 @@
   .qclay-logo-row > a,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal .qclay-ai-step,
+  .qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-item,
+  .qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-grid > *,
   .qclay-motion-ready .qclay-scroll-reveal,
   .qov-shape {
     opacity: 1;
