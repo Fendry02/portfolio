@@ -13,6 +13,7 @@ import QClayMotion from './components/qclay-motion'
 import OffersAccordion from './components/offers-accordion'
 import ContactForm from './components/contact-form'
 import CaseStudies from './components/case-studies'
+import Testimonials from './components/testimonials'
 import RevealWords from './components/reveal-words'
 import type { WordSegment } from './components/reveal-words'
 import JsonLd from './components/json-ld'
@@ -365,6 +366,8 @@ export default function Home() {
       </section>
 
       <CaseStudies />
+
+      <Testimonials />
 
       {/* ──────────────────── SIMPLE CONTACT CTA ──────────────────── */}
       <section

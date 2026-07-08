@@ -13,13 +13,6 @@ type CaseStudy = {
   result: string
 }
 
-type Testimonial = {
-  quote: string
-  name: string
-  role: string
-  company: string
-}
-
 const featuredCase: CaseStudy = {
   title: 'Petit Nid',
   scope: 'Projet fondateur, application mobile de suivi bébé',
@@ -53,23 +46,6 @@ const compactCases: CaseStudy[] = [
       "Une pizzeria lyonnaise qui avait besoin d'une adresse crédible en ligne, facile à découvrir avant de réserver une table.",
     result:
       'Résultat concret: carte, horaires et itinéraire accessibles en quelques secondes, et une image qui donne envie de pousser la porte.',
-  },
-]
-
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      'Le site nous donne une image plus professionnelle et facilite les premiers échanges avec les clients.',
-    name: 'Thibaut Cuny',
-    role: 'Gérant',
-    company: 'Electreau Lyon',
-  },
-  {
-    quote:
-      'Benoit a cadré le besoin rapidement, puis livré une solution claire et facile à gérer.',
-    name: 'Victor',
-    role: 'Gérant',
-    company: 'Chez Viko',
   },
 ]
 
@@ -162,39 +138,6 @@ export default function CaseStudies() {
             </article>
           ))}
         </div>
-
-        <aside
-          aria-labelledby="testimonials-heading"
-          className="qclay-reveal-item mt-6 rounded-2xl border border-base-300 bg-base-200 p-5 sm:p-6"
-          style={{ '--qclay-reveal-i': 3 } as React.CSSProperties}
-        >
-          <h3
-            id="testimonials-heading"
-            className="font-display text-xl font-semibold tracking-tight text-base-content"
-          >
-            Témoignages
-          </h3>
-          <div className="mt-5 grid gap-4 md:grid-cols-2">
-            {testimonials.map((testimonial) => (
-              <figure
-                key={`${testimonial.name}-${testimonial.company}`}
-                className="flex h-full flex-col rounded-lg border border-base-300 bg-base-100 p-5"
-              >
-                <blockquote className="text-sm leading-6 text-base-content/75">
-                  “{testimonial.quote}”
-                </blockquote>
-                <figcaption className="mt-auto pt-4 text-sm">
-                  <span className="font-semibold text-base-content">
-                    {testimonial.name}
-                  </span>
-                  <span className="block text-base-content/55">
-                    {testimonial.role}, {testimonial.company}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </aside>
       </div>
     </section>
   )
