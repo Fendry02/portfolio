@@ -132,7 +132,7 @@ const pageJsonLd = createJsonLdGraph([
 ])
 
 const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
+  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const sectionTitle =
   'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'

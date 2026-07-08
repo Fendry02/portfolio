@@ -22,7 +22,10 @@ import {
   createBreadcrumbJsonLd,
   createJsonLdGraph,
   createWebPageJsonLd,
+  personJsonLd,
+  professionalServiceJsonLd,
   serviceRoutes,
+  websiteJsonLd,
 } from './lib/seo'
 
 type Offer = {
@@ -172,6 +175,9 @@ export const metadata = buildPageMetadata({
 })
 
 const homeJsonLd = createJsonLdGraph([
+  personJsonLd,
+  websiteJsonLd,
+  professionalServiceJsonLd,
   createWebPageJsonLd({
     path: '/',
     name: homeTitle,
@@ -182,7 +188,7 @@ const homeJsonLd = createJsonLdGraph([
 
 /* ─── Shared typography tokens (kept consistent across sections) ───────── */
 const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
+  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const sectionTitle =
   'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'
@@ -280,7 +286,7 @@ export default function Home() {
                 10
                 <span className="align-top text-xl">+</span>
               </dd>
-              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/55">
+              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/65">
                 ans
                 <br />
                 d&apos;expérience
@@ -393,7 +399,7 @@ export default function Home() {
           <div className="mt-8 w-full max-w-xl">
             <ContactForm />
 
-            <p className="mt-6 text-center text-sm text-base-content/55">
+            <p className="mt-6 text-center text-sm text-base-content/65">
               Vous préférez l’email&nbsp;?{' '}
               <a
                 href="mailto:bruy.benoit@gmail.com"

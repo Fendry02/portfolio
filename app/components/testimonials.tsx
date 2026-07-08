@@ -10,6 +10,8 @@ type Testimonial = {
   company: string
   logo: StaticImageData
   logoAlt: string
+  siteHref: string
+  siteLabel: string
 }
 
 const accent = '#2563eb'
@@ -23,6 +25,8 @@ const testimonials: Testimonial[] = [
     company: 'Electreau Lyon',
     logo: electreauLogo,
     logoAlt: 'Logo Electreau Lyon',
+    siteHref: 'https://www.electreau-lyon.fr/',
+    siteLabel: 'electreau-lyon.fr',
   },
   {
     quote:
@@ -32,6 +36,8 @@ const testimonials: Testimonial[] = [
     company: 'Chez Viko',
     logo: vikoLogo,
     logoAlt: 'Logo Chez Viko',
+    siteHref: 'https://chezviko.fr',
+    siteLabel: 'chezviko.fr',
   },
 ]
 
@@ -83,10 +89,20 @@ export default function Testimonials() {
                   <span className="block font-semibold text-base-content">
                     {testimonial.name}
                   </span>
-                  <span className="block text-base-content/55">
+                  <span className="block text-base-content/65">
                     {testimonial.role}, {testimonial.company}
                   </span>
                 </span>
+                <a
+                  href={testimonial.siteHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Voir le site de ${testimonial.company}`}
+                  className="interactive ml-auto inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#2563eb] hover:underline"
+                >
+                  {testimonial.siteLabel}
+                  <span aria-hidden="true">↗</span>
+                </a>
               </figcaption>
             </figure>
           ))}

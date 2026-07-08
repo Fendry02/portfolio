@@ -208,7 +208,7 @@ const principles = [
 ]
 
 const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55'
+  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const heading2 =
   'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const accent = '#2563eb'
@@ -235,7 +235,7 @@ export default function Jobs() {
               className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
-              <span className="text-base-content/55">
+              <span className="text-base-content/65">
                 JavaScript Tech Lead, full-stack developer and{' '}
                 <span style={{ color: accent }}>AI-augmented</span> builder.
               </span>
@@ -307,7 +307,7 @@ export default function Jobs() {
                 10
                 <span className="align-top text-xl">+</span>
               </dd>
-              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/55">
+              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/65">
                 years
                 <br />
                 experience
@@ -500,7 +500,7 @@ export default function Jobs() {
                         {role.company.slice(0, 2).toUpperCase()}
                       </div>
                     )}
-                    <time className="font-mono text-[11px] uppercase tracking-wider text-base-content/55">
+                    <time className="font-mono text-[11px] uppercase tracking-wider text-base-content/65">
                       {role.period}
                     </time>
                   </div>

@@ -10,7 +10,7 @@ const initialState: ContactState = { status: 'idle' }
 const fieldBase =
   'w-full rounded-lg border bg-base-100 px-4 py-3 text-sm text-base-content transition focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/25'
 const labelBase =
-  'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-base-content/55'
+  'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-base-content/65'
 
 function fieldClass(hasError: boolean): string {
   return `${fieldBase} ${hasError ? 'border-red-400' : 'border-base-300'}`
