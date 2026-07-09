@@ -71,7 +71,7 @@ export default function ConfidentialitePage() {
           <h2 className={heading}>Destinataires et sous-traitants</h2>
           <p className={body}>
             Vos messages sont reçus directement par {siteConfig.name}.
-            L’acheminement des emails est assuré par Resend, et l’hébergement du
+            L’acheminement des emails est assuré par Brevo, et l’hébergement du
             site par Vercel. Ces prestataires n’utilisent vos données que pour
             fournir leur service.
           </p>

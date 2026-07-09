@@ -1,19 +1,19 @@
 'use server'
 
-import { Resend } from 'resend'
-
 import {
   contactSchema,
   isLikelyBot,
   buildSubject,
   buildHtml,
 } from '@/app/lib/contact'
+import { siteConfig } from '@/app/lib/seo'
 
-// Sender must be an address on a domain verified in Resend. Set CONTACT_FROM
-// (e.g. contact@bbenoit.fr) in the environment once the domain is verified;
-// until then it falls back to Resend's shared test sender.
-const FROM = process.env.CONTACT_FROM ?? 'onboarding@resend.dev'
+// Sender must be a verified sender or authenticated domain in Brevo. Set
+// CONTACT_FROM (e.g. contact@bbenoit.fr) in the environment; it defaults to
+// the site owner's email, which can be verified in Brevo as a single sender.
+const FROM = process.env.CONTACT_FROM ?? siteConfig.email
 const TO = process.env.CONTACT_TO ?? 'bruy.benoit@gmail.com'
+const BREVO_ENDPOINT = 'https://api.brevo.com/v3/smtp/email'
 
 type FieldKey = 'name' | 'email' | 'projectType' | 'message'
 
@@ -55,9 +55,9 @@ export async function submitContact(
     }
   }
 
-  const apiKey = process.env.RESEND_API_KEY
+  const apiKey = process.env.BREVO_API_KEY
   if (!apiKey) {
-    console.error('[contact] RESEND_API_KEY is not set')
+    console.error('[contact] BREVO_API_KEY is not set')
     return {
       status: 'error',
       message:
@@ -66,17 +66,25 @@ export async function submitContact(
   }
 
   try {
-    const resend = new Resend(apiKey)
-    const { error } = await resend.emails.send({
-      from: FROM,
-      to: TO,
-      replyTo: parsed.data.email,
-      subject: buildSubject(parsed.data),
-      html: buildHtml(parsed.data),
+    const response = await fetch(BREVO_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+      body: JSON.stringify({
+        sender: { name: siteConfig.name, email: FROM },
+        to: [{ email: TO }],
+        replyTo: { email: parsed.data.email, name: parsed.data.name },
+        subject: buildSubject(parsed.data),
+        htmlContent: buildHtml(parsed.data),
+      }),
     })
 
-    if (error) {
-      console.error('[contact] Resend error', error)
+    if (!response.ok) {
+      const detail = await response.text()
+      console.error('[contact] Brevo error', response.status, detail)
       return {
         status: 'error',
         message: "L'envoi a échoué. Réessayez ou écrivez-moi par email.",
