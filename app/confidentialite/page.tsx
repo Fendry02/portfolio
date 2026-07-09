@@ -41,7 +41,7 @@ export default function ConfidentialitePage() {
             . Pour toute question relative à vos données, écrivez à{' '}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               {siteConfig.email}
             </a>
@@ -104,7 +104,7 @@ export default function ConfidentialitePage() {
             portabilité de vos données. Pour les exercer, écrivez à{' '}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               {siteConfig.email}
             </a>
@@ -114,7 +114,7 @@ export default function ConfidentialitePage() {
               href="https://www.cnil.fr"
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               cnil.fr
             </a>
@@ -129,7 +129,7 @@ export default function ConfidentialitePage() {
             disponibles sur la page{' '}
             <Link
               href="/mentions-legales"
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               mentions légales
             </Link>

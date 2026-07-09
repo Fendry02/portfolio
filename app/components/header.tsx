@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import BrandLogo from './brand-logo'
 
@@ -30,6 +30,18 @@ const navItems: NavItem[] = [
 export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const updateHeaderState = () => {
+      setIsScrolled(window.scrollY > 8)
+    }
+
+    updateHeaderState()
+    window.addEventListener('scroll', updateHeaderState, { passive: true })
+
+    return () => window.removeEventListener('scroll', updateHeaderState)
+  }, [])
 
   const activeKey =
     pathname === '/'
@@ -41,7 +53,7 @@ export default function Header() {
           : undefined
 
   return (
-    <header className="border-b border-base-300">
+    <header className={`qclay-site-header ${isScrolled ? 'is-scrolled' : ''}`}>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-10">
         <BrandLogo />
 
@@ -56,7 +68,7 @@ export default function Header() {
               aria-current={activeKey === item.key ? 'page' : undefined}
               className={
                 item.primary
-                  ? 'interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+                  ? 'interactive ml-1 inline-flex items-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
                   : 'interactive rounded-lg px-3 py-2 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content aria-[current=page]:bg-base-200 aria-[current=page]:text-base-content'
               }
             >
@@ -71,7 +83,7 @@ export default function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          className="interactive inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-base-300 bg-base-100 sm:hidden"
+          className="interactive inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-base-300 bg-base-100/80 sm:hidden"
         >
           <span className="sr-only">
             {menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -107,7 +119,7 @@ export default function Header() {
         id="mobile-navigation"
         aria-label="Navigation mobile"
         aria-hidden={!menuOpen}
-        className={`grid overflow-hidden border-t border-base-300 px-4 transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none sm:hidden ${
+        className={`qclay-mobile-nav grid overflow-hidden px-4 transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none sm:hidden ${
           menuOpen
             ? 'grid-rows-[1fr] translate-y-0 opacity-100'
             : 'pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0'
@@ -124,7 +136,7 @@ export default function Header() {
                 aria-current={activeKey === item.key ? 'page' : undefined}
                 className={
                   item.primary
-                    ? 'interactive mt-2 inline-flex items-center justify-center rounded-lg bg-[#2563eb] px-4 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+                    ? 'interactive mt-2 inline-flex items-center justify-center rounded-lg bg-[color:var(--brand-blue)] px-4 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
                     : 'interactive rounded-lg px-3 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content aria-[current=page]:bg-base-200 aria-[current=page]:text-base-content'
                 }
               >

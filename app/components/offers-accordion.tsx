@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  CaretDown,
   DeviceMobile,
   GlobeHemisphereWest,
   GraduationCap,
@@ -45,22 +46,18 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
               isOpen ? 'is-open border-base-content/15' : 'border-base-300'
             }`}
           >
-            <span
-              aria-hidden="true"
-              className="qclay-offer-bar absolute inset-y-0 left-0 w-[4px]"
-              style={{ backgroundColor: offer.accent }}
-            />
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? -1 : index)}
               aria-expanded={isOpen}
               aria-controls={panelId}
-              className="flex w-full items-center gap-4 px-6 py-6 text-left sm:gap-5 sm:px-7"
+              className="qclay-offer-trigger flex w-full items-start gap-4 px-6 py-6 text-left sm:gap-5 sm:px-7"
             >
               <span
                 aria-hidden="true"
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-[#2563eb] transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
+                className="qclay-offer-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-xl sm:h-14 sm:w-14"
                 style={{
+                  color: offer.accent,
                   backgroundColor: `color-mix(in oklch, ${offer.accent} 14%, transparent)`,
                 }}
               >
@@ -73,6 +70,16 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
               </span>
               <span className="flex-1">
                 <span
+                  className="mb-2 inline-flex rounded-md border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.14em]"
+                  style={{
+                    color: offer.accent,
+                    borderColor: `color-mix(in oklch, ${offer.accent} 22%, transparent)`,
+                    backgroundColor: `color-mix(in oklch, ${offer.accent} 7%, transparent)`,
+                  }}
+                >
+                  Offre {index + 1}
+                </span>
+                <span
                   className="block text-xl font-bold leading-tight tracking-tight sm:text-2xl"
                   style={{ color: offer.accent }}
                 >
@@ -84,20 +91,25 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
               </span>
               <span
                 aria-hidden="true"
-                className={`shrink-0 text-2xl leading-none transition-transform duration-300 ease-out ${
-                  isOpen ? 'rotate-90' : ''
+                className={`qclay-offer-chevron flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 ease-[var(--ease-qclay)] ${
+                  isOpen ? 'rotate-180' : ''
                 }`}
                 style={{ color: offer.accent }}
               >
-                →
+                <CaretDown
+                  size={20}
+                  weight="bold"
+                  strokeWidth={1.5}
+                  color="currentColor"
+                />
               </span>
             </button>
             <div
               id={panelId}
-              className={`grid transition-all duration-300 ease-out ${
+              className={`qclay-offer-panel grid transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] ${
                 isOpen
-                  ? 'grid-rows-[1fr] opacity-100'
-                  : 'grid-rows-[0fr] opacity-0'
+                  ? 'grid-rows-[1fr] translate-y-0 opacity-100'
+                  : 'grid-rows-[0fr] -translate-y-1 opacity-0'
               }`}
             >
               <div className="overflow-hidden">
@@ -123,7 +135,7 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
                   </ul>
                   {offer.examples.length > 0 && (
                     <div
-                      className="mt-6 rounded-xl border-l-2 px-4 py-3"
+                      className="mt-6 rounded-xl border px-4 py-3"
                       style={{
                         borderColor: offer.accent,
                         backgroundColor: `color-mix(in oklch, ${offer.accent} 6%, transparent)`,

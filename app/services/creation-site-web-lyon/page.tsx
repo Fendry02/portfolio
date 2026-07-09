@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import electreau from '@/public/works/electreau.png'
-import petitnid from '@/public/works/petitnid.png'
-import viko from '@/public/works/viko.jpg'
+import electreauCapture from '@/public/works/electreau-capture.webp'
+import petitNidCapture from '@/public/works/petitnid-capture.webp'
+import vikoCapture from '@/public/works/chezviko-capture.webp'
 import JsonLd from '@/app/components/json-ld'
 import QClayMotion from '@/app/components/qclay-motion'
 import {
@@ -78,21 +78,21 @@ const examples = [
     name: 'Chez Viko',
     type: 'Site vitrine pour restaurant',
     text: 'Un site public qui rend l’adresse plus crédible, facilite la découverte et donne rapidement les informations utiles.',
-    image: viko,
+    image: vikoCapture,
     href: 'https://chezviko.fr',
   },
   {
     name: 'Electreau Lyon',
     type: 'Présence web locale',
     text: 'Un site pensé pour présenter une activité locale avec des informations claires et faciles à parcourir.',
-    image: electreau,
+    image: electreauCapture,
     href: 'https://www.electreau-lyon.fr/',
   },
   {
     name: 'Petit Nid',
     type: 'Produit web',
     text: 'Une expérience web plus orientée produit, avec une logique de confiance, de parcours et d’explication.',
-    image: petitnid,
+    image: petitNidCapture,
     href: 'https://petitnid.app',
   },
 ]
@@ -136,9 +136,9 @@ const eyebrow =
 const sectionTitle =
   'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'
-const accent = '#2563eb'
+const accent = 'var(--brand-blue)'
 const btnBlue =
-  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
 const btnGhost =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 
@@ -179,7 +179,7 @@ export default function WebsiteCreationLyonPage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Visiter le site ${example.name}`}
-                className={`interactive qclay-card qclay-tilt group cursor-pointer overflow-hidden rounded-xl border border-base-300 bg-base-100 focus:outline-none focus:ring-2 focus:ring-[#2563eb]/35 ${
+                className={`interactive qclay-card qclay-tilt group cursor-pointer overflow-hidden rounded-xl border border-base-300 bg-base-100 focus:outline-none focus:ring-2 focus:ring-[color:var(--brand-blue)] ${
                   index === 0 ? 'sm:col-span-2' : ''
                 }`}
               >
@@ -193,12 +193,12 @@ export default function WebsiteCreationLyonPage() {
                         ? '(max-width: 1024px) 100vw, 560px'
                         : '(max-width: 1024px) 50vw, 280px'
                     }
-                    className="object-contain p-6 transition duration-500 group-hover:scale-105"
+                    className="object-cover object-top transition duration-500 group-hover:scale-[1.02]"
                     priority={index === 0}
                   />
                 </div>
                 <div className="p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
                     {example.type}
                   </p>
                   <h2 className="mt-1 text-lg font-semibold tracking-tight">
@@ -207,7 +207,7 @@ export default function WebsiteCreationLyonPage() {
                   <p className="mt-2 text-sm leading-6 text-base-content/65">
                     {example.text}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563eb]">
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)]">
                     Visiter le site
                     <span aria-hidden="true">→</span>
                   </span>

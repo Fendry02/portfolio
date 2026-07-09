@@ -40,7 +40,7 @@ type Offer = {
 
 const offers: Offer[] = [
   {
-    accent: '#2563eb',
+    accent: 'var(--brand-blue)',
     icon: 'website',
     title: 'Site web vitrine',
     desc: 'Une présence en ligne claire et rapide qui inspire confiance et déclenche la prise de contact.',
@@ -58,7 +58,7 @@ const offers: Offer[] = [
     ],
   },
   {
-    accent: '#2563eb',
+    accent: 'var(--brand-mint)',
     icon: 'app',
     title: 'Application web et mobile',
     desc: 'Un outil sur mesure, web et mobile, conçu pour répondre à un besoin métier spécifique et s’intégrer à votre activité.',
@@ -76,7 +76,7 @@ const offers: Offer[] = [
     ],
   },
   {
-    accent: '#2563eb',
+    accent: 'var(--brand-violet)',
     icon: 'automation',
     title: 'Audit et automatisation IA',
     desc: 'J’identifie où l’IA crée de la valeur concrète dans vos process, puis j’automatise vos tâches répétitives pour vous faire gagner du temps.',
@@ -94,7 +94,7 @@ const offers: Offer[] = [
     ],
   },
   {
-    accent: '#2563eb',
+    accent: 'var(--brand-amber)',
     icon: 'training',
     title: 'Formation IA',
     desc: 'Je forme vos équipes à utiliser l’IA au quotidien, concrètement et sans jargon.',
@@ -117,6 +117,7 @@ type TrustEntry = {
   name: string
   href: string
   src: typeof citizenplane
+  proof: string
 }
 
 const trustLogos: TrustEntry[] = [
@@ -124,32 +125,44 @@ const trustLogos: TrustEntry[] = [
     name: 'CitizenPlane',
     src: citizenplane,
     href: 'https://citizenplane.com',
+    proof: 'Plateforme B2B et flux produit à fort trafic',
   },
   {
     name: 'OpenClassrooms',
     src: openclassrooms,
     href: 'https://openclassrooms.com',
+    proof: 'Mentorat et revues de projets JavaScript',
   },
   {
     name: 'Business & Decision',
     src: businessDecision,
     href: 'https://www.businessdecision.com/',
+    proof: 'CRM, data et intégrations grands comptes',
   },
   {
     name: 'Electreau Lyon',
     src: electreau,
     href: 'https://www.electreau-lyon.fr/',
+    proof: 'Site local pensé pour les demandes qualifiées',
   },
   {
     name: 'Petit Nid',
     src: petitnid,
     href: 'https://petitnid.app',
+    proof: 'Produit mobile et expérience d’inscription',
   },
   {
     name: 'Chez Viko',
     src: viko,
     href: 'https://chezviko.fr',
+    proof: 'Vitrine restaurant, infos pratiques immédiates',
   },
+]
+
+const heroProofs = [
+  'Projets livrés pour PME, artisans et produits web',
+  'SEO, performance et conversion pensés dès le cadrage',
+  'Accompagnement de l’idée à la mise en ligne',
 ]
 
 const homeTitle =
@@ -192,9 +205,9 @@ const eyebrow =
 const sectionTitle =
   'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 const bodyText = 'text-base leading-7 text-base-content/65'
-const accent = '#2563eb'
+const accent = 'var(--brand-blue)'
 const btnBlue =
-  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
 
 const heroHeadline: readonly WordSegment[] = [
   { text: 'Des' },
@@ -247,6 +260,18 @@ export default function Home() {
                 <span aria-hidden="true">→</span>
               </a>
             </div>
+
+            <ul className="mt-8 grid max-w-2xl gap-2 border-t border-base-300 pt-5 text-sm leading-6 text-base-content/65 sm:grid-cols-3">
+              {heroProofs.map((proof) => (
+                <li key={proof} className="flex items-start gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--brand-blue)]"
+                  />
+                  {proof}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Right-hand portrait, clean and restrained */}
@@ -299,42 +324,38 @@ export default function Home() {
       {/* ──────────────────── TRUST STRIP / CLIENTS ──────────────────── */}
       <section
         aria-label="Ils m'ont fait confiance"
-        className="qclay-trust border-y border-base-300 py-8"
+        className="qclay-trust border-y border-base-300 py-10"
       >
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
           <p className={`${eyebrow} text-center md:text-left`}>
             Ils m’ont fait confiance
           </p>
-          <div className="qclay-marquee relative mt-6 overflow-hidden">
-            <div className="qclay-marquee-track flex w-max items-center">
-              {Array.from({ length: 6 }, () => trustLogos)
-                .flat()
-                .map((entry, index) => {
-                  const isClone = index >= trustLogos.length
-                  return (
-                    <a
-                      key={`${entry.name}-${index}`}
-                      href={entry.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-hidden={isClone || undefined}
-                      tabIndex={isClone ? -1 : undefined}
-                      className="interactive group mr-12 inline-flex shrink-0 items-center gap-3 whitespace-nowrap lg:mr-20"
-                    >
-                      <Image
-                        src={entry.src}
-                        alt={isClone ? '' : entry.name}
-                        width={44}
-                        height={44}
-                        className="h-11 w-11 rounded-lg object-cover transition group-hover:scale-105"
-                      />
-                      <span className="text-base font-medium tracking-tight text-base-content/70 transition group-hover:text-base-content">
-                        {entry.name}
-                      </span>
-                    </a>
-                  )
-                })}
-            </div>
+          <div className="qclay-logo-row mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {trustLogos.map((entry) => (
+              <a
+                key={entry.name}
+                href={entry.href}
+                target="_blank"
+                rel="noreferrer"
+                className="interactive group flex items-center gap-3 rounded-lg border border-base-300 bg-base-100/70 p-3 hover:border-base-content/15"
+              >
+                <Image
+                  src={entry.src}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 shrink-0 rounded-lg object-cover transition group-hover:scale-[1.03]"
+                />
+                <span>
+                  <span className="block text-sm font-semibold tracking-tight text-base-content">
+                    {entry.name}
+                  </span>
+                  <span className="mt-0.5 block text-xs leading-5 text-base-content/55">
+                    {entry.proof}
+                  </span>
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
@@ -362,7 +383,7 @@ export default function Home() {
             </div>
             <Link
               href={serviceRoutes.websiteCreationLyon}
-              className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[#2563eb] hover:underline sm:mt-0"
+              className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline sm:mt-0"
             >
               Lire la page service
               <span aria-hidden="true">→</span>
@@ -403,7 +424,7 @@ export default function Home() {
               Vous préférez l’email&nbsp;?{' '}
               <a
                 href="mailto:bruy.benoit@gmail.com"
-                className="font-medium text-[#2563eb] hover:underline"
+                className="font-medium text-[color:var(--brand-blue)] hover:underline"
               >
                 bruy.benoit@gmail.com
               </a>{' '}
@@ -412,7 +433,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/"
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-[#2563eb] hover:underline"
+                className="font-medium text-[color:var(--brand-blue)] hover:underline"
               >
                 LinkedIn
               </a>

@@ -5,10 +5,20 @@
   themes: corporate;
 }
 
-[data-theme='corporate'] {
+:root {
+  --brand-blue: oklch(54.6% 0.245 262.881);
+  --brand-blue-strong: oklch(48.8% 0.243 264.376);
+  --brand-blue-soft: oklch(93.6% 0.033 262);
+  --brand-mint: oklch(62% 0.145 164);
+  --brand-violet: oklch(57% 0.19 296);
+  --brand-amber: oklch(70% 0.16 77);
+  --brand-rose: oklch(62% 0.18 20);
+}
+
+html[data-theme='corporate'] {
   color-scheme: light;
-  --color-base-100: oklch(100% 0 0);
-  --color-base-200: oklch(96.8% 0.007 247.896);
+  --color-base-100: oklch(99.2% 0.004 260);
+  --color-base-200: oklch(96.6% 0.01 252);
   --color-base-300: oklch(92.9% 0.013 255.508);
   --color-base-content: oklch(20.8% 0.042 265.755);
   --color-primary: oklch(20.8% 0.042 265.755);
@@ -37,6 +47,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 .font-display {
@@ -52,8 +69,6 @@ summary {
   cursor: pointer;
 }
 
-/* Skip rendering work for below-the-fold sections until they're near the viewport. */
 .cv-auto {
-  content-visibility: auto;
   contain-intrinsic-size: auto 600px;
 }

@@ -14,7 +14,7 @@ type Testimonial = {
   siteLabel: string
 }
 
-const accent = '#2563eb'
+const accent = 'var(--brand-blue)'
 
 const testimonials: Testimonial[] = [
   {
@@ -98,7 +98,7 @@ export default function Testimonials() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Voir le site de ${testimonial.company}`}
-                  className="interactive ml-auto inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[#2563eb] hover:underline"
+                  className="interactive ml-auto inline-flex shrink-0 items-center gap-1 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
                 >
                   {testimonial.siteLabel}
                   <span aria-hidden="true">↗</span>

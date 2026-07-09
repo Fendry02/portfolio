@@ -46,7 +46,7 @@ export default function MentionsLegalesPage() {
             Email&nbsp;:{' '}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               {siteConfig.email}
             </a>
@@ -76,7 +76,7 @@ export default function MentionsLegalesPage() {
               href="https://vercel.com"
               target="_blank"
               rel="noreferrer"
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               vercel.com
             </a>
@@ -103,7 +103,7 @@ export default function MentionsLegalesPage() {
             de leur durée de conservation et de vos droits figure dans la{' '}
             <Link
               href="/confidentialite"
-              className="font-medium text-[#2563eb] hover:underline"
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               politique de confidentialité
             </Link>

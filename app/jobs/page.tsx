@@ -211,9 +211,9 @@ const eyebrow =
   'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const heading2 =
   'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
-const accent = '#2563eb'
+const accent = 'var(--brand-blue)'
 const btnBlue =
-  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white hover:bg-[#1d4ed8]'
+  'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
 const btnGhost =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-medium text-base-content/70 hover:bg-base-200 hover:text-base-content'
 
@@ -230,9 +230,10 @@ export default function Jobs() {
       >
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
+            <p className={eyebrow}>English technical profile</p>
             <h1
               id="jobs-hero-heading"
-              className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="mt-4 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
             >
               Hi, I’m Benoit.{' '}
               <span className="text-base-content/65">
@@ -323,7 +324,7 @@ export default function Jobs() {
         className="qclay-section qclay-scroll-reveal cv-auto px-6 py-12 lg:px-10 lg:py-16"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="qclay-ai-card relative overflow-hidden rounded-2xl bg-[#2563eb] p-8 text-white md:p-12">
+          <div className="qclay-ai-card relative overflow-hidden rounded-2xl bg-base-content p-8 text-white md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
@@ -506,7 +507,7 @@ export default function Jobs() {
                   </div>
 
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#2563eb]">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
                       {role.company}
                     </p>
                     <h3 className="mt-1 text-xl font-semibold tracking-tight">
@@ -550,7 +551,7 @@ export default function Jobs() {
                         href={role.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-sm font-medium text-[#2563eb] hover:underline"
+                        className="text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
                       >
                         Visit ↗
                       </a>

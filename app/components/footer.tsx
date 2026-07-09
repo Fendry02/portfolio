@@ -57,7 +57,7 @@ export default function Footer() {
             </p>
             <a
               href={`mailto:${siteConfig.email}`}
-              className="interactive mt-4 inline-block text-sm font-medium text-[#2563eb] hover:underline"
+              className="interactive mt-4 inline-block text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
             >
               {siteConfig.email}
             </a>

@@ -8,7 +8,7 @@ import { PROJECT_TYPES } from '@/app/lib/contact'
 const initialState: ContactState = { status: 'idle' }
 
 const fieldBase =
-  'w-full rounded-lg border bg-base-100 px-4 py-3 text-sm text-base-content transition focus:border-[#2563eb] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/25'
+  'w-full rounded-lg border bg-base-100 px-4 py-3 text-sm text-base-content transition focus:border-[color:var(--brand-blue)] focus:outline-none focus:ring-2 focus:ring-[color:var(--brand-blue)]'
 const labelBase =
   'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-base-content/65'
 
@@ -169,7 +169,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#1d4ed8] disabled:cursor-not-allowed disabled:opacity-70"
+        className="interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white transition hover:bg-[color:var(--brand-blue-strong)] disabled:cursor-not-allowed disabled:opacity-70"
       >
         {pending ? (
           <>
