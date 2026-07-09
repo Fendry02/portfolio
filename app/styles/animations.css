@@ -415,9 +415,7 @@
 
 .qclay-portrait-wrap {
   opacity: 0;
-  transform: translate3d(0, var(--parallax-y, 0px), 0);
   animation: qclay-fade-soft 860ms var(--ease-qclay) 220ms both;
-  will-change: transform;
 }
 
 .qclay-portrait {
