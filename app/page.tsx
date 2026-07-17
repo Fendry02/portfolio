@@ -78,19 +78,19 @@ const offers: Offer[] = [
   {
     accent: 'var(--brand-violet)',
     icon: 'automation',
-    title: 'Audit et automatisation IA',
-    desc: 'J’identifie où l’IA crée de la valeur concrète dans vos process, puis j’automatise vos tâches répétitives pour vous faire gagner du temps.',
+    title: 'Automatisation n8n et IA',
+    desc: 'Je connecte vos outils avec n8n et automatise les tâches répétitives qui freinent votre activité.',
     detail:
-      'J’examine vos process pour repérer les tâches à fort potentiel, puis je mets en place des automatisations concrètes et mesurables, sans gadget ni usine à gaz.',
+      'J’analyse vos processus, puis je conçois des workflows n8n fiables pour faire circuler les données, déclencher les bonnes actions et intégrer l’IA quand elle apporte une valeur réelle.',
     bullets: [
-      'Audit des process & opportunités',
-      'Sélection des outils IA adaptés',
-      'Mise en place des automatisations',
-      'Mesure du temps & des gains',
+      'Audit des processus & gains attendus',
+      'Workflows n8n & intégrations API',
+      'Gestion des erreurs & supervision',
+      'Documentation & maintenance',
     ],
     examples: [
-      'Relance automatique des devis non signés par email',
-      'Tri et résumé automatique des demandes entrantes (mails, formulaires)',
+      'Synchroniser un formulaire, le CRM et les relances commerciales',
+      'Trier les demandes entrantes et alerter automatiquement la bonne équipe',
     ],
   },
   {
@@ -162,13 +162,13 @@ const trustLogos: TrustEntry[] = [
 const heroProofs = [
   'Projets livrés pour PME, artisans et produits web',
   'SEO, performance et conversion pensés dès le cadrage',
-  'Accompagnement de l’idée à la mise en ligne',
+  'Workflows n8n, API et outils métier connectés',
 ]
 
 const homeTitle =
-  'Création de sites web et applications sur mesure | Benoit Bruynbroeck'
+  'Sites web, applications et automatisations n8n | Benoit Bruynbroeck'
 const homeDescription =
-  'Développeur web full stack à Lyon pour créer un site professionnel, une application métier ou une plateforme web sur mesure, avec Next.js, React, Vue.js, Node.js et PostgreSQL.'
+  'Développeur web full stack à Lyon pour créer un site professionnel, une application métier ou une automatisation n8n sur mesure, avec des intégrations API et IA.'
 
 export const metadata = buildPageMetadata({
   title: homeTitle,
@@ -178,6 +178,9 @@ export const metadata = buildPageMetadata({
     'création site internet',
     'création site web professionnel',
     'application web sur mesure',
+    'automatisation n8n',
+    'expert n8n Lyon',
+    'workflow n8n',
     'développeur web freelance',
     'développeur full stack',
     'Next.js',
@@ -212,11 +215,12 @@ const btnBlue =
 const heroHeadline: readonly WordSegment[] = [
   { text: 'Des' },
   { text: 'sites' },
-  { text: 'web' },
-  { text: 'et' },
   { text: 'apps' },
+  { text: 'et' },
+  { text: 'automatisations' },
   { text: 'qui' },
-  { text: 'vendent.', accent: true },
+  { text: 'font' },
+  { text: 'avancer.', accent: true },
 ]
 
 const contactHeading: readonly WordSegment[] = [
@@ -248,8 +252,8 @@ export default function Home() {
             </h1>
 
             <p className={`mt-6 max-w-xl ${bodyText} md:text-lg md:leading-8`}>
-              Site professionnel, application métier ou plateforme complète. Je
-              vous accompagne du cadrage à la mise en ligne, avec une base
+              Site professionnel, application métier ou automatisation n8n. Je
+              vous accompagne du cadrage à la mise en production, avec une base
               technique fiable et un objectif clair&nbsp;: générer des clients,
               des revenus ou du temps gagné.
             </p>
@@ -371,23 +375,40 @@ export default function Home() {
 
           <OffersAccordion offers={offers} />
 
-          <div className="mt-8 rounded-xl border border-base-300 bg-base-100 p-5 sm:flex sm:items-center sm:justify-between sm:gap-6">
-            <div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <article className="rounded-xl border border-base-300 bg-base-100 p-5">
               <h2 className="font-display text-lg font-semibold tracking-tight">
                 Création de site web à Lyon
               </h2>
               <p className="mt-1.5 text-sm leading-6 text-base-content/60">
-                Une page détaillée sur ma façon de cadrer, développer et
-                référencer un site professionnel local.
+                Ma façon de cadrer, développer et référencer un site
+                professionnel local.
               </p>
-            </div>
-            <Link
-              href={serviceRoutes.websiteCreationLyon}
-              className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline sm:mt-0"
-            >
-              Lire la page service
-              <span aria-hidden="true">→</span>
-            </Link>
+              <Link
+                href={serviceRoutes.websiteCreationLyon}
+                className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+              >
+                Découvrir ce service
+                <span aria-hidden="true">→</span>
+              </Link>
+            </article>
+
+            <article className="rounded-xl border border-base-300 bg-base-100 p-5">
+              <h2 className="font-display text-lg font-semibold tracking-tight">
+                Automatisation n8n à Lyon
+              </h2>
+              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+                Des workflows fiables pour connecter vos outils et supprimer les
+                tâches répétitives.
+              </p>
+              <Link
+                href={serviceRoutes.automationN8nLyon}
+                className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+              >
+                Découvrir ce service
+                <span aria-hidden="true">→</span>
+              </Link>
+            </article>
           </div>
         </div>
       </section>

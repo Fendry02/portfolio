@@ -29,7 +29,8 @@ const socials = [
 
 const navLinks = [
   { label: 'Accueil', href: '/' },
-  { label: 'Services', href: serviceRoutes.websiteCreationLyon },
+  { label: 'Création de site web', href: serviceRoutes.websiteCreationLyon },
+  { label: 'Automatisation n8n', href: serviceRoutes.automationN8nLyon },
   { label: 'Parcours', href: '/jobs' },
   { label: 'Contact', href: '/#contact' },
 ]
@@ -52,8 +53,8 @@ export default function Footer() {
           <div className="max-w-sm">
             <BrandLogo size="sm" />
             <p className="mt-4 text-sm leading-6 text-base-content/60">
-              Sites web et applications sur mesure pour PME et indépendants, du
-              cadrage à la mise en ligne.
+              Sites web, applications et automatisations n8n sur mesure pour PME
+              et indépendants, du cadrage à la mise en production.
             </p>
             <a
               href={`mailto:${siteConfig.email}`}

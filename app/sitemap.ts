@@ -23,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: absoluteUrl(serviceRoutes.automationN8nLyon),
+      lastModified: siteLastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: absoluteUrl('/mentions-legales'),
       lastModified: siteLastModified,
       changeFrequency: 'yearly',

@@ -3,7 +3,7 @@ import { z } from 'zod'
 export const PROJECT_TYPES = [
   'Site vitrine',
   'Application web & mobile',
-  'Audit & automatisation IA',
+  'Automatisation n8n & IA',
   'Formation IA',
   'Autre',
 ] as const

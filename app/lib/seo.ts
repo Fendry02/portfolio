@@ -13,10 +13,10 @@ export const siteConfig = {
     country: 'France',
   },
   defaultTitle:
-    'Création de sites web et applications sur mesure | Benoit Bruynbroeck',
+    'Sites web, applications et automatisations n8n | Benoit Bruynbroeck',
   titleTemplate: '%s | Benoit Bruynbroeck',
   description:
-    'Développeur full stack JavaScript à Lyon pour créer des sites web professionnels, applications métier et plateformes web sur mesure avec Next.js, React, Vue.js, Node.js et PostgreSQL.',
+    'Développeur full stack à Lyon pour créer des sites web, applications métier et automatisations n8n sur mesure, de la conception à la mise en production.',
   twitterHandle: '@benoit_bruynbroeck',
   sameAs: [
     'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
@@ -35,6 +35,10 @@ export const seoKeywords = [
   'développeur Vue.js',
   'application web sur mesure',
   'application métier',
+  'automatisation n8n',
+  'expert n8n Lyon',
+  'workflow n8n',
+  'automatisation de processus',
   'automatisation IA',
   'formation IA',
   'Next.js',
@@ -57,7 +61,7 @@ export const defaultOpenGraphImage = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'Benoit Bruynbroeck - création de sites web et applications sur mesure',
+  alt: 'Benoit Bruynbroeck - sites web, applications et automatisations n8n sur mesure',
 } satisfies OpenGraphImage
 
 export const jobsOpenGraphImage = {
@@ -69,6 +73,7 @@ export const jobsOpenGraphImage = {
 
 export const serviceRoutes = {
   websiteCreationLyon: '/services/creation-site-web-lyon',
+  automationN8nLyon: '/services/automatisation-n8n-lyon',
 } as const
 
 export const serviceOffers = [
@@ -76,25 +81,29 @@ export const serviceOffers = [
     name: 'Création de site web vitrine',
     description:
       'Création de sites web vitrines rapides, responsives et optimisés SEO pour générer des prospects qualifiés.',
+    url: serviceRoutes.websiteCreationLyon,
   },
   {
     name: 'Développement d’application web et mobile',
     description:
       'Conception et développement d’applications web et mobiles sur mesure pour répondre à un besoin métier spécifique.',
+    url: '/#offres',
   },
   {
-    name: 'Audit et automatisation IA',
+    name: 'Automatisation n8n et IA',
     description:
-      'Audit des process, identification des opportunités IA et mise en place d’automatisations concrètes.',
+      'Audit des processus et conception de workflows n8n fiables pour connecter les outils, automatiser les tâches répétitives et intégrer l’IA quand elle apporte une valeur concrète.',
+    url: serviceRoutes.automationN8nLyon,
   },
   {
     name: 'Formation IA',
     description:
       'Formations pratiques pour aider les équipes à utiliser l’intelligence artificielle dans leurs workflows quotidiens.',
+    url: '/#offres',
   },
 ] as const
 
-export const siteLastModified = new Date('2026-06-25T00:00:00.000Z')
+export const siteLastModified = new Date('2026-07-18T00:00:00.000Z')
 
 export function absoluteUrl(path = '/'): string {
   return new URL(path, siteConfig.url).toString()
@@ -186,6 +195,9 @@ export const personJsonLd: JsonLdNode = {
     'API Development',
     'Software Architecture',
     'Team Leadership',
+    'n8n',
+    'Workflow Automation',
+    'Business Process Automation',
     'AI Automation',
   ],
   worksFor: {
@@ -250,7 +262,7 @@ export const professionalServiceJsonLd: JsonLdNode = {
     name: 'Services web et IA',
     itemListElement: serviceOffers.map((offer) => ({
       '@type': 'Offer',
-      url: absoluteUrl('/#offres'),
+      url: absoluteUrl(offer.url),
       itemOffered: {
         '@type': 'Service',
         name: offer.name,
@@ -350,17 +362,19 @@ export function createServiceJsonLd({
   path,
   name,
   description,
+  serviceType = 'Création de site web professionnel',
 }: {
   path: string
   name: string
   description: string
+  serviceType?: string
 }): JsonLdNode {
   return {
     '@type': 'Service',
     '@id': `${absoluteUrl(path)}#service`,
     name,
     description,
-    serviceType: 'Création de site web professionnel',
+    serviceType,
     areaServed: [
       {
         '@type': 'City',

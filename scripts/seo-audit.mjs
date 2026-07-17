@@ -9,7 +9,7 @@ const pages = [
   {
     path: '/',
     title:
-      'Création de sites web et applications sur mesure | Benoit Bruynbroeck',
+      'Sites web, applications et automatisations n8n | Benoit Bruynbroeck',
     canonical: siteUrl,
     descriptionIncludes: 'Développeur web full stack',
     requiredJsonLdTypes: [
@@ -38,6 +38,21 @@ const pages = [
     title: 'Création de site web à Lyon | Benoit Bruynbroeck',
     canonical: `${siteUrl}/services/creation-site-web-lyon`,
     descriptionIncludes: 'Création de site web professionnel à Lyon',
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'WebPage',
+      'Service',
+      'FAQPage',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/services/automatisation-n8n-lyon',
+    title: 'Automatisation n8n à Lyon | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/services/automatisation-n8n-lyon`,
+    descriptionIncludes: 'Automatisation n8n à Lyon',
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -222,6 +237,10 @@ async function auditSitemap() {
   report(
     locs.includes(publicUrl('/services/creation-site-web-lyon')),
     'sitemap includes /services/creation-site-web-lyon',
+  )
+  report(
+    locs.includes(publicUrl('/services/automatisation-n8n-lyon')),
+    'sitemap includes /services/automatisation-n8n-lyon',
   )
   report(
     locs.every((loc) => !loc.includes('#')),

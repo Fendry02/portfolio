@@ -1,6 +1,7 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'Benoit Bruynbroeck — Sites web et applications qui vendent'
+export const alt =
+  'Benoit Bruynbroeck — Sites web, applications et automatisations n8n'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -38,7 +39,7 @@ export default function OpengraphImage() {
             background: '#22c55e',
           }}
         />
-        Développeur web full stack
+        Développeur full stack &amp; automatisation
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -51,7 +52,7 @@ export default function OpengraphImage() {
             letterSpacing: -2,
           }}
         >
-          Des sites et des produits web qui vendent.
+          Sites web, applications et automatisations n8n.
         </div>
         <div
           style={{
@@ -61,7 +62,7 @@ export default function OpengraphImage() {
             lineHeight: 1.35,
           }}
         >
-          Du cadrage à la mise en ligne, par un seul interlocuteur.
+          Des outils fiables, du cadrage à la mise en production.
         </div>
       </div>
 

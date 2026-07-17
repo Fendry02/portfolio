@@ -6,8 +6,6 @@ import { useEffect, useState } from 'react'
 
 import BrandLogo from './brand-logo'
 
-const websiteCreationPath = '/services/creation-site-web-lyon'
-
 type NavItem = {
   label: string
   href: string
@@ -17,7 +15,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: 'Accueil', href: '/', key: 'home' },
-  { label: 'Services', href: websiteCreationPath, key: 'services' },
+  { label: 'Services', href: '/#offres', key: 'services' },
   { label: 'Parcours', href: '/jobs', key: 'jobs' },
   {
     label: 'Discuter de mon projet',
