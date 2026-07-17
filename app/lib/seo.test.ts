@@ -8,6 +8,7 @@ import {
   createJsonLdGraph,
   createServiceJsonLd,
   createWebPageJsonLd,
+  seoKeywords,
   serviceRoutes,
   siteConfig,
 } from './seo.ts'
@@ -57,6 +58,25 @@ test('createServiceJsonLd describes a service page', () => {
     service.url,
     'https://www.bbenoit.fr/services/creation-site-web-lyon',
   )
+})
+
+test('n8n automation has a stable service route and discoverable keyword', () => {
+  assert.equal(
+    serviceRoutes.automationN8nLyon,
+    '/services/automatisation-n8n-lyon',
+  )
+  assert.ok(seoKeywords.includes('automatisation n8n'))
+})
+
+test('createServiceJsonLd supports the specific service type', () => {
+  const service = createServiceJsonLd({
+    path: '/services/automatisation-n8n-lyon',
+    name: 'Automatisation n8n à Lyon',
+    description: 'Conception de workflows n8n sur mesure.',
+    serviceType: 'Automatisation de processus avec n8n',
+  })
+
+  assert.equal(service.serviceType, 'Automatisation de processus avec n8n')
 })
 
 test('createFaqPageJsonLd creates FAQPage structured data', () => {
