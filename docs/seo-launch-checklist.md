@@ -35,17 +35,17 @@ Complete these steps after deploying the SEO changes.
 - Ask real clients for reviews; do not exchange, buy or manufacture reviews or
   links.
 
-## Legal information still required
+## Legal information
 
-The legal page remains accessible but is intentionally excluded from search
-until these verified details replace the placeholders:
+The verified legal identity was published on 2026-07-30:
 
-- legal status;
-- postal address;
-- phone number;
-- SIREN/SIRET;
-- applicable VAT statement or VAT number.
+- `Benoit Bruynbroeck EI`, entrepreneur individuel under the
+  micro-entrepreneur regime;
+- business address and phone number;
+- SIREN `923 618 433` and SIRET `923 618 433 00018`;
+- `TVA non applicable, art. 293 B du CGI`.
 
-Do not invent these values. Keep the page out of the sitemap even after it is
-completed because it is a utility page, not an acquisition landing page.
-
+Update these values immediately if the business address, tax regime or
+registration changes. The page remains out of the sitemap and has a
+`noindex, follow` directive because it is a utility page, not an acquisition
+landing page.
