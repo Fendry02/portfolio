@@ -9,13 +9,14 @@ import BrandLogo from './brand-logo'
 type NavItem = {
   label: string
   href: string
-  key: 'home' | 'services' | 'jobs' | 'contact'
+  key: 'home' | 'services' | 'portfolio' | 'jobs' | 'contact'
   primary?: boolean
 }
 
 const navItems: NavItem[] = [
   { label: 'Accueil', href: '/', key: 'home' },
   { label: 'Services', href: '/#offres', key: 'services' },
+  { label: 'Portfolio', href: '/#portfolio', key: 'portfolio' },
   { label: 'Parcours', href: '/jobs', key: 'jobs' },
   {
     label: 'Discuter de mon projet',

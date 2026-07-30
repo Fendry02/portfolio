@@ -25,6 +25,7 @@ import {
   personJsonLd,
   professionalServiceJsonLd,
   serviceRoutes,
+  siteConfig,
   websiteJsonLd,
 } from './lib/seo'
 
@@ -165,10 +166,8 @@ const heroProofs = [
   'Workflows n8n, API et outils métier connectés',
 ]
 
-const homeTitle =
-  'Sites web, applications et automatisations n8n | Benoit Bruynbroeck'
-const homeDescription =
-  'Développeur web full stack à Lyon pour créer un site professionnel, une application métier ou une automatisation n8n sur mesure, avec des intégrations API et IA.'
+const homeTitle = siteConfig.defaultTitle
+const homeDescription = siteConfig.description
 
 export const metadata = buildPageMetadata({
   title: homeTitle,
@@ -182,7 +181,10 @@ export const metadata = buildPageMetadata({
     'expert n8n Lyon',
     'workflow n8n',
     'développeur web freelance',
+    'développeur web freelance Lyon',
+    'freelance dev Lyon',
     'développeur full stack',
+    'portfolio développeur web',
     'Next.js',
     'React',
     'Node.js',
@@ -213,14 +215,11 @@ const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
 
 const heroHeadline: readonly WordSegment[] = [
-  { text: 'Des' },
-  { text: 'sites' },
-  { text: 'apps' },
-  { text: 'et' },
-  { text: 'automatisations' },
-  { text: 'qui' },
-  { text: 'font' },
-  { text: 'avancer.', accent: true },
+  { text: 'Développeur' },
+  { text: 'web' },
+  { text: 'freelance' },
+  { text: 'à' },
+  { text: 'Lyon.', accent: true },
 ]
 
 const contactHeading: readonly WordSegment[] = [
@@ -252,10 +251,10 @@ export default function Home() {
             </h1>
 
             <p className={`mt-6 max-w-xl ${bodyText} md:text-lg md:leading-8`}>
-              Site professionnel, application métier ou automatisation n8n. Je
-              vous accompagne du cadrage à la mise en production, avec une base
-              technique fiable et un objectif clair&nbsp;: générer des clients,
-              des revenus ou du temps gagné.
+              Je suis Benoit Bruynbroeck. Je conçois votre site professionnel,
+              votre application métier ou votre automatisation n8n, du cadrage
+              à la mise en production, avec un objectif clair&nbsp;: générer des
+              clients, des revenus ou du temps gagné.
             </p>
 
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
@@ -388,7 +387,7 @@ export default function Home() {
                 href={serviceRoutes.websiteCreationLyon}
                 className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
               >
-                Découvrir ce service
+                Découvrir la création de site web à Lyon
                 <span aria-hidden="true">→</span>
               </Link>
             </article>
@@ -405,7 +404,7 @@ export default function Home() {
                 href={serviceRoutes.automationN8nLyon}
                 className="interactive mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
               >
-                Découvrir ce service
+                Découvrir l’automatisation n8n à Lyon
                 <span aria-hidden="true">→</span>
               </Link>
             </article>

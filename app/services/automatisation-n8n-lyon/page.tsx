@@ -156,10 +156,10 @@ export default function AutomationN8nLyonPage() {
               contrôle.
             </h1>
             <p className={`mt-6 max-w-2xl ${bodyText} md:text-lg md:leading-8`}>
-              Je conçois des workflows n8n sur mesure pour connecter vos outils,
-              fiabiliser les échanges de données et automatiser les tâches
-              répétitives. Chaque flux reste lisible, supervisé et adapté à vos
-              règles métier.
+              Je suis Benoit Bruynbroeck, développeur web freelance à Lyon
+              spécialisé dans les intégrations. Je conçois des workflows n8n
+              sur mesure pour connecter vos outils, fiabiliser les échanges de
+              données et automatiser les tâches répétitives.
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/#contact" className={btnBlue}>

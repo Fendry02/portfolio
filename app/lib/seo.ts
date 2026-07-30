@@ -4,6 +4,7 @@ export type JsonLdNode = Record<string, unknown>
 
 export const siteConfig = {
   name: 'Benoit Bruynbroeck',
+  alternateNames: ['B/B', 'bbenoit', 'bbenoit.fr'],
   url: 'https://www.bbenoit.fr',
   email: 'bruy.benoit@gmail.com',
   locale: 'fr_FR',
@@ -12,11 +13,10 @@ export const siteConfig = {
     city: 'Lyon',
     country: 'France',
   },
-  defaultTitle:
-    'Sites web, applications et automatisations n8n | Benoit Bruynbroeck',
+  defaultTitle: 'Développeur web freelance à Lyon | Benoit Bruynbroeck',
   titleTemplate: '%s | Benoit Bruynbroeck',
   description:
-    'Développeur full stack à Lyon pour créer des sites web, applications métier et automatisations n8n sur mesure, de la conception à la mise en production.',
+    'Benoit Bruynbroeck, développeur web freelance à Lyon, crée des sites, applications métier et automatisations n8n sur mesure pour PME et indépendants.',
   twitterHandle: '@benoit_bruynbroeck',
   sameAs: [
     'https://www.linkedin.com/in/benoit-bruynbroeck-a21214b4/',
@@ -29,6 +29,8 @@ export const seoKeywords = [
   'création site internet',
   'création site web professionnel',
   'développeur web freelance',
+  'développeur web freelance Lyon',
+  'freelance développeur web Lyon',
   'développeur full stack JavaScript',
   'développeur Next.js',
   'développeur React',
@@ -41,6 +43,8 @@ export const seoKeywords = [
   'automatisation de processus',
   'automatisation IA',
   'formation IA',
+  'portfolio développeur web',
+  'Benoit Bruynbroeck développeur',
   'Next.js',
   'React',
   'Vue.js',
@@ -61,7 +65,7 @@ export const defaultOpenGraphImage = {
   url: '/opengraph-image',
   width: 1200,
   height: 630,
-  alt: 'Benoit Bruynbroeck - sites web, applications et automatisations n8n sur mesure',
+  alt: 'Benoit Bruynbroeck - développeur web freelance à Lyon',
 } satisfies OpenGraphImage
 
 export const jobsOpenGraphImage = {
@@ -103,7 +107,7 @@ export const serviceOffers = [
   },
 ] as const
 
-export const siteLastModified = new Date('2026-07-18T00:00:00.000Z')
+export const siteLastModified = new Date('2026-07-30T00:00:00.000Z')
 
 export function absoluteUrl(path = '/'): string {
   return new URL(path, siteConfig.url).toString()
@@ -122,6 +126,7 @@ type PageMetadataInput = {
   keywords?: string[]
   image?: OpenGraphImage
   locale?: string
+  index?: boolean
 }
 
 export function buildPageMetadata({
@@ -131,6 +136,7 @@ export function buildPageMetadata({
   keywords = [],
   image = defaultOpenGraphImage,
   locale = siteConfig.locale,
+  index = true,
 }: PageMetadataInput): Metadata {
   const canonical = absoluteUrl(path)
   const socialTitle = withBrand(title)
@@ -142,6 +148,12 @@ export function buildPageMetadata({
     alternates: {
       canonical,
     },
+    robots: index
+      ? undefined
+      : {
+          index: false,
+          follow: true,
+        },
     openGraph: {
       title: socialTitle,
       description,
@@ -222,6 +234,7 @@ export const websiteJsonLd: JsonLdNode = {
   '@id': websiteId,
   url: siteConfig.url,
   name: siteConfig.name,
+  alternateName: siteConfig.alternateNames,
   description: siteConfig.description,
   inLanguage: siteConfig.language,
   publisher: {

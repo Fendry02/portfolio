@@ -69,12 +69,16 @@ const cardClass =
 export default function CaseStudies() {
   return (
     <section
+      id="portfolio"
       aria-labelledby="realisations-heading"
       className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 py-20 lg:py-28"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <div className="max-w-3xl">
-          <h2 id="realisations-heading" className={titleClass}>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65">
+            Portfolio de Benoit Bruynbroeck
+          </p>
+          <h2 id="realisations-heading" className={`mt-3 ${titleClass}`}>
             Des projets qui prouvent le raisonnement
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-base-content/65">

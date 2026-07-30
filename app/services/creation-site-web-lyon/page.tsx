@@ -156,9 +156,10 @@ export default function WebsiteCreationLyonPage() {
               Création de site web à Lyon pour une activité plus visible.
             </h1>
             <p className={`mt-6 max-w-2xl ${bodyText} md:text-lg md:leading-8`}>
-              Je conçois et développe des sites web professionnels pour les
-              indépendants, artisans, cabinets et PME qui veulent une présence
-              en ligne claire, rapide et orientée prise de contact.
+              Je suis Benoit Bruynbroeck, développeur web freelance à Lyon. Je
+              conçois des sites professionnels pour les indépendants, artisans,
+              cabinets et PME qui veulent une présence en ligne claire, rapide
+              et orientée prise de contact.
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/#contact" className={btnBlue}>

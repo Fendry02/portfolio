@@ -11,6 +11,7 @@ export const metadata = buildPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: pagePath,
+  index: false,
 })
 
 const heading =

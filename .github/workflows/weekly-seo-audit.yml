@@ -34,4 +34,4 @@ jobs:
         run: npm run seo:audit
         env:
           SEO_AUDIT_BASE_URL: https://bbenoit.fr
-          SEO_SITE_URL: https://bbenoit.fr
+          SEO_SITE_URL: https://www.bbenoit.fr

@@ -53,7 +53,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
-        <Analytics />
+        {process.env.VERCEL && <Analytics />}
       </body>
       {process.env.GOOGLE_ANALYTICS_ID && (
         <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
@@ -74,6 +74,11 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? {
+        google: process.env.GOOGLE_SITE_VERIFICATION,
+      }
+    : undefined,
   referrer: 'origin-when-cross-origin',
   formatDetection: {
     email: false,

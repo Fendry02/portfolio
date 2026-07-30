@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const alt =
-  'Benoit Bruynbroeck — Sites web, applications et automatisations n8n'
+  'Benoit Bruynbroeck — Développeur web freelance à Lyon'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
             background: '#22c55e',
           }}
         />
-        Développeur full stack &amp; automatisation
+        Développeur web freelance à Lyon
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>

@@ -219,7 +219,7 @@ const btnGhost =
 
 export default function Jobs() {
   return (
-    <main className="bg-base-100 text-base-content">
+    <main lang="en" className="bg-base-100 text-base-content">
       <JsonLd data={jobsJsonLd} />
       <QClayMotion />
       {/* ─────────────────────────── HERO ─────────────────────────── */}
