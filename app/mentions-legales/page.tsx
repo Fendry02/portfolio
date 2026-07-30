@@ -18,6 +18,7 @@ const heading =
   'font-display text-xl font-semibold tracking-tight text-base-content'
 const body = 'text-base leading-7 text-base-content/70'
 const term = 'font-medium text-base-content'
+const legalAddress = `${siteConfig.legal.address.street}, ${siteConfig.legal.address.postalCode} ${siteConfig.legal.address.city}, ${siteConfig.legal.address.country}`
 
 export default function MentionsLegalesPage() {
   return (
@@ -35,14 +36,12 @@ export default function MentionsLegalesPage() {
       <div className="mt-12 space-y-12">
         <section className="space-y-3">
           <h2 className={heading}>Éditeur du site</h2>
-          {/* TODO Benoit: compléter statut juridique, adresse, téléphone, SIREN/SIRET et TVA. */}
           <p className={body}>
-            <span className={term}>{siteConfig.name}</span>
+            <span className={term}>{siteConfig.legal.name}</span>
             <br />
-            Statut&nbsp;: [à compléter : micro-entreprise / EI]
+            Statut&nbsp;: {siteConfig.legal.status}
             <br />
-            Adresse&nbsp;: [à compléter], {siteConfig.location.city},{' '}
-            {siteConfig.location.country}
+            Adresse&nbsp;: {legalAddress}
             <br />
             Email&nbsp;:{' '}
             <a
@@ -52,12 +51,19 @@ export default function MentionsLegalesPage() {
               {siteConfig.email}
             </a>
             <br />
-            Téléphone&nbsp;: [à compléter]
+            Téléphone&nbsp;:{' '}
+            <a
+              href={siteConfig.phone.href}
+              className="font-medium text-[color:var(--brand-blue)] hover:underline"
+            >
+              {siteConfig.phone.display}
+            </a>
             <br />
-            SIREN / SIRET&nbsp;: [à compléter]
+            SIREN&nbsp;: {siteConfig.legal.siren}
             <br />
-            TVA intracommunautaire&nbsp;: [à compléter, ou «&nbsp;TVA non
-            applicable, art. 293 B du CGI&nbsp;» si micro-entreprise]
+            SIRET&nbsp;: {siteConfig.legal.siret}
+            <br />
+            TVA&nbsp;: {siteConfig.legal.vatStatement}
           </p>
         </section>
 
