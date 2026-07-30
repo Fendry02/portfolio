@@ -8,10 +8,11 @@ const siteUrl = stripTrailingSlash(
 const pages = [
   {
     path: '/',
-    title:
-      'Sites web, applications et automatisations n8n | Benoit Bruynbroeck',
+    title: 'Développeur web freelance à Lyon | Benoit Bruynbroeck',
     canonical: siteUrl,
-    descriptionIncludes: 'Développeur web full stack',
+    descriptionIncludes: 'développeur web freelance à Lyon',
+    h1Includes: 'Développeur web freelance à Lyon',
+    contentIncludes: ['Benoit Bruynbroeck'],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -25,6 +26,7 @@ const pages = [
     title: 'JavaScript Tech Lead and full-stack developer | Benoit Bruynbroeck',
     canonical: `${siteUrl}/jobs`,
     descriptionIncludes: 'JavaScript Tech Lead',
+    mainLanguage: 'en',
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -38,6 +40,7 @@ const pages = [
     title: 'Création de site web à Lyon | Benoit Bruynbroeck',
     canonical: `${siteUrl}/services/creation-site-web-lyon`,
     descriptionIncludes: 'Création de site web professionnel à Lyon',
+    contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -53,6 +56,7 @@ const pages = [
     title: 'Automatisation n8n à Lyon | Benoit Bruynbroeck',
     canonical: `${siteUrl}/services/automatisation-n8n-lyon`,
     descriptionIncludes: 'Automatisation n8n à Lyon',
+    contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -117,6 +121,40 @@ function readAttribute(tag, attributeName) {
 
 function readTitle(html) {
   return html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1].trim()
+}
+
+function decodeHtmlText(value) {
+  return value
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;|&#xA0;/gi, ' ')
+    .replace(/&amp;/gi, '&')
+    .replace(/&#x27;|&apos;/gi, "'")
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function readElementText(html, elementName) {
+  const pattern = new RegExp(
+    `<${elementName}[^>]*>([\\s\\S]*?)<\\/${elementName}>`,
+    'i',
+  )
+
+  return decodeHtmlText(html.match(pattern)?.[1] ?? '')
+}
+
+function readElementAttribute(html, elementName, attributeName) {
+  const pattern = new RegExp(`<${elementName}\\s+[^>]*>`, 'i')
+  const tag = html.match(pattern)?.[0]
+
+  return tag ? readAttribute(tag, attributeName) : undefined
+}
+
+function readVisibleText(html) {
+  return decodeHtmlText(
+    html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' '),
+  )
 }
 
 function readMeta(html, attributeName, attributeValue) {
@@ -191,6 +229,31 @@ async function auditPage(page) {
     `${page.path} description matches page intent`,
   )
 
+  if (page.h1Includes) {
+    report(
+      readElementText(html, 'h1').includes(page.h1Includes),
+      `${page.path} H1 includes ${page.h1Includes}`,
+    )
+  }
+
+  if (page.contentIncludes) {
+    const visibleText = readVisibleText(html).toLocaleLowerCase('fr')
+
+    for (const phrase of page.contentIncludes) {
+      report(
+        visibleText.includes(phrase.toLocaleLowerCase('fr')),
+        `${page.path} visible content includes ${phrase}`,
+      )
+    }
+  }
+
+  if (page.mainLanguage) {
+    report(
+      readElementAttribute(html, 'main', 'lang') === page.mainLanguage,
+      `${page.path} main content declares lang=${page.mainLanguage}`,
+    )
+  }
+
   const canonical = readLink(html, 'canonical')
   report(Boolean(canonical), `${page.path} has a canonical link`)
   report(
@@ -246,10 +309,29 @@ async function auditSitemap() {
     locs.every((loc) => !loc.includes('#')),
     'sitemap has no fragment URLs',
   )
+  report(
+    !locs.includes(publicUrl('/mentions-legales')),
+    'sitemap excludes noindex legal notices',
+  )
+  report(
+    !locs.includes(publicUrl('/confidentialite')),
+    'sitemap excludes the noindex privacy policy',
+  )
 
   for (const loc of locs) {
     const path = new URL(loc).pathname
     await fetchResource(path)
+  }
+}
+
+async function auditNoIndexUtilityPages() {
+  for (const path of ['/mentions-legales', '/confidentialite']) {
+    const response = await fetchResource(path, 'text/html')
+    const html = await response.text()
+    const robots = readMeta(html, 'name', 'robots') ?? ''
+
+    report(robots.includes('noindex'), `${path} has a noindex directive`)
+    report(robots.includes('follow'), `${path} keeps links followable`)
   }
 }
 
@@ -294,6 +376,7 @@ for (const page of pages) {
 }
 
 await auditSitemap()
+await auditNoIndexUtilityPages()
 await auditRobots()
 await auditManifest()
 await auditSocialImages()

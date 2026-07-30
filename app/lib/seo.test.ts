@@ -11,6 +11,7 @@ import {
   seoKeywords,
   serviceRoutes,
   siteConfig,
+  websiteJsonLd,
 } from './seo.ts'
 
 test('absoluteUrl resolves paths from the site origin', () => {
@@ -31,6 +32,44 @@ test('buildPageMetadata keeps page title concise and brands social titles', () =
     `Création de sites web | ${siteConfig.name}`,
   )
   assert.equal(metadata.alternates?.canonical, siteConfig.url + '/')
+})
+
+test('the default site intent targets the freelance developer query in Lyon', () => {
+  assert.equal(
+    siteConfig.defaultTitle,
+    'Développeur web freelance à Lyon | Benoit Bruynbroeck',
+  )
+  assert.match(
+    siteConfig.description,
+    /Benoit Bruynbroeck, développeur web freelance à Lyon/i,
+  )
+})
+
+test('website structured data exposes the recognized bbenoit brand aliases', () => {
+  assert.deepEqual(siteConfig.alternateNames, [
+    'B/B',
+    'bbenoit',
+    'bbenoit.fr',
+  ])
+  assert.deepEqual(websiteJsonLd.alternateName, siteConfig.alternateNames)
+})
+
+test('buildPageMetadata can keep a utility page crawlable but out of the index', () => {
+  const metadata = buildPageMetadata({
+    title: 'Mentions légales',
+    description: 'Informations légales',
+    path: '/mentions-legales',
+    index: false,
+  })
+
+  assert.deepEqual(metadata.robots, {
+    index: false,
+    follow: true,
+  })
+  assert.equal(
+    metadata.alternates?.canonical,
+    'https://www.bbenoit.fr/mentions-legales',
+  )
 })
 
 test('createJsonLdGraph wraps schema nodes in a schema.org graph', () => {
