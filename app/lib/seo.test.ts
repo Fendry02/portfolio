@@ -8,6 +8,7 @@ import {
   createJsonLdGraph,
   createServiceJsonLd,
   createWebPageJsonLd,
+  professionalServiceJsonLd,
   seoKeywords,
   serviceRoutes,
   siteConfig,
@@ -52,6 +53,53 @@ test('website structured data exposes the recognized bbenoit brand aliases', () 
     'bbenoit.fr',
   ])
   assert.deepEqual(websiteJsonLd.alternateName, siteConfig.alternateNames)
+})
+
+test('the legal identity contains verified business contact and registration details', () => {
+  assert.equal(siteConfig.legal.name, 'Benoit Bruynbroeck EI')
+  assert.equal(
+    siteConfig.legal.status,
+    'Entrepreneur individuel (micro-entrepreneur)',
+  )
+  assert.deepEqual(siteConfig.legal.address, {
+    street: '302 rue Garibaldi',
+    postalCode: '69007',
+    city: 'Lyon',
+    country: 'France',
+    countryCode: 'FR',
+  })
+  assert.deepEqual(siteConfig.phone, {
+    display: '06 98 48 11 21',
+    international: '+33 6 98 48 11 21',
+    href: 'tel:+33698481121',
+  })
+  assert.equal(siteConfig.legal.siren, '923 618 433')
+  assert.equal(siteConfig.legal.siret, '923 618 433 00018')
+  assert.equal(
+    siteConfig.legal.vatStatement,
+    'TVA non applicable, art. 293 B du CGI',
+  )
+
+  const normalizedSiren = siteConfig.legal.siren.replaceAll(' ', '')
+  const normalizedSiret = siteConfig.legal.siret.replaceAll(' ', '')
+
+  assert.match(normalizedSiren, /^\d{9}$/)
+  assert.match(normalizedSiret, /^\d{14}$/)
+  assert.equal(normalizedSiret.slice(0, 9), normalizedSiren)
+})
+
+test('professional service structured data exposes the verified local business details', () => {
+  assert.equal(
+    professionalServiceJsonLd.telephone,
+    siteConfig.phone.international,
+  )
+  assert.deepEqual(professionalServiceJsonLd.address, {
+    '@type': 'PostalAddress',
+    streetAddress: siteConfig.legal.address.street,
+    postalCode: siteConfig.legal.address.postalCode,
+    addressLocality: siteConfig.legal.address.city,
+    addressCountry: siteConfig.legal.address.countryCode,
+  })
 })
 
 test('buildPageMetadata can keep a utility page crawlable but out of the index', () => {

@@ -69,6 +69,25 @@ const pages = [
   },
 ]
 
+const utilityPages = [
+  {
+    path: '/mentions-legales',
+    contentIncludes: [
+      'Benoit Bruynbroeck EI',
+      'Entrepreneur individuel (micro-entrepreneur)',
+      '302 rue Garibaldi, 69007 Lyon, France',
+      '06 98 48 11 21',
+      'SIREN : 923 618 433',
+      'SIRET : 923 618 433 00018',
+      'TVA non applicable, art. 293 B du CGI',
+    ],
+    contentExcludes: ['à compléter'],
+  },
+  {
+    path: '/confidentialite',
+  },
+]
+
 const failures = []
 
 function stripTrailingSlash(value) {
@@ -325,13 +344,35 @@ async function auditSitemap() {
 }
 
 async function auditNoIndexUtilityPages() {
-  for (const path of ['/mentions-legales', '/confidentialite']) {
-    const response = await fetchResource(path, 'text/html')
+  for (const page of utilityPages) {
+    const response = await fetchResource(page.path, 'text/html')
     const html = await response.text()
     const robots = readMeta(html, 'name', 'robots') ?? ''
 
-    report(robots.includes('noindex'), `${path} has a noindex directive`)
-    report(robots.includes('follow'), `${path} keeps links followable`)
+    report(
+      robots.includes('noindex'),
+      `${page.path} has a noindex directive`,
+    )
+    report(
+      robots.includes('follow'),
+      `${page.path} keeps links followable`,
+    )
+
+    const visibleText = readVisibleText(html)
+
+    for (const phrase of page.contentIncludes ?? []) {
+      report(
+        visibleText.includes(phrase),
+        `${page.path} visible content includes ${phrase}`,
+      )
+    }
+
+    for (const phrase of page.contentExcludes ?? []) {
+      report(
+        !visibleText.includes(phrase),
+        `${page.path} visible content excludes ${phrase}`,
+      )
+    }
   }
 }
 
