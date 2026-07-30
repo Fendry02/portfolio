@@ -17,16 +17,17 @@
     "build:card": "node business-card/build-pdf.js"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.9",
+    "@next/third-parties": "^16.2.12",
     "@phosphor-icons/react": "^2.1.10",
     "@vercel/analytics": "^2.0.1",
-    "next": "^16.2.9",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "sharp": "^0.35.1",
+    "next": "^16.2.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sharp": "^0.35.3",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^16.2.12",
     "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^25.9.3",
@@ -35,16 +36,18 @@
     "autoprefixer": "^10.5.0",
     "cssnano": "^8.0.2",
     "daisyui": "^5.5.23",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.9",
-    "postcss": "^8.5.15",
+    "eslint": "^10.8.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "postcss": "^8.5.25",
     "prettier": "^3.8.4",
     "puppeteer": "^25.1.0",
     "qrcode": "^1.5.4",
     "tailwindcss": "^4.3.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.61.0"
   },
   "overrides": {
-    "postcss": "$postcss"
+    "postcss": "$postcss",
+    "sharp": "$sharp"
   }
 }
