@@ -9,6 +9,45 @@ type ScrollDocument = Pick<
 
 type ScrollStoryRect = Pick<DOMRect, 'height' | 'top'>
 
+export type HeaderScrollState = {
+  isHidden: boolean
+  anchorY: number
+}
+
+const headerTopOffset = 64
+const headerHideDistance = 48
+const headerRevealDistance = 16
+
+export function getHeaderScrollState(
+  scrollY: number,
+  state: HeaderScrollState,
+): HeaderScrollState {
+  const safeScrollY = Math.max(scrollY, 0)
+
+  if (safeScrollY <= headerTopOffset) {
+    return { isHidden: false, anchorY: safeScrollY }
+  }
+
+  if (state.isHidden) {
+    if (safeScrollY <= state.anchorY - headerRevealDistance) {
+      return { isHidden: false, anchorY: safeScrollY }
+    }
+
+    return { isHidden: true, anchorY: Math.max(state.anchorY, safeScrollY) }
+  }
+
+  const visibleAnchorY = Math.min(state.anchorY, safeScrollY)
+
+  if (
+    safeScrollY >=
+    Math.max(headerTopOffset + headerHideDistance, visibleAnchorY + headerHideDistance)
+  ) {
+    return { isHidden: true, anchorY: safeScrollY }
+  }
+
+  return { isHidden: false, anchorY: visibleAnchorY }
+}
+
 export function getPageScrollProgress(documentElement: ScrollDocument) {
   const scrollableHeight =
     documentElement.scrollHeight - documentElement.clientHeight

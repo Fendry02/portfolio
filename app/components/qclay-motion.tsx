@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
 import {
+  getHeaderScrollState,
   getPageScrollProgress,
   getScrollStoryProgress,
   getScrollStoryStep,
@@ -20,8 +21,11 @@ export default function QClayMotion() {
     const canUsePointerEffects = window.matchMedia(
       '(hover: hover) and (pointer: fine)',
     ).matches
+    const header = document.querySelector<HTMLElement>('.qclay-site-header')
+    let headerState = { isHidden: false, anchorY: window.scrollY }
 
     root.classList.add('qclay-motion-ready')
+    header?.classList.remove('is-hidden')
 
     if (reduceMotion) {
       return () => root.classList.remove('qclay-motion-ready')
@@ -34,6 +38,13 @@ export default function QClayMotion() {
 
     const updateScrollScene = () => {
       scrollFrame = 0
+      const nextHeaderState = getHeaderScrollState(window.scrollY, headerState)
+
+      if (nextHeaderState.isHidden !== headerState.isHidden) {
+        header?.classList.toggle('is-hidden', nextHeaderState.isHidden)
+      }
+
+      headerState = nextHeaderState
       root.style.setProperty(
         '--qclay-page-progress',
         `${getPageScrollProgress(document.documentElement)}`,
@@ -81,6 +92,7 @@ export default function QClayMotion() {
     if (!canUsePointerEffects) {
       return () => {
         root.classList.remove('qclay-motion-ready')
+        header?.classList.remove('is-hidden')
         observer.disconnect()
         window.removeEventListener('scroll', requestScrollUpdate)
         window.removeEventListener('resize', requestScrollUpdate)
@@ -126,6 +138,7 @@ export default function QClayMotion() {
 
     return () => {
       root.classList.remove('qclay-motion-ready')
+      header?.classList.remove('is-hidden')
       observer.disconnect()
       window.removeEventListener('scroll', requestScrollUpdate)
       window.removeEventListener('resize', requestScrollUpdate)

@@ -20,6 +20,10 @@ like a connected story, not isolated sections moving independently.
 | 8 | The project gallery does not use a transform-based section reveal. | `app/components/layout-contract.test.ts` | PASS |
 | 9 | The project flow does not clip the sticky visual scene. | `app/components/layout-contract.test.ts` | PASS |
 | 10 | The avatar wrapper cannot cast a square shadow behind the portrait. | `app/components/layout-contract.test.ts` | PASS |
+| 11 | The project scene retains the 16:10 horizontal capture ratio. | `app/components/layout-contract.test.ts` | PASS |
+| 12 | The header hides only after deliberate downward travel. | `app/lib/scroll-motion.test.ts` | PASS |
+| 13 | The header remains stable when scrolling down and reappears on return. | `app/lib/scroll-motion.test.ts` | PASS |
+| 14 | The header is always restored at the top of the page. | `app/lib/scroll-motion.test.ts` | PASS |
 
 ## RED → GREEN
 
@@ -32,10 +36,18 @@ like a connected story, not isolated sections moving independently.
   clipped by its parent, and the avatar wrapper still casting a square shadow.
 - GREEN: `node --test app/components/layout-contract.test.ts` passed with 3
   targeted regression tests.
+- RED: `node --test app/components/layout-contract.test.ts` showed that the
+  project stage forced a tall minimum height instead of the capture ratio.
+- GREEN: the same command passed with 4 targeted regression tests after the
+  stage adopted the native 16:10 ratio.
+- RED: `node --test app/lib/scroll-motion.test.ts` could not import the new
+  header-scroll state helper because it had not been implemented.
+- GREEN: the same command passed with 7 focused scroll tests once the header
+  state machine was added.
 
 ## Validation
 
-- `npm test` — PASS (34 tests)
+- `npm test` — PASS (38 tests)
 - `npm run lint` — PASS
 - `npm run build` — PASS
 - `curl http://127.0.0.1:3000/` — PASS (HTTP 200)
@@ -62,3 +74,10 @@ The gallery now keeps the scene visible through the narrative column on desktop:
 it is no longer transformed by the generic section reveal or clipped by the
 project section. The hero portrait retains its organic image shape without a
 square wrapper shadow.
+
+All three project captures are 1440×900 (16:10), and the visual scene now uses
+that same horizontal proportion instead of a viewport-driven tall canvas.
+
+The header now uses a small directional hysteresis: it hides after a deliberate
+downward read, stays stable through small movements, returns after a measured
+upward gesture, and remains visible for reduced-motion visitors.

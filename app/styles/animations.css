@@ -151,9 +151,23 @@
   backdrop-filter: blur(22px) saturate(170%);
   -webkit-backdrop-filter: blur(22px) saturate(170%);
   transition:
+    transform 340ms var(--ease-qclay),
+    opacity 220ms var(--ease-qclay),
     background-color var(--duration-base) var(--ease-qclay),
     border-color var(--duration-base) var(--ease-qclay),
     box-shadow var(--duration-base) var(--ease-qclay);
+}
+
+.qclay-site-header.is-hidden {
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0, calc(-100% - 0.5rem), 0);
+}
+
+.qclay-site-header.is-hidden:focus-within {
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .qclay-site-header::after {
@@ -1331,7 +1345,7 @@
 
 .qclay-project-stage-screen {
   position: relative;
-  min-height: clamp(21rem, 55vw, 38rem);
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   border: 1px solid oklch(20.8% 0.042 265.755 / 0.16);
   border-radius: 1.55rem;
@@ -1476,10 +1490,6 @@
     position: sticky;
     top: 5.5rem;
     align-self: start;
-  }
-
-  .qclay-project-stage-screen {
-    min-height: min(64vh, 42rem);
   }
 
   .qclay-project-narrative {

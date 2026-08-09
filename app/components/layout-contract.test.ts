@@ -36,3 +36,16 @@ test('the avatar portrait wrapper does not cast a square shadow', () => {
   )
   assert.match(scrollStorySource, /qclay-story-portrait/)
 })
+
+test('the project stage matches the horizontal 16:10 work captures', () => {
+  const stageScreenRule =
+    animationStyles.match(
+      /\.qclay-project-stage-screen\s*\{([\s\S]*?)\n\}/,
+    )?.[1] ?? ''
+
+  assert.match(
+    stageScreenRule,
+    /aspect-ratio:\s*16\s*\/\s*10;/,
+  )
+  assert.doesNotMatch(stageScreenRule, /min-height:/)
+})
