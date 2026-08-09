@@ -1,5 +1,12 @@
-import Image, { type StaticImageData } from 'next/image'
+'use client'
 
+import Image, { type StaticImageData } from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+
+import {
+  getActiveProjectIndex,
+  type ProjectVisibility,
+} from '@/app/lib/project-gallery'
 import electreauCapture from '@/public/works/electreau-capture.webp'
 import petitNidCapture from '@/public/works/petitnid-capture.webp'
 import vikoCapture from '@/public/works/chezviko-capture.webp'
@@ -15,22 +22,21 @@ type CaseStudy = {
   href: string
 }
 
-const featuredCase: CaseStudy = {
-  title: 'Petit Nid',
-  scope: 'Projet fondateur, application mobile de suivi bébé',
-  image: petitNidCapture,
-  imageAlt:
-    'Capture du site Petit Nid présentant une application mobile de suivi bébé',
-  challenge:
-    'Expliquer un produit sensible en quelques secondes, sans noyer de jeunes parents dans une logique de tableau de bord.',
-  solution:
-    'Une page produit rassurante, mobile-first, qui met le bénéfice avant les fonctionnalités et guide vers l’inscription.',
-  impact:
-    'Une proposition lisible dès la première visite, un parcours clair et une base prête à évoluer.',
-  href: 'https://petitnid.app',
-}
-
-const compactCases: CaseStudy[] = [
+const caseStudies: CaseStudy[] = [
+  {
+    title: 'Petit Nid',
+    scope: 'Projet fondateur, application mobile de suivi bébé',
+    image: petitNidCapture,
+    imageAlt:
+      'Capture du site Petit Nid présentant une application mobile de suivi bébé',
+    challenge:
+      'Expliquer un produit sensible en quelques secondes, sans noyer de jeunes parents dans une logique de tableau de bord.',
+    solution:
+      'Une page produit rassurante, mobile-first, qui met le bénéfice avant les fonctionnalités et guide vers l’inscription.',
+    impact:
+      'Une proposition lisible dès la première visite, un parcours clair et une base prête à évoluer.',
+    href: 'https://petitnid.app',
+  },
   {
     title: 'Electreau Lyon',
     scope: "Site vitrine d'électricien",
@@ -61,117 +67,149 @@ const compactCases: CaseStudy[] = [
 ]
 
 const titleClass =
-  'font-display text-[clamp(2.1rem,3.4vw,3.35rem)] font-semibold leading-[1.08] tracking-tight'
-
-const cardClass =
-  'qclay-subtle-card rounded-2xl border border-base-300 bg-base-100 shadow-[0_18px_45px_oklch(20.8%_0.042_265.755/0.05)]'
+  'font-display text-[clamp(2.7rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]'
 
 export default function CaseStudies() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const projectRefs = useRef<(HTMLElement | null)[]>([])
+  const visibilityRef = useRef(new Map<number, ProjectVisibility>())
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const index = Number(
+            (entry.target as HTMLElement).dataset.projectIndex,
+          )
+
+          if (!Number.isInteger(index)) {
+            continue
+          }
+
+          visibilityRef.current.set(index, {
+            index,
+            isIntersecting: entry.isIntersecting,
+            intersectionRatio: entry.intersectionRatio,
+          })
+        }
+
+        setActiveIndex((currentIndex) =>
+          getActiveProjectIndex(
+            Array.from(visibilityRef.current.values()),
+            currentIndex,
+          ),
+        )
+      },
+      {
+        rootMargin: '-24% 0px -34% 0px',
+        threshold: [0, 0.2, 0.45, 0.7],
+      },
+    )
+
+    for (const project of projectRefs.current) {
+      if (project) {
+        observer.observe(project)
+      }
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const activeCaseStudy = caseStudies[activeIndex]
+
   return (
     <section
       id="portfolio"
       aria-labelledby="realisations-heading"
-      className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 py-20 lg:py-28"
+      className="qclay-section qclay-flow-section qclay-flow-projects cv-auto py-24 lg:py-36"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65">
-            Portfolio de Benoit Bruynbroeck
+          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+            Études de cas
           </p>
-          <h2 id="realisations-heading" className={`mt-3 ${titleClass}`}>
+          <h2 id="realisations-heading" className={`${titleClass} mt-4`}>
             Des projets qui prouvent le raisonnement
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-base-content/65">
+          <p className="mt-5 max-w-2xl text-base leading-7 text-base-content/65">
             Chaque projet part d’un blocage concret: inspirer confiance,
             clarifier une offre, ou rendre une action évidente sur mobile.
           </p>
         </div>
 
-        <article
-          className={`qclay-reveal-item mt-10 overflow-hidden ${cardClass}`}
-          style={{ '--qclay-reveal-i': 0 } as React.CSSProperties}
-        >
-          <figure className="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-stretch">
-            <div className="relative min-h-[18rem] overflow-hidden border-b border-base-300 bg-base-200 lg:border-b-0 lg:border-r">
-              <Image
-                src={featuredCase.image}
-                alt={featuredCase.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 620px"
-                className="object-contain object-top"
-              />
+        <div className="qclay-project-gallery mt-14 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(19rem,0.9fr)] lg:items-start lg:gap-12">
+          <div className="qclay-project-stage lg:sticky lg:top-24">
+            <div className="qclay-project-stage-topline">
+              <span>La scène projet</span>
+              <span aria-hidden="true">
+                {String(activeIndex + 1).padStart(2, '0')} /{' '}
+                {String(caseStudies.length).padStart(2, '0')}
+              </span>
             </div>
-            <figcaption className="flex flex-col p-6 sm:p-8 lg:p-10">
-              <p className="text-sm font-medium text-[color:var(--brand-blue)]">
-                {featuredCase.scope}
-              </p>
-              <h3 className="font-display mt-2 text-3xl font-semibold tracking-tight text-base-content">
-                {featuredCase.title}
-              </h3>
-              <dl className="mt-6 grid gap-5 border-y border-base-300 py-6">
-                {[
-                  ['Blocage', featuredCase.challenge],
-                  ['Intervention', featuredCase.solution],
-                  ['Résultat', featuredCase.impact],
-                ].map(([label, text]) => (
-                  <div key={label}>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-base-content/50">
-                      {label}
-                    </dt>
-                    <dd className="mt-1.5 text-sm leading-6 text-base-content/70">
-                      {text}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <a
-                href={featuredCase.href}
-                target="_blank"
-                rel="noreferrer"
-                className="interactive mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
-              >
-                Voir le site
-                <span aria-hidden="true">↗</span>
-              </a>
-            </figcaption>
-          </figure>
-        </article>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          {compactCases.map((caseStudy, index) => (
-            <article
-              key={caseStudy.title}
-              className={`qclay-reveal-item overflow-hidden ${cardClass}`}
-              style={{ '--qclay-reveal-i': index + 1 } as React.CSSProperties}
-            >
-              <figure className="flex h-full flex-col">
-                <div className="relative aspect-[16/10] overflow-hidden border-b border-base-300 bg-base-200">
+            <div className="qclay-project-stage-screen" aria-hidden="true">
+              {caseStudies.map((caseStudy, index) => (
+                <figure
+                  key={caseStudy.title}
+                  className={
+                    index === activeIndex
+                      ? 'qclay-project-stage-image is-active'
+                      : 'qclay-project-stage-image'
+                  }
+                >
                   <Image
                     src={caseStudy.image}
-                    alt={caseStudy.imageAlt}
+                    alt=""
                     fill
-                    sizes="(max-width: 768px) 100vw, 520px"
+                    sizes="(max-width: 1024px) 100vw, 620px"
                     className="object-contain object-top"
                   />
-                </div>
-                <figcaption className="flex flex-1 flex-col p-6 sm:p-7">
+                </figure>
+              ))}
+            </div>
+            <div className="qclay-project-stage-caption">
+              <p>{activeCaseStudy.scope}</p>
+              <p className="font-display text-2xl font-semibold tracking-tight">
+                {activeCaseStudy.title}
+              </p>
+            </div>
+          </div>
+
+          <div className="qclay-project-list">
+            {caseStudies.map((caseStudy, index) => {
+              const isActive = index === activeIndex
+
+              return (
+                <article
+                  key={caseStudy.title}
+                  ref={(element) => {
+                    projectRefs.current[index] = element
+                  }}
+                  data-project-index={index}
+                  data-active={isActive ? 'true' : 'false'}
+                  className="qclay-project-narrative"
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onFocusCapture={() => setActiveIndex(index)}
+                >
+                  <p className="qclay-project-number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </p>
                   <p className="text-sm font-medium text-[color:var(--brand-blue)]">
                     {caseStudy.scope}
                   </p>
-                  <h3 className="font-display mt-2 text-2xl font-semibold tracking-tight text-base-content">
+                  <h3 className="font-display mt-3 text-4xl font-semibold leading-none tracking-[-0.035em] text-base-content sm:text-5xl">
                     {caseStudy.title}
                   </h3>
-                  <dl className="mt-5 flex-1 space-y-4 border-y border-base-300 py-5">
+                  <dl className="mt-8 grid gap-5">
                     {[
-                      ['Besoin', caseStudy.challenge],
-                      ['Réponse', caseStudy.solution],
-                      ['Effet', caseStudy.impact],
+                      ['Le blocage', caseStudy.challenge],
+                      ['La réponse', caseStudy.solution],
+                      ['Ce que ça change', caseStudy.impact],
                     ].map(([label, text]) => (
                       <div key={label}>
                         <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-base-content/50">
                           {label}
                         </dt>
-                        <dd className="mt-1 text-sm leading-6 text-base-content/65">
+                        <dd className="mt-1.5 text-sm leading-6 text-base-content/72">
                           {text}
                         </dd>
                       </div>
@@ -181,15 +219,15 @@ export default function CaseStudies() {
                     href={caseStudy.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="interactive mt-5 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+                    className="interactive qclay-project-link mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)]"
                   >
                     Voir le site
                     <span aria-hidden="true">↗</span>
                   </a>
-                </figcaption>
-              </figure>
-            </article>
-          ))}
+                </article>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

@@ -1,8 +1,17 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
+import {
+  getPageScrollProgress,
+  getScrollStoryProgress,
+  getScrollStoryStep,
+} from '@/app/lib/scroll-motion'
+
 export default function QClayMotion() {
+  const pathname = usePathname()
+
   useEffect(() => {
     const root = document.documentElement
     const reduceMotion = window.matchMedia(
@@ -17,6 +26,40 @@ export default function QClayMotion() {
     if (reduceMotion) {
       return () => root.classList.remove('qclay-motion-ready')
     }
+
+    const scrollStories = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-qclay-scroll-story]'),
+    )
+    let scrollFrame = 0
+
+    const updateScrollScene = () => {
+      scrollFrame = 0
+      root.style.setProperty(
+        '--qclay-page-progress',
+        `${getPageScrollProgress(document.documentElement)}`,
+      )
+
+      scrollStories.forEach((story) => {
+        const progress = getScrollStoryProgress(
+          story.getBoundingClientRect(),
+          window.innerHeight,
+        )
+        const stepCount = Number(story.dataset.storySteps ?? 1)
+
+        story.style.setProperty('--qclay-story-progress', `${progress}`)
+        story.dataset.storyStep = `${getScrollStoryStep(progress, stepCount)}`
+      })
+    }
+
+    const requestScrollUpdate = () => {
+      if (!scrollFrame) {
+        scrollFrame = window.requestAnimationFrame(updateScrollScene)
+      }
+    }
+
+    updateScrollScene()
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true })
+    window.addEventListener('resize', requestScrollUpdate, { passive: true })
 
     const revealTargets = Array.from(
       document.querySelectorAll<HTMLElement>('.qclay-scroll-reveal'),
@@ -39,6 +82,9 @@ export default function QClayMotion() {
       return () => {
         root.classList.remove('qclay-motion-ready')
         observer.disconnect()
+        window.removeEventListener('scroll', requestScrollUpdate)
+        window.removeEventListener('resize', requestScrollUpdate)
+        if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
       }
     }
 
@@ -81,11 +127,14 @@ export default function QClayMotion() {
     return () => {
       root.classList.remove('qclay-motion-ready')
       observer.disconnect()
+      window.removeEventListener('scroll', requestScrollUpdate)
+      window.removeEventListener('resize', requestScrollUpdate)
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
       window.removeEventListener('pointermove', updatePointer)
       window.removeEventListener('mousemove', updatePointer)
       if (frame) window.cancelAnimationFrame(frame)
     }
-  }, [])
+  }, [pathname])
 
   return null
 }

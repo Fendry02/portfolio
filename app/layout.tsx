@@ -8,6 +8,7 @@ import './styles/global.css'
 import Header from './components/header'
 import Footer from './components/footer'
 import JsonLd from './components/json-ld'
+import QClayMotion from './components/qclay-motion'
 import {
   createJsonLdGraph,
   defaultOpenGraphImage,
@@ -51,6 +52,7 @@ export default function RootLayout({
           ])}
         />
         <Header />
+        <QClayMotion />
         {children}
         <Footer />
         {process.env.VERCEL && <Analytics />}

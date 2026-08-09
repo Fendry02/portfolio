@@ -48,7 +48,7 @@ const columnTitle =
 
 export default function Footer() {
   return (
-    <footer className="border-t border-base-300">
+    <footer className="qclay-site-footer border-t border-base-300">
       <div className="mx-auto max-w-6xl px-6 py-14 lg:px-10">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div className="max-w-sm">

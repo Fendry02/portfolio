@@ -45,13 +45,13 @@ export default function Testimonials() {
   return (
     <section
       aria-labelledby="testimonials-heading"
-      className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 py-20 lg:py-28"
+      className="qclay-section qclay-flow-section qclay-flow-voices qclay-scroll-reveal cv-auto py-24 lg:py-36"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <div className="max-w-3xl">
           <h2
             id="testimonials-heading"
-            className="font-display text-[clamp(2.1rem,3.4vw,3.35rem)] font-semibold leading-[1.08] tracking-tight"
+            className="font-display text-[clamp(2.7rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
           >
             Ce qu’en disent mes clients
           </h2>
@@ -65,7 +65,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <figure
               key={`${testimonial.name}-${testimonial.company}`}
-              className="qclay-subtle-card relative flex h-full flex-col rounded-2xl border border-base-300 bg-base-100 p-7 shadow-[0_18px_45px_oklch(20.8%_0.042_265.755/0.05)] sm:p-9"
+              className="qclay-voice relative flex h-full flex-col p-7 sm:p-9"
             >
               <span
                 aria-hidden="true"
