@@ -165,23 +165,6 @@ export const metadata = buildPageMetadata({
   title: homeTitle,
   description: homeDescription,
   path: '/',
-  keywords: [
-    'création site internet',
-    'création site web professionnel',
-    'application web sur mesure',
-    'automatisation n8n',
-    'expert n8n Lyon',
-    'workflow n8n',
-    'développeur web freelance',
-    'développeur web freelance Lyon',
-    'freelance dev Lyon',
-    'développeur full stack',
-    'portfolio développeur web',
-    'Next.js',
-    'React',
-    'Node.js',
-    'PostgreSQL',
-  ],
 })
 
 const homeJsonLd = createJsonLdGraph([
@@ -284,9 +267,9 @@ export default function Home() {
 
           <div className="qclay-flow-routes mt-12 grid gap-4 md:grid-cols-2">
             <article className="qclay-flow-route p-6 sm:p-8">
-              <h2 className="font-display text-lg font-semibold tracking-tight">
+              <h3 className="font-display text-lg font-semibold tracking-tight">
                 Création de site web à Lyon
-              </h2>
+              </h3>
               <p className="mt-1.5 text-sm leading-6 text-base-content/60">
                 Ma façon de cadrer, développer et référencer un site
                 professionnel local.
@@ -301,9 +284,9 @@ export default function Home() {
             </article>
 
             <article className="qclay-flow-route p-6 sm:p-8">
-              <h2 className="font-display text-lg font-semibold tracking-tight">
+              <h3 className="font-display text-lg font-semibold tracking-tight">
                 Automatisation n8n à Lyon
-              </h2>
+              </h3>
               <p className="mt-1.5 text-sm leading-6 text-base-content/60">
                 Des workflows fiables pour connecter vos outils et supprimer les
                 tâches répétitives.

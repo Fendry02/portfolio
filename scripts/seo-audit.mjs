@@ -67,6 +67,161 @@ const pages = [
       'BreadcrumbList',
     ],
   },
+  {
+    path: '/services/application-web-sur-mesure-lyon',
+    title: 'Application web sur mesure à Lyon | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/services/application-web-sur-mesure-lyon`,
+    descriptionIncludes: 'Application web sur mesure à Lyon',
+    h1Includes: 'Application web sur mesure à Lyon',
+    contentIncludes: ['processus métier', 'Petit Nid'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'WebPage',
+      'Service',
+      'FAQPage',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/services/formation-ia-lyon',
+    title: 'Formation IA à Lyon | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/services/formation-ia-lyon`,
+    descriptionIncludes: 'Formation IA à Lyon',
+    h1Includes: 'Formation IA à Lyon',
+    contentIncludes: ['validation humaine', 'cas d’usage'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'WebPage',
+      'Service',
+      'FAQPage',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/realisations',
+    title: 'Réalisations web et applications | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/realisations`,
+    descriptionIncludes: 'Études de cas',
+    h1Includes: 'Des réalisations',
+    contentIncludes: ['Petit Nid', 'Electreau Lyon', 'Chez Viko'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'CollectionPage',
+      'ItemList',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/realisations/petit-nid',
+    title: 'Petit Nid — Application de suivi bébé | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/realisations/petit-nid`,
+    descriptionIncludes: 'Expliquer un produit sensible',
+    h1Includes: 'Petit Nid',
+    contentIncludes: ['Le blocage', 'La réponse', 'Le socle'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'Article',
+      'ImageObject',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/realisations/electreau-lyon',
+    title: 'Electreau Lyon — Artisan électricien | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/realisations/electreau-lyon`,
+    descriptionIncludes: 'artisan lyonnais',
+    h1Includes: 'Electreau Lyon',
+    contentIncludes: ['Le blocage', 'La réponse', 'Le socle'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'Article',
+      'ImageObject',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/realisations/chez-viko',
+    title: 'Chez Viko — Restauration | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/realisations/chez-viko`,
+    descriptionIncludes: 'Donner envie avant la visite',
+    h1Includes: 'Chez Viko',
+    contentIncludes: ['Le blocage', 'La réponse', 'Le socle'],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'Article',
+      'ImageObject',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/blog',
+    title: 'Conseils n8n et création de site web | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/blog`,
+    descriptionIncludes: 'automatisation n8n',
+    h1Includes: 'Conseils n8n',
+    contentIncludes: [
+      'Automatiser un processus avec n8n sans créer une boîte noire',
+      'Créer un site web à Lyon qui aide vraiment à prendre contact',
+    ],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'CollectionPage',
+      'ItemList',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/blog/automatiser-processus-n8n-sans-boite-noire',
+    title:
+      'Automatiser un processus avec n8n sans créer une boîte noire | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/blog/automatiser-processus-n8n-sans-boite-noire`,
+    descriptionIncludes: 'automatisation n8n',
+    h1Includes: 'Automatiser un processus',
+    contentIncludes: [
+      'Commencer par le travail, pas par l’outil',
+      'Prévoir les erreurs avant la mise en service',
+    ],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'BlogPosting',
+      'BreadcrumbList',
+    ],
+  },
+  {
+    path: '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
+    title:
+      'Créer un site web à Lyon qui aide vraiment à prendre contact | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/blog/creer-site-web-lyon-qui-aide-prendre-contact`,
+    descriptionIncludes: 'site professionnel',
+    h1Includes: 'Créer un site web à Lyon',
+    contentIncludes: [
+      'Clarifier une décision plutôt que remplir une page',
+      'Donner des preuves lisibles dans le bon contexte',
+    ],
+    requiredJsonLdTypes: [
+      'Person',
+      'WebSite',
+      'ProfessionalService',
+      'BlogPosting',
+      'BreadcrumbList',
+    ],
+  },
 ]
 
 const utilityPages = [
@@ -85,6 +240,11 @@ const utilityPages = [
   },
   {
     path: '/confidentialite',
+  },
+  {
+    path: '/introuvable',
+    expectedStatus: 404,
+    contentIncludes: ['Cette page n’existe pas ou plus.'],
   },
 ]
 
@@ -116,11 +276,11 @@ function report(ok, label) {
   console.error(`FAIL ${label}`)
 }
 
-async function fetchResource(path, expectedContentType) {
+async function fetchResource(path, expectedContentType, expectedStatus = 200) {
   const url = auditUrl(path)
   const response = await fetch(url)
 
-  report(response.ok, `${url} returns ${response.status}`)
+  report(response.status === expectedStatus, `${url} returns ${expectedStatus}`)
 
   if (expectedContentType) {
     const contentType = response.headers.get('content-type') ?? ''
@@ -325,6 +485,43 @@ async function auditSitemap() {
     'sitemap includes /services/automatisation-n8n-lyon',
   )
   report(
+    locs.includes(publicUrl('/services/application-web-sur-mesure-lyon')),
+    'sitemap includes /services/application-web-sur-mesure-lyon',
+  )
+  report(
+    locs.includes(publicUrl('/services/formation-ia-lyon')),
+    'sitemap includes /services/formation-ia-lyon',
+  )
+  report(
+    locs.includes(publicUrl('/realisations')),
+    'sitemap includes /realisations',
+  )
+  report(
+    locs.includes(publicUrl('/realisations/petit-nid')),
+    'sitemap includes /realisations/petit-nid',
+  )
+  report(
+    locs.includes(publicUrl('/realisations/electreau-lyon')),
+    'sitemap includes /realisations/electreau-lyon',
+  )
+  report(
+    locs.includes(publicUrl('/realisations/chez-viko')),
+    'sitemap includes /realisations/chez-viko',
+  )
+  report(locs.includes(publicUrl('/blog')), 'sitemap includes /blog')
+  report(
+    locs.includes(
+      publicUrl('/blog/automatiser-processus-n8n-sans-boite-noire'),
+    ),
+    'sitemap includes the n8n blog post',
+  )
+  report(
+    locs.includes(
+      publicUrl('/blog/creer-site-web-lyon-qui-aide-prendre-contact'),
+    ),
+    'sitemap includes the website-creation blog post',
+  )
+  report(
     locs.every((loc) => !loc.includes('#')),
     'sitemap has no fragment URLs',
   )
@@ -345,18 +542,19 @@ async function auditSitemap() {
 
 async function auditNoIndexUtilityPages() {
   for (const page of utilityPages) {
-    const response = await fetchResource(page.path, 'text/html')
+    const response = await fetchResource(
+      page.path,
+      'text/html',
+      page.expectedStatus,
+    )
     const html = await response.text()
-    const robots = readMeta(html, 'name', 'robots') ?? ''
+    const robots = (html.match(/<meta\s+[^>]*>/gi) ?? [])
+      .filter((tag) => readAttribute(tag, 'name') === 'robots')
+      .map((tag) => readAttribute(tag, 'content') ?? '')
+      .join(',')
 
-    report(
-      robots.includes('noindex'),
-      `${page.path} has a noindex directive`,
-    )
-    report(
-      robots.includes('follow'),
-      `${page.path} keeps links followable`,
-    )
+    report(robots.includes('noindex'), `${page.path} has a noindex directive`)
+    report(robots.includes('follow'), `${page.path} keeps links followable`)
 
     const visibleText = readVisibleText(html)
 
@@ -374,6 +572,33 @@ async function auditNoIndexUtilityPages() {
       )
     }
   }
+}
+
+async function auditRss() {
+  const response = await fetchResource('/blog/rss.xml', 'application/rss+xml')
+  const feed = await response.text()
+
+  report(
+    feed.includes(
+      publicUrl('/blog/automatiser-processus-n8n-sans-boite-noire'),
+    ),
+    'RSS includes the n8n blog post',
+  )
+  report(
+    feed.includes(
+      publicUrl('/blog/creer-site-web-lyon-qui-aide-prendre-contact'),
+    ),
+    'RSS includes the website-creation blog post',
+  )
+
+  const rootResponse = await fetchResource('/', 'text/html')
+  const rootHtml = await rootResponse.text()
+
+  report(
+    rootHtml.includes('application/rss+xml') &&
+      rootHtml.includes('/blog/rss.xml'),
+    'homepage references the RSS feed',
+  )
 }
 
 async function auditRobots() {
@@ -418,6 +643,7 @@ for (const page of pages) {
 
 await auditSitemap()
 await auditNoIndexUtilityPages()
+await auditRss()
 await auditRobots()
 await auditManifest()
 await auditSocialImages()

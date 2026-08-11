@@ -25,17 +25,6 @@ export const metadata = buildPageMetadata({
   path: '/jobs',
   image: jobsOpenGraphImage,
   locale: 'en_US',
-  keywords: [
-    'JavaScript Tech Lead',
-    'full-stack developer',
-    'TypeScript',
-    'Node.js',
-    'React',
-    'Next.js',
-    'Vue.js',
-    'software architecture',
-    'AI-augmented developer',
-  ],
 })
 
 const jobsJsonLd = createJsonLdGraph([

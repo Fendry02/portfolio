@@ -99,16 +99,6 @@ export const metadata = buildPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: pagePath,
-  keywords: [
-    'automatisation n8n Lyon',
-    'expert n8n Lyon',
-    'freelance n8n',
-    'consultant n8n',
-    'création workflow n8n',
-    'intégration API n8n',
-    'automatisation PME',
-    'automatisation IA n8n',
-  ],
 })
 
 const pageJsonLd = createJsonLdGraph([
@@ -157,8 +147,8 @@ export default function AutomationN8nLyonPage() {
             </h1>
             <p className={`mt-6 max-w-2xl ${bodyText} md:text-lg md:leading-8`}>
               Je suis Benoit Bruynbroeck, développeur web freelance à Lyon
-              spécialisé dans les intégrations. Je conçois des workflows n8n
-              sur mesure pour connecter vos outils, fiabiliser les échanges de
+              spécialisé dans les intégrations. Je conçois des workflows n8n sur
+              mesure pour connecter vos outils, fiabiliser les échanges de
               données et automatiser les tâches répétitives.
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
@@ -246,6 +236,21 @@ export default function AutomationN8nLyonPage() {
               flux documenté.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="qclay-section qclay-scroll-reveal cv-auto border-b border-base-300 px-6 py-16 lg:px-10 lg:py-20">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-5 sm:flex-row sm:items-center">
+          <p className="max-w-2xl text-base leading-7 text-base-content/65">
+            Découvrez les projets où la clarté du parcours et des informations a
+            été déterminante.
+          </p>
+          <Link
+            href="/realisations"
+            className="interactive shrink-0 text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+          >
+            Voir les réalisations →
+          </Link>
         </div>
       </section>
 

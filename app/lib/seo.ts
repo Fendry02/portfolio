@@ -44,35 +44,6 @@ export const siteConfig = {
   ],
 } as const
 
-export const seoKeywords = [
-  'création site internet',
-  'création site web professionnel',
-  'développeur web freelance',
-  'développeur web freelance Lyon',
-  'freelance développeur web Lyon',
-  'développeur full stack JavaScript',
-  'développeur Next.js',
-  'développeur React',
-  'développeur Vue.js',
-  'application web sur mesure',
-  'application métier',
-  'automatisation n8n',
-  'expert n8n Lyon',
-  'workflow n8n',
-  'automatisation de processus',
-  'automatisation IA',
-  'formation IA',
-  'portfolio développeur web',
-  'Benoit Bruynbroeck développeur',
-  'Next.js',
-  'React',
-  'Vue.js',
-  'Node.js',
-  'PostgreSQL',
-  'TypeScript',
-  'Lyon',
-]
-
 type OpenGraphImage = {
   url: string
   width: number
@@ -97,6 +68,8 @@ export const jobsOpenGraphImage = {
 export const serviceRoutes = {
   websiteCreationLyon: '/services/creation-site-web-lyon',
   automationN8nLyon: '/services/automatisation-n8n-lyon',
+  customAppLyon: '/services/application-web-sur-mesure-lyon',
+  aiTrainingLyon: '/services/formation-ia-lyon',
 } as const
 
 export const serviceOffers = [
@@ -110,7 +83,7 @@ export const serviceOffers = [
     name: 'Développement d’application web et mobile',
     description:
       'Conception et développement d’applications web et mobiles sur mesure pour répondre à un besoin métier spécifique.',
-    url: '/#offres',
+    url: serviceRoutes.customAppLyon,
   },
   {
     name: 'Automatisation n8n et IA',
@@ -122,14 +95,99 @@ export const serviceOffers = [
     name: 'Formation IA',
     description:
       'Formations pratiques pour aider les équipes à utiliser l’intelligence artificielle dans leurs workflows quotidiens.',
-    url: '/#offres',
+    url: serviceRoutes.aiTrainingLyon,
   },
 ] as const
 
-export const siteLastModified = new Date('2026-07-30T00:00:00.000Z')
+export type IndexedRoute = {
+  path: string
+  lastModified: Date
+  changeFrequency: 'weekly' | 'monthly'
+  priority: number
+}
+
+const lastModified = (value: string) => new Date(`${value}T00:00:00.000Z`)
+
+export const routeRegistry = [
+  {
+    path: '/',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 1,
+  },
+  {
+    path: '/jobs',
+    lastModified: lastModified('2026-07-30'),
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  },
+  {
+    path: serviceRoutes.websiteCreationLyon,
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  },
+  {
+    path: serviceRoutes.automationN8nLyon,
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  },
+  {
+    path: serviceRoutes.customAppLyon,
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  },
+  {
+    path: serviceRoutes.aiTrainingLyon,
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  },
+  {
+    path: '/realisations',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    path: '/realisations/petit-nid',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  },
+  {
+    path: '/realisations/electreau-lyon',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  },
+  {
+    path: '/realisations/chez-viko',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  },
+  {
+    path: '/blog',
+    lastModified: lastModified('2026-08-11'),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  },
+] as const satisfies readonly IndexedRoute[]
 
 export function absoluteUrl(path = '/'): string {
   return new URL(path, siteConfig.url).toString()
+}
+
+export function createStaticSitemapEntries() {
+  return routeRegistry.map((route) => ({
+    url: absoluteUrl(route.path),
+    lastModified: route.lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }))
 }
 
 function withBrand(title: string): string {
@@ -142,7 +200,6 @@ type PageMetadataInput = {
   title: string
   description: string
   path: string
-  keywords?: string[]
   image?: OpenGraphImage
   locale?: string
   index?: boolean
@@ -152,7 +209,6 @@ export function buildPageMetadata({
   title,
   description,
   path,
-  keywords = [],
   image = defaultOpenGraphImage,
   locale = siteConfig.locale,
   index = true,
@@ -163,9 +219,16 @@ export function buildPageMetadata({
   return {
     title,
     description,
-    keywords: [...seoKeywords, ...keywords],
     alternates: {
       canonical,
+      types: {
+        'application/rss+xml': [
+          {
+            url: '/blog/rss.xml',
+            title: 'Articles de Benoit Bruynbroeck',
+          },
+        ],
+      },
     },
     robots: index
       ? undefined
@@ -281,7 +344,26 @@ export const professionalServiceJsonLd: JsonLdNode = {
       '@type': 'City',
       name: siteConfig.location.city,
     },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Métropole de Lyon',
+    },
   ],
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 45.75119,
+    longitude: 4.85356,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+      timezone: 'Europe/Paris',
+    },
+  ],
+  knowsLanguage: ['fr-FR', 'en'],
   founder: {
     '@id': personId,
   },

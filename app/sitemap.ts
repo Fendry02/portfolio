@@ -1,32 +1,23 @@
 import { MetadataRoute } from 'next'
 
-import { absoluteUrl, serviceRoutes, siteLastModified } from './lib/seo'
+import { getBlogPosts } from './lib/blog'
+import { absoluteUrl, createStaticSitemapEntries } from './lib/seo'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: absoluteUrl('/'),
-      lastModified: siteLastModified,
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: absoluteUrl('/jobs'),
-      lastModified: siteLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: absoluteUrl(serviceRoutes.websiteCreationLyon),
-      lastModified: siteLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: absoluteUrl(serviceRoutes.automationN8nLyon),
-      lastModified: siteLastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-  ]
+export function staticSitemapEntries(): MetadataRoute.Sitemap {
+  return createStaticSitemapEntries()
+}
+
+export async function blogSitemapEntries(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getBlogPosts()
+
+  return posts.map((post) => ({
+    url: absoluteUrl(`/blog/${post.slug}`),
+    lastModified: new Date(`${post.dateModified}T00:00:00.000Z`),
+    changeFrequency: 'monthly',
+    priority: 0.65,
+  }))
+}
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  return [...staticSitemapEntries(), ...(await blogSitemapEntries())]
 }

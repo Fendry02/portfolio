@@ -101,15 +101,6 @@ export const metadata = buildPageMetadata({
   title: pageTitle,
   description: pageDescription,
   path: pagePath,
-  keywords: [
-    'création site web Lyon',
-    'création site internet Lyon',
-    'développeur web Lyon',
-    'site vitrine Lyon',
-    'site web artisan Lyon',
-    'site web PME Lyon',
-    'référencement local Lyon',
-  ],
 })
 
 const pageJsonLd = createJsonLdGraph([
@@ -215,6 +206,28 @@ export default function WebsiteCreationLyonPage() {
                 </div>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="qclay-section qclay-scroll-reveal cv-auto border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-6xl">
+          <h2 className={`max-w-2xl ${sectionTitle}`}>
+            Des réalisations locales à lire dans leur contexte.
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href="/realisations/electreau-lyon"
+              className="interactive text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+            >
+              Étude de cas Electreau Lyon →
+            </Link>
+            <Link
+              href="/realisations/chez-viko"
+              className="interactive text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+            >
+              Étude de cas Chez Viko →
+            </Link>
           </div>
         </div>
       </section>

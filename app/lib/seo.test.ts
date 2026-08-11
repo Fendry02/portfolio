@@ -4,12 +4,14 @@ import assert from 'node:assert/strict'
 import {
   absoluteUrl,
   buildPageMetadata,
+  createStaticSitemapEntries,
   createFaqPageJsonLd,
   createJsonLdGraph,
   createServiceJsonLd,
   createWebPageJsonLd,
   professionalServiceJsonLd,
-  seoKeywords,
+  routeRegistry,
+  serviceOffers,
   serviceRoutes,
   siteConfig,
   websiteJsonLd,
@@ -33,6 +35,15 @@ test('buildPageMetadata keeps page title concise and brands social titles', () =
     `Création de sites web | ${siteConfig.name}`,
   )
   assert.equal(metadata.alternates?.canonical, siteConfig.url + '/')
+  assert.deepEqual(metadata.alternates?.types, {
+    'application/rss+xml': [
+      {
+        url: '/blog/rss.xml',
+        title: 'Articles de Benoit Bruynbroeck',
+      },
+    ],
+  })
+  assert.equal(metadata.keywords, undefined)
 })
 
 test('the default site intent targets the freelance developer query in Lyon', () => {
@@ -47,11 +58,7 @@ test('the default site intent targets the freelance developer query in Lyon', ()
 })
 
 test('website structured data exposes the recognized bbenoit brand aliases', () => {
-  assert.deepEqual(siteConfig.alternateNames, [
-    'B/B',
-    'bbenoit',
-    'bbenoit.fr',
-  ])
+  assert.deepEqual(siteConfig.alternateNames, ['B/B', 'bbenoit', 'bbenoit.fr'])
   assert.deepEqual(websiteJsonLd.alternateName, siteConfig.alternateNames)
 })
 
@@ -100,6 +107,26 @@ test('professional service structured data exposes the verified local business d
     addressLocality: siteConfig.legal.address.city,
     addressCountry: siteConfig.legal.address.countryCode,
   })
+  assert.deepEqual(professionalServiceJsonLd.geo, {
+    '@type': 'GeoCoordinates',
+    latitude: 45.75119,
+    longitude: 4.85356,
+  })
+  assert.ok(
+    (professionalServiceJsonLd.areaServed as Array<{ name: string }>).some(
+      ({ name }) => name === 'Métropole de Lyon',
+    ),
+  )
+  assert.deepEqual(professionalServiceJsonLd.openingHoursSpecification, [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '18:00',
+      timezone: 'Europe/Paris',
+    },
+  ])
+  assert.deepEqual(professionalServiceJsonLd.knowsLanguage, ['fr-FR', 'en'])
 })
 
 test('buildPageMetadata can keep a utility page crawlable but out of the index', () => {
@@ -147,12 +174,20 @@ test('createServiceJsonLd describes a service page', () => {
   )
 })
 
-test('n8n automation has a stable service route and discoverable keyword', () => {
+test('service routes provide a destination for every advertised offer', () => {
   assert.equal(
     serviceRoutes.automationN8nLyon,
     '/services/automatisation-n8n-lyon',
   )
-  assert.ok(seoKeywords.includes('automatisation n8n'))
+  assert.equal(
+    serviceRoutes.customAppLyon,
+    '/services/application-web-sur-mesure-lyon',
+  )
+  assert.equal(serviceRoutes.aiTrainingLyon, '/services/formation-ia-lyon')
+  assert.ok(
+    serviceOffers.every((offer) => offer.url !== '/#offres'),
+    'every offer points to a dedicated service page',
+  )
 })
 
 test('createServiceJsonLd supports the specific service type', () => {
@@ -178,5 +213,38 @@ test('createFaqPageJsonLd creates FAQPage structured data', () => {
   assert.deepEqual(
     (faq.mainEntity as Array<{ '@type': string }>)[0]['@type'],
     'Question',
+  )
+})
+
+test('the route registry dates every static indexable route exactly once', () => {
+  const paths = routeRegistry.map((route) => route.path)
+
+  assert.equal(new Set(paths).size, paths.length)
+  assert.ok(routeRegistry.every((route) => route.lastModified instanceof Date))
+  assert.deepEqual(paths, [
+    '/',
+    '/jobs',
+    serviceRoutes.websiteCreationLyon,
+    serviceRoutes.automationN8nLyon,
+    serviceRoutes.customAppLyon,
+    serviceRoutes.aiTrainingLyon,
+    '/realisations',
+    '/realisations/petit-nid',
+    '/realisations/electreau-lyon',
+    '/realisations/chez-viko',
+    '/blog',
+  ])
+})
+
+test('the sitemap entries map the static route registry one-for-one', () => {
+  const entries = createStaticSitemapEntries()
+
+  assert.deepEqual(
+    entries.map((entry) => entry.url),
+    routeRegistry.map((route) => absoluteUrl(route.path)),
+  )
+  assert.deepEqual(
+    entries.map((entry) => entry.lastModified),
+    routeRegistry.map((route) => route.lastModified),
   )
 })

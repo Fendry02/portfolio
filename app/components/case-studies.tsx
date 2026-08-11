@@ -1,70 +1,13 @@
 'use client'
 
-import Image, { type StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 import {
   getActiveProjectIndex,
   type ProjectVisibility,
 } from '@/app/lib/project-gallery'
-import electreauCapture from '@/public/works/electreau-capture.webp'
-import petitNidCapture from '@/public/works/petitnid-capture.webp'
-import vikoCapture from '@/public/works/chezviko-capture.webp'
-
-type CaseStudy = {
-  title: string
-  scope: string
-  image: StaticImageData
-  imageAlt: string
-  challenge: string
-  solution: string
-  impact: string
-  href: string
-}
-
-const caseStudies: CaseStudy[] = [
-  {
-    title: 'Petit Nid',
-    scope: 'Projet fondateur, application mobile de suivi bébé',
-    image: petitNidCapture,
-    imageAlt:
-      'Capture du site Petit Nid présentant une application mobile de suivi bébé',
-    challenge:
-      'Expliquer un produit sensible en quelques secondes, sans noyer de jeunes parents dans une logique de tableau de bord.',
-    solution:
-      'Une page produit rassurante, mobile-first, qui met le bénéfice avant les fonctionnalités et guide vers l’inscription.',
-    impact:
-      'Une proposition lisible dès la première visite, un parcours clair et une base prête à évoluer.',
-    href: 'https://petitnid.app',
-  },
-  {
-    title: 'Electreau Lyon',
-    scope: "Site vitrine d'électricien",
-    image: electreauCapture,
-    imageAlt:
-      "Capture du site Electreau Lyon présentant les services d'un artisan local",
-    challenge:
-      "Un artisan lyonnais avait besoin d'une vitrine directe, rassurante et efficace sur mobile.",
-    solution:
-      'Services, avis, zones d’intervention et contact sont ramenés dans un parcours court.',
-    impact:
-      'Les demandes importantes sont plus faciles à qualifier dès le premier échange.',
-    href: 'https://www.electreau-lyon.fr/',
-  },
-  {
-    title: 'Chez Viko',
-    scope: 'Site vitrine de pizzeria',
-    image: vikoCapture,
-    imageAlt: 'Capture du site Chez Viko, pizzeria au feu de bois à Lyon',
-    challenge:
-      'Donner envie avant la visite, tout en rendant les infos pratiques impossibles à rater.',
-    solution:
-      'La carte, les horaires, l’adresse et l’ambiance sont placés avant les détails secondaires.',
-    impact:
-      'Une adresse plus crédible en ligne et un parcours simple avant de réserver ou venir sur place.',
-    href: 'https://chezviko.fr',
-  },
-]
+import { caseStudies } from '@/app/lib/case-studies'
 
 const titleClass =
   'font-display text-[clamp(2.7rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]'

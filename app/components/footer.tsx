@@ -30,8 +30,11 @@ const socials = [
 const navLinks = [
   { label: 'Accueil', href: '/' },
   { label: 'Création de site web', href: serviceRoutes.websiteCreationLyon },
+  { label: 'Application web sur mesure', href: serviceRoutes.customAppLyon },
   { label: 'Automatisation n8n', href: serviceRoutes.automationN8nLyon },
-  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'Formation IA', href: serviceRoutes.aiTrainingLyon },
+  { label: 'Réalisations', href: '/realisations' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Parcours', href: '/jobs' },
   { label: 'Contact', href: '/#contact' },
 ]

@@ -1,5 +1,6 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Caveat, Geist } from 'next/font/google'
 
@@ -14,7 +15,6 @@ import {
   defaultOpenGraphImage,
   personJsonLd,
   professionalServiceJsonLd,
-  seoKeywords,
   siteConfig,
   websiteJsonLd,
 } from './lib/seo'
@@ -55,7 +55,12 @@ export default function RootLayout({
         <QClayMotion />
         {children}
         <Footer />
-        {process.env.VERCEL && <Analytics />}
+        {process.env.VERCEL && (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        )}
       </body>
       {process.env.GOOGLE_ANALYTICS_ID && (
         <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
@@ -72,7 +77,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  keywords: seoKeywords,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
@@ -124,6 +128,14 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteConfig.url,
+    types: {
+      'application/rss+xml': [
+        {
+          url: '/blog/rss.xml',
+          title: 'Articles de Benoit Bruynbroeck',
+        },
+      ],
+    },
   },
   category: 'technology',
 }
