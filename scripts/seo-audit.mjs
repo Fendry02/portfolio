@@ -41,6 +41,11 @@ const pages = [
     canonical: `${siteUrl}/services/creation-site-web-lyon`,
     descriptionIncludes: 'Création de site web professionnel à Lyon',
     contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/services/application-web-sur-mesure-lyon',
+      '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
+    ],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -57,6 +62,11 @@ const pages = [
     canonical: `${siteUrl}/services/automatisation-n8n-lyon`,
     descriptionIncludes: 'Automatisation n8n à Lyon',
     contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
+    requiredInternalLinks: [
+      '/services/application-web-sur-mesure-lyon',
+      '/services/formation-ia-lyon',
+      '/blog/automatiser-processus-n8n-sans-boite-noire',
+    ],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -74,6 +84,10 @@ const pages = [
     descriptionIncludes: 'Application web sur mesure à Lyon',
     h1Includes: 'Application web sur mesure à Lyon',
     contentIncludes: ['processus métier', 'Petit Nid'],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/services/formation-ia-lyon',
+    ],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -91,6 +105,10 @@ const pages = [
     descriptionIncludes: 'Formation IA à Lyon',
     h1Includes: 'Formation IA à Lyon',
     contentIncludes: ['validation humaine', 'cas d’usage'],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/services/application-web-sur-mesure-lyon',
+    ],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -352,6 +370,17 @@ function readLink(html, rel) {
   return matchingTag ? readAttribute(matchingTag, 'href') : undefined
 }
 
+function readAnchorPaths(html) {
+  const anchorTags = html.match(/<a\s+[^>]*>/gi) ?? []
+
+  return new Set(
+    anchorTags
+      .map((tag) => readAttribute(tag, 'href'))
+      .filter(Boolean)
+      .map((href) => new URL(href, siteUrl).pathname),
+  )
+}
+
 function readJsonLdTypes(html) {
   const scripts = [
     ...html.matchAll(
@@ -422,6 +451,17 @@ async function auditPage(page) {
       report(
         visibleText.includes(phrase.toLocaleLowerCase('fr')),
         `${page.path} visible content includes ${phrase}`,
+      )
+    }
+  }
+
+  if (page.requiredInternalLinks) {
+    const anchorPaths = readAnchorPaths(html)
+
+    for (const path of page.requiredInternalLinks) {
+      report(
+        anchorPaths.has(path),
+        `${page.path} includes an internal link to ${path}`,
       )
     }
   }

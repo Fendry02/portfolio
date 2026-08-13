@@ -3,8 +3,13 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 
 import type { CaseStudy } from '@/app/lib/case-studies'
+import type { ServicePath } from '@/app/lib/service-navigation'
 import JsonLd from './json-ld'
 import QClayMotion from './qclay-motion'
+import {
+  RelatedServiceLinks,
+  ServiceResources,
+} from './service-navigation'
 import {
   createBreadcrumbJsonLd,
   createFaqPageJsonLd,
@@ -14,7 +19,7 @@ import {
 } from '@/app/lib/seo'
 
 type ServicePageProps = {
-  path: string
+  path: ServicePath
   title: string
   description: string
   hero: string
@@ -180,6 +185,9 @@ export default function ServicePage({
           </div>
         </div>
       </section>
+
+      <RelatedServiceLinks servicePath={path} />
+      <ServiceResources servicePath={path} />
 
       {relatedCaseStudies.length > 0 && (
         <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">

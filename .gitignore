@@ -28,6 +28,12 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# Local SEO monitoring reports
+/reports/seo/
+
+# Local Google Search Console OAuth refresh token
+/.search-console/
+
 # vercel
 .vercel
 

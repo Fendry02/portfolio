@@ -7,6 +7,10 @@ import vikoCapture from '@/public/works/chezviko-capture.webp'
 import JsonLd from '@/app/components/json-ld'
 import QClayMotion from '@/app/components/qclay-motion'
 import {
+  RelatedServiceLinks,
+  ServiceResources,
+} from '@/app/components/service-navigation'
+import {
   buildPageMetadata,
   createBreadcrumbJsonLd,
   createFaqPageJsonLd,
@@ -231,6 +235,9 @@ export default function WebsiteCreationLyonPage() {
           </div>
         </div>
       </section>
+
+      <RelatedServiceLinks servicePath={pagePath} />
+      <ServiceResources servicePath={pagePath} />
 
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">

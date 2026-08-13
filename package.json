@@ -11,7 +11,10 @@
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "security:audit": "npm audit --audit-level=low",
     "seo:audit": "node scripts/seo-audit.mjs",
-    "test": "node --test \"app/**/*.test.ts\"",
+    "seo:serp": "node --env-file-if-exists=.env.local scripts/serp-monitor.mjs",
+    "seo:gsc:auth": "node --env-file-if-exists=.env.local scripts/search-console-auth.mjs",
+    "seo:gsc:report": "node --env-file-if-exists=.env.local scripts/search-console-report.mjs",
+    "test": "node --test \"app/**/*.test.ts\" \"scripts/**/*.test.mjs\"",
     "convert-images": "node scripts/convert-images.js",
     "generate-responsive": "node scripts/generate-responsive-images.js",
     "build:card": "node business-card/build-pdf.js"

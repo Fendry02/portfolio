@@ -70,6 +70,41 @@ pnpm dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Local SEO position tracking
+
+The SemScraper monitor tracks the organic Google placement of the four local
+offers for Lyon on desktop and mobile (8 SERPs per run). It records the
+portfolio's rank and the first ten organic competitors in a local report.
+
+1. Copy `.env.example` to `.env.local` and set `SEMSCRAPER_API_KEY` locally.
+   Never commit, paste, or deploy this API key.
+2. Run `npm run seo:serp`.
+3. Read the dated JSON report in `reports/seo/` (ignored by Git).
+
+Use `SEMSCRAPER_DRY_RUN=1 npm run seo:serp` to review the requests without
+spending a SemScraper query.
+
+## Google Search Console insights
+
+The local Google Search Console connector reads the existing `bbenoit.fr`
+property with Google's read-only OAuth scope. It keeps the OAuth refresh token
+in `.search-console/token.json`, which is ignored by Git. Reports are written
+to `reports/seo/`, also ignored by Git.
+
+1. In [Google Cloud Console](https://console.cloud.google.com/), create or
+   select a project, enable the **Google Search Console API**, configure the
+   OAuth consent screen and add your Google account as a test user if the app
+   is in testing.
+2. Create an OAuth client of type **Desktop app**. Copy its client ID and
+   client secret to `.env.local` as `GOOGLE_SEARCH_CONSOLE_CLIENT_ID` and
+   `GOOGLE_SEARCH_CONSOLE_CLIENT_SECRET`. Keep them local.
+3. Run `npm run seo:gsc:auth`, open the printed Google URL and approve the
+   **read-only** authorization. Keep the terminal running until the confirmation
+   page appears.
+4. Run `npm run seo:gsc:report` to create a report over the latest complete
+   28-day period. It identifies query/page pairs ranked 11–20 and visible
+   results ranked 1–10 with a low click-through rate.
+
 ## 📁 Project Structure
 
 ```
