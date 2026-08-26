@@ -175,6 +175,12 @@ export const routeRegistry = [
     changeFrequency: 'weekly',
     priority: 0.7,
   },
+  {
+    path: '/quoiporter',
+    lastModified: lastModified('2026-08-26'),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
 ] as const satisfies readonly IndexedRoute[]
 
 export function absoluteUrl(path = '/'): string {

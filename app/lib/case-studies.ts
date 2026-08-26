@@ -83,6 +83,27 @@ export const caseStudies = [
     relatedService: '/services/creation-site-web-lyon',
     publishedAt: '2026-08-11',
   },
+  {
+    slug: 'quoiporter',
+    title: 'QuoiPorter',
+    client: 'QuoiPorter',
+    scope: 'Application iPhone de recommandation vestimentaire selon la météo',
+    sector: 'Application mobile météo',
+    city: 'Disponible sur l’App Store',
+    challenge:
+      'Répondre à la question « quoi mettre ? » sans présenter une succession de cartes météo à décoder.',
+    solution:
+      'Une application iPhone qui lit les prévisions de la ville choisie et propose une tenue, les éléments à emporter et une vue de la semaine.',
+    impact:
+      'Une réponse disponible en quelques secondes, dans l’app comme dans le widget « Tenue du jour ».',
+    stack: ['Expo', 'React Native', 'Open-Meteo', 'Widget iOS'],
+    image: '/quoiporter/tenue-du-jour.png',
+    imageAlt:
+      'Capture de QuoiPorter affichant une tenue conseillée selon la météo du jour',
+    href: 'https://apps.apple.com/fr/app/quoiporter/id6801611537',
+    relatedService: '/services/application-web-sur-mesure-lyon',
+    publishedAt: '2026-08-26',
+  },
 ] as const satisfies readonly CaseStudy[]
 
 export function getCaseStudyBySlug(slug: string) {

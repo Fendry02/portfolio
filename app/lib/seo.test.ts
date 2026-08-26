@@ -233,7 +233,19 @@ test('the route registry dates every static indexable route exactly once', () =>
     '/realisations/electreau-lyon',
     '/realisations/chez-viko',
     '/blog',
+    '/quoiporter',
   ])
+})
+
+test('the public QuoiPorter landing page is available to search engines', () => {
+  const route = routeRegistry.find(({ path }) => path === '/quoiporter')
+
+  assert.deepEqual(route, {
+    path: '/quoiporter',
+    lastModified: new Date('2026-08-26T00:00:00.000Z'),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  })
 })
 
 test('the sitemap entries map the static route registry one-for-one', () => {

@@ -6,7 +6,7 @@ import { caseStudies, getCaseStudyBySlug } from './case-studies.ts'
 test('case studies expose unique, complete routes for proof pages', () => {
   assert.deepEqual(
     caseStudies.map((caseStudy) => caseStudy.slug),
-    ['petit-nid', 'electreau-lyon', 'chez-viko'],
+    ['petit-nid', 'electreau-lyon', 'chez-viko', 'quoiporter'],
   )
   assert.equal(
     new Set(caseStudies.map((caseStudy) => caseStudy.slug)).size,
@@ -33,4 +33,15 @@ test('case studies expose unique, complete routes for proof pages', () => {
 test('case studies can be found by their public slug', () => {
   assert.equal(getCaseStudyBySlug('chez-viko')?.client, 'Chez Viko')
   assert.equal(getCaseStudyBySlug('unknown'), undefined)
+})
+
+test('QuoiPorter links to its App Store page from the portfolio', () => {
+  const quoiPorter = getCaseStudyBySlug('quoiporter')
+
+  assert.equal(quoiPorter?.title, 'QuoiPorter')
+  assert.equal(
+    quoiPorter?.href,
+    'https://apps.apple.com/fr/app/quoiporter/id6801611537',
+  )
+  assert.equal(quoiPorter?.image, '/quoiporter/tenue-du-jour.png')
 })
