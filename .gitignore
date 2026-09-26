@@ -41,3 +41,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .gstack/
+
+# HyperFrames video projects: keep the sources, not renders or generated audio
+/videos/*/renders/
+/videos/*/snapshots/
+/videos/*/.hyperframes/
+/videos/*/assets/audio/*.wav

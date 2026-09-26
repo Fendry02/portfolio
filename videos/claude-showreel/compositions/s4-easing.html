@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Instrument Serif";
+          font-style: italic;
+          font-weight: 400;
+          src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0e0c0a;
+          color: #f3eee5;
+        }
+        #s4-world {
+          position: absolute;
+          inset: 0;
+          transform-origin: 50% 50%;
+        }
+        #s4-panel {
+          position: absolute;
+          left: 108px;
+          top: 170px;
+          width: 800px;
+          height: 740px;
+          border: 3px solid rgba(243, 238, 229, 0.22);
+          background: #15120f;
+        }
+        #s4-panel-head {
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          height: 56px;
+          border-bottom: 3px solid rgba(243, 238, 229, 0.12);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 24px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 20px;
+          letter-spacing: 0.1em;
+          color: #9a9086;
+        }
+        #s4-graph {
+          position: absolute;
+          left: 0;
+          top: 56px;
+        }
+        #s4-right {
+          position: absolute;
+          left: 1000px;
+          top: 170px;
+          width: 812px;
+        }
+        #s4-kicker {
+          display: block;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 22px;
+          letter-spacing: 0.14em;
+          color: #ff5a1f;
+        }
+        #s4-title {
+          display: block;
+          margin-top: 26px;
+          font-family: "Instrument Serif", serif;
+          font-style: italic;
+          font-size: 110px;
+          line-height: 1;
+          letter-spacing: -0.02em;
+          white-space: nowrap;
+        }
+        #s4-track {
+          position: absolute;
+          left: 1000px;
+          top: 470px;
+          width: 812px;
+          height: 150px;
+        }
+        #s4-rail {
+          position: absolute;
+          left: 0;
+          top: 73px;
+          width: 812px;
+          height: 3px;
+          background: rgba(243, 238, 229, 0.3);
+        }
+        #s4-sq-wrap {
+          position: absolute;
+          left: 15px;
+          top: 15px;
+          width: 120px;
+          height: 120px;
+        }
+        #s4-sq {
+          display: block;
+          width: 120px;
+          height: 120px;
+          background: #ff5a1f;
+        }
+        #s4-strip {
+          position: absolute;
+          left: 1000px;
+          top: 650px;
+          width: 812px;
+          height: 60px;
+        }
+        .s4-ghost {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 60px;
+          height: 60px;
+          border: 3px solid #f3eee5;
+          opacity: 0.5;
+        }
+        #s4-ease {
+          position: absolute;
+          left: 1000px;
+          top: 770px;
+          font-family: "JetBrains Mono", monospace;
+          font-weight: 700;
+          font-size: 64px;
+          letter-spacing: -0.01em;
+          color: #f3eee5;
+          white-space: nowrap;
+        }
+        #s4-ease-q {
+          color: #ff5a1f;
+        }
+        #s4-cap {
+          position: absolute;
+          left: 1000px;
+          top: 860px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 20px;
+          letter-spacing: 0.1em;
+          color: #9a9086;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s4-easing" data-width="1920" data-height="1080">
+        <div id="s4-world">
+          <div id="s4-panel">
+            <div id="s4-panel-head"><span>GRAPH EDITOR · VALUE</span><span id="s4-pct">P 0.00</span></div>
+            <svg id="s4-graph" width="794" height="678" viewBox="0 0 794 678">
+              <g id="s4-gridlines" stroke="rgba(243,238,229,0.09)" stroke-width="2"></g>
+              <line id="s4-base0" stroke="rgba(243,238,229,0.35)" stroke-width="2" stroke-dasharray="8 8"></line>
+              <line id="s4-base1" stroke="rgba(243,238,229,0.35)" stroke-width="2" stroke-dasharray="8 8"></line>
+              <line id="s4-cross-v" stroke="#ff5a1f" stroke-width="2" opacity="0.6"></line>
+              <line id="s4-cross-h" stroke="#ff5a1f" stroke-width="2" opacity="0.6"></line>
+              <path id="s4-curve" fill="none" stroke="#ff5a1f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle id="s4-k0" r="11" fill="#f3eee5"></circle>
+              <circle id="s4-k1" r="11" fill="#f3eee5"></circle>
+              <circle id="s4-dot" r="16" fill="#f3eee5" stroke="#0e0c0a" stroke-width="4"></circle>
+            </svg>
+          </div>
+
+          <div id="s4-right">
+            <span id="s4-kicker">PRINCIPLE 06 / 12</span>
+            <span id="s4-title">Slow in, slow out.</span>
+          </div>
+          <div id="s4-track">
+            <div id="s4-rail"></div>
+          </div>
+          <div id="s4-strip"></div>
+          <div id="s4-ease">ease: <span id="s4-ease-q">"none"</span></div>
+          <div id="s4-cap">SAMPLED LIVE FROM THE EASE FUNCTION · 96 PTS</div>
+        </div>
+        <!-- the square lives outside the world so it can carry the match cut -->
+        <div id="s4-sq-wrap"><span id="s4-sq"></span></div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.querySelector('[data-composition-id="s4-easing"]');
+          const GW = 794;
+          const GH = 678;
+          const PADX = 70;
+          const Y_LO = -0.18;
+          const Y_HI = 1.28;
+          const gx = (p) => PADX + p * (GW - PADX * 2);
+          const gy = (v) => GH - 40 - ((v - Y_LO) / (Y_HI - Y_LO)) * (GH - 80);
+
+          // grid
+          const grid = root.querySelector("#s4-gridlines");
+          for (let i = 0; i <= 10; i++) {
+            const x = gx(i / 10);
+            grid.insertAdjacentHTML("beforeend", `<line x1="${x}" y1="20" x2="${x}" y2="${GH - 20}"/>`);
+            const y = gy(i / 10);
+            grid.insertAdjacentHTML("beforeend", `<line x1="20" y1="${y}" x2="${GW - 20}" y2="${y}"/>`);
+          }
+          const setLine = (id, x1, y1, x2, y2) => {
+            const el = root.querySelector(id);
+            el.setAttribute("x1", x1);
+            el.setAttribute("y1", y1);
+            el.setAttribute("x2", x2);
+            el.setAttribute("y2", y2);
+          };
+          setLine("#s4-base0", 20, gy(0), GW - 20, gy(0));
+          setLine("#s4-base1", 20, gy(1), GW - 20, gy(1));
+          root.querySelector("#s4-k0").setAttribute("cx", gx(0));
+          root.querySelector("#s4-k0").setAttribute("cy", gy(0));
+          root.querySelector("#s4-k1").setAttribute("cx", gx(1));
+          root.querySelector("#s4-k1").setAttribute("cy", gy(1));
+
+          const EASES = ["none", "expo.out", "back.out(2)", "power4.inOut"];
+          const FN = EASES.map((e) => gsap.parseEase(e));
+          // phase windows: [morphStart, travelStart, travelEnd]
+          const PH = [
+            [0.2, 0.2, 0.86],
+            [0.9375, 1.1, 1.8],
+            [1.875, 2.04, 2.74],
+            [2.8125, 2.97, 3.4],
+          ];
+          const MORPH = 0.17;
+          const TRAVEL = 652; // square travel on the rail
+
+          const curve = root.querySelector("#s4-curve");
+          const dot = root.querySelector("#s4-dot");
+          const pct = root.querySelector("#s4-pct");
+          const easeQ = root.querySelector("#s4-ease-q");
+          const sqWrap = root.querySelector("#s4-sq-wrap");
+          const strip = root.querySelector("#s4-strip");
+          const ghosts = [];
+          for (let i = 0; i < 9; i++) {
+            const g = document.createElement("div");
+            g.className = "s4-ghost";
+            strip.appendChild(g);
+            ghosts.push(g);
+          }
+
+          function phaseAt(t) {
+            let k = 0;
+            for (let i = 0; i < PH.length; i++) if (t >= PH[i][0]) k = i;
+            return k;
+          }
+          const state = { t: 0 };
+          let lastSig = "";
+
+          function render() {
+            const t = state.t;
+            const k = phaseAt(t);
+            const [m0, t0, t1] = PH[k];
+            const mix = k === 0 ? 1 : Math.min(1, Math.max(0, (t - m0) / MORPH));
+            const me = mix < 1 ? 1 - Math.pow(1 - mix, 3) : 1;
+            const f = (p) => (k === 0 ? FN[0](p) : FN[k - 1](p) * (1 - me) + FN[k](p) * me);
+
+            // curve path — re-sampled only while morphing
+            const sig = k + ":" + me.toFixed(3);
+            if (sig !== lastSig) {
+              lastSig = sig;
+              let d = "";
+              for (let i = 0; i <= 96; i++) {
+                const p = i / 96;
+                d += (i ? "L" : "M") + gx(p).toFixed(1) + "," + gy(f(p)).toFixed(1);
+              }
+              curve.setAttribute("d", d);
+              easeQ.textContent = `"${EASES[k]}"`;
+              // spacing strip: equal time steps, eased positions
+              ghosts.forEach((g, i) => {
+                const p = i / (ghosts.length - 1);
+                const v = f(p);
+                g.style.transform = `translateX(${v * (812 - 60)}px)`;
+              });
+            }
+
+            // playhead
+            const p = Math.min(1, Math.max(0, (t - t0) / (t1 - t0)));
+            const v = f(p);
+            dot.setAttribute("cx", gx(p));
+            dot.setAttribute("cy", gy(v));
+            setLine("#s4-cross-v", gx(p), gy(v), gx(p), GH - 20);
+            setLine("#s4-cross-h", 20, gy(v), gx(p), gy(v));
+            pct.textContent = `P ${p.toFixed(2)} · V ${v.toFixed(2)}`;
+
+            // the square rides the same ease; direction ping-pongs per phase
+            const dir = k % 2 === 0 ? v : 1 - v;
+            gsap.set(sqWrap, { x: 1000 + dir * TRAVEL });
+          }
+
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(state, { t: 0 }, { t: 3.42, duration: 3.42, ease: "none", onUpdate: render }, 0);
+
+          // inverse zoom-through entry (mirrors s3's push)
+          tl.fromTo("#s4-world", { scale: 0.55, filter: "blur(14px)", opacity: 0 }, { scale: 1, filter: "blur(0px)", opacity: 1, duration: 0.5, ease: "power4.out" }, 0);
+          // square wrap: layout position = rail start (left 1000+15, top 470+15)
+          tl.fromTo("#s4-sq-wrap", { y: 470, scale: 0.4, opacity: 0 }, { y: 470, scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.5)" }, 0.08);
+          tl.fromTo("#s4-curve", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.12);
+          tl.fromTo(".s4-ghost", { opacity: 0, scale: 0.5 }, { opacity: 0.5, scale: 1, duration: 0.3, stagger: 0.03, ease: "back.out(2)" }, 0.2);
+
+          // match cut: the square leaves the editor and becomes the centre tile of s5
+          // end state: centre (960,540), 96px, rotated a quarter turn
+          const sqEndX = 1000; // phase 3 runs right→left, so it ends at the rail start
+          tl.to("#s4-world", { opacity: 0, scale: 0.94, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, 3.42);
+          tl.fromTo(
+            "#s4-sq-wrap",
+            { x: sqEndX, y: 470, scale: 1, rotation: 0 },
+            { x: 960 - 60 - 15, y: 540 - 60 - 15, scale: 0.8, rotation: 90, duration: 0.33, ease: "power3.inOut", immediateRender: false },
+            3.42,
+          );
+
+          window.__timelines["s4-easing"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

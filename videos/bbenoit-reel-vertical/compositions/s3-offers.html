@@ -1,0 +1,768 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Geist";
+          font-style: normal;
+          font-weight: 100 900;
+          src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #0f172b;
+          font-family: "Geist", sans-serif;
+        }
+        /* ── left column ─────────────────────────────── */
+        #s3-left {
+          position: absolute;
+          left: 72px;
+          top: 170px;
+          width: 936px;
+        }
+        #s3-eyebrow {
+          display: flex;
+          justify-content: space-between;
+          font-size: 30px;
+          font-weight: 600;
+          letter-spacing: 0.17em;
+          text-transform: uppercase;
+          color: rgba(15, 23, 43, 0.62);
+        }
+        #s3-count {
+          font-variant-numeric: tabular-nums;
+          color: #0f172b;
+        }
+        #s3-steps {
+          display: flex;
+          gap: 12px;
+          margin-top: 20px;
+        }
+        .s3-step {
+          display: block;
+          flex: 1;
+          height: 8px;
+          border-radius: 4px;
+          background: rgba(15, 23, 43, 0.1);
+          position: relative;
+          overflow: hidden;
+        }
+        .s3-step-fill {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          transform-origin: 0 50%;
+        }
+        .s3-offer {
+          position: absolute;
+          left: 0;
+          top: 100px;
+          width: 936px;
+        }
+        .s3-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 92px;
+          height: 92px;
+          border-radius: 42% 58% 53% 47% / 48% 44% 56% 52%;
+          margin-bottom: 24px;
+        }
+        .s3-title {
+          display: block;
+          font-size: 90px;
+          font-weight: 600;
+          line-height: 0.98;
+          letter-spacing: -0.045em;
+        }
+        .s3-pitch {
+          display: block;
+          margin-top: 22px;
+          font-size: 42px;
+          line-height: 1.28;
+          color: rgba(15, 23, 43, 0.74);
+        }
+        .s3-bullets {
+          display: none;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 40px;
+          font-size: 30px;
+          color: #0f172b;
+        }
+        .s3-b {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .s3-check {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          color: #ffffff;
+          font-size: 20px;
+          font-weight: 700;
+        }
+        /* ── the product card (anchor) ─────────────────── */
+        #s3-card {
+          position: absolute;
+          left: 72px;
+          top: 720px;
+          width: 936px;
+          height: 560px;
+          border-radius: 28px;
+          background: #ffffff;
+          border: 2px solid rgba(15, 23, 43, 0.08);
+          box-shadow: 0 36px 90px rgba(15, 23, 43, 0.14);
+          overflow: hidden;
+        }
+        #s3-card-bar {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 8px;
+          background: #155dfc;
+        }
+        .s3-vis {
+          position: absolute;
+          inset: 8px 0 0 0;
+          opacity: 0;
+        }
+        .s3-vh {
+          position: absolute;
+          left: 36px;
+          top: 26px;
+          font-size: 26px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(15, 23, 43, 0.6);
+        }
+        /* V1 browser */
+        #v1-browser {
+          position: absolute;
+          left: 36px;
+          top: 36px;
+          width: 864px;
+          height: 400px;
+          border-radius: 18px;
+          border: 2px solid rgba(15, 23, 43, 0.1);
+          background: #fbfcff;
+          overflow: hidden;
+        }
+        #v1-chrome {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: 52px;
+          padding: 0 20px;
+          background: #eff4fb;
+          border-bottom: 2px solid rgba(15, 23, 43, 0.06);
+        }
+        .v1-dot {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: rgba(15, 23, 43, 0.18);
+        }
+        #v1-url {
+          margin-left: 18px;
+          padding: 6px 18px;
+          border-radius: 8px;
+          background: #ffffff;
+          font-size: 24px;
+          color: rgba(15, 23, 43, 0.6);
+        }
+        .v1-blk {
+          position: absolute;
+          border-radius: 8px;
+          background: #0f172b;
+        }
+        #v1-btn {
+          position: absolute;
+          left: 40px;
+          top: 300px;
+          padding: 18px 30px;
+          border-radius: 12px;
+          background: #155dfc;
+          color: #f8fafc;
+          font-size: 30px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        #v1-img {
+          position: absolute;
+          left: 540px;
+          top: 90px;
+          width: 280px;
+          height: 270px;
+          border-radius: 42% 58% 53% 47% / 48% 44% 56% 52%;
+          background: radial-gradient(circle at 35% 35%, #9fc0ff, #155dfc 70%);
+        }
+        #v1-toast {
+          position: absolute;
+          right: 36px;
+          bottom: 30px;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          padding: 22px 30px;
+          border-radius: 18px;
+          background: #ffffff;
+          box-shadow: 0 24px 60px rgba(15, 23, 43, 0.18);
+          font-size: 34px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        .ok {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          background: #00a06e;
+          color: #fff;
+          font-size: 26px;
+          font-weight: 700;
+        }
+        .cursor {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 52px;
+          height: 52px;
+        }
+        /* V2 app */
+        #v2-desk {
+          position: absolute;
+          left: 36px;
+          top: 86px;
+          width: 500px;
+          height: 440px;
+          border-radius: 18px;
+          border: 2px solid rgba(15, 23, 43, 0.08);
+          background: #fbfcff;
+          padding: 28px;
+        }
+        .v2-row {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          height: 94px;
+          border-bottom: 2px solid rgba(15, 23, 43, 0.06);
+          font-size: 30px;
+          color: rgba(15, 23, 43, 0.75);
+        }
+        .v2-av {
+          display: block;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+        }
+        #v2-phone {
+          position: absolute;
+          left: 580px;
+          top: 22px;
+          width: 320px;
+          height: 516px;
+          border-radius: 46px;
+          background: #0f172b;
+          padding: 14px;
+          box-shadow: 0 30px 70px rgba(15, 23, 43, 0.25);
+        }
+        #v2-screen {
+          width: 292px;
+          height: 488px;
+          border-radius: 34px;
+          background: #fbfcff;
+          overflow: hidden;
+          padding: 50px 18px 18px;
+          position: relative;
+        }
+        #v2-notch {
+          position: absolute;
+          left: 101px;
+          top: 12px;
+          width: 90px;
+          height: 26px;
+          border-radius: 13px;
+          background: #0f172b;
+        }
+        #v2-apptitle {
+          font-size: 30px;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+        #v2-appsub {
+          font-size: 22px;
+          color: rgba(15, 23, 43, 0.6);
+          margin-bottom: 18px;
+        }
+        .v2-task {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px;
+          margin-bottom: 10px;
+          border-radius: 14px;
+          background: #ffffff;
+          border: 2px solid rgba(15, 23, 43, 0.07);
+          font-size: 22px;
+          font-weight: 500;
+        }
+        .v2-box {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          border: 3px solid #00a06e;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          flex: none;
+        }
+        .v2-time {
+          margin-left: auto;
+          font-size: 20px;
+          color: rgba(15, 23, 43, 0.55);
+          font-variant-numeric: tabular-nums;
+        }
+        #v2-prog {
+          margin-top: 16px;
+          height: 12px;
+          border-radius: 6px;
+          background: rgba(0, 160, 110, 0.14);
+          overflow: hidden;
+        }
+        #v2-prog-fill {
+          display: block;
+          width: 100%;
+          height: 100%;
+          background: #00a06e;
+          transform-origin: 0 50%;
+        }
+        /* V3 workflow */
+        .v3-node {
+          position: absolute;
+          width: 290px;
+          height: 128px;
+          border-radius: 20px;
+          background: #ffffff;
+          border: 3px solid rgba(132, 87, 216, 0.28);
+          box-shadow: 0 18px 44px rgba(15, 23, 43, 0.08);
+          padding: 20px 22px;
+        }
+        .v3-kind {
+          font-size: 22px;
+          font-weight: 600;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #8457d8;
+        }
+        .v3-name {
+          margin-top: 6px;
+          font-size: 38px;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+        .v3-tick {
+          position: absolute;
+          right: -14px;
+          top: -14px;
+          width: 38px;
+          height: 38px;
+          font-size: 20px;
+        }
+        #v3-status {
+          position: absolute;
+          left: 36px;
+          bottom: 30px;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 16px 26px;
+          border-radius: 999px;
+          background: rgba(0, 160, 110, 0.1);
+          color: #00724f;
+          font-size: 30px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        #v3-live {
+          display: block;
+          width: 14px;
+          height: 14px;
+          border-radius: 50%;
+          background: #00a06e;
+        }
+        /* V4 AI workshop */
+        #v4-prompt {
+          position: absolute;
+          left: 36px;
+          top: 80px;
+          width: 864px;
+          min-height: 150px;
+          border-radius: 18px;
+          border: 3px solid rgba(213, 142, 0, 0.45);
+          background: #fffaf0;
+          padding: 24px 100px 24px 28px;
+          font-size: 34px;
+          line-height: 1.35;
+        }
+        #v4-send {
+          position: absolute;
+          right: 22px;
+          bottom: 18px;
+          width: 62px;
+          height: 62px;
+          border-radius: 14px;
+          background: #a36b00;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 28px;
+          font-weight: 700;
+        }
+        #v4-answer {
+          position: absolute;
+          left: 36px;
+          top: 262px;
+          width: 760px;
+          border-radius: 18px;
+          background: #f4f5fd;
+          padding: 26px 28px;
+        }
+        .v4-line {
+          display: block;
+          height: 20px;
+          border-radius: 10px;
+          background: rgba(15, 23, 43, 0.72);
+          margin-bottom: 18px;
+          transform-origin: 0 50%;
+        }
+        #v4-chips {
+          position: absolute;
+          left: 36px;
+          bottom: 30px;
+          display: flex;
+          gap: 14px;
+        }
+        .v4-chip {
+          display: block;
+          padding: 14px 22px;
+          border-radius: 999px;
+          background: rgba(213, 142, 0, 0.12);
+          color: #8a5c00;
+          font-size: 28px;
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-offers" data-width="1080" data-height="1350">
+        <div id="s3-left">
+          <div id="s3-eyebrow"><span>Ce que je fais</span><span id="s3-count">01 / 04</span></div>
+          <div id="s3-steps">
+            <span class="s3-step"><span class="s3-step-fill" style="background: #155dfc"></span></span>
+            <span class="s3-step"><span class="s3-step-fill" style="background: #00a06e"></span></span>
+            <span class="s3-step"><span class="s3-step-fill" style="background: #8457d8"></span></span>
+            <span class="s3-step"><span class="s3-step-fill" style="background: #d58e00"></span></span>
+          </div>
+
+          <div class="s3-offer" id="o1">
+            <div class="s3-icon" style="background: rgba(21, 93, 252, 0.12)">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#155dfc" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"></path></svg>
+            </div>
+            <span class="s3-title" style="color: #155dfc">Site web vitrine</span>
+            <span class="s3-pitch">Une présence en ligne claire et rapide qui inspire confiance.</span>
+            <div class="s3-bullets">
+              <span class="s3-b"><span class="s3-check" style="background: #155dfc">✓</span>Design responsive sur mesure</span>
+              <span class="s3-b"><span class="s3-check" style="background: #155dfc">✓</span>Optimisation SEO &amp; performance</span>
+            </div>
+          </div>
+          <div class="s3-offer" id="o2">
+            <div class="s3-icon" style="background: rgba(0, 160, 110, 0.12)">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#00a06e" stroke-width="1.8" stroke-linecap="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path></svg>
+            </div>
+            <span class="s3-title" style="color: #00875d">Application web<br />et mobile</span>
+            <span class="s3-pitch">Un outil qui suit votre métier.</span>
+            <div class="s3-bullets">
+              <span class="s3-b"><span class="s3-check" style="background: #00805a">✓</span>Espace utilisateur &amp; back-office</span>
+              <span class="s3-b"><span class="s3-check" style="background: #00805a">✓</span>Intégrations &amp; API tierces</span>
+            </div>
+          </div>
+          <div class="s3-offer" id="o3">
+            <div class="s3-icon" style="background: rgba(132, 87, 216, 0.12)">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#8457d8" stroke-width="1.8" stroke-linecap="round"><rect x="2.5" y="9" width="5" height="6" rx="1.5"></rect><rect x="16.5" y="3" width="5" height="6" rx="1.5"></rect><rect x="16.5" y="15" width="5" height="6" rx="1.5"></rect><path d="M7.5 12h4.5v-6h4.5M12 12v6h4.5"></path></svg>
+            </div>
+            <span class="s3-title" style="color: #8457d8">Automatisation<br />n8n et IA</span>
+            <span class="s3-pitch">Du temps rendu à votre équipe.</span>
+            <div class="s3-bullets">
+              <span class="s3-b"><span class="s3-check" style="background: #8457d8">✓</span>Workflows n8n &amp; intégrations API</span>
+              <span class="s3-b"><span class="s3-check" style="background: #8457d8">✓</span>Gestion des erreurs &amp; supervision</span>
+            </div>
+          </div>
+          <div class="s3-offer" id="o4">
+            <div class="s3-icon" style="background: rgba(213, 142, 0, 0.14)">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#b07400" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"></path><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 9v6"></path></svg>
+            </div>
+            <span class="s3-title" style="color: #a36b00">Formation IA</span>
+            <span class="s3-pitch">Vos équipes à l’aise avec l’IA, concrètement et sans jargon.</span>
+            <div class="s3-bullets">
+              <span class="s3-b"><span class="s3-check" style="background: #b07400">✓</span>Ateliers adaptés à vos métiers</span>
+              <span class="s3-b"><span class="s3-check" style="background: #b07400">✓</span>Cas d’usage concrets &amp; prompts</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="s3-card">
+          <div id="s3-card-bar"></div>
+
+          <!-- V1 — a site that turns visits into contact requests -->
+          <div class="s3-vis" id="v1">
+            <div id="v1-browser">
+              <div id="v1-chrome"><span class="v1-dot"></span><span class="v1-dot"></span><span class="v1-dot"></span><span id="v1-url">votre-activite.fr</span></div>
+              <div class="v1-blk" id="v1-nav" style="left: 40px; top: 78px; width: 130px; height: 24px"></div>
+              <div class="v1-blk v1-navl" style="left: 560px; top: 84px; width: 70px; height: 14px; background: rgba(15, 23, 43, 0.25)"></div>
+              <div class="v1-blk v1-navl" style="left: 650px; top: 84px; width: 70px; height: 14px; background: rgba(15, 23, 43, 0.25)"></div>
+              <div class="v1-blk v1-navl" style="left: 740px; top: 84px; width: 80px; height: 14px; background: rgba(15, 23, 43, 0.25)"></div>
+              <div class="v1-blk v1-h" style="left: 40px; top: 130px; width: 400px; height: 48px"></div>
+              <div class="v1-blk v1-h" style="left: 40px; top: 190px; width: 320px; height: 48px"></div>
+              <div class="v1-blk v1-p" style="left: 40px; top: 256px; width: 380px; height: 16px; background: rgba(15, 23, 43, 0.22)"></div>
+              <div class="v1-blk v1-p" style="left: 40px; top: 282px; width: 300px; height: 16px; background: rgba(15, 23, 43, 0.22)"></div>
+              <div id="v1-btn">Prendre contact</div>
+              <div id="v1-img"></div>
+            </div>
+            <div id="v1-toast"><span class="ok">✓</span>Nouvelle demande de contact</div>
+            <svg class="cursor" id="v1-cursor" viewBox="0 0 24 24"><path d="M4 2l15 9-6.5 1.6L9.5 19z" fill="#0f172b" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+          </div>
+
+          <!-- V2 — a field-team app, web + mobile -->
+          <div class="s3-vis" id="v2">
+            <span class="s3-vh">Back-office · Équipe terrain</span>
+            <div id="v2-desk">
+              <div class="v2-row"><span class="v2-av" style="background: #9fc0ff"></span>Chantier Garibaldi<span class="v2-time" style="margin-left: auto">08:00</span></div>
+              <div class="v2-row"><span class="v2-av" style="background: #7fd6b8"></span>Intervention Part-Dieu<span class="v2-time" style="margin-left: auto">10:30</span></div>
+              <div class="v2-row"><span class="v2-av" style="background: #c3adf0"></span>Devis Croix-Rousse<span class="v2-time" style="margin-left: auto">14:00</span></div>
+              <div class="v2-row"><span class="v2-av" style="background: #f3cf85"></span>Suivi Confluence<span class="v2-time" style="margin-left: auto">16:15</span></div>
+            </div>
+            <div id="v2-phone">
+              <div id="v2-screen">
+                <div id="v2-notch"></div>
+                <div id="v2-apptitle">Planning du jour</div>
+                <div id="v2-appsub">Mardi · 4 interventions</div>
+                <div class="v2-task"><span class="v2-box" id="v2-box-0"></span>Garibaldi<span class="v2-time">08:00</span></div>
+                <div class="v2-task"><span class="v2-box" id="v2-box-1"></span>Part-Dieu<span class="v2-time">10:30</span></div>
+                <div class="v2-task"><span class="v2-box"></span>Croix-Rousse<span class="v2-time">14:00</span></div>
+                <div class="v2-task"><span class="v2-box"></span>Confluence<span class="v2-time">16:15</span></div>
+                <div id="v2-prog"><span id="v2-prog-fill"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- V3 — an n8n workflow that runs by itself -->
+          <div class="s3-vis" id="v3">
+            <span class="s3-vh">n8n · Nouvelle demande entrante</span>
+            <svg id="v3-wires" width="936" height="552" viewBox="0 0 936 552" style="position: absolute; left: 0; top: 0">
+              <path class="v3-wire" d="M 326 144 C 468 144, 468 144, 610 144" fill="none" stroke="#8457d8" stroke-width="5" stroke-linecap="round"></path>
+              <path class="v3-wire" d="M 755 208 C 755 244, 181 240, 181 276" fill="none" stroke="#8457d8" stroke-width="5" stroke-linecap="round"></path>
+              <path class="v3-wire" d="M 326 340 C 468 340, 468 340, 610 340" fill="none" stroke="#8457d8" stroke-width="5" stroke-linecap="round"></path>
+            </svg>
+            <div class="v3-node" id="v3-n0" style="left: 36px; top: 80px"><div class="v3-kind">Déclencheur</div><div class="v3-name">Formulaire</div><span class="ok v3-tick"></span></div>
+            <div class="v3-node" id="v3-n1" style="left: 610px; top: 80px"><div class="v3-kind">Enregistrer</div><div class="v3-name">CRM</div><span class="ok v3-tick"></span></div>
+            <div class="v3-node" id="v3-n2" style="left: 36px; top: 276px"><div class="v3-kind">IA</div><div class="v3-name">Tri &amp; résumé</div><span class="ok v3-tick"></span></div>
+            <div class="v3-node" id="v3-n3" style="left: 610px; top: 276px"><div class="v3-kind">Relance</div><div class="v3-name">Email</div><span class="ok v3-tick"></span></div>
+            <div id="v3-pulse" style="position: absolute; left: 0; top: 0; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: #8457d8; box-shadow: 0 0 0 10px rgba(132, 87, 216, 0.2)"></div>
+            <div id="v3-status"><span id="v3-live"></span>Workflow actif · 0 tâche manuelle</div>
+          </div>
+
+          <!-- V4 — an AI workshop, prompt → useful answer -->
+          <div class="s3-vis" id="v4">
+            <span class="s3-vh">Atelier IA · Équipe marketing</span>
+            <div id="v4-prompt"><span id="v4-typed"></span><div id="v4-send">↑</div></div>
+            <div id="v4-answer">
+              <span class="v4-line" style="width: 92%"></span>
+              <span class="v4-line" style="width: 84%"></span>
+              <span class="v4-line" style="width: 62%; margin-bottom: 0"></span>
+            </div>
+            <div id="v4-chips"><span class="v4-chip">Cas d’usage concrets</span><span class="v4-chip">Bonnes pratiques &amp; limites</span></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.querySelector('[data-composition-id="s3-offers"]');
+          const EASE = "expo.out";
+          const W = 2; // one bar per offer
+          const COLORS = ["#155dfc", "#00a06e", "#8457d8", "#d58e00"];
+          const tl = gsap.timeline({ paused: true });
+
+          // counter text is a pure function of time
+          const count = root.querySelector("#s3-count");
+          const clk = { t: 0 };
+          let lastK = -1;
+          tl.fromTo(
+            clk,
+            { t: 0 },
+            {
+              t: 8,
+              duration: 8,
+              ease: "none",
+              onUpdate: () => {
+                const k = Math.min(3, Math.floor(clk.t / W + 1e-6));
+                if (k !== lastK) {
+                  lastK = k;
+                  count.textContent = `0${k + 1} / 04`;
+                }
+              },
+            },
+            0,
+          );
+
+          tl.fromTo("#s3-eyebrow, #s3-steps", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE, stagger: 0.06 }, 0.02);
+          tl.fromTo("#s3-card", { opacity: 0, y: 60, scale: 0.94, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.7, ease: EASE }, 0.02);
+          tl.set(".s3-step-fill", { scaleX: 0 }, 0);
+
+          for (let k = 0; k < 4; k++) {
+            const t0 = k * W;
+            const o = "#o" + (k + 1);
+            const v = "#v" + (k + 1);
+            // left column: the site's rise + unblur, element by element
+            tl.fromTo(
+              [o + " .s3-icon", o + " .s3-title", o + " .s3-pitch", o + " .s3-b"],
+              { opacity: 0, y: 28, filter: "blur(8px)" },
+              { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: EASE, stagger: 0.06 },
+              t0 + 0.08,
+            );
+            tl.fromTo(o + " .s3-icon", { rotation: -20, scale: 0.7 }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(2.2)", immediateRender: false }, t0 + 0.08);
+            tl.fromTo(root.querySelectorAll(".s3-step-fill")[k], { scaleX: 0 }, { scaleX: 1, duration: W - 0.1, ease: "none", immediateRender: false }, t0);
+            tl.to("#s3-card-bar", { backgroundColor: COLORS[k], duration: 0.3, ease: "none" }, t0);
+            // card content: the site's project-screen swap (clip inset + rise)
+            tl.fromTo(
+              v,
+              { opacity: 0, clipPath: "inset(9% 9% 9% 9% round 24px)", y: 24, scale: 0.96 },
+              { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 0px)", y: 0, scale: 1, duration: 0.6, ease: EASE, immediateRender: false },
+              t0 + 0.02,
+            );
+            if (k < 3) {
+              tl.to([o], { opacity: 0, y: -30, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, t0 + W - 0.28);
+              tl.to(v, { opacity: 0, duration: 0.25, ease: "power1.in" }, t0 + W - 0.22);
+            }
+          }
+          tl.set(".s3-vis", { opacity: 0 }, 0);
+          tl.set(".s3-offer", { opacity: 1 }, 0);
+
+          // ── V1: page assembles, cursor clicks, a lead arrives (tick 9.15 / bell 9.35 in the track)
+          tl.fromTo("#v1 .v1-blk, #v1-btn, #v1-img", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE, stagger: 0.035 }, 0.2);
+          tl.fromTo("#v1-cursor", { x: 820, y: 520, opacity: 0 }, { x: 300, y: 380, opacity: 1, duration: 0.55, ease: "power3.inOut" }, 0.55);
+          tl.fromTo("#v1-btn", { scale: 1 }, { scale: 0.94, duration: 0.07, ease: "power2.out", immediateRender: false }, 1.15);
+          tl.to("#v1-btn", { scale: 1, duration: 0.35, ease: "back.out(3)" }, 1.22);
+          tl.fromTo("#v1-cursor", { scale: 1 }, { scale: 0.85, duration: 0.07, immediateRender: false }, 1.15);
+          tl.to("#v1-cursor", { scale: 1, duration: 0.25 }, 1.22);
+          tl.fromTo("#v1-toast", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(2)" }, 1.35);
+
+          // ── V2: rows and tasks stack in, a task is ticked, progress fills
+          tl.fromTo("#v2 .v2-row", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: EASE, stagger: 0.05 }, W + 0.2);
+          tl.fromTo("#v2-phone", { y: 80, rotation: 4 }, { y: 0, rotation: 0, duration: 0.7, ease: EASE }, W + 0.05);
+          tl.fromTo("#v2 .v2-task", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE, stagger: 0.07 }, W + 0.35);
+          ["#v2-box-0", "#v2-box-1"].forEach((b, i) => {
+            tl.to(b, { backgroundColor: "#00a06e", duration: 0.12, ease: "none" }, W + 0.95 + i * 0.3);
+          });
+          tl.fromTo("#v2-prog-fill", { scaleX: 0.08 }, { scaleX: 0.5, duration: 0.8, ease: "power3.out" }, W + 0.95);
+
+          // ── V3: wires draw, a pulse runs the flow, every node checks, status goes live (bell 13.55)
+          const wires = Array.from(root.querySelectorAll(".v3-wire"));
+          const WL = [284, 630, 284];
+          wires.forEach((w, i) => w.setAttribute("stroke-dasharray", WL[i]));
+          tl.fromTo("#v3 .v3-node", { opacity: 0, scale: 0.85, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "back.out(1.8)", stagger: 0.08 }, 2 * W + 0.15);
+          wires.forEach((w, i) => {
+            tl.fromTo(w, { attr: { "stroke-dashoffset": WL[i] } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.3, ease: "power2.inOut" }, 2 * W + 0.45 + i * 0.12);
+          });
+          // pulse path through node centres (authored coordinates)
+          const PATH = [
+            [181, 144],
+            [755, 144],
+            [755, 208],
+            [181, 276],
+            [181, 340],
+            [755, 340],
+          ];
+          const pulse = root.querySelector("#v3-pulse");
+          const pz = { k: 0 };
+          tl.fromTo(
+            pz,
+            { k: 0 },
+            {
+              k: 1,
+              duration: 0.9,
+              ease: "power1.inOut",
+              onUpdate: () => {
+                const f = pz.k * (PATH.length - 1);
+                const i = Math.min(PATH.length - 2, Math.floor(f));
+                const u = f - i;
+                const x = PATH[i][0] + (PATH[i + 1][0] - PATH[i][0]) * u;
+                const y = PATH[i][1] + (PATH[i + 1][1] - PATH[i][1]) * u;
+                pulse.style.transform = `translate(${x}px, ${y}px)`;
+                pulse.style.opacity = pz.k <= 0 || pz.k >= 1 ? "0" : "1";
+              },
+            },
+            2 * W + 0.75,
+          );
+          [0, 1, 2, 3].forEach((i) => {
+            const at = 2 * W + 0.78 + i * 0.26;
+            tl.fromTo(`#v3-n${i} .v3-tick`, { scale: 0 }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, at);
+            tl.fromTo(`#v3-n${i}`, { borderColor: "rgba(132, 87, 216, 0.28)" }, { borderColor: "rgba(132, 87, 216, 1)", duration: 0.15, immediateRender: false }, at);
+          });
+          tl.fromTo("#v3-status", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE }, 2 * W + 1.55);
+
+          // ── V4: prompt types, send, answer writes itself, chips pop (bell 15.6)
+          const PROMPT = "Rédige une réponse claire et chaleureuse à ce client…";
+          const typed = root.querySelector("#v4-typed");
+          const ty = { n: 0 };
+          tl.fromTo(
+            ty,
+            { n: 0 },
+            {
+              n: PROMPT.length,
+              duration: 0.75,
+              ease: "none",
+              onUpdate: () => {
+                const n = Math.round(ty.n);
+                typed.textContent = PROMPT.slice(0, n) + (n < PROMPT.length ? "|" : "");
+              },
+            },
+            3 * W + 0.15,
+          );
+          tl.fromTo("#v4-send", { scale: 1 }, { scale: 0.85, duration: 0.07, immediateRender: false }, 3 * W + 0.95);
+          tl.to("#v4-send", { scale: 1, duration: 0.3, ease: "back.out(3)" }, 3 * W + 1.03);
+          tl.fromTo("#v4-answer", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: EASE }, 3 * W + 1.05);
+          tl.fromTo("#v4 .v4-line", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.out", stagger: 0.09 }, 3 * W + 1.12);
+          tl.fromTo("#v4 .v4-chip", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)", stagger: 0.08 }, 3 * W + 1.55);
+
+          // scene exit
+          tl.to("#s3-left, #s3-card", { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, ease: "power2.in", stagger: 0.04 }, 8 - 0.36);
+
+          window.__timelines["s3-offers"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

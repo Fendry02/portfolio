@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Instrument Serif";
+          font-style: italic;
+          font-weight: 400;
+          src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #ff5a1f;
+          color: #0e0c0a;
+        }
+        #s2-dots {
+          position: absolute;
+          inset: -40px;
+          background-image: radial-gradient(circle, rgba(14, 12, 10, 0.2) 2.5px, transparent 3px);
+          background-size: 48px 48px;
+        }
+        #s2-cam {
+          position: absolute;
+          inset: 0;
+          transform-origin: 50% 50%;
+        }
+        #s2-stack {
+          position: absolute;
+          left: 100px;
+          top: 170px;
+          width: 1720px;
+        }
+        .s2-row {
+          display: flex;
+          align-items: flex-end;
+          font-family: "Archivo Black", sans-serif;
+          font-size: 400px;
+          line-height: 0.8;
+          letter-spacing: -0.035em;
+          height: 330px;
+        }
+        .s2-l {
+          display: inline-block;
+          will-change: transform;
+          transform-origin: 50% 80%;
+        }
+        #s2-row2 {
+          margin-top: 36px;
+        }
+        #s2-reel {
+          display: flex;
+        }
+        #s2-side {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          margin-left: 56px;
+          padding-bottom: 14px;
+          height: 330px;
+        }
+        #s2-by-mask {
+          display: block;
+          overflow: hidden;
+          height: 150px;
+        }
+        #s2-by {
+          display: block;
+          font-family: "Instrument Serif", serif;
+          font-style: italic;
+          font-size: 140px;
+          line-height: 1.05;
+          letter-spacing: -0.02em;
+          white-space: nowrap;
+        }
+        #s2-rule {
+          display: block;
+          width: 560px;
+          height: 4px;
+          background: #0e0c0a;
+          margin: 14px 0 18px;
+          transform-origin: 0 50%;
+        }
+        #s2-meta {
+          display: block;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 24px;
+          letter-spacing: 0.12em;
+          white-space: nowrap;
+          font-weight: 700;
+        }
+        #s2-curtain {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          background: #0e0c0a;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s2-title" data-width="1920" data-height="1080">
+        <div id="s2-dots"></div>
+        <div id="s2-cam">
+          <div id="s2-stack" data-layout-allow-overlap>
+            <div class="s2-row" id="s2-row1">
+              <span data-layout-allow-overlap class="s2-l s2-m">M</span><span data-layout-allow-overlap class="s2-l s2-m">O</span><span data-layout-allow-overlap class="s2-l s2-m">T</span
+              ><span data-layout-allow-overlap class="s2-l s2-m">I</span><span data-layout-allow-overlap class="s2-l s2-m">O</span><span data-layout-allow-overlap class="s2-l s2-m">N</span>
+            </div>
+            <div class="s2-row" id="s2-row2">
+              <div id="s2-reel">
+                <span data-layout-allow-overlap class="s2-l s2-r">R</span><span data-layout-allow-overlap class="s2-l s2-r">E</span><span data-layout-allow-overlap class="s2-l s2-r">E</span
+                ><span data-layout-allow-overlap class="s2-l s2-r">L</span>
+              </div>
+              <div id="s2-side">
+                <span id="s2-by-mask"><span id="s2-by" data-layout-allow-overlap>by Claude</span></span>
+                <span id="s2-rule"></span>
+                <span id="s2-meta"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="s2-curtain"></div>
+      </div>
+
+      <script>
+        (function () {
+          const B = 60 / 128;
+          const root = document.querySelector('[data-composition-id="s2-title"]');
+          const letters = Array.from(root.querySelectorAll(".s2-l"));
+          const meta = root.querySelector("#s2-meta");
+          const META = "SHOWREEL 2026 — 30S · 1800 FRAMES";
+
+          // hand-set extrusion: stacked hard text-shadows toward the lower-right
+          const depth = { d: 0 };
+          const extrude = () => {
+            const n = Math.round(depth.d);
+            const parts = [];
+            for (let i = 1; i <= n; i++) {
+              const k = i / Math.max(1, n);
+              const c = `rgb(${Math.round(150 - 60 * k)}, ${Math.round(40 - 18 * k)}, ${Math.round(10 - 4 * k)})`;
+              parts.push(`${i * 1.6}px ${i * 1.6}px 0 ${c}`);
+            }
+            const v = parts.length ? parts.join(",") : "none";
+            letters.forEach((el) => (el.style.textShadow = v));
+          };
+
+          // index-derived pseudo random (no Math.random)
+          const hash = (i, s) => {
+            const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
+            return x - Math.floor(x);
+          };
+
+          const tl = gsap.timeline({ paused: true });
+
+          // beat 1 — MOTION slams in, letter by letter, from over-scale
+          tl.fromTo(
+            "#s2-row1 .s2-l",
+            { scale: 2.6, opacity: 0, y: -40 },
+            { scale: 1, opacity: 1, y: 0, duration: 0.42, ease: "expo.out", stagger: 0.055 },
+            0.0,
+          );
+          // impact shake on the camera wrapper (decaying, deterministic)
+          const shake = { k: 0 };
+          tl.fromTo(
+            shake,
+            { k: 0 },
+            {
+              k: 1,
+              duration: 0.5,
+              ease: "none",
+              onUpdate: () => {
+                const k = shake.k;
+                const a = 22 * Math.pow(1 - k, 2);
+                const cam = root.querySelector("#s2-cam");
+                cam.style.transform = `translate(${Math.sin(k * 60) * a}px, ${Math.cos(k * 47) * a * 0.7}px) scale(${1 + 0.04 * Math.pow(1 - k, 3)})`;
+              },
+            },
+            0.0,
+          );
+          // beat 3 — REEL snaps in from the right with a velocity skew
+          tl.fromTo(
+            "#s2-reel .s2-l",
+            { x: 1500, skewX: -28, opacity: 1 },
+            { x: 0, skewX: 0, duration: 0.5, ease: "power4.out", stagger: 0.04 },
+            0.9375 - 0.08,
+          );
+          // beat 4 — the letters grow depth
+          tl.fromTo(depth, { d: 0 }, { d: 14, duration: 0.55, ease: "back.out(2.2)", onUpdate: extrude }, 1.406);
+          // beat 5 — "by Claude" rises through its mask
+          tl.fromTo("#s2-by", { yPercent: 105, rotation: 3 }, { yPercent: 0, rotation: 0, duration: 0.65, ease: "expo.out" }, 1.875);
+          tl.fromTo("#s2-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.inOut" }, 2.0);
+          // beat 6 — mono line types on
+          const typed = { n: 0 };
+          tl.fromTo(
+            typed,
+            { n: 0 },
+            {
+              n: META.length,
+              duration: 0.55,
+              ease: "none",
+              onUpdate: () => {
+                const n = Math.round(typed.n);
+                meta.textContent = META.slice(0, n) + (n < META.length ? "▍" : "");
+              },
+            },
+            2.34,
+          );
+          // slow push-in through the hold
+          tl.fromTo("#s2-stack", { scale: 1 }, { scale: 1.035, duration: 3.2, ease: "sine.inOut", transformOrigin: "50% 50%" }, 0.3);
+          tl.fromTo("#s2-dots", { x: 0, y: 0 }, { x: -48, y: -24, duration: 3.75, ease: "none" }, 0);
+
+          // exit — letters scatter upward, an ink curtain rises underneath
+          letters.forEach((el, i) => {
+            tl.to(
+              el,
+              {
+                y: -700 - 500 * hash(i, 1),
+                x: (hash(i, 2) - 0.5) * 400,
+                rotation: (hash(i, 3) - 0.5) * 90,
+                duration: 0.42,
+                ease: "power3.in",
+              },
+              3.3 + hash(i, 4) * 0.06,
+            );
+          });
+          tl.to("#s2-side", { y: -500, opacity: 0, duration: 0.36, ease: "power3.in" }, 3.33);
+          tl.fromTo("#s2-curtain", { yPercent: 100 }, { yPercent: 0, duration: 0.38, ease: "power4.in" }, 3.37);
+
+          window.__timelines["s2-title"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

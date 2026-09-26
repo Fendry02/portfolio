@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Instrument Serif";
+          font-style: italic;
+          font-weight: 400;
+          src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0e0c0a;
+          color: #f3eee5;
+        }
+        #s6-stage {
+          position: absolute;
+          inset: 0;
+          perspective: 1200px;
+          perspective-origin: 50% 50%;
+        }
+        #s6-world {
+          position: absolute;
+          left: 960px;
+          top: 540px;
+          width: 0;
+          height: 0;
+          transform-style: preserve-3d;
+        }
+        #s6-floor {
+          position: absolute;
+          left: -3000px;
+          top: -9000px;
+          width: 6000px;
+          height: 18000px;
+          background-image: linear-gradient(rgba(243, 238, 229, 0.16) 3px, transparent 3px),
+            linear-gradient(90deg, rgba(243, 238, 229, 0.16) 3px, transparent 3px);
+          background-size: 300px 300px;
+        }
+        .s6-frame {
+          position: absolute;
+          left: -500px;
+          top: -310px;
+          width: 1000px;
+          height: 620px;
+          border: 8px solid #f3eee5;
+          background: #16130f;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 28px 36px;
+          backface-visibility: hidden;
+        }
+        .s6-frame.hot {
+          border-color: #ff5a1f;
+        }
+        .s6-num {
+          font-family: "JetBrains Mono", monospace;
+          font-size: 30px;
+          letter-spacing: 0.12em;
+          color: #ff5a1f;
+        }
+        .s6-word {
+          font-family: "Archivo Black", sans-serif;
+          font-size: 210px;
+          line-height: 0.9;
+          letter-spacing: -0.03em;
+        }
+        .s6-sub {
+          font-family: "Instrument Serif", serif;
+          font-style: italic;
+          font-size: 54px;
+          line-height: 1;
+          color: #d8d0c4;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s6-depth" data-width="1920" data-height="1080">
+        <div id="s6-stage">
+          <div id="s6-world" data-layout-allow-overlap>
+            <div id="s6-floor"></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const root = document.querySelector('[data-composition-id="s6-depth"]');
+          const world = root.querySelector("#s6-world");
+          const floor = root.querySelector("#s6-floor");
+          const SP = 1500; // corridor spacing
+          const VIEW = 240; // resting distance in front of the lens
+          const CRAFTS = [
+            ["TYPE", "the voice"],
+            ["EASE", "the feel"],
+            ["RHYTHM", "the pulse"],
+            ["DEPTH", "the space"],
+            ["DATA", "the proof"],
+            ["STORY", "the reason"],
+          ];
+          const XS = [0, 260, -240, 200, -180, 0];
+          const YS = [0, -60, 50, -40, 40, 0];
+          const RZ = [0, 3, -3, 2, -2, 0];
+          const frames = CRAFTS.map(([w, sub], i) => {
+            const f = document.createElement("div");
+            f.className = "s6-frame" + (i === 5 ? " hot" : "");
+            f.innerHTML = `<span data-layout-allow-overlap class="s6-num">${String(i + 1).padStart(2, "0")} / 06</span><span data-layout-allow-overlap class="s6-word">${w}</span><span data-layout-allow-overlap class="s6-sub">${sub}</span>`;
+            world.appendChild(f);
+            return { el: f, z: -i * SP - VIEW };
+          });
+
+          // camera: station k puts frame k at -VIEW. Stations land on the beats.
+          const B = 60 / 128;
+          const STATION_AT = [0.2, 0.2 + B, 0.2 + 2 * B, 0.2 + 3 * B, 0.2 + 4 * B, 0.2 + 5 * B];
+          const cam = { z: -900, x: 0, y: 0, roll: 0 };
+
+          function render() {
+            // the world moves opposite the camera
+            world.style.transform = `translate3d(${-cam.x}px, ${-cam.y}px, ${cam.z}px) rotateZ(${cam.roll}deg)`;
+            floor.style.transform = `translate3d(0, 0, 0) translateY(${520}px) rotateX(90deg)`;
+            frames.forEach((f, i) => {
+              const zEff = f.z + cam.z; // distance along the lens axis (0 = eye plane - 1200)
+              let o = 1;
+              if (zEff > 250) o = Math.max(0, 1 - (zEff - 250) / 500); // fade as it passes the lens
+              if (zEff < -1400) o = Math.max(0.18, 1 - (-1400 - zEff) / 900); // depth fog
+              f.el.style.opacity = o.toFixed(3);
+              f.el.style.transform = `translate3d(${XS[i]}px, ${YS[i]}px, ${f.z}px) rotateZ(${RZ[i]}deg)`;
+            });
+          }
+
+          const tl = gsap.timeline({ paused: true });
+          // dolly between stations (power3.inOut → each frame lands on its beat)
+          tl.fromTo(cam, { z: -900 }, { z: 0, duration: 0.2, ease: "power2.out", onUpdate: render }, 0);
+          for (let k = 1; k < 6; k++) {
+            tl.to(cam, { z: k * SP, x: XS[k] * 0.9, y: YS[k] * 0.9, duration: B * 0.78, ease: "power3.inOut", onUpdate: render }, STATION_AT[k] - B * 0.78);
+          }
+          // gentle roll sway through the flight
+          tl.to(cam, { roll: 2.5, duration: B * 2, ease: "sine.inOut", onUpdate: render }, 0.2);
+          tl.to(cam, { roll: -2.5, duration: B * 2, ease: "sine.inOut", onUpdate: render }, 0.2 + B * 2);
+          tl.to(cam, { roll: 0, duration: B * 1.5, ease: "sine.inOut", onUpdate: render }, 0.2 + B * 4);
+          // push through the last frame into the flash
+          tl.to(cam, { z: 5 * SP + 1300, duration: 0.47, ease: "power3.in", onUpdate: render }, 3.28);
+
+          window.__timelines["s6-depth"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

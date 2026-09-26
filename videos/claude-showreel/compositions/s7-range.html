@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0e0c0a;
+          color: #f3eee5;
+        }
+        .s7-cut {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          opacity: 0;
+        }
+        .s7-fig {
+          position: absolute;
+          left: 108px;
+          top: 150px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 24px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+        }
+        /* a — bars */
+        #s7-a {
+          background: #f3eee5;
+          color: #0e0c0a;
+        }
+        #s7-bars {
+          position: absolute;
+          left: 300px;
+          bottom: 190px;
+          width: 1320px;
+          height: 620px;
+          display: flex;
+          align-items: flex-end;
+          gap: 40px;
+        }
+        .s7-bar {
+          display: block;
+          flex: 1;
+          background: #0e0c0a;
+          transform-origin: 50% 100%;
+        }
+        .s7-bar.hot {
+          background: #ff5a1f;
+        }
+        #s7-base {
+          position: absolute;
+          left: 260px;
+          bottom: 184px;
+          width: 1400px;
+          height: 6px;
+          background: #0e0c0a;
+        }
+        /* b — glitch */
+        #s7-b {
+          background: #0e0c0a;
+        }
+        .s7-gl {
+          position: absolute;
+          left: 0;
+          top: 330px;
+          width: 1920px;
+          text-align: center;
+          font-family: "Archivo Black", sans-serif;
+          font-size: 330px;
+          line-height: 1;
+          letter-spacing: -0.03em;
+        }
+        #s7-gl-r {
+          color: #ff5a1f;
+        }
+        #s7-gl-c {
+          color: #5f5850;
+        }
+        #s7-gl-main {
+          color: #f3eee5;
+        }
+        .s7-slice {
+          position: absolute;
+          left: 0;
+          width: 1920px;
+          overflow: hidden;
+        }
+        .s7-slice .s7-gl {
+          color: #f3eee5;
+        }
+        /* c — burst */
+        #s7-c {
+          background: #ff5a1f;
+          color: #0e0c0a;
+        }
+        .s7-p {
+          position: absolute;
+          left: 960px;
+          top: 540px;
+          width: 26px;
+          height: 26px;
+          margin: -13px 0 0 -13px;
+          border-radius: 50%;
+          background: #0e0c0a;
+        }
+        #s7-core {
+          position: absolute;
+          left: 860px;
+          top: 440px;
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: #0e0c0a;
+        }
+        /* d — ring */
+        #s7-d {
+          background: #0e0c0a;
+        }
+        #s7-ring {
+          position: absolute;
+          left: 610px;
+          top: 190px;
+        }
+        #s7-pct {
+          position: absolute;
+          left: 0;
+          top: 400px;
+          width: 1920px;
+          text-align: center;
+          font-family: "Archivo Black", sans-serif;
+          font-size: 200px;
+          line-height: 1;
+          font-variant-numeric: tabular-nums;
+        }
+        /* e — marquee */
+        #s7-e {
+          background: #ff5a1f;
+          color: #0e0c0a;
+        }
+        .s7-row {
+          position: absolute;
+          left: 0;
+          white-space: nowrap;
+          font-family: "Archivo Black", sans-serif;
+          font-size: 230px;
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+        .s7-row.out {
+          color: transparent;
+          -webkit-text-stroke: 5px #0e0c0a;
+        }
+        /* f — path */
+        #s7-f {
+          background: #f3eee5;
+          color: #0e0c0a;
+        }
+        #s7-path-svg {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        /* g — the ball comes home */
+        #s7-g {
+          background: #0e0c0a;
+        }
+        #s7-ball {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 140px;
+          height: 140px;
+          margin: -140px 0 0 -70px;
+          border-radius: 50%;
+          background: #f3eee5;
+          transform-origin: 50% 100%;
+        }
+        #s7-floor {
+          position: absolute;
+          left: 108px;
+          right: 108px;
+          top: 760px;
+          height: 3px;
+          background: rgba(243, 238, 229, 0.6);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s7-range" data-width="1920" data-height="1080">
+        <div class="s7-cut" id="s7-a">
+          <div id="s7-bars">
+            <span class="s7-bar" style="height: 34%"></span><span class="s7-bar" style="height: 52%"></span
+            ><span class="s7-bar" style="height: 41%"></span><span class="s7-bar" style="height: 68%"></span
+            ><span class="s7-bar" style="height: 57%"></span><span class="s7-bar" style="height: 80%"></span
+            ><span class="s7-bar hot" style="height: 100%"></span>
+          </div>
+          <div id="s7-base"></div>
+          <div class="s7-fig">FIG.01 — DATA</div>
+        </div>
+
+        <div class="s7-cut" id="s7-b" data-layout-allow-overlap>
+          <div data-layout-allow-overlap class="s7-gl" id="s7-gl-c">GLITCH</div>
+          <div data-layout-allow-overlap class="s7-gl" id="s7-gl-r">GLITCH</div>
+          <div data-layout-allow-overlap class="s7-gl" id="s7-gl-main">GLITCH</div>
+          <div class="s7-slice" id="s7-sl-0" style="top: 380px; height: 70px"><div data-layout-allow-overlap class="s7-gl" style="top: -50px">GLITCH</div></div>
+          <div class="s7-slice" id="s7-sl-1" style="top: 500px; height: 44px"><div data-layout-allow-overlap class="s7-gl" style="top: -170px">GLITCH</div></div>
+          <div class="s7-slice" id="s7-sl-2" style="top: 590px; height: 56px"><div data-layout-allow-overlap class="s7-gl" style="top: -260px">GLITCH</div></div>
+          <div class="s7-fig">FIG.02 — RGB SPLIT</div>
+        </div>
+
+        <div class="s7-cut" id="s7-c">
+          <div id="s7-parts"></div>
+          <div id="s7-core"></div>
+          <div class="s7-fig">FIG.03 — PARTICLES</div>
+        </div>
+
+        <div class="s7-cut" id="s7-d">
+          <svg id="s7-ring" width="700" height="700" viewBox="0 0 700 700">
+            <circle cx="350" cy="350" r="300" fill="none" stroke="rgba(243,238,229,0.14)" stroke-width="34"></circle>
+            <circle id="s7-arc" cx="350" cy="350" r="300" fill="none" stroke="#ff5a1f" stroke-width="34" stroke-linecap="round" transform="rotate(-90 350 350)" stroke-dasharray="1885" stroke-dashoffset="1885"></circle>
+          </svg>
+          <div id="s7-pct">0%</div>
+          <div class="s7-fig">FIG.04 — COUNT</div>
+        </div>
+
+        <div class="s7-cut" id="s7-e">
+          <div class="s7-row" id="s7-row-0" style="top: 130px">LOOP · LOOP · LOOP · LOOP · LOOP · LOOP ·</div>
+          <div class="s7-row out" id="s7-row-1" style="top: 420px">LOOP · LOOP · LOOP · LOOP · LOOP · LOOP ·</div>
+          <div class="s7-row" id="s7-row-2" style="top: 710px">LOOP · LOOP · LOOP · LOOP · LOOP · LOOP ·</div>
+        </div>
+
+        <div class="s7-cut" id="s7-f">
+          <svg id="s7-path-svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+            <path id="s7-path" d="M 180 700 C 360 260, 560 260, 640 560 S 900 900, 1000 540 S 1260 180, 1360 520 S 1600 860, 1760 380" fill="none" stroke="#0e0c0a" stroke-width="22" stroke-linecap="round"></path>
+            <circle id="s7-pen" r="22" fill="#ff5a1f"></circle>
+          </svg>
+          <div class="s7-fig">FIG.06 — PATH</div>
+        </div>
+
+        <div class="s7-cut" id="s7-g">
+          <div id="s7-floor"></div>
+          <div id="s7-ball"></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const B = 60 / 128;
+          const root = document.querySelector('[data-composition-id="s7-range"]');
+          const hash = (i, s) => {
+            const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
+            return x - Math.floor(x);
+          };
+          const CUTS = ["#s7-a", "#s7-b", "#s7-c", "#s7-d", "#s7-e", "#s7-f", "#s7-g"];
+          const CUT_AT = [0, B, 2 * B, 3 * B, 4 * B, 5 * B, 6 * B];
+          const END = 3.75;
+
+          const tl = gsap.timeline({ paused: true });
+          // hard cuts on the beat — binary opacity, never a fade
+          CUTS.forEach((sel, i) => {
+            tl.set(sel, { opacity: 1 }, CUT_AT[i]);
+            if (i < CUTS.length - 1) tl.set(sel, { opacity: 0 }, CUT_AT[i + 1]);
+          });
+          tl.set(CUTS.join(","), { opacity: 0 }, 0);
+          tl.set("#s7-a", { opacity: 1 }, 0);
+
+          // a — bars spring up
+          tl.fromTo("#s7-a .s7-bar", { scaleY: 0 }, { scaleY: 1, duration: 0.34, ease: "back.out(1.8)", stagger: 0.028 }, 0.02);
+          tl.fromTo("#s7-bars", { x: 0 }, { x: -40, duration: B, ease: "none" }, 0);
+
+          // b — RGB split jitter on quantized time, snapping sharp at the end
+          const gl = { t: 0 };
+          const glR = root.querySelector("#s7-gl-r");
+          const glC = root.querySelector("#s7-gl-c");
+          const slices = [0, 1, 2].map((i) => root.querySelector("#s7-sl-" + i));
+          tl.fromTo(
+            gl,
+            { t: 0 },
+            {
+              t: 1,
+              duration: B,
+              ease: "none",
+              onUpdate: () => {
+                const q = Math.floor(gl.t * 14);
+                const calm = gl.t > 0.8 ? 0 : 1 - gl.t / 0.8;
+                const a = 40 * calm;
+                glR.style.transform = `translate(${(hash(q, 1) - 0.5) * a * 2}px, ${(hash(q, 2) - 0.5) * a}px)`;
+                glC.style.transform = `translate(${(hash(q, 3) - 0.5) * -a * 2}px, ${(hash(q, 4) - 0.5) * a}px)`;
+                slices.forEach((s, i) => (s.style.transform = `translateX(${(hash(q, 5 + i) - 0.5) * 260 * calm}px)`));
+              },
+            },
+            B,
+          );
+
+          // c — deterministic particle burst: ballistic, pure function of time
+          const parts = [];
+          const pw = root.querySelector("#s7-parts");
+          for (let i = 0; i < 36; i++) {
+            const d = document.createElement("div");
+            d.className = "s7-p";
+            pw.appendChild(d);
+            const ang = (i / 36) * Math.PI * 2 + hash(i, 9) * 0.3;
+            const sp = 2600 + hash(i, 10) * 3600;
+            parts.push({ el: d, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, s: 0.5 + hash(i, 11) * 1.4 });
+          }
+          const burst = { t: 0 };
+          tl.fromTo(
+            burst,
+            { t: 0 },
+            {
+              t: B,
+              duration: B,
+              ease: "none",
+              onUpdate: () => {
+                const t = burst.t;
+                const drag = (1 - Math.exp(-t * 5)) / 5;
+                parts.forEach((p) => {
+                  const x = p.vx * drag;
+                  const y = p.vy * drag + 900 * t * t;
+                  p.el.style.transform = `translate(${x}px, ${y}px) scale(${p.s * (1 - t / (B * 1.4))})`;
+                });
+              },
+            },
+            2 * B,
+          );
+          tl.fromTo("#s7-core", { scale: 1.6 }, { scale: 0, duration: 0.3, ease: "power3.in" }, 2 * B);
+
+          // d — ring draws while the counter climbs
+          const pct = root.querySelector("#s7-pct");
+          const cnt = { v: 0 };
+          tl.fromTo("#s7-arc", { attr: { "stroke-dashoffset": 1885 } }, { attr: { "stroke-dashoffset": 0 }, duration: B * 0.9, ease: "expo.out" }, 3 * B);
+          tl.fromTo(
+            cnt,
+            { v: 0 },
+            { v: 100, duration: B * 0.9, ease: "expo.out", onUpdate: () => (pct.textContent = Math.round(cnt.v) + "%") },
+            3 * B,
+          );
+          tl.fromTo("#s7-pct", { scale: 0.7 }, { scale: 1, duration: B, ease: "back.out(2)" }, 3 * B);
+
+          // e — marquee rows run opposite directions
+          tl.fromTo("#s7-row-0", { x: 0 }, { x: -700, duration: B, ease: "none" }, 4 * B);
+          tl.fromTo("#s7-row-1", { x: -900 }, { x: -200, duration: B, ease: "none" }, 4 * B);
+          tl.fromTo("#s7-row-2", { x: -300 }, { x: -1000, duration: B, ease: "none" }, 4 * B);
+
+          // f — the path draws itself with a pen at the tip
+          const path = root.querySelector("#s7-path");
+          const pen = root.querySelector("#s7-pen");
+          // measure once at build: total length + a baked table of pen positions
+          const LEN = (path.getTotalLength && path.getTotalLength()) || 2600;
+          const PTS = [];
+          for (let i = 0; i <= 240; i++) {
+            const p = path.getPointAtLength ? path.getPointAtLength((LEN * i) / 240) : { x: 0, y: 0 };
+            PTS.push([p.x, p.y]);
+          }
+          path.setAttribute("stroke-dasharray", LEN);
+          const draw = { k: 0 };
+          tl.fromTo(
+            draw,
+            { k: 0 },
+            {
+              k: 1,
+              duration: B * 0.95,
+              ease: "power2.inOut",
+              onUpdate: () => {
+                path.setAttribute("stroke-dashoffset", LEN * (1 - draw.k));
+                const pt = PTS[Math.round(draw.k * 240)];
+                pen.setAttribute("cx", pt[0]);
+                pen.setAttribute("cy", pt[1]);
+              },
+            },
+            5 * B,
+          );
+
+          // g — the ball comes home: two quick hops over the snare roll, then it rushes the lens
+          const ball = root.querySelector("#s7-ball");
+          const G0 = 6 * B;
+          const HOPS = [G0 + 0.18, G0 + 0.42, G0 + 0.6]; // impacts
+          const g = { t: 0 };
+          const FL = 760;
+          tl.fromTo(
+            g,
+            { t: G0 },
+            {
+              t: END,
+              duration: END - G0,
+              ease: "none",
+              onUpdate: () => {
+                const t = g.t;
+                let x = 960;
+                let y = FL;
+                let sx = 1;
+                let sy = 1;
+                let sc = 1;
+                if (t < HOPS[0]) {
+                  const u = (t - G0) / (HOPS[0] - G0);
+                  x = 300 + 300 * u;
+                  y = FL - 380 * (1 - u * u);
+                } else if (t < HOPS[1]) {
+                  const u = (t - HOPS[0]) / (HOPS[1] - HOPS[0]);
+                  x = 600 + 220 * u;
+                  y = FL - 4 * 170 * u * (1 - u);
+                } else if (t < HOPS[2]) {
+                  const u = (t - HOPS[1]) / (HOPS[2] - HOPS[1]);
+                  x = 820 + 140 * u;
+                  y = FL - 4 * 70 * u * (1 - u);
+                } else {
+                  // anticipation squash, then it flies at the camera and fills the frame
+                  const k = Math.min(1, (t - HOPS[2]) / (END - HOPS[2]));
+                  x = 960;
+                  const squash = Math.min(1, k / 0.25);
+                  const fly = Math.max(0, (k - 0.25) / 0.75);
+                  sy = 1 - 0.4 * squash * (1 - fly);
+                  sx = 1 + 0.45 * squash * (1 - fly);
+                  sc = 1 + 30 * Math.pow(fly, 3);
+                  // keep the swell centred on the ball
+                  y = FL - 70 * sy * (fly > 0 ? 1 : 1) + 70 * sy * sc;
+                  y = FL - 70 - 180 * fly + 70 * sy * sc;
+                }
+                HOPS.forEach((h) => {
+                  const dt = t - h;
+                  if (dt >= 0 && dt < 0.12) {
+                    const e = Math.exp(-dt / 0.03);
+                    sy *= 1 - 0.35 * e;
+                    sx *= 1 + 0.4 * e;
+                  }
+                });
+                ball.style.transform = `translate(${x}px, ${y}px) scale(${sx * sc}, ${sy * sc})`;
+              },
+            },
+            G0,
+          );
+          tl.fromTo("#s7-floor", { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "expo.out" }, G0);
+          tl.to("#s7-floor", { opacity: 0, duration: 0.2 }, END - 0.35);
+
+          window.__timelines["s7-range"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

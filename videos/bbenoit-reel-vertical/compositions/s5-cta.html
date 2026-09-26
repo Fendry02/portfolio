@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Geist";
+          font-style: normal;
+          font-weight: 100 900;
+          src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+        }
+        @font-face {
+          font-family: "Caveat";
+          font-style: normal;
+          font-weight: 700;
+          src: url("assets/fonts/Caveat-Bold.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f8fafc;
+          font-family: "Geist", sans-serif;
+        }
+        #s5-panel {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1080px;
+          height: 1350px;
+          background: #1447e6;
+          overflow: hidden;
+        }
+        #s5-amber {
+          position: absolute;
+          left: 380px;
+          top: -460px;
+          width: 1100px;
+          height: 1100px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(220, 148, 0, 0.58), rgba(220, 148, 0, 0) 100%);
+        }
+        #s5-mint {
+          position: absolute;
+          left: -460px;
+          top: 780px;
+          width: 1100px;
+          height: 1100px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(0, 160, 110, 0.48), rgba(0, 160, 110, 0) 100%);
+        }
+        #s5-ring {
+          position: absolute;
+          left: -420px;
+          top: 360px;
+          width: 1300px;
+          height: 1300px;
+          border-radius: 50%;
+          border: 3px solid rgba(248, 250, 252, 0.12);
+        }
+        #s5-contact {
+          position: absolute;
+          left: 0;
+          top: 350px;
+          width: 1080px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        #s5-badge {
+          display: block;
+          padding: 12px 24px;
+          border-radius: 999px;
+          background: rgba(248, 250, 252, 0.14);
+          border: 2px solid rgba(248, 250, 252, 0.22);
+          font-size: 26px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+        #s5-h {
+          display: block;
+          margin-top: 40px;
+          width: 936px;
+          font-size: 128px;
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: -0.045em;
+        }
+        .s5-w {
+          display: inline-block;
+        }
+        #s5-accent {
+          position: relative;
+          color: #c7dafe;
+        }
+        #s5-acc-line {
+          position: absolute;
+          left: 0;
+          right: 0.12em;
+          bottom: 0.02em;
+          height: 0.08em;
+          border-radius: 0.04em;
+          background: rgba(248, 250, 252, 0.45);
+          transform-origin: 0 50%;
+        }
+        #s5-sub {
+          display: block;
+          margin-top: 40px;
+          width: 900px;
+          font-size: 40px;
+          line-height: 1.36;
+          color: rgba(248, 250, 252, 0.86);
+        }
+        #s5-btn-wrap {
+          position: relative;
+          margin-top: 54px;
+        }
+        #s5-btn {
+          position: relative;
+          display: block;
+          overflow: hidden;
+          padding: 32px 54px;
+          border-radius: 16px;
+          background: #f8fafc;
+          color: #1447e6;
+          font-size: 44px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+          box-shadow: 0 28px 70px rgba(2, 6, 24, 0.27);
+        }
+        #s5-sheen {
+          position: absolute;
+          left: 0;
+          top: -40%;
+          width: 140px;
+          height: 180%;
+          background: linear-gradient(90deg, rgba(21, 93, 252, 0), rgba(21, 93, 252, 0.16), rgba(21, 93, 252, 0));
+        }
+        #s5-ripple {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 200px;
+          height: 200px;
+          margin: -100px 0 0 -100px;
+          border-radius: 50%;
+          border: 4px solid rgba(248, 250, 252, 0.8);
+          opacity: 0;
+        }
+        #s5-cursor {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 54px;
+          height: 54px;
+        }
+        /* lockup */
+        #s5-lock {
+          position: absolute;
+          left: 0;
+          top: 400px;
+          width: 1080px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+        #s5-logo {
+          display: block;
+          font-family: "Caveat", cursive;
+          font-weight: 700;
+          font-size: 250px;
+          line-height: 0.9;
+          letter-spacing: -0.02em;
+          padding: 0 30px;
+        }
+        #s5-logo-slash {
+          color: #5ee3b4;
+          margin: 0 8px;
+        }
+        #s5-name {
+          display: block;
+          margin-top: 26px;
+          font-size: 64px;
+          font-weight: 600;
+          letter-spacing: -0.035em;
+        }
+        #s5-offers {
+          display: block;
+          margin-top: 18px;
+          width: 860px;
+          font-size: 36px;
+          line-height: 1.35;
+          color: rgba(248, 250, 252, 0.84);
+        }
+        #s5-url {
+          position: relative;
+          display: block;
+          margin-top: 60px;
+          font-size: 104px;
+          font-weight: 600;
+          letter-spacing: -0.04em;
+        }
+        #s5-url-line {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -6px;
+          height: 8px;
+          border-radius: 4px;
+          background: #5ee3b4;
+          transform-origin: 0 50%;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s5-cta" data-width="1080" data-height="1350">
+        <div id="s5-panel">
+          <div id="s5-amber"></div>
+          <div id="s5-mint"></div>
+          <div id="s5-ring"></div>
+
+          <div id="s5-contact">
+            <span id="s5-badge">Réponse sous 24h ouvrées</span>
+            <span id="s5-h"
+              ><span class="s5-w">Parlons</span> <span class="s5-w">de</span> <span class="s5-w">votre</span>
+              <span class="s5-w" id="s5-accent">projet.<span id="s5-acc-line"></span></span
+            ></span>
+            <span id="s5-sub">Quelques lignes sur votre activité, votre objectif et vos contraintes : je vous réponds avec une première lecture, sans engagement.</span>
+            <div id="s5-btn-wrap">
+              <span id="s5-btn">Discuter de mon projet →<span id="s5-sheen"></span></span>
+              <span id="s5-ripple"></span>
+            </div>
+          </div>
+
+          <div id="s5-lock">
+            <span id="s5-logo">B<span id="s5-logo-slash">/</span>B</span>
+            <span id="s5-name">Benoit Bruynbroeck</span>
+            <span id="s5-offers">Sites · Applications · Automatisations n8n · Formation IA · Lyon</span>
+            <span id="s5-url">bbenoit.fr<span id="s5-url-line"></span></span>
+          </div>
+
+          <svg id="s5-cursor" viewBox="0 0 24 24"><path d="M4 2l15 9-6.5 1.6L9.5 19z" fill="#0f172b" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"></path></svg>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const EASE = "expo.out";
+          const CLICK = 3.5; // tick at 25.5 in the track
+          const HIT = 6.0; // final chord at 28.0
+          const tl = gsap.timeline({ paused: true });
+
+          // the contact section rises over the proof, corners rounding off as it lands
+          tl.fromTo("#s5-panel", { yPercent: 100, borderRadius: "80px 80px 0 0" }, { yPercent: 0, borderRadius: "0px 0px 0 0", duration: 0.55, ease: "power4.inOut" }, 0);
+          tl.fromTo("#s5-amber", { x: 120, y: -60, scale: 0.9 }, { x: -60, y: 40, scale: 1.08, duration: 8, ease: "sine.inOut" }, 0);
+          tl.fromTo("#s5-mint", { x: -80, y: 60 }, { x: 60, y: -40, duration: 8, ease: "sine.inOut" }, 0);
+          tl.fromTo("#s5-ring", { rotation: 0, scale: 0.9, opacity: 0 }, { rotation: 20, scale: 1, opacity: 1, duration: 8, ease: "none" }, 0);
+
+          tl.fromTo("#s5-badge", { opacity: 0, y: 16, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.42);
+          tl.fromTo(
+            "#s5-h .s5-w",
+            { opacity: 0, y: 40, scale: 0.98, filter: "blur(10px)" },
+            { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.7, ease: EASE, stagger: 0.08 },
+            0.55,
+          );
+          tl.fromTo("#s5-acc-line", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "expo.inOut" }, 1.15);
+          tl.fromTo("#s5-sub", { opacity: 0, y: 20, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: EASE }, 1.2);
+          tl.fromTo("#s5-btn", { opacity: 0, y: 30, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.8)" }, 1.75);
+          // the site's button sheen
+          tl.fromTo("#s5-sheen", { x: -200, rotation: 12 }, { x: 760, rotation: 12, duration: 0.72, ease: "power2.inOut" }, 2.4);
+
+          // cursor → press → ripple (site press = scale 0.985; exaggerated for video)
+          tl.fromTo("#s5-cursor", { x: 900, y: 1300, opacity: 0 }, { x: 600, y: 1062, opacity: 1, duration: 0.95, ease: "power3.inOut" }, 2.45);
+          tl.fromTo("#s5-btn", { scale: 1 }, { scale: 0.95, duration: 0.08, ease: "power2.out", immediateRender: false }, CLICK);
+          tl.to("#s5-btn", { scale: 1, duration: 0.45, ease: "back.out(3)" }, CLICK + 0.08);
+          tl.fromTo("#s5-cursor", { scale: 1 }, { scale: 0.82, duration: 0.08, immediateRender: false }, CLICK);
+          tl.to("#s5-cursor", { scale: 1, duration: 0.3 }, CLICK + 0.08);
+          tl.fromTo("#s5-ripple", { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 3.4, duration: 0.7, ease: "power2.out", immediateRender: false }, CLICK);
+          tl.set("#s5-ripple", { opacity: 0 }, 0);
+
+          // hand-off to the lockup
+          tl.to("#s5-contact, #s5-cursor", { opacity: 0, y: -50, filter: "blur(10px)", duration: 0.45, ease: "power2.in" }, 4.0);
+          tl.fromTo("#s5-logo", { clipPath: "inset(0% 100% 0% 0%)", y: 20 }, { clipPath: "inset(0% 0% 0% 0%)", y: 0, duration: 0.9, ease: "power2.inOut" }, 4.35);
+          tl.fromTo("#s5-name", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: EASE }, 4.95);
+          tl.fromTo("#s5-offers", { opacity: 0, y: 20, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: EASE }, 5.2);
+          // the URL lands on the final chord
+          tl.fromTo("#s5-url", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(2)" }, HIT - 0.05);
+          tl.fromTo("#s5-url-line", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.inOut" }, HIT + 0.2);
+          tl.fromTo("#s5-logo", { scale: 1 }, { scale: 1.05, duration: 0.12, ease: "power2.out", immediateRender: false }, HIT);
+          tl.to("#s5-logo", { scale: 1, duration: 0.6, ease: "elastic.out(1, 0.4)" }, HIT + 0.12);
+
+          window.__timelines["s5-cta"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

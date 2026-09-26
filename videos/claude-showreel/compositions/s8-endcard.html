@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Instrument Serif";
+          font-style: italic;
+          font-weight: 400;
+          src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0e0c0a;
+          color: #f3eee5;
+        }
+        #s8-glow {
+          position: absolute;
+          left: 360px;
+          top: 140px;
+          width: 1200px;
+          height: 800px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255, 90, 31, 0.2), rgba(255, 90, 31, 0));
+        }
+        #s8-lock {
+          position: absolute;
+          left: 250px;
+          top: 300px;
+          width: 1400px;
+        }
+        #s8-name {
+          display: flex;
+          align-items: flex-end;
+          height: 250px;
+          font-family: "Archivo Black", sans-serif;
+          font-size: 300px;
+          line-height: 0.8;
+          letter-spacing: -0.04em;
+        }
+        .s8-l {
+          display: inline-block;
+          transform-origin: 50% 100%;
+        }
+        #s8-dot-slot {
+          display: inline-block;
+          width: 130px;
+          height: 10px;
+          margin-left: 24px;
+        }
+        #s8-role-mask {
+          display: block;
+          overflow: hidden;
+          height: 150px;
+          margin-top: 36px;
+        }
+        #s8-role {
+          display: block;
+          font-family: "Instrument Serif", serif;
+          font-style: italic;
+          font-size: 132px;
+          line-height: 1.08;
+          letter-spacing: -0.02em;
+          white-space: nowrap;
+        }
+        #s8-rule {
+          display: block;
+          width: 1320px;
+          height: 4px;
+          margin-top: 22px;
+          background: rgba(243, 238, 229, 0.5);
+          transform-origin: 0 50%;
+        }
+        #s8-meta {
+          display: flex;
+          justify-content: space-between;
+          width: 1320px;
+          margin-top: 22px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 26px;
+          letter-spacing: 0.14em;
+          color: #f3eee5;
+        }
+        #s8-meta b {
+          color: #ff5a1f;
+          font-weight: 700;
+        }
+        #s8-ball {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 130px;
+          height: 130px;
+          margin: -130px 0 0 -65px;
+          border-radius: 50%;
+          background: #f3eee5;
+          transform-origin: 50% 100%;
+        }
+        #s8-iris {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1920px;
+          height: 1080px;
+          background: #f3eee5;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s8-endcard" data-width="1920" data-height="1080">
+        <div id="s8-glow"></div>
+        <div id="s8-lock">
+          <div id="s8-name">
+            <span class="s8-l">C</span><span class="s8-l">L</span><span class="s8-l">A</span><span class="s8-l">U</span
+            ><span class="s8-l">D</span><span class="s8-l">E</span><span id="s8-dot-slot"></span>
+          </div>
+          <span id="s8-role-mask"><span id="s8-role">Motion Designer</span></span>
+          <span id="s8-rule"></span>
+          <div id="s8-meta"><span>SHOWREEL <b>2026</b></span><span id="s8-hire">AVAILABLE FOR HIRE →</span></div>
+        </div>
+        <div id="s8-ball"></div>
+        <div id="s8-iris"></div>
+      </div>
+
+      <script>
+        (function () {
+          const B = 60 / 128;
+          const root = document.querySelector('[data-composition-id="s8-endcard"]');
+          const ball = root.querySelector("#s8-ball");
+          const iris = root.querySelector("#s8-iris");
+          // lockup geometry (authored constants — matches the CSS above)
+          const BASE = 536; // name baseline (measured from the snapshot of #s8-name)
+          const DOT_X = 1640; // resting centre of the full stop, just past the E
+          const LAND = [B * 2, B * 3, B * 3.5, B * 4]; // hops on the plucks, lands on the final hit
+          const HOP_X = [570, 950, 1210, DOT_X];
+          const HOP_H = [0, 260, 150, 60];
+
+          const lerp = (a, b, k) => a + (b - a) * k;
+          const st = { t: 0 };
+          function render() {
+            const t = st.t;
+            // iris: full-frame cream closes to the ball (inverse of scene 1's wipe)
+            const ik = Math.min(1, t / 0.42);
+            const ie = 1 - Math.pow(1 - ik, 4);
+            const r = lerp(1300, 65, ie);
+            iris.style.clipPath = `circle(${r}px at 960px ${540 - 65}px)`;
+            iris.style.opacity = ik >= 1 ? "0" : "1";
+
+            let x = 960;
+            let y = 540;
+            let sx = 1;
+            let sy = 1;
+            let color = "#f3eee5";
+            if (t < 0.42) {
+              x = 960;
+              y = 540;
+            } else if (t < LAND[0]) {
+              // leap from centre to the first letter
+              const u = (t - 0.42) / (LAND[0] - 0.42);
+              x = lerp(960, HOP_X[0], u);
+              const y0 = 540;
+              y = lerp(y0, BASE, u) - 420 * 4 * u * (1 - u) * 0.9;
+            } else if (t < LAND[3]) {
+              let i = 0;
+              while (i < 3 && t >= LAND[i + 1]) i++;
+              const u = (t - LAND[i]) / (LAND[i + 1] - LAND[i]);
+              x = lerp(HOP_X[i], HOP_X[i + 1], u);
+              y = BASE - 4 * HOP_H[i + 1] * u * (1 - u);
+            } else {
+              x = DOT_X;
+              y = BASE;
+            }
+            // velocity stretch while airborne, squash on each landing
+            if (t > 0.42 && t < LAND[3]) {
+              sy = 1.12;
+              sx = 0.9;
+            }
+            LAND.forEach((h, i) => {
+              const dt = t - h;
+              if (dt >= 0 && dt < 0.25) {
+                const e = Math.exp(-dt / 0.035) * Math.cos(dt * 36);
+                const amt = i === 3 ? 0.45 : 0.3;
+                sy = (dt < 0.02 ? 1 : sy) * (1 - amt * e);
+                sx = (dt < 0.02 ? 1 : sx) * (1 + amt * 1.1 * e);
+              }
+            });
+            // the final tink turns the full stop signal orange
+            if (t >= LAND[3] + B * 2) color = "#ff5a1f";
+            ball.style.background = color;
+            ball.style.transform = `translate(${x}px, ${y}px) scale(${sx}, ${sy})`;
+          }
+
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo(st, { t: 0 }, { t: 3.75, duration: 3.75, ease: "none", onUpdate: render }, 0);
+
+          // letters spring up behind the ball as it passes (C·L at hop 1, A·U hop 2, D hop 3, E on the landing)
+          const L_AT = [LAND[0] - 0.04, LAND[0] + 0.08, LAND[1] - 0.04, LAND[1] + 0.07, LAND[2] - 0.02, LAND[2] + 0.1];
+          root.querySelectorAll(".s8-l").forEach((el, i) => {
+            tl.fromTo(el, { scaleY: 0, scaleX: 1.3 }, { scaleY: 1, scaleX: 1, duration: 0.42, ease: "back.out(2.6)" }, L_AT[i]);
+          });
+          // impact kick on the lockup when the full stop lands
+          tl.fromTo("#s8-name", { y: 0 }, { y: 10, duration: 0.06, ease: "power2.out", immediateRender: false }, LAND[3]);
+          tl.to("#s8-name", { y: 0, duration: 0.4, ease: "elastic.out(1, 0.35)" }, LAND[3] + 0.06);
+
+          tl.fromTo("#s8-role", { yPercent: 105 }, { yPercent: 0, duration: 0.6, ease: "expo.out" }, LAND[3] + 0.12);
+          tl.fromTo("#s8-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.inOut" }, LAND[3] + 0.2);
+          tl.fromTo("#s8-meta span", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", stagger: 0.12 }, LAND[3] + 0.4);
+          tl.fromTo("#s8-hire", { x: 0 }, { x: 10, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3, immediateRender: false }, LAND[3] + 0.9);
+          tl.fromTo("#s8-glow", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.1, duration: 2.4, ease: "sine.out" }, 0.4);
+
+          window.__timelines["s8-endcard"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

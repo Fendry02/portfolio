@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Claude — Motion Reel 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Instrument Serif";
+        font-style: italic;
+        font-weight: 400;
+        src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Instrument Serif";
+        font-style: normal;
+        font-weight: 400;
+        src: url("assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+      }
+      :root {
+        --ink: #0e0c0a;
+        --paper: #f3eee5;
+        --signal: #ff5a1f;
+        --dim: #9a9086;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: var(--ink);
+        font-family: "JetBrains Mono", monospace;
+      }
+      /* ── reel HUD: sits over every scene ───────────────────────────── */
+      #hud {
+        position: absolute;
+        inset: 0;
+        z-index: 50;
+        pointer-events: none;
+        color: var(--paper);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 20px;
+        letter-spacing: 0.06em;
+        font-variant-numeric: tabular-nums;
+      }
+      .crop {
+        position: absolute;
+        width: 44px;
+        height: 44px;
+        border-color: currentColor;
+        border-style: solid;
+        border-width: 0;
+        opacity: 0.85;
+      }
+      .crop.tl {
+        top: 40px;
+        left: 40px;
+        border-top-width: 3px;
+        border-left-width: 3px;
+      }
+      .crop.tr {
+        top: 40px;
+        right: 40px;
+        border-top-width: 3px;
+        border-right-width: 3px;
+      }
+      .crop.bl {
+        bottom: 40px;
+        left: 40px;
+        border-bottom-width: 3px;
+        border-left-width: 3px;
+      }
+      .crop.br {
+        bottom: 40px;
+        right: 40px;
+        border-bottom-width: 3px;
+        border-right-width: 3px;
+      }
+      .hud-row {
+        position: absolute;
+        left: 108px;
+        right: 108px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hud-row.top {
+        top: 50px;
+      }
+      .hud-row.bottom {
+        bottom: 50px;
+      }
+      .hud-cell {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      #rec-dot {
+        display: block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--signal);
+      }
+      #hud-rec-dot-wrap {
+        display: block;
+        width: 14px;
+        height: 14px;
+      }
+      .beats {
+        display: flex;
+        gap: 8px;
+      }
+      .beat {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border: 2px solid currentColor;
+      }
+      .beat-fill {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: currentColor;
+        opacity: 0;
+      }
+      #scene-bar {
+        display: block;
+        width: 160px;
+        height: 3px;
+        background: currentColor;
+        opacity: 0.3;
+        position: relative;
+      }
+      #scene-bar-wrap {
+        position: relative;
+        width: 160px;
+        height: 3px;
+      }
+      #scene-bar-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 160px;
+        height: 3px;
+        background: currentColor;
+        transform-origin: 0 50%;
+      }
+      #hud-scene-name {
+        min-width: 360px;
+      }
+      /* flash layer used on a couple of seams */
+      #flash {
+        position: absolute;
+        inset: 0;
+        background: var(--paper);
+        opacity: 0;
+        z-index: 40;
+        pointer-events: none;
+      }
+      #vignette {
+        position: absolute;
+        inset: 0;
+        z-index: 39;
+        pointer-events: none;
+        background: radial-gradient(ellipse at 50% 50%, rgba(14, 12, 10, 0) 55%, rgba(14, 12, 10, 0.55) 100%);
+      }
+      @keyframes hf-grain-noise {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        10% {
+          transform: translate(-5%, -5%);
+        }
+        20% {
+          transform: translate(-10%, 5%);
+        }
+        30% {
+          transform: translate(5%, -10%);
+        }
+        40% {
+          transform: translate(-5%, 15%);
+        }
+        50% {
+          transform: translate(-10%, 5%);
+        }
+        60% {
+          transform: translate(15%, 0);
+        }
+        70% {
+          transform: translate(0, 10%);
+        }
+        80% {
+          transform: translate(-15%, 0);
+        }
+        90% {
+          transform: translate(10%, 5%);
+        }
+      }
+      #grain-overlay .grain-texture {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        opacity: 0.09;
+        animation: hf-grain-noise 0.5s steps(1) 60;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <!-- scenes: 2 bars each at 128 BPM -->
+      <div id="s1-bounce" data-composition-id="s1-bounce" data-composition-src="compositions/s1-bounce.html" data-start="0" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s2-title" data-composition-id="s2-title" data-composition-src="compositions/s2-title.html" data-start="3.75" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s3-kinetic" data-composition-id="s3-kinetic" data-composition-src="compositions/s3-kinetic.html" data-start="7.5" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s4-easing" data-composition-id="s4-easing" data-composition-src="compositions/s4-easing.html" data-start="11.25" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s5-grid" data-composition-id="s5-grid" data-composition-src="compositions/s5-grid.html" data-start="15" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s6-depth" data-composition-id="s6-depth" data-composition-src="compositions/s6-depth.html" data-start="18.75" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s7-range" data-composition-id="s7-range" data-composition-src="compositions/s7-range.html" data-start="22.5" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s8-endcard" data-composition-id="s8-endcard" data-composition-src="compositions/s8-endcard.html" data-start="26.25" data-duration="3.75" data-track-index="1" data-width="1920" data-height="1080"></div>
+
+      <div id="vignette"></div>
+      <div id="flash"></div>
+
+      <div id="hud">
+        <div class="crop tl"></div>
+        <div class="crop tr"></div>
+        <div class="crop bl"></div>
+        <div class="crop br"></div>
+        <div class="hud-row top">
+          <div class="hud-cell">
+            <div id="hud-rec-dot-wrap"><span id="rec-dot"></span></div>
+            <span>CLAUDE / MOTION REEL '26</span>
+          </div>
+          <div class="hud-cell">
+            <span id="hud-bpm">128 BPM</span>
+            <div class="beats">
+              <span class="beat"><span class="beat-fill"></span></span>
+              <span class="beat"><span class="beat-fill"></span></span>
+              <span class="beat"><span class="beat-fill"></span></span>
+              <span class="beat"><span class="beat-fill"></span></span>
+            </div>
+            <span id="hud-tc">TC 00:00:00:00</span>
+          </div>
+        </div>
+        <div class="hud-row bottom">
+          <div class="hud-cell">
+            <span id="hud-scene-num">01/08</span>
+            <div id="scene-bar-wrap"><span id="scene-bar"></span><span id="scene-bar-fill"></span></div>
+            <span id="hud-scene-name">SQUASH &amp; STRETCH</span>
+          </div>
+          <div class="hud-cell">
+            <span id="hud-frame">F 0000 / 1800</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="grain-overlay" style="position: absolute; inset: 0; pointer-events: none; z-index: 60; overflow: hidden">
+        <div class="grain-texture"></div>
+      </div>
+
+      <audio id="reel-bgm" src="assets/audio/reel.wav" data-start="0" data-duration="30" data-track-index="10" data-volume="1"></audio>
+    </div>
+    <script>
+      const B = 60 / 128;
+      const BAR = B * 4;
+      const SCENE = BAR * 2;
+      const FPS = 60;
+      const SCENES = [
+        "SQUASH & STRETCH",
+        "TITLE / KINETIC SLAM",
+        "TYPOGRAPHY",
+        "EASING / GRAPH EDITOR",
+        "PATTERN & RHYTHM",
+        "3D CAMERA",
+        "RANGE",
+        "LOCKUP",
+      ];
+
+      const tl = gsap.timeline({ paused: true });
+      const hudEls = {
+        tc: document.getElementById("hud-tc"),
+        frame: document.getElementById("hud-frame"),
+        num: document.getElementById("hud-scene-num"),
+        name: document.getElementById("hud-scene-name"),
+      };
+      const beatFills = Array.from(document.querySelectorAll(".beat-fill"));
+      const pad = (n, w = 2) => String(n).padStart(w, "0");
+      let lastScene = -1;
+      let lastFrame = -1;
+
+      // one linear driver → every readout is a pure function of time
+      const clock = { t: 0 };
+      tl.fromTo(
+        clock,
+        { t: 0 },
+        {
+          t: 30,
+          duration: 30,
+          ease: "none",
+          onUpdate: () => {
+            const t = clock.t;
+            const f = Math.min(1799, Math.floor(t * FPS + 1e-6));
+            if (f !== lastFrame) {
+              lastFrame = f;
+              const s = Math.floor(f / FPS);
+              hudEls.tc.textContent = `TC 00:00:${pad(s)}:${pad(f % FPS)}`;
+              hudEls.frame.textContent = `F ${pad(f, 4)} / 1800`;
+            }
+            const si = Math.min(7, Math.floor(t / SCENE + 1e-6));
+            if (si !== lastScene) {
+              lastScene = si;
+              hudEls.num.textContent = `${pad(si + 1)}/08`;
+              hudEls.name.textContent = SCENES[si];
+            }
+            // beat meter: current beat of the bar lit, decays over the beat
+            const beatPos = t / B;
+            const bi = Math.floor(beatPos + 1e-6) % 4;
+            const frac = beatPos - Math.floor(beatPos + 1e-6);
+            beatFills.forEach((el, i) => {
+              el.style.opacity = i === bi ? String(1 - 0.7 * frac) : "0";
+            });
+          },
+        },
+        0,
+      );
+
+      // scene progress bar refills every scene
+      tl.set("#scene-bar-fill", { scaleX: 0 }, 0);
+      for (let i = 0; i < 8; i++) {
+        tl.fromTo("#scene-bar-fill", { scaleX: 0 }, { scaleX: 1, duration: SCENE, ease: "none", immediateRender: false }, i * SCENE);
+      }
+
+      // rec dot blinks on the half-bar
+      tl.set("#rec-dot", { opacity: 1 }, 0);
+      for (let i = 0; i < 16; i++) {
+        tl.set("#rec-dot", { opacity: 0.25 }, i * BAR + BAR / 2);
+        tl.set("#rec-dot", { opacity: 1 }, (i + 1) * BAR);
+      }
+
+      // HUD colour: ink over the orange title, paper everywhere else
+      tl.to("#hud", { color: "#0e0c0a", duration: 0.12, ease: "none" }, 3.6);
+      tl.to("#hud", { color: "#f3eee5", duration: 0.08, ease: "none" }, 7.5);
+      // range burst: HUD flips with every hard cut (paper / ink / orange / ink / orange / paper / ink)
+      const BURST = 22.5;
+      ["#0e0c0a", "#f3eee5", "#0e0c0a", "#f3eee5", "#0e0c0a", "#0e0c0a", "#f3eee5"].forEach((c, i) => {
+        tl.set("#hud", { color: c }, BURST + i * B);
+      });
+
+      // HUD intro: crop marks slide in from beyond the corners on the first beat
+      tl.fromTo(".crop.tl", { x: -30, y: -30, opacity: 0 }, { x: 0, y: 0, opacity: 0.85, duration: 0.5, ease: "expo.out" }, 0.05);
+      tl.fromTo(".crop.tr", { x: 30, y: -30, opacity: 0 }, { x: 0, y: 0, opacity: 0.85, duration: 0.5, ease: "expo.out" }, 0.1);
+      tl.fromTo(".crop.bl", { x: -30, y: 30, opacity: 0 }, { x: 0, y: 0, opacity: 0.85, duration: 0.5, ease: "expo.out" }, 0.15);
+      tl.fromTo(".crop.br", { x: 30, y: 30, opacity: 0 }, { x: 0, y: 0, opacity: 0.85, duration: 0.5, ease: "expo.out" }, 0.2);
+      tl.fromTo(".hud-row.top", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.25);
+      tl.fromTo(".hud-row.bottom", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.35);
+      // HUD bows out with the lockup so the final frame is clean
+      tl.to(".hud-row, .crop", { opacity: 0, duration: 0.5, ease: "power2.in" }, 28.9);
+
+      // seam flashes: 3D corridor punch-through → range burst
+      tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.9, duration: 0.08, ease: "none", immediateRender: false }, 22.42);
+      tl.to("#flash", { opacity: 0, duration: 0.3, ease: "power2.out" }, 22.5);
+      tl.fromTo("#flash", { opacity: 0 }, { opacity: 0.85, duration: 0.06, ease: "none", immediateRender: false }, 26.19);
+      tl.to("#flash", { opacity: 0, duration: 0.4, ease: "power2.out" }, 26.25);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

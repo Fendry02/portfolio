@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Geist";
+          font-style: normal;
+          font-weight: 100 900;
+          src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #0f172b;
+          font-family: "Geist", sans-serif;
+        }
+        .s4-eyebrow {
+          display: block;
+          font-size: 30px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #155dfc;
+        }
+        /* A — trust wall */
+        #s4-a {
+          position: absolute;
+          left: 72px;
+          top: 170px;
+          width: 936px;
+        }
+        #s4-h {
+          display: block;
+          margin-top: 22px;
+          width: 936px;
+          font-size: 76px;
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: -0.042em;
+        }
+        .s4-hw {
+          display: inline-block;
+        }
+        #s4-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 18px;
+          margin-top: 52px;
+        }
+        .s4-client {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 22px 22px;
+          border-radius: 20px;
+          background: rgba(255, 255, 255, 0.86);
+          border: 2px solid rgba(15, 23, 43, 0.07);
+          box-shadow: 0 18px 44px rgba(15, 23, 43, 0.06);
+        }
+        .s4-logo {
+          display: block;
+          width: 72px;
+          height: 72px;
+          border-radius: 18px;
+          object-fit: cover;
+          flex: none;
+          background: #fff;
+        }
+        .s4-name {
+          display: block;
+          font-size: 32px;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+        .s4-desc {
+          display: block;
+          margin-top: 4px;
+          font-size: 24px;
+          line-height: 1.3;
+          color: rgba(15, 23, 43, 0.66);
+        }
+        /* B — project screen + testimonial */
+        #s4-screen {
+          position: absolute;
+          left: 72px;
+          top: 170px;
+          width: 936px;
+          height: 585px;
+          border-radius: 26px;
+          overflow: hidden;
+          background: #eff4fb;
+          box-shadow: 0 36px 90px rgba(15, 23, 43, 0.16);
+          border: 2px solid rgba(15, 23, 43, 0.06);
+        }
+        .s4-shot {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+        }
+        .s4-cap {
+          position: absolute;
+          left: 72px;
+          top: 780px;
+          width: 936px;
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          opacity: 0;
+        }
+        .s4-cap-name {
+          font-size: 40px;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+        }
+        .s4-cap-kind {
+          font-size: 28px;
+          color: rgba(15, 23, 43, 0.62);
+        }
+        #s4-quote {
+          position: absolute;
+          left: 72px;
+          top: 850px;
+          width: 936px;
+        }
+        #s4-quote .s4-eyebrow {
+          display: none;
+        }
+        #s4-qcard {
+          margin-top: 0;
+          padding: 34px 40px 30px;
+          border-radius: 24px;
+          background: #ffffff;
+          border: 2px solid rgba(15, 23, 43, 0.07);
+          box-shadow: 0 28px 70px rgba(15, 23, 43, 0.1);
+        }
+        #s4-qmark {
+          display: block;
+          font-size: 100px;
+          line-height: 0.6;
+          height: 48px;
+          margin-bottom: 14px;
+          overflow: hidden;
+          color: #155dfc;
+          font-weight: 700;
+        }
+        #s4-qtext {
+          display: block;
+          font-size: 42px;
+          line-height: 1.2;
+          font-weight: 500;
+          letter-spacing: -0.02em;
+        }
+        .s4-qw {
+          display: inline-block;
+        }
+        #s4-who {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          margin-top: 24px;
+          padding-top: 22px;
+          border-top: 2px solid rgba(15, 23, 43, 0.08);
+        }
+        #s4-who img {
+          display: block;
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        #s4-who-name {
+          display: block;
+          font-size: 30px;
+          font-weight: 600;
+        }
+        #s4-who-role {
+          display: block;
+          font-size: 26px;
+          color: rgba(15, 23, 43, 0.62);
+        }
+      </style>
+
+      <div id="root" data-composition-id="s4-proof" data-width="1080" data-height="1350">
+        <div id="s4-a">
+          <span class="s4-eyebrow">Ils m’ont fait confiance</span>
+          <span id="s4-h"
+            ><span class="s4-hw" data-layout-allow-overlap>Des</span> <span class="s4-hw" data-layout-allow-overlap>produits</span> <span class="s4-hw" data-layout-allow-overlap>et</span> <span class="s4-hw" data-layout-allow-overlap>des</span>
+            <span class="s4-hw" data-layout-allow-overlap>équipes</span> <span class="s4-hw" data-layout-allow-overlap>qui</span> <span class="s4-hw" data-layout-allow-overlap>ne</span> <span class="s4-hw" data-layout-allow-overlap>peuvent</span>
+            <span class="s4-hw" data-layout-allow-overlap>pas</span> <span class="s4-hw" data-layout-allow-overlap>se</span> <span class="s4-hw" data-layout-allow-overlap>contenter</span> <span class="s4-hw" data-layout-allow-overlap>de</span>
+            <span class="s4-hw" data-layout-allow-overlap>l’à-peu-près.</span></span
+          >
+          <div id="s4-grid">
+            <div class="s4-client"><img class="s4-logo" src="assets/img/citizenplane.webp" alt="" /><div><span class="s4-name">CitizenPlane</span><span class="s4-desc">Plateforme B2B et flux produit à fort trafic</span></div></div>
+            <div class="s4-client"><img class="s4-logo" src="assets/img/openclassrooms.webp" alt="" /><div><span class="s4-name">OpenClassrooms</span><span class="s4-desc">Mentorat et revues de projets JavaScript</span></div></div>
+            <div class="s4-client"><img class="s4-logo" src="assets/img/business-decision.webp" alt="" style="object-fit: contain" /><div><span class="s4-name">Business &amp; Decision</span><span class="s4-desc">CRM, data et intégrations grands comptes</span></div></div>
+            <div class="s4-client"><img class="s4-logo" src="assets/img/electreau.png" alt="" style="object-fit: contain; background: #0f172b" /><div><span class="s4-name">Electreau Lyon</span><span class="s4-desc">Site local pensé pour les demandes qualifiées</span></div></div>
+            <div class="s4-client"><img class="s4-logo" src="assets/img/petitnid.png" alt="" /><div><span class="s4-name">Petit Nid</span><span class="s4-desc">Produit mobile et expérience d’inscription</span></div></div>
+            <div class="s4-client"><img class="s4-logo" src="assets/img/viko.jpg" alt="" /><div><span class="s4-name">Chez Viko</span><span class="s4-desc">Vitrine restaurant, infos pratiques immédiates</span></div></div>
+          </div>
+        </div>
+
+        <div id="s4-screen">
+          <img class="s4-shot" id="s4-shot-0" src="assets/img/petitnid-capture.webp" alt="" />
+          <img class="s4-shot" id="s4-shot-1" src="assets/img/electreau-capture.webp" alt="" />
+          <img class="s4-shot" id="s4-shot-2" src="assets/img/chezviko-capture.webp" alt="" />
+        </div>
+        <div class="s4-cap" id="s4-cap-0"><span class="s4-cap-name">Petit Nid</span><span class="s4-cap-kind">Application mobile de suivi bébé</span></div>
+        <div class="s4-cap" id="s4-cap-1"><span class="s4-cap-name">Electreau Lyon</span><span class="s4-cap-kind">Site vitrine d’électricien</span></div>
+        <div class="s4-cap" id="s4-cap-2"><span class="s4-cap-name">Chez Viko</span><span class="s4-cap-kind">Site vitrine de pizzeria</span></div>
+
+        <div id="s4-quote">
+          <span class="s4-eyebrow">Ce qu’en disent mes clients</span>
+          <div id="s4-qcard">
+            <span id="s4-qmark" data-layout-allow-overlap>“</span>
+            <span id="s4-qtext"
+              ><span class="s4-qw">Benoit</span> <span class="s4-qw">a</span> <span class="s4-qw">cadré</span> <span class="s4-qw">le</span>
+              <span class="s4-qw">besoin</span> <span class="s4-qw">rapidement,</span> <span class="s4-qw">puis</span> <span class="s4-qw">livré</span>
+              <span class="s4-qw">une</span> <span class="s4-qw">solution</span> <span class="s4-qw">claire</span> <span class="s4-qw">et</span>
+              <span class="s4-qw">facile</span> <span class="s4-qw">à</span> <span class="s4-qw">gérer.</span></span
+            >
+            <div id="s4-who">
+              <img src="assets/img/viko.jpg" alt="" />
+              <div><span id="s4-who-name">Victor Cavrois</span><span id="s4-who-role">Gérant, Chez Viko</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const EASE = "expo.out";
+          const tl = gsap.timeline({ paused: true });
+
+          // A — heading reveal + client wall waterfall
+          tl.fromTo("#s4-a .s4-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 0.05);
+          tl.fromTo(
+            "#s4-h .s4-hw",
+            { opacity: 0, y: 26, filter: "blur(8px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: EASE, stagger: 0.03 },
+            0.1,
+          );
+          tl.fromTo(
+            ".s4-client",
+            { opacity: 0, y: 40, scale: 0.96 },
+            { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: EASE, stagger: 0.07 },
+            0.5,
+          );
+          tl.fromTo(".s4-logo", { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.4)", stagger: 0.07 }, 0.55);
+          tl.to("#s4-a", { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.4, ease: "power2.in" }, 1.85);
+
+          // B — the site's project screen: clip-inset swaps, one project per beat pair
+          tl.fromTo("#s4-screen", { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: EASE }, 2.1);
+          [2.15, 3.15, 4.15].forEach((at, i) => {
+            tl.fromTo(
+              `#s4-shot-${i}`,
+              { opacity: 0, clipPath: "inset(9% 9% 9% 9% round 20px)", scale: 1.06 },
+              { opacity: 1, clipPath: "inset(0% 0% 0% 0% round 0px)", scale: 1, duration: 0.72, ease: EASE },
+              at,
+            );
+            tl.fromTo(`#s4-cap-${i}`, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: EASE }, at + 0.1);
+            if (i < 2) tl.to(`#s4-cap-${i}`, { opacity: 0, y: -12, duration: 0.2, ease: "power2.in" }, at + 0.8);
+          });
+          // slow push on the screen while the quote is read
+          tl.fromTo("#s4-screen", { rotationY: 0 }, { rotationY: -4, duration: 4, ease: "sine.inOut", transformPerspective: 1600, immediateRender: false }, 2.1);
+
+          // testimonial: card rises, words reveal, attribution lands
+          tl.fromTo("#s4-quote .s4-eyebrow", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 2.4);
+          tl.fromTo("#s4-qcard", { opacity: 0, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: EASE }, 2.45);
+          tl.fromTo("#s4-qmark", { scale: 0, rotation: -30 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, 2.6);
+          tl.fromTo(
+            "#s4-qtext .s4-qw",
+            { opacity: 0, y: 14, filter: "blur(6px)" },
+            { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: EASE, stagger: 0.035 },
+            2.7,
+          );
+          tl.fromTo("#s4-who", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, 3.4);
+
+          window.__timelines["s4-proof"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

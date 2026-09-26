@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Benoit Bruynbroeck — Développeur web freelance à Lyon</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Geist";
+        font-style: normal;
+        font-weight: 100 900;
+        src: url("assets/fonts/Geist-Variable.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-style: normal;
+        font-weight: 700;
+        src: url("assets/fonts/Caveat-Bold.woff2") format("woff2");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #fbfcff;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #fbfcff;
+        font-family: "Geist", sans-serif;
+        color: #0f172b;
+      }
+      /* ── the site's drifting blobs ─────────────────────────────────── */
+      #blobs {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .blob {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        will-change: transform;
+      }
+      #blob-blue {
+        width: 1300px;
+        height: 1300px;
+        background: radial-gradient(closest-side, rgba(21, 93, 252, 0.62), rgba(21, 93, 252, 0.28) 55%, rgba(21, 93, 252, 0) 100%);
+      }
+      #blob-mint {
+        width: 1100px;
+        height: 1100px;
+        background: radial-gradient(closest-side, rgba(0, 160, 110, 0.55), rgba(0, 160, 110, 0.22) 55%, rgba(0, 160, 110, 0) 100%);
+      }
+      #blob-violet {
+        width: 950px;
+        height: 950px;
+        background: radial-gradient(closest-side, rgba(132, 87, 216, 0.42), rgba(132, 87, 216, 0.16) 55%, rgba(132, 87, 216, 0) 100%);
+      }
+      #blob-white {
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 100%);
+      }
+      /* ── site header ───────────────────────────────────────────────── */
+      #header {
+        position: absolute;
+        left: 108px;
+        right: 108px;
+        top: 44px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 30;
+      }
+      #logo {
+        font-family: "Caveat", cursive;
+        font-weight: 700;
+        font-size: 68px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #0f172b;
+      }
+      #logo-slash {
+        color: #1447e6;
+        margin: 0 3px;
+      }
+      #nav {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        font-size: 30px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: #0f172b;
+      }
+      #progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 1920px;
+        height: 5px;
+        background: #155dfc;
+        transform-origin: 0 50%;
+        z-index: 30;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div id="blobs">
+        <div class="blob" id="blob-violet"></div>
+        <div class="blob" id="blob-mint"></div>
+        <div class="blob" id="blob-blue"></div>
+        <div class="blob" id="blob-white"></div>
+      </div>
+
+      <div id="s1-hook" data-composition-id="s1-hook" data-composition-src="compositions/s1-hook.html" data-start="0" data-duration="4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s2-intro" data-composition-id="s2-intro" data-composition-src="compositions/s2-intro.html" data-start="4" data-duration="4" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s3-offers" data-composition-id="s3-offers" data-composition-src="compositions/s3-offers.html" data-start="8" data-duration="8" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s4-proof" data-composition-id="s4-proof" data-composition-src="compositions/s4-proof.html" data-start="16" data-duration="6.5" data-track-index="1" data-width="1920" data-height="1080"></div>
+      <div id="s5-cta" data-composition-id="s5-cta" data-composition-src="compositions/s5-cta.html" data-start="22" data-duration="8" data-track-index="1" data-width="1920" data-height="1080"></div>
+
+      <div id="header">
+        <div id="logo">B<span id="logo-slash">/</span>B</div>
+        <div id="nav">
+          <span id="nav-url">bbenoit.fr</span>
+        </div>
+      </div>
+      <div id="progress"></div>
+
+      <audio id="bgm" src="assets/audio/reel.wav" data-start="0" data-duration="30" data-track-index="10" data-volume="1"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const EASE = "expo.out"; // closest GSAP match to the site's cubic-bezier(0.22, 1, 0.36, 1)
+
+      // blob choreography: [time, {blue:[cx,cy,s], mint:[…], violet:[…], white:[…]}]
+      const SIZES = { blue: 1300, mint: 1100, violet: 950, white: 700 };
+      const POSES = [
+        [0, { blue: [1640, 260, 1], mint: [1760, 1020, 1], violet: [180, 980, 1], white: [900, 520, 1] }],
+        [4, { blue: [470, 560, 1.05], mint: [1780, 1000, 0.9], violet: [1560, 120, 1], white: [470, 560, 0.8] }],
+        [8, { blue: [1380, 560, 0.95], mint: [1720, 1040, 0.8], violet: [240, 1000, 0.9], white: [1380, 560, 0.9] }],
+        [16, { blue: [1750, 930, 0.9], mint: [160, 160, 1.1], violet: [1100, 1160, 0.9], white: [960, 540, 1.2] }],
+        [22, { blue: [960, 1300, 1], mint: [160, 1100, 1], violet: [1700, -80, 1], white: [960, 540, 1] }],
+      ];
+      const pose = (name, [cx, cy, s]) => ({ x: cx - SIZES[name] / 2, y: cy - SIZES[name] / 2, scale: s });
+      Object.keys(SIZES).forEach((name) => {
+        const el = "#blob-" + name;
+        tl.set(el, pose(name, POSES[0][1][name]), 0);
+        for (let i = 1; i < POSES.length; i++) {
+          const [at, p] = POSES[i];
+          tl.to(el, { ...pose(name, p[name]), duration: 1.4, ease: "power3.inOut" }, at - 0.7);
+        }
+      });
+      // bloom in on the first beat, like the hero's first paint
+      tl.fromTo("#blobs", { opacity: 0 }, { opacity: 1, duration: 1.4, ease: "power2.out" }, 0);
+      // slow organic drift/rotation (seek-safe, finite)
+      tl.fromTo("#blob-blue", { rotation: 0 }, { rotation: 80, duration: 30, ease: "none" }, 0);
+      tl.fromTo("#blob-mint", { rotation: 0 }, { rotation: -60, duration: 30, ease: "none" }, 0);
+
+      // header: drops in like the site's logo; turns white over the blue contact section
+      tl.fromTo("#logo", { y: -8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: EASE }, 0.1);
+      tl.fromTo("#nav > span", { y: -8, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: EASE }, 0.2);
+      tl.to("#logo, #nav", { color: "#f8fafc", duration: 0.3, ease: "none" }, 22.25);
+      tl.to("#logo-slash", { color: "#00a06e", duration: 0.3, ease: "none" }, 22.25);
+      tl.to("#header", { opacity: 0, y: -16, duration: 0.5, ease: "power2.in" }, 26.0);
+
+      // the site's 1px scroll-story progress bar, scaled up for video
+      tl.fromTo("#progress", { scaleX: 0 }, { scaleX: 1, duration: 30, ease: "none" }, 0);
+      tl.to("#progress", { backgroundColor: "#f8fafc", duration: 0.3 }, 22.25);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

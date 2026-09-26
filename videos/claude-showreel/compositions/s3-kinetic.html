@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        @font-face {
+          font-family: "Instrument Serif";
+          font-style: italic;
+          font-weight: 400;
+          src: url("assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+        }
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #0e0c0a;
+          color: #f3eee5;
+        }
+        #s3-glow {
+          position: absolute;
+          left: 360px;
+          top: 90px;
+          width: 1200px;
+          height: 800px;
+          border-radius: 50%;
+          background: radial-gradient(closest-side, rgba(255, 90, 31, 0.16), rgba(255, 90, 31, 0));
+        }
+        #s3-world {
+          position: absolute;
+          inset: 0;
+          transform-origin: 50% 46%;
+        }
+        .s3-word {
+          position: absolute;
+          font-family: "Archivo Black", sans-serif;
+          line-height: 0.86;
+          letter-spacing: -0.035em;
+          white-space: nowrap;
+        }
+        .s3-mask {
+          display: inline-block;
+          overflow: hidden;
+          padding: 0 0.02em 0.05em;
+        }
+        .s3-ch {
+          display: inline-block;
+          will-change: transform;
+        }
+        #s3-every {
+          left: 108px;
+          top: 250px;
+          font-size: 330px;
+        }
+        #s3-frame {
+          left: 470px;
+          top: 290px;
+          font-size: 300px;
+          color: transparent;
+          -webkit-text-stroke: 5px #ff5a1f;
+        }
+        .s3-bracket {
+          position: absolute;
+          width: 90px;
+          height: 90px;
+          border: 0 solid #f3eee5;
+        }
+        #s3-br-tl {
+          left: 420px;
+          top: 250px;
+          border-top-width: 6px;
+          border-left-width: 6px;
+        }
+        #s3-br-tr {
+          left: 1560px;
+          top: 250px;
+          border-top-width: 6px;
+          border-right-width: 6px;
+        }
+        #s3-br-bl {
+          left: 420px;
+          top: 610px;
+          border-bottom-width: 6px;
+          border-left-width: 6px;
+        }
+        #s3-br-br {
+          left: 1560px;
+          top: 610px;
+          border-bottom-width: 6px;
+          border-right-width: 6px;
+        }
+        #s3-dims {
+          position: absolute;
+          left: 420px;
+          top: 718px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 22px;
+          letter-spacing: 0.12em;
+          color: #f3eee5;
+        }
+        #s3-isa {
+          position: absolute;
+          left: 0;
+          top: 250px;
+          width: 1920px;
+          text-align: center;
+          font-family: "Instrument Serif", serif;
+          font-style: italic;
+          font-size: 300px;
+          line-height: 1;
+        }
+        #s3-decision {
+          left: 150px;
+          top: 330px;
+          font-size: 262px;
+          color: #ff5a1f;
+          font-variant-numeric: tabular-nums;
+        }
+        #s3-mark {
+          position: absolute;
+          left: 150px;
+          top: 600px;
+          width: 1330px;
+          height: 18px;
+          background: #f3eee5;
+          transform-origin: 0 50%;
+        }
+        /* keyframe timeline ruler */
+        #s3-ruler {
+          position: absolute;
+          left: 108px;
+          top: 850px;
+          width: 1704px;
+          height: 60px;
+        }
+        #s3-ruler-line {
+          position: absolute;
+          left: 0;
+          top: 30px;
+          width: 1704px;
+          height: 2px;
+          background: rgba(243, 238, 229, 0.35);
+        }
+        .s3-rtick {
+          position: absolute;
+          top: 22px;
+          width: 2px;
+          height: 16px;
+          background: rgba(243, 238, 229, 0.35);
+        }
+        .s3-key {
+          position: absolute;
+          top: 20px;
+          width: 22px;
+          height: 22px;
+          margin-left: -11px;
+          background: #ff5a1f;
+        }
+        #s3-playhead {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 3px;
+          height: 60px;
+          background: #f3eee5;
+        }
+        #s3-label {
+          position: absolute;
+          left: 108px;
+          top: 800px;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 20px;
+          letter-spacing: 0.12em;
+          color: #9a9086;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-kinetic" data-width="1920" data-height="1080">
+        <div id="s3-glow"></div>
+        <div id="s3-world" data-layout-allow-overlap>
+          <div class="s3-word" id="s3-every">
+            <span class="s3-mask"
+              ><span class="s3-ch" data-layout-allow-overlap>E</span><span class="s3-ch" data-layout-allow-overlap>V</span><span class="s3-ch" data-layout-allow-overlap>E</span><span class="s3-ch" data-layout-allow-overlap>R</span
+              ><span class="s3-ch" data-layout-allow-overlap>Y</span></span
+            >
+          </div>
+
+          <div class="s3-bracket" id="s3-br-tl"></div>
+          <div class="s3-bracket" id="s3-br-tr"></div>
+          <div class="s3-bracket" id="s3-br-bl"></div>
+          <div class="s3-bracket" id="s3-br-br"></div>
+          <div class="s3-word" id="s3-frame" data-layout-allow-overlap>FRAME</div>
+          <div id="s3-dims">1920 × 1080 · 60 FPS</div>
+
+          <div id="s3-isa" data-layout-allow-overlap>is a</div>
+
+          <div class="s3-word" id="s3-decision">
+            <span class="s3-d">D</span><span class="s3-d">E</span><span class="s3-d">C</span><span class="s3-d">I</span
+            ><span class="s3-d">S</span><span class="s3-d">I</span><span class="s3-d">O</span><span class="s3-d">N</span>
+          </div>
+          <div id="s3-mark"></div>
+        </div>
+
+        <div id="s3-label">KEYFRAMES / 0 SET</div>
+        <div id="s3-ruler">
+          <div id="s3-ruler-line"></div>
+          <div id="s3-ticks"></div>
+          <div id="s3-keys"></div>
+          <div id="s3-playhead"></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const B = 60 / 128;
+          const END = 3.75;
+          const root = document.querySelector('[data-composition-id="s3-kinetic"]');
+          const W = 1704;
+          const HITS = [0, 0.9375, 1.875, 2.34375, 3.046875];
+
+          // ruler ticks + keyframes on the beats the words land on
+          const ticks = root.querySelector("#s3-ticks");
+          for (let i = 0; i <= 32; i++) {
+            const d = document.createElement("div");
+            d.className = "s3-rtick";
+            d.style.left = (i * W) / 32 + "px";
+            if (i % 4 === 0) {
+              d.style.height = "30px";
+              d.style.top = "15px";
+            }
+            ticks.appendChild(d);
+          }
+          const keyWrap = root.querySelector("#s3-keys");
+          const keys = HITS.map((t) => {
+            const d = document.createElement("div");
+            d.className = "s3-key";
+            d.style.left = (t / END) * W + 12 + "px";
+            keyWrap.appendChild(d);
+            return d;
+          });
+          const label = root.querySelector("#s3-label");
+
+          const hash = (i, s) => {
+            const x = Math.sin(i * 127.1 + s * 311.7) * 43758.5453;
+            return x - Math.floor(x);
+          };
+          const GLYPHS = "#%&@$*+=/<>?!01ΔΣ§";
+          const TARGET = "DECISION";
+          const decEls = Array.from(root.querySelectorAll(".s3-d"));
+
+          const tl = gsap.timeline({ paused: true });
+          const clock = { t: 0 };
+          tl.fromTo(
+            clock,
+            { t: 0 },
+            {
+              t: END,
+              duration: END,
+              ease: "none",
+              onUpdate: () => {
+                const t = clock.t;
+                // playhead + keyframe count
+                root.querySelector("#s3-playhead").style.transform = `translateX(${Math.min(W, (t / END) * W + 12)}px)`;
+                let n = 0;
+                HITS.forEach((h) => t >= h && n++);
+                label.textContent = `KEYFRAMES / ${n} SET · ${(t * 60).toFixed(0).padStart(3, "0")}F`;
+                // decode DECISION glyph by glyph (quantized time → deterministic flicker)
+                const q = Math.floor(t * 30);
+                decEls.forEach((el, i) => {
+                  const resolve = 2.34375 + 0.16 + i * 0.075;
+                  el.textContent = t >= resolve ? TARGET[i] : GLYPHS[Math.floor(hash(i, q) * GLYPHS.length)];
+                });
+              },
+            },
+            0,
+          );
+          keys.forEach((k, i) => {
+            tl.fromTo(k, { scale: 0, rotation: 45 }, { scale: 1, rotation: 45, duration: 0.35, ease: "back.out(3)" }, HITS[i]);
+          });
+
+          // ── EVERY: waterfall up through its mask
+          tl.fromTo("#s3-every .s3-ch", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "expo.out", stagger: 0.035 }, 0.0);
+          tl.to("#s3-every .s3-ch", { yPercent: -110, duration: 0.3, ease: "power3.in", stagger: 0.025 }, 0.72);
+
+          // ── FRAME: outline slam + crop brackets fly in from the corners
+          tl.fromTo("#s3-frame", { scale: 1.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "expo.out" }, 0.9375);
+          tl.fromTo("#s3-br-tl", { x: -300, y: -200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 0.97);
+          tl.fromTo("#s3-br-tr", { x: 300, y: -200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 1.0);
+          tl.fromTo("#s3-br-bl", { x: -300, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 1.03);
+          tl.fromTo("#s3-br-br", { x: 300, y: 200, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.42, ease: "power4.out" }, 1.06);
+          tl.fromTo("#s3-dims", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out" }, 1.15);
+          // FRAME fills solid on the off-beat, then everything collapses toward centre
+          tl.to("#s3-frame", { color: "#ff5a1f", duration: 0.08, ease: "none" }, 1.406);
+          tl.to("#s3-frame, #s3-dims", { scale: 0.3, opacity: 0, duration: 0.24, ease: "power3.in" }, 1.72);
+          tl.to(".s3-bracket", { scale: 0.2, opacity: 0, duration: 0.24, ease: "power3.in" }, 1.72);
+
+          // ── is a: serif rises with a tilt
+          tl.fromTo("#s3-isa", { y: 160, rotation: -8, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: 0.34, ease: "expo.out" }, 1.875);
+          tl.to("#s3-isa", { y: -260, opacity: 0, duration: 0.2, ease: "power2.in" }, 2.22);
+
+          // ── DECISION: decode, then underline, then zoom-through the lens
+          tl.fromTo(
+            "#s3-decision .s3-d",
+            { y: 90, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.3, ease: "power4.out", stagger: 0.02 },
+            2.34375,
+          );
+          tl.fromTo("#s3-mark", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.inOut" }, 2.95);
+          tl.fromTo(
+            "#s3-world",
+            { scale: 1, filter: "blur(0px)" },
+            { scale: 9, filter: "blur(18px)", duration: 0.47, ease: "power4.in", immediateRender: false },
+            3.28,
+          );
+          tl.to("#s3-world", { opacity: 0, duration: 0.14, ease: "none" }, 3.61);
+          tl.to("#s3-ruler, #s3-label", { opacity: 0, y: 30, duration: 0.3, ease: "power2.in" }, 3.3);
+          tl.fromTo("#s3-glow", { opacity: 0.6, scale: 0.9 }, { opacity: 1, scale: 1.15, duration: 3.2, ease: "sine.inOut" }, 0);
+
+          window.__timelines["s3-kinetic"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
