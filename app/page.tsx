@@ -13,9 +13,11 @@ import CaseStudies from './components/case-studies'
 import Testimonials from './components/testimonials'
 import RevealWords from './components/reveal-words'
 import ScrollStory from './components/scroll-story'
+import Showreel from './components/showreel'
 import type { WordSegment } from './components/reveal-words'
 import JsonLd from './components/json-ld'
 import {
+  absoluteUrl,
   buildPageMetadata,
   createBreadcrumbJsonLd,
   createJsonLdGraph,
@@ -26,6 +28,7 @@ import {
   siteConfig,
   websiteJsonLd,
 } from './lib/seo'
+import { createShowreelVideoJsonLd } from './lib/showreel'
 
 type Offer = {
   accent: string
@@ -177,6 +180,7 @@ const homeJsonLd = createJsonLdGraph([
     description: homeDescription,
   }),
   createBreadcrumbJsonLd([{ name: 'Accueil', path: '/' }]),
+  createShowreelVideoJsonLd(absoluteUrl, siteConfig.language),
 ])
 
 /* ─── Shared typography tokens (kept consistent across sections) ───────── */
@@ -199,6 +203,37 @@ export default function Home() {
         <span className="qclay-scene-shape qclay-scene-shape--violet" />
       </div>
       <ScrollStory />
+
+      {/* ──────────────────── SHOWREEL ──────────────────── */}
+      <section
+        id="video"
+        aria-labelledby="showreel-heading"
+        className="qclay-section qclay-flow-section qclay-flow-showreel qclay-scroll-reveal py-20 lg:py-28"
+      >
+        <div className="mx-auto max-w-6xl px-6 lg:px-10">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+                En 30 secondes
+              </p>
+              <h2
+                id="showreel-heading"
+                className="font-display mt-4 text-[clamp(2.4rem,5vw,5.25rem)] font-semibold leading-[0.96] tracking-[-0.04em]"
+              >
+                Mon travail, en mouvement.
+              </h2>
+            </div>
+            <p className="max-w-sm text-base leading-7 text-base-content/65 md:pb-2">
+              Sites, applications, automatisations n8n et formation IA :
+              l’essentiel de ce que je construis, en une vidéo.
+            </p>
+          </div>
+
+          <div className="mt-10 lg:mt-14">
+            <Showreel />
+          </div>
+        </div>
+      </section>
 
       {/* ──────────────────── TRUST STRIP / CLIENTS ──────────────────── */}
       <section
