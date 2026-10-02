@@ -9,7 +9,8 @@ export const showreelVideo = {
   description:
     'Sites web vitrines, applications web et mobile, automatisations n8n et formation IA : un aperçu en 30 secondes de ce que je construis pour les entreprises.',
   duration: 30,
-  uploadDate: '2026-09-26',
+  // First production deployment containing the video (Vercel READY timestamp).
+  uploadDate: '2026-09-26T12:24:17.944Z',
 } as const
 
 export type ShowreelChapter = {

@@ -11,6 +11,7 @@ import {
 
 const tokenDirectory = '.search-console'
 const tokenPath = path.join(tokenDirectory, 'token.json')
+const renewAuthorization = process.argv.includes('--renew')
 const redirectPort = Number.parseInt(
   process.env.GOOGLE_SEARCH_CONSOLE_REDIRECT_PORT ?? '42813',
   10,
@@ -97,9 +98,12 @@ async function main() {
   )
   const existingRefreshToken = await getExistingRefreshToken()
 
-  if (existingRefreshToken) {
+  if (existingRefreshToken && !renewAuthorization) {
     console.log(
       'Une autorisation locale existe déjà dans .search-console/token.json.',
+    )
+    console.log(
+      'Pour la renouveler : npm run seo:gsc:auth -- --renew. L’autorisation existante sera conservée jusqu’au succès du renouvellement.',
     )
     return
   }

@@ -3,7 +3,7 @@
 ## Diagnostic
 
 Le principal problème visible dans cet export est le faible volume de recherches
-sur lesquelles le site apparaît. Le site de production passe les 359 contrôles
+sur lesquelles le site apparaît. Avant les modifications, le site de production passe les 359 contrôles
 de l’audit SEO existant. Ajouter des balises seules ne répondrait pas à ce manque
 de visibilité. Le travail porte donc sur les pages commerciales, leurs liens et
 les contenus qui répondent aux questions des prospects.
@@ -70,6 +70,12 @@ inspection d’URL pour le déterminer.
   du registre, y figure désormais. Les dates des pages substantiellement
   modifiées sont mises à jour au 2 octobre. Les nouveaux articles alimentent
   automatiquement le sitemap et le RSS.
+- **Le balisage vidéo corrigé.** Google signalait deux avertissements sur la
+  date de publication de la vidéo d’accueil. Une date-heure avec fuseau est
+  maintenant utilisée, issue du premier déploiement réel de cette vidéo.
+- **Le renouvellement du rapport Google simplifié.** Le script accepte
+  `--renew` sans supprimer au préalable l’autorisation existante. Il explique
+  comment renouveler l’accès lorsque Google renvoie `invalid_grant`.
 - **Un audit plus strict.** Les liens requis doivent figurer dans le contenu
   principal. Un lien du pied de page ou d’un autre domaine ne peut plus faire
   passer ce contrôle. L’audit vérifie aussi le H1 unique, les consignes
@@ -93,13 +99,44 @@ canonique dans Search Console, mais pas de modifier une redirection déjà corre
 
 Les résultats finaux et les limites des contrôles sont consignés dans
 [le rapport de vérification](testing/seo-search-console-2026-10-02.md).
-Les changements sont préparés dans le projet local ; leur présence sur le site
-public dépend du déploiement.
+Les changements ont été poussés sur `main` et déployés en production. Les
+612 contrôles du nouvel audit passent sur `https://www.bbenoit.fr`. Le workflow
+hebdomadaire corrigé passe aussi sur GitHub Actions :
+[exécution du 2 octobre](https://github.com/Fendry02/portfolio/actions/runs/37014402196).
 
-## Après la mise en ligne
+## Indexation vérifiée dans Search Console
 
-1. Soumettre ou vérifier le sitemap
-   `https://www.bbenoit.fr/sitemap.xml` dans Search Console.
+La propriété de domaine a été consultée après la mise en ligne. Son rapport
+agrégé est daté du **21 septembre 2026** : 6 pages indexées et 14 non indexées.
+Ce rapport antérieur au déploiement ne décrit pas encore les nouvelles pages.
+
+| Motif                              | Nombre | Constat                                                                                           |
+| ---------------------------------- | -----: | ------------------------------------------------------------------------------------------------- |
+| Exclue par `noindex`               |      2 | `/mentions-legales` et `/confidentialite`, exclusions prévues                                     |
+| Page avec redirection              |      2 | Accueil HTTP et HTTPS sans `www`, redirections prévues                                            |
+| Erreur liée à des redirections     |      1 | Ancien signal sur `https://bbenoit.fr/jobs`, exploré le 26 juin                                   |
+| Détectée, actuellement non indexée |      8 | Blog, deux anciens guides, QuoiPorter, Réalisations, Chez Viko, Electreau et création de site web |
+| Explorée, actuellement non indexée |      1 | Ancienne URL d’icône `/icon?9ef4990d85b39989`, sans enjeu commercial                              |
+
+La redirection de `/jobs` répond aujourd’hui en 308 vers la même page avec
+`www`, qui répond en 200. La validation a été lancée dans Search Console le
+2 octobre ; l’interface affiche « commencé ». La correction était déjà présente
+sur le site, il s’agit de faire réévaluer l’ancien signal par Google.
+
+Le sitemap canonique contenant 19 URL a été soumis à nouveau. Google a confirmé
+« Sitemap envoyé ». Le nombre de pages découvertes affiché juste après l’envoi
+correspond encore à la précédente lecture ; il ne faut pas le confondre avec
+les 19 URL actuellement servies.
+
+Les demandes d’indexation et leurs résultats sont consignés dans
+[le rapport de vérification](testing/seo-search-console-2026-10-02.md).
+La soumission ne garantit pas l’ajout à l’index ni une meilleure position.
+Google indique que [la réexploration peut prendre quelques jours à quelques semaines](https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl).
+
+## Suivi après la mise en ligne
+
+1. Suivre le traitement du sitemap `https://www.bbenoit.fr/sitemap.xml`,
+   soumis le 2 octobre, et la validation de la redirection de `/jobs`.
 2. Inspecter l’accueil, `/services`, les quatre pages de service et les trois
    nouveaux articles. Pour la page création de site web, absente de l’export,
    vérifier en priorité l’indexation, l’URL canonique choisie et la dernière

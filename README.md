@@ -105,6 +105,11 @@ to `reports/seo/`, also ignored by Git.
    28-day period. It identifies query/page pairs ranked 11–20 and visible
    results ranked 1–10 with a low click-through rate.
 
+If Google rejects an expired or revoked authorization, run
+`npm run seo:gsc:auth -- --renew`. The existing token is kept until a new
+authorization succeeds. If the local callback port is already occupied, set
+`GOOGLE_SEARCH_CONSOLE_REDIRECT_PORT` to an available port for that command.
+
 ## 📁 Project Structure
 
 ```

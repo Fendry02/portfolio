@@ -53,6 +53,11 @@ async function createAccessToken({ refreshToken, clientId, clientSecret }) {
   const payload = await response.json().catch(() => null)
 
   if (!response.ok || !payload?.access_token) {
+    if (payload?.error === 'invalid_grant') {
+      throw new Error(
+        'Google refuse l’autorisation locale (expirée ou révoquée). Renouvelle-la avec npm run seo:gsc:auth -- --renew.',
+      )
+    }
     throw new Error(
       payload?.error_description ?? 'Google token refresh failed.',
     )

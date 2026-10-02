@@ -41,6 +41,11 @@ test('describes the video for search engines with absolute URLs', () => {
   const showreelVideoJsonLd = createShowreelVideoJsonLd(absoluteUrl, 'fr-FR')
   assert.equal(showreelVideoJsonLd['@type'], 'VideoObject')
   assert.equal(showreelVideoJsonLd.duration, 'PT30S')
+  assert.match(
+    String(showreelVideoJsonLd.uploadDate),
+    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/,
+    'VideoObject uploadDate must include a time and timezone for Google',
+  )
   assert.equal(
     showreelVideoJsonLd.contentUrl,
     'https://www.bbenoit.fr/video/bbenoit-showreel.mp4',

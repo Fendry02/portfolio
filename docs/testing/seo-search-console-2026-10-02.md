@@ -8,7 +8,7 @@ données, les changements et les actions après déploiement.
 
 | Contrôle                                                     | Résultat                                                                |
 | ------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| `npm test`                                                   | 71 tests réussis, aucun échec ni test ignoré                            |
+| `npm test`                                                   | 76 tests réussis, aucun échec ni test ignoré                            |
 | `npm run lint`                                               | Réussi                                                                  |
 | `npm run build`                                              | Réussi, compilation TypeScript et génération de 36 routes/pages         |
 | `SEO_AUDIT_BASE_URL=http://localhost:3100 npm run seo:audit` | 612 contrôles réussis, aucun échec                                      |
@@ -61,10 +61,90 @@ Sur la compilation de production locale :
 - Aucun message d’erreur ou avertissement n’a été relevé dans la console sur
   les parcours examinés.
 
+## Déploiement et contrôle de production
+
+Les modifications ont été poussées sur `main` dans le commit `36179d4`. Les deux
+commits distants ajoutant la vidéo d’accueil et ses sources ont été intégrés
+avant le push. Vercel confirme le déploiement de production
+`dpl_4R6kms1awGoz9yoUwMkxNDQaacSQ` à l’état `READY`, associé à `www.bbenoit.fr`.
+
+Après intégration, les 76 tests, le lint et la compilation passent. Sur le site
+public, les 612 contrôles SEO passent. Les pages Services et le nouveau guide
+d’audit des processus ont aussi été vérifiés dans le navigateur. Aucune erreur
+d’exécution n’a été trouvée par Vercel dans la fenêtre examinée de 15 minutes.
+
+Le premier contrôle de production a détecté 19 redirections dans les requêtes
+de l’audit : sa configuration visait encore le domaine sans `www`. Les URL du
+sitemap étaient correctes. Le domaine canonique devient la cible par défaut de
+l’audit et du workflow hebdomadaire ; les 612 contrôles passent avec cette cible.
+Cette correction a été poussée dans `a647286`. Son déploiement de production
+`dpl_8z6kC5yJzNYF6pYJ61eEpqWcrXWv` est confirmé `READY`.
+Le [workflow hebdomadaire](https://github.com/Fendry02/portfolio/actions/runs/37014402196)
+relancé sur ce commit s’est terminé avec succès.
+
+## Search Console
+
+La propriété de domaine a été consultée dans la session Google existante.
+Le rapport d’indexation, daté du 21 septembre, indique 6 pages indexées et
+14 non indexées. Ses motifs et les URL concernées figurent dans l’analyse.
+
+- Le sitemap `https://www.bbenoit.fr/sitemap.xml` a été soumis le 2 octobre.
+  Google a confirmé « Sitemap envoyé » ; le site sert 19 URL.
+- Les exclusions des deux pages juridiques et des deux versions d’accueil sans
+  `www` sont prévues. L’ancienne URL d’icône exclue ne correspond pas à une
+  page commerciale.
+- La validation de l’ancienne erreur de redirection sur `https://bbenoit.fr/jobs`
+  a été lancée. Google affiche « commencé », avec un début au 2 octobre.
+  La réponse actuelle est un 308 vers `https://www.bbenoit.fr/jobs`, qui répond
+  directement en 200.
+- La page n8n est déjà indexée. Google sélectionne l’URL inspectée, identique à
+  la canonique déclarée avec `www`. Sa dernière exploration remonte au
+  17 septembre. Une demande de réexploration du contenu enrichi a été acceptée.
+
+Les inspections des pages n8n, Application et Formation confirment que Google
+les indexe avec leur canonique déclarée. Application et Formation ont été
+explorées le 14 août ; n8n le 17 septembre.
+
+## Correction du balisage vidéo
+
+L’inspection de l’accueil exploré le 30 septembre signale deux avertissements
+non critiques : `uploadDate` n’est pas une date-heure valide et manque de fuseau
+horaire. La valeur précédente était `2026-09-26`.
+
+La date a été remplacée par `2026-09-26T12:24:17.944Z`, issue de l’horodatage
+`READY` du premier déploiement de production contenant la vidéo :
+`dpl_GmjXTCCuejeXcMHByY9bf73c5jEr`, commit `57bf540`. Le jour de publication
+est conservé ; l’heure et le fuseau correspondent à une preuve de déploiement.
+
+Une assertion dans le test existant du `VideoObject` exige désormais une
+heure et un fuseau. Elle a d’abord échoué avec la date seule, puis les 76 tests
+passent avec la correction. La disparition des avertissements du rapport
+historique reste conditionnée à une nouvelle exploration Google.
+
+## Accès au rapport automatique
+
+L’appel au rapport par API échoue avec `invalid_grant` : Google refuse
+l’autorisation locale, qui peut être expirée ou révoquée. Le renouvellement de l’accès existant en lecture seule a été
+préparé. Google affiche un avertissement d’application en cours de test non
+validée ; le franchissement de cet avertissement attend la confirmation du
+propriétaire. Aucun droit supplémentaire n’a été accordé. L’autorisation
+existante est conservée dans le dossier ignoré par Git ; aucun secret n’a été
+ajouté aux commits.
+
+Les opérations de sitemap et d’indexation ci-dessus ont été réalisées dans la
+session Search Console existante, indépendamment de cet accès API.
+
+Le script d’autorisation accepte désormais `--renew` pour remplacer une
+autorisation expirée après réussite du parcours Google, sans effacer le jeton
+existant au départ. Le rapport indique cette commande en cas de `invalid_grant`.
+La syntaxe des scripts, le lint et le parcours qui conserve l’autorisation
+existante ont été vérifiés. L’échec réel du rapport produit le nouveau message
+de renouvellement ; il ne constitue pas un rapport de performance réussi.
+
 ## Limites
 
-Aucun déploiement, envoi à un client ou changement dans Search Console n’a été
-effectué. L’indexation, le choix de canonique par Google, les résultats enrichis
-et les Core Web Vitals réels restent à vérifier après la mise en ligne. Les
-exports fournis ne contiennent pas les couples requête/page ni le rapport
-d’indexation.
+Aucun envoi à un client n’a été effectué. Les résultats d’indexation ultérieurs,
+les positions et les Core Web Vitals réels restent à suivre. Les exports fournis
+ne contiennent pas les couples requête/page ; le rapport d’indexation a été
+consulté ensuite dans la propriété Google. L’absence de données Core Web Vitals
+ne permet pas de certifier la performance réelle des visiteurs.
