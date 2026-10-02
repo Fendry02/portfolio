@@ -105,6 +105,32 @@ Les inspections des pages n8n, Application et Formation confirment que Google
 les indexe avec leur canonique déclarée. Application et Formation ont été
 explorées le 14 août ; n8n le 17 septembre.
 
+## Neuf demandes prioritaires acceptées
+
+| Page                                                                                                      | État au moment de l’inspection                 | Demande du 2 octobre                                                      |
+| --------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
+| [Accueil](https://www.bbenoit.fr/)                                                                        | Indexée, canonique identique à l’URL inspectée | Réexploration demandée, acceptée après déploiement de la correction vidéo |
+| [Services](https://www.bbenoit.fr/services)                                                               | URL inconnue de Google                         | Indexation demandée, acceptée                                             |
+| [Création de site web](https://www.bbenoit.fr/services/creation-site-web-lyon)                            | Détectée, actuellement non indexée             | Indexation demandée, acceptée                                             |
+| [Automatisation n8n](https://www.bbenoit.fr/services/automatisation-n8n-lyon)                             | Indexée, canonique identique à l’URL inspectée | Réexploration demandée, acceptée                                          |
+| [Application web](https://www.bbenoit.fr/services/application-web-sur-mesure-lyon)                        | Indexée, canonique identique à l’URL inspectée | Réexploration demandée, acceptée                                          |
+| [Formation IA](https://www.bbenoit.fr/services/formation-ia-lyon)                                         | Indexée, canonique identique à l’URL inspectée | Réexploration acceptée au second essai                                    |
+| [Guide audit des processus](https://www.bbenoit.fr/blog/audit-informatique-lyon-processus-automatisation) | URL inconnue de Google                         | Indexation demandée, acceptée                                             |
+| [Guide prix n8n](https://www.bbenoit.fr/blog/prix-automatisation-n8n)                                     | URL inconnue de Google                         | Indexation demandée, acceptée                                             |
+| [Guide prix de site vitrine](https://www.bbenoit.fr/blog/prix-site-vitrine-lyon)                          | Détectée, actuellement non indexée             | Indexation demandée, acceptée                                             |
+
+Google a affiché « Indexation demandée » pour chacune de ces neuf URL.
+Formation IA a renvoyé une erreur temporaire au premier essai ; le second a
+réussi. La demande de l’accueil a été faite après la mise en production de la
+correction vidéo. Les captures de confirmation sont conservées localement dans
+`reports/seo/`, dossier ignoré par Git.
+
+L’état de la deuxième colonne précède les demandes et ne signifie pas que les
+nouvelles pages ont déjà été ajoutées à l’index. Pour les quatre pages déjà
+indexées, Google retient la même canonique avec `www` que le site. L’accueil
+a été exploré le 30 septembre. La réexploration des neuf URL reste à traiter par
+Google.
+
 ## Correction du balisage vidéo
 
 L’inspection de l’accueil exploré le 30 septembre signale deux avertissements
@@ -120,6 +146,12 @@ Une assertion dans le test existant du `VideoObject` exige désormais une
 heure et un fuseau. Elle a d’abord échoué avec la date seule, puis les 76 tests
 passent avec la correction. La disparition des avertissements du rapport
 historique reste conditionnée à une nouvelle exploration Google.
+
+La correction et l’amélioration du renouvellement ont été poussées dans
+`f8fa03c`. Vercel confirme le déploiement de production
+`dpl_GfPbEPFYo8tmz77JdX4jm8yY1Y65` à l’état `READY`. Le HTML public contient
+la nouvelle valeur `uploadDate`. Les 76 tests, le lint, la compilation et les
+612 contrôles de production passent après ces derniers changements.
 
 ## Accès au rapport automatique
 

@@ -137,10 +137,11 @@ Google indique que [la réexploration peut prendre quelques jours à quelques se
 
 1. Suivre le traitement du sitemap `https://www.bbenoit.fr/sitemap.xml`,
    soumis le 2 octobre, et la validation de la redirection de `/jobs`.
-2. Inspecter l’accueil, `/services`, les quatre pages de service et les trois
-   nouveaux articles. Pour la page création de site web, absente de l’export,
-   vérifier en priorité l’indexation, l’URL canonique choisie et la dernière
-   exploration. Demander une indexation après le déploiement lorsque pertinent.
+2. Suivre les neuf demandes d’indexation ou de réexploration acceptées le
+   2 octobre : accueil, `/services`, quatre pages de service et trois nouveaux
+   articles. La page création de site web était détectée mais non indexée ;
+   l’accueil, n8n, Application et Formation étaient déjà indexés avec la bonne
+   canonique. Vérifier leur prochaine exploration et l’ajout des nouvelles pages.
 3. Comparer deux périodes complètes de 28 jours avec le filtre France, puis
    examiner les couples requête/page. Suivre surtout les impressions et clics
    des services, ainsi que les demandes de contact. Les positions moyennes sur
