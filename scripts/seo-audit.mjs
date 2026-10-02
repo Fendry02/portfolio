@@ -4,11 +4,11 @@ import {
   readMainContent,
 } from './seo-audit-lib.mjs'
 
-const fetchBaseUrl = stripTrailingSlash(
-  process.env.SEO_AUDIT_BASE_URL ?? 'https://bbenoit.fr',
-)
 const siteUrl = stripTrailingSlash(
   process.env.SEO_SITE_URL ?? 'https://www.bbenoit.fr',
+)
+const fetchBaseUrl = stripTrailingSlash(
+  process.env.SEO_AUDIT_BASE_URL ?? siteUrl,
 )
 
 const pages = [
