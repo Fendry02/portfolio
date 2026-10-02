@@ -1,3 +1,9 @@
+import {
+  hasNoIndexDirective,
+  readAnchorPaths,
+  readMainContent,
+} from './seo-audit-lib.mjs'
+
 const fetchBaseUrl = stripTrailingSlash(
   process.env.SEO_AUDIT_BASE_URL ?? 'https://bbenoit.fr',
 )
@@ -13,6 +19,14 @@ const pages = [
     descriptionIncludes: 'développeur web freelance à Lyon',
     h1Includes: 'Développeur web freelance à Lyon',
     contentIncludes: ['Benoit Bruynbroeck'],
+    requiredInternalLinks: [
+      '/services',
+      '/services/creation-site-web-lyon',
+      '/services/automatisation-n8n-lyon',
+      '/services/application-web-sur-mesure-lyon',
+      '/services/formation-ia-lyon',
+      '/blog',
+    ],
     requiredJsonLdTypes: [
       'Person',
       'WebSite',
@@ -20,6 +34,22 @@ const pages = [
       'WebPage',
       'BreadcrumbList',
     ],
+  },
+  {
+    path: '/services',
+    title: 'Services web et automatisation à Lyon | Benoit Bruynbroeck',
+    canonical: `${siteUrl}/services`,
+    descriptionIncludes: 'Développeur freelance à Lyon',
+    h1Includes: 'Services web et automatisation à Lyon',
+    requiredInternalLinks: [
+      '/services/creation-site-web-lyon',
+      '/services/automatisation-n8n-lyon',
+      '/services/application-web-sur-mesure-lyon',
+      '/services/formation-ia-lyon',
+      '/realisations',
+      '/blog',
+    ],
+    requiredJsonLdTypes: ['CollectionPage', 'ItemList', 'BreadcrumbList'],
   },
   {
     path: '/jobs',
@@ -45,6 +75,8 @@ const pages = [
       '/services/automatisation-n8n-lyon',
       '/services/application-web-sur-mesure-lyon',
       '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
+      '/blog/prix-site-vitrine-lyon',
+      '/services',
     ],
     requiredJsonLdTypes: [
       'Person',
@@ -61,11 +93,15 @@ const pages = [
     title: 'Automatisation n8n à Lyon | Benoit Bruynbroeck',
     canonical: `${siteUrl}/services/automatisation-n8n-lyon`,
     descriptionIncludes: 'Automatisation n8n à Lyon',
+    h1Includes: 'Automatisation n8n à Lyon',
     contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
     requiredInternalLinks: [
       '/services/application-web-sur-mesure-lyon',
       '/services/formation-ia-lyon',
       '/blog/automatiser-processus-n8n-sans-boite-noire',
+      '/blog/audit-informatique-lyon-processus-automatisation',
+      '/blog/prix-automatisation-n8n',
+      '/services',
     ],
     requiredJsonLdTypes: [
       'Person',
@@ -242,6 +278,73 @@ const pages = [
   },
 ]
 
+pages.push({
+  path: '/realisations/quoiporter',
+  title: 'QuoiPorter — Application mobile météo | Benoit Bruynbroeck',
+  canonical: `${siteUrl}/realisations/quoiporter`,
+  descriptionIncludes: 'quoi mettre',
+  h1Includes: 'QuoiPorter',
+  contentIncludes: ['Le blocage', 'La réponse', 'Le socle'],
+  requiredInternalLinks: ['/services/application-web-sur-mesure-lyon'],
+  requiredJsonLdTypes: ['Article', 'ImageObject', 'BreadcrumbList'],
+})
+
+const newGuides = [
+  {
+    slug: 'audit-informatique-lyon-processus-automatisation',
+    title: 'Audit informatique à Lyon : quels processus automatiser ?',
+    descriptionIncludes: 'Préparez un audit',
+    h1Includes: 'Audit informatique à Lyon',
+    contentIncludes: [
+      'Quel type d’audit informatique cherchez-vous ?',
+      'Quels livrables demander ?',
+    ],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/blog/prix-automatisation-n8n',
+    ],
+  },
+  {
+    slug: 'prix-automatisation-n8n',
+    title: 'Prix d’une automatisation n8n : comprendre le devis',
+    descriptionIncludes: 'automatisation n8n',
+    h1Includes: 'Prix d’une automatisation n8n',
+    contentIncludes: [
+      'Séparer la réalisation des frais récurrents',
+      'Ce qu’un devis doit préciser',
+    ],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/blog/audit-informatique-lyon-processus-automatisation',
+    ],
+  },
+  {
+    slug: 'prix-site-vitrine-lyon',
+    title: 'Prix d’un site vitrine à Lyon : comparer les devis',
+    descriptionIncludes: 'devis de votre site vitrine à Lyon',
+    h1Includes: 'Prix d’un site vitrine à Lyon',
+    contentIncludes: [
+      'Qui prépare les contenus ?',
+      'Que recouvre le SEO dans le devis ?',
+    ],
+    requiredInternalLinks: [
+      '/services/creation-site-web-lyon',
+      '/realisations/electreau-lyon',
+      '/realisations/chez-viko',
+    ],
+  },
+]
+
+for (const { slug, title, ...checks } of newGuides) {
+  pages.push({
+    ...checks,
+    path: `/blog/${slug}`,
+    title: `${title} | Benoit Bruynbroeck`,
+    canonical: `${siteUrl}/blog/${slug}`,
+    requiredJsonLdTypes: ['BlogPosting', 'BreadcrumbList'],
+  })
+}
+
 const utilityPages = [
   {
     path: '/mentions-legales',
@@ -296,7 +399,7 @@ function report(ok, label) {
 
 async function fetchResource(path, expectedContentType, expectedStatus = 200) {
   const url = auditUrl(path)
-  const response = await fetch(url)
+  const response = await fetch(url, { signal: AbortSignal.timeout(15000) })
 
   report(response.status === expectedStatus, `${url} returns ${expectedStatus}`)
 
@@ -370,17 +473,6 @@ function readLink(html, rel) {
   return matchingTag ? readAttribute(matchingTag, 'href') : undefined
 }
 
-function readAnchorPaths(html) {
-  const anchorTags = html.match(/<a\s+[^>]*>/gi) ?? []
-
-  return new Set(
-    anchorTags
-      .map((tag) => readAttribute(tag, 'href'))
-      .filter(Boolean)
-      .map((href) => new URL(href, siteUrl).pathname),
-  )
-}
-
 function readJsonLdTypes(html) {
   const scripts = [
     ...html.matchAll(
@@ -426,6 +518,16 @@ function collectJsonLdTypes(node, types) {
 async function auditPage(page) {
   const response = await fetchResource(page.path, 'text/html')
   const html = await response.text()
+  const mainContent = readMainContent(html)
+
+  report(
+    !hasNoIndexDirective(html, response.headers.get('x-robots-tag') ?? ''),
+    `${page.path} is not blocked by a noindex directive`,
+  )
+  report(
+    (mainContent.match(/<h1\b/gi) ?? []).length === 1,
+    `${page.path} has exactly one H1 in the main content`,
+  )
 
   const title = readTitle(html)
   report(title === page.title, `${page.path} title matches expected copy`)
@@ -445,7 +547,7 @@ async function auditPage(page) {
   }
 
   if (page.contentIncludes) {
-    const visibleText = readVisibleText(html).toLocaleLowerCase('fr')
+    const visibleText = readVisibleText(mainContent).toLocaleLowerCase('fr')
 
     for (const phrase of page.contentIncludes) {
       report(
@@ -456,12 +558,12 @@ async function auditPage(page) {
   }
 
   if (page.requiredInternalLinks) {
-    const anchorPaths = readAnchorPaths(html)
+    const anchorPaths = readAnchorPaths(mainContent, siteUrl)
 
     for (const path of page.requiredInternalLinks) {
       report(
         anchorPaths.has(path),
-        `${page.path} includes an internal link to ${path}`,
+        `${page.path} main content links to ${path}`,
       )
     }
   }
@@ -516,6 +618,18 @@ async function auditSitemap() {
 
   report(locs.includes(publicUrl('/')), 'sitemap includes homepage')
   report(locs.includes(publicUrl('/jobs')), 'sitemap includes /jobs')
+  report(locs.includes(publicUrl('/services')), 'sitemap includes /services')
+  report(
+    locs.includes(publicUrl('/realisations/quoiporter')),
+    'sitemap includes the QuoiPorter case study',
+  )
+  for (const path of [
+    '/blog/audit-informatique-lyon-processus-automatisation',
+    '/blog/prix-automatisation-n8n',
+    '/blog/prix-site-vitrine-lyon',
+  ]) {
+    report(locs.includes(publicUrl(path)), `sitemap includes ${path}`)
+  }
   report(
     locs.includes(publicUrl('/services/creation-site-web-lyon')),
     'sitemap includes /services/creation-site-web-lyon',
@@ -576,7 +690,22 @@ async function auditSitemap() {
 
   for (const loc of locs) {
     const path = new URL(loc).pathname
-    await fetchResource(path)
+    report(
+      new URL(loc).origin === new URL(siteUrl).origin,
+      `${path} uses the canonical sitemap origin`,
+    )
+    const response = await fetchResource(path, 'text/html')
+    const html = await response.text()
+    report(!response.redirected, `${path} sitemap URL is served directly`)
+    report(
+      !hasNoIndexDirective(html, response.headers.get('x-robots-tag') ?? ''),
+      `${path} sitemap URL is indexable`,
+    )
+    report(
+      normalizeCanonical(readLink(html, 'canonical') ?? '') ===
+        normalizeCanonical(loc),
+      `${path} sitemap URL has a self-referencing canonical`,
+    )
   }
 }
 

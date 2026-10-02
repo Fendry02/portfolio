@@ -11,6 +11,7 @@ import JsonLd from '@/app/components/json-ld'
 import QClayMotion from '@/app/components/qclay-motion'
 import {
   RelatedServiceLinks,
+  ServiceBreadcrumbs,
   ServiceResources,
 } from '@/app/components/service-navigation'
 import {
@@ -26,7 +27,7 @@ import {
 const pagePath = serviceRoutes.automationN8nLyon
 const pageTitle = 'Automatisation n8n à Lyon'
 const pageDescription =
-  'Automatisation n8n à Lyon pour PME et indépendants : audit des processus, workflows sur mesure, intégrations API, IA, supervision et maintenance.'
+  'Automatisation n8n à Lyon : connectez CRM, formulaires et outils métier. Audit des processus, workflows sur mesure, supervision et devis adapté à votre PME.'
 
 const useCases = [
   {
@@ -77,6 +78,26 @@ const processSteps = [
 
 const faqItems = [
   {
+    question: 'Combien coûte une automatisation n8n sur mesure ?',
+    answer:
+      'Le devis dépend des outils à connecter, de leurs API, des règles métier et des erreurs à traiter. Je distingue le cadrage, le développement et les tests des frais récurrents : hébergement n8n, abonnements des outils, éventuelles API d’IA et maintenance. Un exemple de processus et quelques données représentatives permettent de préciser le périmètre.',
+  },
+  {
+    question: 'Faut-il choisir n8n Cloud ou un hébergement sur son serveur ?',
+    answer:
+      'Le choix dépend de vos contraintes et de la personne qui exploitera le service. n8n Cloud simplifie la gestion de l’infrastructure. Un hébergement sur votre serveur demande de prévoir les mises à jour, sauvegardes, accès et surveillance. Ces responsabilités sont définies au cadrage.',
+  },
+  {
+    question: 'Que faut-il préparer pour un audit de vos processus ?',
+    answer:
+      'Décrivez une tâche répétitive, les logiciels concernés, son volume, les difficultés rencontrées et le résultat attendu. Un exemple anonymisé d’entrée et de sortie aide à comprendre le flux. Ce diagnostic porte sur les processus et les intégrations entre outils. Pour un audit de cybersécurité, de réseau ou de parc informatique, il faut un spécialiste de ce périmètre.',
+  },
+  {
+    question: 'Mon équipe pourra-t-elle reprendre les workflows ?',
+    answer:
+      'La livraison comprend le workflow documenté, ses règles, les outils connectés et la procédure à suivre en cas d’incident. Nous précisons qui possède les comptes, qui reçoit les alertes et qui prend en charge les évolutions pour que votre équipe sache exploiter le flux.',
+  },
+  {
     question: 'Quelles tâches peut-on automatiser avec n8n ?',
     answer:
       'n8n est adapté aux processus qui font circuler des données entre plusieurs outils : formulaires, CRM, emails, bases de données, facturation, support, reporting ou API métier. Je commence par vérifier que le volume et la fréquence justifient réellement l’automatisation.',
@@ -120,7 +141,7 @@ const pageJsonLd = createJsonLdGraph([
   createFaqPageJsonLd([...faqItems]),
   createBreadcrumbJsonLd([
     { name: 'Accueil', path: '/' },
-    { name: 'Services', path: '/#offres' },
+    { name: 'Services', path: '/services' },
     { name: 'Automatisation n8n à Lyon', path: pagePath },
   ]),
 ])
@@ -140,6 +161,7 @@ export default function AutomationN8nLyonPage() {
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
       <QClayMotion />
+      <ServiceBreadcrumbs title={pageTitle} />
 
       <section className="qclay-hero relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-16 pt-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
@@ -160,7 +182,7 @@ export default function AutomationN8nLyonPage() {
                 Étudier un processus
                 <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/#offres" className={btnGhost}>
+              <Link href="/services" className={btnGhost}>
                 Voir les offres
               </Link>
             </div>
@@ -258,9 +280,86 @@ export default function AutomationN8nLyonPage() {
         </div>
       </section>
 
-      <RelatedServiceLinks servicePath={pagePath} />
-      <ServiceResources servicePath={pagePath} />
+      <section
+        id="audit-processus"
+        className="qclay-section border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28"
+      >
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
+          <div>
+            <p className={eyebrow}>Le point de départ</p>
+            <h2 className={`mt-3 ${sectionTitle}`}>
+              Audit de vos processus et intégrations à Lyon.
+            </h2>
+          </div>
+          <div className="space-y-6">
+            <p className={bodyText}>
+              Avant de développer, j’examine une tâche précise avec vous : qui
+              la réalise, à quelle fréquence, dans quels outils et avec quelles
+              exceptions. Le diagnostic permet de décider si une automatisation
+              n8n est utile ou si une simplification du processus suffit.
+            </p>
+            <p className={bodyText}>
+              Vous obtenez une cartographie du flux, les points de ressaisie,
+              les accès et API à vérifier, puis un périmètre de réalisation. Le
+              devis distingue la construction du workflow de son exploitation :
+              hébergement, abonnements, surveillance et maintenance.
+            </p>
+            <Link
+              href="/blog/audit-informatique-lyon-processus-automatisation"
+              className="interactive inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+            >
+              Préparer un audit de vos outils et processus →
+            </Link>
+          </div>
+        </div>
+      </section>
 
+      <section className="qclay-section border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrow}>Exemple de parcours à adapter à vos outils</p>
+          <h2 className={`mt-3 max-w-3xl ${sectionTitle}`}>
+            Du formulaire de contact au suivi dans le CRM.
+          </h2>
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: 'Recevoir la demande',
+                text: 'Un formulaire déclenche le workflow. Les champs obligatoires sont contrôlés avant toute écriture.',
+              },
+              {
+                title: 'Mettre à jour le CRM',
+                text: 'Le contact est recherché pour éviter un doublon. La demande est ajoutée avec son origine et son statut.',
+              },
+              {
+                title: 'Alerter la bonne personne',
+                text: 'Une notification transmet les informations utiles au responsable, avec un lien vers la fiche client.',
+              },
+              {
+                title: 'Vérifier la suite',
+                text: 'Les échecs sont signalés. Une relance peut être proposée selon une règle validée avec l’équipe.',
+              },
+            ].map((step, index) => (
+              <li
+                key={step.title}
+                className="rounded-xl border border-base-300 p-5"
+              >
+                <p className="text-sm text-[color:var(--brand-blue)]">
+                  Étape {index + 1}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-base-content/65">
+                  {step.text}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className={`mt-6 max-w-3xl ${bodyText}`}>
+            Pour valider ce flux, on teste notamment une demande incomplète, un
+            contact déjà connu et un CRM temporairement indisponible. Le
+            résultat attendu est défini avant la mise en production.
+          </p>
+        </div>
+      </section>
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
@@ -399,6 +498,9 @@ export default function AutomationN8nLyonPage() {
           </div>
         </div>
       </section>
+
+      <RelatedServiceLinks servicePath={pagePath} />
+      <ServiceResources servicePath={pagePath} />
 
       <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">

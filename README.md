@@ -238,11 +238,17 @@ site with `npm run seo:audit`.
 
 The audit covers:
 
-- homepage and `/jobs` titles, descriptions and canonicals
+- titles, descriptions and canonicals on the homepage, services, case studies and blog
+- indexability directives in HTML and HTTP headers, and one H1 per audited page
+- contextual internal links within the main content, excluding footer and navigation
+- sitemap URLs served directly with self-referencing canonicals
 - Open Graph and Twitter metadata
 - JSON-LD structured data
 - `sitemap.xml`, `robots.txt` and `manifest.webmanifest`
 - generated social images
+
+The [October 2026 Search Console analysis](docs/seo-search-console-2026-10-02.md)
+records the baseline, the implemented content changes and the follow-up checks.
 
 To audit another environment locally:
 

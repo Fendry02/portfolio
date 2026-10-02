@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
+import { getBlogPost } from './blog.ts'
 import { serviceRoutes } from './seo.ts'
 import {
   getRelatedServices,
@@ -23,23 +24,19 @@ test('each service suggests two distinct, relevant next steps without linking to
   }
 })
 
-test('the website and n8n services expose their supporting guides', () => {
-  assert.deepEqual(getServiceResources(serviceRoutes.websiteCreationLyon), [
-    {
-      href: '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
-      title: 'Créer un site web à Lyon qui aide vraiment à prendre contact',
-      description:
-        'Les choix de contenu et de confiance qui préparent une prise de contact.',
-    },
-  ])
-  assert.deepEqual(getServiceResources(serviceRoutes.automationN8nLyon), [
-    {
-      href: '/blog/automatiser-processus-n8n-sans-boite-noire',
-      title: 'Automatiser un processus avec n8n sans créer une boîte noire',
-      description:
-        'Une méthode pour concevoir un workflow lisible, vérifiable et maintenable.',
-    },
-  ])
+test('service resources resolve to published guides supporting the same service', async () => {
+  for (const servicePath of servicePaths) {
+    const resources = getServiceResources(servicePath)
+    assert.equal(
+      new Set(resources.map(({ href }) => href)).size,
+      resources.length,
+    )
+    for (const resource of resources) {
+      const post = await getBlogPost(resource.href.replace('/blog/', ''))
+      assert.ok(post, `Missing guide: ${resource.href}`)
+      assert.equal(post.servicePath, servicePath)
+    }
+  }
 })
 
 test('services without a published guide do not receive invented resources', () => {

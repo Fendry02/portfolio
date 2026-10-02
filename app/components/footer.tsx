@@ -29,6 +29,7 @@ const socials = [
 
 const navLinks = [
   { label: 'Accueil', href: '/' },
+  { label: 'Tous les services', href: '/services' },
   { label: 'Création de site web', href: serviceRoutes.websiteCreationLyon },
   { label: 'Application web sur mesure', href: serviceRoutes.customAppLyon },
   { label: 'Automatisation n8n', href: serviceRoutes.automationN8nLyon },

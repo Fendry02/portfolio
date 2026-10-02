@@ -111,7 +111,7 @@ const lastModified = (value: string) => new Date(`${value}T00:00:00.000Z`)
 export const routeRegistry = [
   {
     path: '/',
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'monthly',
     priority: 1,
   },
@@ -122,26 +122,32 @@ export const routeRegistry = [
     priority: 0.85,
   },
   {
+    path: '/services',
+    lastModified: lastModified('2026-10-02'),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  },
+  {
     path: serviceRoutes.websiteCreationLyon,
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: serviceRoutes.automationN8nLyon,
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: serviceRoutes.customAppLyon,
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
   {
     path: serviceRoutes.aiTrainingLyon,
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },
@@ -170,8 +176,14 @@ export const routeRegistry = [
     priority: 0.75,
   },
   {
+    path: '/realisations/quoiporter',
+    lastModified: lastModified('2026-08-26'),
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  },
+  {
     path: '/blog',
-    lastModified: lastModified('2026-08-11'),
+    lastModified: lastModified('2026-10-02'),
     changeFrequency: 'weekly',
     priority: 0.7,
   },

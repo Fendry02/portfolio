@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import './animations.css';
 
+@plugin '@tailwindcss/typography';
+
 @plugin "daisyui" {
   themes: corporate;
 }

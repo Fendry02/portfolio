@@ -90,7 +90,12 @@ export default async function BlogIndexPage() {
                     : 'Création de site web'}
                 </p>
                 <h3 className="mt-3 text-2xl font-semibold tracking-tight">
-                  {post.title}
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="interactive hover:text-[color:var(--brand-blue)]"
+                  >
+                    {post.title}
+                  </Link>
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-base-content/65">
                   {post.description}

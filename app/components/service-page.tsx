@@ -8,6 +8,7 @@ import JsonLd from './json-ld'
 import QClayMotion from './qclay-motion'
 import {
   RelatedServiceLinks,
+  ServiceBreadcrumbs,
   ServiceResources,
 } from './service-navigation'
 import {
@@ -68,7 +69,7 @@ export default function ServicePage({
     createFaqPageJsonLd([...faqItems]),
     createBreadcrumbJsonLd([
       { name: 'Accueil', path: '/' },
-      { name: 'Services', path: '/#offres' },
+      { name: 'Services', path: '/services' },
       { name: title, path },
     ]),
   ])
@@ -77,6 +78,7 @@ export default function ServicePage({
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
       <QClayMotion />
+      <ServiceBreadcrumbs title={title} />
 
       <section className="qclay-hero relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
@@ -92,7 +94,7 @@ export default function ServicePage({
                 Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/#offres" className={btnGhost}>
+              <Link href="/services" className={btnGhost}>
                 Voir les offres
               </Link>
             </div>

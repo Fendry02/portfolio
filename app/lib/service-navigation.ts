@@ -1,7 +1,6 @@
 import type { serviceRoutes } from './seo'
 
-export type ServicePath =
-  (typeof serviceRoutes)[keyof typeof serviceRoutes]
+export type ServicePath = (typeof serviceRoutes)[keyof typeof serviceRoutes]
 
 export type ServiceNavigationLink = {
   href: ServicePath
@@ -15,10 +14,7 @@ export type ServiceResourceLink = {
   description: string
 }
 
-const relatedServices: Record<
-  ServicePath,
-  readonly ServiceNavigationLink[]
-> = {
+const relatedServices: Record<ServicePath, readonly ServiceNavigationLink[]> = {
   '/services/creation-site-web-lyon': [
     {
       href: '/services/automatisation-n8n-lyon',
@@ -82,6 +78,12 @@ const serviceResources: Partial<
 > = {
   '/services/creation-site-web-lyon': [
     {
+      href: '/blog/prix-site-vitrine-lyon',
+      title: 'Prix d’un site vitrine à Lyon : comparer les devis',
+      description:
+        'Les contenus, fonctionnalités et frais récurrents à vérifier avant de choisir un prestataire.',
+    },
+    {
       href: '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
       title: 'Créer un site web à Lyon qui aide vraiment à prendre contact',
       description:
@@ -94,6 +96,18 @@ const serviceResources: Partial<
       title: 'Automatiser un processus avec n8n sans créer une boîte noire',
       description:
         'Une méthode pour concevoir un workflow lisible, vérifiable et maintenable.',
+    },
+    {
+      href: '/blog/audit-informatique-lyon-processus-automatisation',
+      title: 'Audit informatique à Lyon : quels processus automatiser ?',
+      description:
+        'Préparer les exemples, les outils et les règles à examiner avant de construire un workflow.',
+    },
+    {
+      href: '/blog/prix-automatisation-n8n',
+      title: 'Prix d’une automatisation n8n : comprendre le devis',
+      description:
+        'Distinguer le cadrage, les intégrations et les tests de l’hébergement et de la maintenance.',
     },
   ],
 }

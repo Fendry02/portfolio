@@ -8,6 +8,7 @@ import JsonLd from '@/app/components/json-ld'
 import QClayMotion from '@/app/components/qclay-motion'
 import {
   RelatedServiceLinks,
+  ServiceBreadcrumbs,
   ServiceResources,
 } from '@/app/components/service-navigation'
 import {
@@ -121,7 +122,7 @@ const pageJsonLd = createJsonLdGraph([
   createFaqPageJsonLd([...faqItems]),
   createBreadcrumbJsonLd([
     { name: 'Accueil', path: '/' },
-    { name: 'Services', path: '/#offres' },
+    { name: 'Services', path: '/services' },
     { name: 'Création de site web à Lyon', path: pagePath },
   ]),
 ])
@@ -142,6 +143,7 @@ export default function WebsiteCreationLyonPage() {
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
       <QClayMotion />
+      <ServiceBreadcrumbs title={pageTitle} />
 
       <section className="qclay-hero relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
@@ -161,7 +163,7 @@ export default function WebsiteCreationLyonPage() {
                 Discuter de mon projet
                 <span aria-hidden="true">→</span>
               </Link>
-              <Link href="/#offres" className={btnGhost}>
+              <Link href="/services" className={btnGhost}>
                 Voir les offres
               </Link>
             </div>

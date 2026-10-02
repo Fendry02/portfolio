@@ -42,8 +42,10 @@ export default function ScrollStory() {
               <RevealWords segments={headline} baseDelayMs={80} stepMs={34} />
             </h1>
             <p className="mt-7 max-w-xl text-base leading-7 text-base-content/72 md:text-lg md:leading-8">
-              Je conçois des sites, applications et automatisations qui rendent
-              votre activité plus claire, plus rapide et plus facile à choisir.
+              Je suis Benoit Bruynbroeck. Je crée des sites vitrines,
+              applications métier et automatisations n8n pour les PME et
+              indépendants. Depuis Lyon, je vous accompagne du cadrage à la mise
+              en ligne.
             </p>
             <a
               href="#contact"

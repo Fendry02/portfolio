@@ -16,6 +16,7 @@ import ScrollStory from './components/scroll-story'
 import Showreel from './components/showreel'
 import type { WordSegment } from './components/reveal-words'
 import JsonLd from './components/json-ld'
+import { getBlogPosts } from './lib/blog'
 import {
   absoluteUrl,
   buildPageMetadata,
@@ -193,7 +194,9 @@ const contactHeading: readonly WordSegment[] = [
   { text: 'projet.', accent: true },
 ]
 
-export default function Home() {
+export default async function Home() {
+  const latestPosts = (await getBlogPosts()).slice(0, 3)
+
   return (
     <main className="qclay-home relative isolate bg-base-100 text-base-content">
       <JsonLd data={homeJsonLd} />
@@ -290,11 +293,12 @@ export default function Home() {
               id="offers-heading"
               className="font-display text-[clamp(2.6rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
             >
-              Les bonnes décisions rendent tout le reste plus simple.
+              Sites web, applications et automatisation pour votre activité.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
-              Du premier échange à la mise en ligne, je donne une forme utile à
-              ce qui doit faire avancer votre activité.
+              J’accompagne les PME et indépendants à Lyon : création de site
+              vitrine, application métier, automatisation n8n et formation IA.
+              Chaque service commence par votre besoin et un périmètre clair.
             </p>
           </div>
 
@@ -334,13 +338,90 @@ export default function Home() {
                 <span aria-hidden="true">→</span>
               </Link>
             </article>
+            <article className="qclay-flow-route p-6 sm:p-8">
+              <h3 className="font-display text-lg font-semibold tracking-tight">
+                Application web sur mesure à Lyon
+              </h3>
+              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+                Un outil métier adapté à vos utilisateurs, vos données et vos
+                logiciels existants.
+              </p>
+              <Link
+                href={serviceRoutes.customAppLyon}
+                className="interactive mt-4 inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+              >
+                Découvrir le développement d’application à Lyon →
+              </Link>
+            </article>
+            <article className="qclay-flow-route p-6 sm:p-8">
+              <h3 className="font-display text-lg font-semibold tracking-tight">
+                Formation IA à Lyon
+              </h3>
+              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+                Des ateliers pratiques pour utiliser l’IA dans les tâches
+                quotidiennes et vérifier ses résultats.
+              </p>
+              <Link
+                href={serviceRoutes.aiTrainingLyon}
+                className="interactive mt-4 inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+              >
+                Découvrir la formation IA pour votre équipe →
+              </Link>
+            </article>
           </div>
+          <Link
+            href="/services"
+            className="interactive mt-6 inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+          >
+            Comparer les services web et automatisation →
+          </Link>
         </div>
       </section>
 
       <CaseStudies />
 
       <Testimonials />
+
+      <section
+        aria-labelledby="guides-heading"
+        className="border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28"
+      >
+        <div className="mx-auto max-w-6xl">
+          <h2 id="guides-heading" className={sectionTitle}>
+            Préparer votre projet web ou n8n.
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-base-content/65">
+            Des guides pour préciser le besoin, comprendre un devis et choisir
+            la première étape.
+          </p>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {latestPosts.map((post) => (
+              <article
+                key={post.slug}
+                className="rounded-xl border border-base-300 p-6"
+              >
+                <h3 className="text-xl font-semibold tracking-tight">
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="interactive hover:text-[color:var(--brand-blue)]"
+                  >
+                    {post.title}
+                  </Link>
+                </h3>
+                <p className="mt-4 text-sm leading-6 text-base-content/65">
+                  {post.description}
+                </p>
+              </article>
+            ))}
+          </div>
+          <Link
+            href="/blog"
+            className="interactive mt-6 inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+          >
+            Tous les guides web et automatisation →
+          </Link>
+        </div>
+      </section>
 
       {/* ──────────────────── SIMPLE CONTACT CTA ──────────────────── */}
       <section

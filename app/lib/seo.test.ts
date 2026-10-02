@@ -1,5 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { caseStudies } from './case-studies.ts'
 
 import {
   absoluteUrl,
@@ -224,6 +225,7 @@ test('the route registry dates every static indexable route exactly once', () =>
   assert.deepEqual(paths, [
     '/',
     '/jobs',
+    '/services',
     serviceRoutes.websiteCreationLyon,
     serviceRoutes.automationN8nLyon,
     serviceRoutes.customAppLyon,
@@ -232,6 +234,7 @@ test('the route registry dates every static indexable route exactly once', () =>
     '/realisations/petit-nid',
     '/realisations/electreau-lyon',
     '/realisations/chez-viko',
+    '/realisations/quoiporter',
     '/blog',
     '/quoiporter',
   ])
@@ -259,4 +262,11 @@ test('the sitemap entries map the static route registry one-for-one', () => {
     entries.map((entry) => entry.lastModified),
     routeRegistry.map((route) => route.lastModified),
   )
+})
+
+test('every published case study has an indexable sitemap route', () => {
+  const paths = new Set(routeRegistry.map((route) => route.path as string))
+  for (const { slug } of caseStudies) {
+    assert.ok(paths.has(`/realisations/${slug}`), `Missing case study: ${slug}`)
+  }
 })

@@ -11,8 +11,15 @@ Complete these steps after deploying the SEO changes.
 3. Submit `https://www.bbenoit.fr/sitemap.xml`.
 4. Inspect and request indexing for:
    - `https://www.bbenoit.fr/`
+   - `https://www.bbenoit.fr/services`
    - `https://www.bbenoit.fr/services/creation-site-web-lyon`
    - `https://www.bbenoit.fr/services/automatisation-n8n-lyon`
+   - `https://www.bbenoit.fr/services/application-web-sur-mesure-lyon`
+   - `https://www.bbenoit.fr/services/formation-ia-lyon`
+   - `https://www.bbenoit.fr/blog/audit-informatique-lyon-processus-automatisation`
+   - `https://www.bbenoit.fr/blog/prix-automatisation-n8n`
+   - `https://www.bbenoit.fr/blog/prix-site-vitrine-lyon`
+   - `https://www.bbenoit.fr/realisations/quoiporter`
    - `https://www.bbenoit.fr/jobs`
 5. After Google recrawls them, confirm that `/mentions-legales` and
    `/confidentialite` are excluded by `noindex`.

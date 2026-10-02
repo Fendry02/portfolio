@@ -13,6 +13,31 @@ type ServiceNavigationProps = {
 const sectionTitle =
   'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
 
+export function ServiceBreadcrumbs({ title }: { title: string }) {
+  return (
+    <nav
+      aria-label="Fil d’Ariane"
+      className="mx-auto max-w-6xl px-6 pt-6 text-sm text-base-content/60 lg:px-10"
+    >
+      <ol className="flex flex-wrap items-center gap-2">
+        <li>
+          <Link href="/" className="interactive hover:underline">
+            Accueil
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li>
+          <Link href="/services" className="interactive hover:underline">
+            Services
+          </Link>
+        </li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page">{title}</li>
+      </ol>
+    </nav>
+  )
+}
+
 export function RelatedServiceLinks({ servicePath }: ServiceNavigationProps) {
   const relatedServices = getRelatedServices(servicePath)
 
@@ -66,7 +91,7 @@ export function ServiceResources({ servicePath }: ServiceNavigationProps) {
             Pour approfondir
           </p>
           <h2 className={`mt-3 ${sectionTitle}`}>
-            Un guide pour préparer la bonne décision.
+            Des guides pour préparer votre projet.
           </h2>
         </div>
         <div className="space-y-4">

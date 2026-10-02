@@ -9,14 +9,15 @@ import BrandLogo from './brand-logo'
 type NavItem = {
   label: string
   href: string
-  key: 'home' | 'services' | 'portfolio' | 'jobs' | 'contact'
+  key: 'home' | 'services' | 'portfolio' | 'blog' | 'jobs' | 'contact'
   primary?: boolean
 }
 
 const navItems: NavItem[] = [
   { label: 'Accueil', href: '/', key: 'home' },
-  { label: 'Services', href: '/#offres', key: 'services' },
-  { label: 'Portfolio', href: '/#portfolio', key: 'portfolio' },
+  { label: 'Services', href: '/services', key: 'services' },
+  { label: 'Portfolio', href: '/realisations', key: 'portfolio' },
+  { label: 'Guides', href: '/blog', key: 'blog' },
   { label: 'Parcours', href: '/jobs', key: 'jobs' },
   {
     label: 'Discuter de mon projet',
@@ -49,7 +50,11 @@ export default function Header() {
         ? 'services'
         : pathname?.startsWith('/jobs')
           ? 'jobs'
-          : undefined
+          : pathname?.startsWith('/realisations')
+            ? 'portfolio'
+            : pathname?.startsWith('/blog')
+              ? 'blog'
+              : undefined
 
   return (
     <header className={`qclay-site-header ${isScrolled ? 'is-scrolled' : ''}`}>
@@ -58,7 +63,7 @@ export default function Header() {
 
         <nav
           aria-label="Navigation principale"
-          className="hidden items-center gap-1 sm:flex"
+          className="hidden items-center gap-1 lg:flex"
         >
           {navItems.map((item) => (
             <Link
@@ -82,7 +87,7 @@ export default function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setMenuOpen((isOpen) => !isOpen)}
-          className="interactive inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-base-300 bg-base-100/80 sm:hidden"
+          className="interactive inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-lg border border-base-300 bg-base-100/80 lg:hidden"
         >
           <span className="sr-only">
             {menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -118,7 +123,7 @@ export default function Header() {
         id="mobile-navigation"
         aria-label="Navigation mobile"
         aria-hidden={!menuOpen}
-        className={`qclay-mobile-nav grid overflow-hidden px-4 transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none sm:hidden ${
+        className={`qclay-mobile-nav grid overflow-hidden px-4 transition-[grid-template-rows,opacity,transform] duration-300 ease-[var(--ease-qclay)] motion-reduce:transition-none lg:hidden ${
           menuOpen
             ? 'grid-rows-[1fr] translate-y-0 opacity-100'
             : 'pointer-events-none grid-rows-[0fr] -translate-y-2 opacity-0'

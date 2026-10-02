@@ -8,6 +8,7 @@ import {
   buildPageMetadata,
   createBreadcrumbJsonLd,
   createJsonLdGraph,
+  serviceOffers,
   siteConfig,
 } from '@/app/lib/seo'
 
@@ -123,7 +124,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             href={post.servicePath}
             className="interactive qclay-button mt-6 inline-flex items-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]"
           >
-            Découvrir le service associé
+            {
+              serviceOffers.find((offer) => offer.url === post.servicePath)
+                ?.name
+            }{' '}
+            à Lyon
             <span aria-hidden="true">→</span>
           </Link>
         </aside>
