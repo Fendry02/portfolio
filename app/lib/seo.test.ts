@@ -296,3 +296,11 @@ test('buildPageMetadata describes articles with their publication dates', () => 
   assert.equal(metadata.openGraph?.modifiedTime, '2026-10-02')
   assert.deepEqual(metadata.openGraph?.authors, [siteConfig.url])
 })
+
+test('the professional service points to its Google Business Profile', () => {
+  const profileUrl = 'https://www.google.com/maps?cid=3390754003538065861'
+
+  assert.equal(siteConfig.googleBusinessProfileUrl, profileUrl)
+  assert.equal(professionalServiceJsonLd.hasMap, profileUrl)
+  assert.ok((professionalServiceJsonLd.sameAs as string[]).includes(profileUrl))
+})

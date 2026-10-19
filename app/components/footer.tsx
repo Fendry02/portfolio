@@ -68,6 +68,14 @@ export default function Footer() {
             >
               {siteConfig.email}
             </a>
+            <a
+              href={siteConfig.googleBusinessProfileUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="interactive mt-2 block text-sm text-base-content/60 hover:text-base-content hover:underline"
+            >
+              Voir la fiche Google et les avis ↗
+            </a>
           </div>
 
           <nav aria-label="Navigation de pied de page">

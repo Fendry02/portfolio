@@ -42,6 +42,8 @@ export const siteConfig = {
     'https://github.com/Fendry02',
     'https://www.facebook.com/benoit.bruynbroeck/',
   ],
+  googleBusinessProfileUrl:
+    'https://www.google.com/maps?cid=3390754003538065861',
 } as const
 
 type OpenGraphImage = {
@@ -409,7 +411,8 @@ export const professionalServiceJsonLd: JsonLdNode = {
     addressLocality: siteConfig.legal.address.city,
     addressCountry: siteConfig.legal.address.countryCode,
   },
-  sameAs: siteConfig.sameAs,
+  hasMap: siteConfig.googleBusinessProfileUrl,
+  sameAs: [...siteConfig.sameAs, siteConfig.googleBusinessProfileUrl],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Services web et IA',
