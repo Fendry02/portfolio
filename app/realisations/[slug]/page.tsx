@@ -32,6 +32,12 @@ export async function generateMetadata({ params }: PageProps) {
     title: `${caseStudy.client} — ${caseStudy.sector}`,
     description: `${caseStudy.client} : ${caseStudy.challenge}`,
     path: `/realisations/${caseStudy.slug}`,
+    image: {
+      url: `/realisations/${caseStudy.slug}/opengraph-image`,
+      width: 1200,
+      height: 630,
+      alt: caseStudy.imageAlt,
+    },
   })
 }
 

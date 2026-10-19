@@ -36,6 +36,12 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.title,
     description: post.description,
     path: `/blog/${post.slug}`,
+    image: {
+      url: `/blog/${post.slug}/opengraph-image`,
+      width: 1200,
+      height: 630,
+      alt: post.title,
+    },
     article: {
       publishedTime: post.datePublished,
       modifiedTime: post.dateModified,
