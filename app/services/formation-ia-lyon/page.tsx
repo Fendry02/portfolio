@@ -5,7 +5,7 @@ import { buildPageMetadata, serviceRoutes } from '@/app/lib/seo'
 const pagePath = serviceRoutes.aiTrainingLyon
 const pageTitle = 'Formation IA à Lyon'
 const pageDescription =
-  'Formation IA à Lyon pour aider vos équipes à utiliser l’intelligence artificielle dans leurs tâches quotidiennes avec méthode, esprit critique et règles claires.'
+  'Formation IA à Lyon pour aider vos équipes à utiliser l’intelligence artificielle au quotidien, avec méthode, esprit critique et règles claires.'
 
 export const metadata = buildPageMetadata({
   title: pageTitle,

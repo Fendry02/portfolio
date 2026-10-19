@@ -221,7 +221,13 @@ type PageMetadataInput = {
   image?: OpenGraphImage
   locale?: string
   index?: boolean
+  article?: {
+    publishedTime: string
+    modifiedTime: string
+  }
 }
+
+const maxTitleLength = 60
 
 export function buildPageMetadata({
   title,
@@ -230,12 +236,16 @@ export function buildPageMetadata({
   image = defaultOpenGraphImage,
   locale = siteConfig.locale,
   index = true,
+  article,
 }: PageMetadataInput): Metadata {
   const canonical = absoluteUrl(path)
   const socialTitle = withBrand(title)
+  // Google truncates around 60 characters: long titles keep their keywords
+  // and drop the brand suffix instead.
+  const fitsWithBrand = socialTitle.length <= maxTitleLength
 
   return {
-    title,
+    title: fitsWithBrand ? title : { absolute: title },
     description,
     alternates: {
       canonical,
@@ -260,8 +270,15 @@ export function buildPageMetadata({
       url: canonical,
       siteName: siteConfig.name,
       locale,
-      type: 'website',
       images: [image],
+      ...(article
+        ? {
+            type: 'article',
+            publishedTime: article.publishedTime,
+            modifiedTime: article.modifiedTime,
+            authors: [siteConfig.url],
+          }
+        : { type: 'website' }),
     },
     twitter: {
       card: 'summary_large_image',

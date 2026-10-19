@@ -270,3 +270,29 @@ test('every published case study has an indexable sitemap route', () => {
     assert.ok(paths.has(`/realisations/${slug}`), `Missing case study: ${slug}`)
   }
 })
+
+test('buildPageMetadata drops the brand suffix when it would push the title past 60 characters', () => {
+  const metadata = buildPageMetadata({
+    title: 'Prix d’un site vitrine à Lyon : comparer les devis',
+    description: 'Description courte',
+    path: '/blog/prix-site-vitrine-lyon',
+  })
+
+  assert.deepEqual(metadata.title, {
+    absolute: 'Prix d’un site vitrine à Lyon : comparer les devis',
+  })
+})
+
+test('buildPageMetadata describes articles with their publication dates', () => {
+  const metadata = buildPageMetadata({
+    title: 'Un guide',
+    description: 'Description courte',
+    path: '/blog/un-guide',
+    article: { publishedTime: '2026-08-11', modifiedTime: '2026-10-02' },
+  })
+
+  assert.equal(metadata.openGraph?.type, 'article')
+  assert.equal(metadata.openGraph?.publishedTime, '2026-08-11')
+  assert.equal(metadata.openGraph?.modifiedTime, '2026-10-02')
+  assert.deepEqual(metadata.openGraph?.authors, [siteConfig.url])
+})

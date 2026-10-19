@@ -45,3 +45,7 @@ test('QuoiPorter links to its App Store page from the portfolio', () => {
   )
   assert.equal(quoiPorter?.image, '/quoiporter/tenue-du-jour.png')
 })
+
+test('QuoiPorter points to its own product page on the site', () => {
+  assert.equal(getCaseStudyBySlug('quoiporter')?.productPage, '/quoiporter')
+})

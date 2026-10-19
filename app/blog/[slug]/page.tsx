@@ -36,6 +36,10 @@ export async function generateMetadata({ params }: PageProps) {
     title: post.title,
     description: post.description,
     path: `/blog/${post.slug}`,
+    article: {
+      publishedTime: post.datePublished,
+      modifiedTime: post.dateModified,
+    },
   })
 }
 

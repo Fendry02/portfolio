@@ -161,6 +161,14 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
             >
               Voir le site en ligne ↗
             </a>
+            {'productPage' in caseStudy ? (
+              <Link
+                href={caseStudy.productPage}
+                className="interactive mt-8 ml-6 inline-flex text-sm font-medium text-[color:var(--brand-blue)] hover:underline"
+              >
+                Découvrir la page {caseStudy.title} →
+              </Link>
+            ) : null}
           </div>
         </div>
       </section>

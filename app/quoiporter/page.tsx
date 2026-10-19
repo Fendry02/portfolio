@@ -3,6 +3,7 @@ import Image from 'next/image'
 import JsonLd from '@/app/components/json-ld'
 import {
   buildPageMetadata,
+  createFaqPageJsonLd,
   createJsonLdGraph,
   createWebPageJsonLd,
 } from '@/app/lib/seo'
@@ -33,6 +34,24 @@ const softwareApplication = {
   },
 }
 
+const faqItems = [
+  {
+    question: 'QuoiPorter a besoin d’un compte ?',
+    answer:
+      'Non. Autorisez votre position ou recherchez une ville ; elle reste enregistrée sur votre téléphone.',
+  },
+  {
+    question: 'L’app peut-elle afficher mon planning de la semaine ?',
+    answer:
+      'Oui. Les sept prochains jours sont accessibles par un simple glissement afin de préparer une journée pluvieuse ou fraîche.',
+  },
+  {
+    question: 'Mes données servent-elles à la publicité ?',
+    answer:
+      'Non. QuoiPorter ne contient ni publicité ni pistage. Consultez la politique de confidentialité dans l’app ou sur le site.',
+  },
+]
+
 const appLink =
   'inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(15,23,42,0.22)] transition hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-950'
 
@@ -50,6 +69,7 @@ export default function QuoiPorterPage() {
             description: pageDescription,
           }),
           softwareApplication,
+          createFaqPageJsonLd(faqItems),
         ])}
       />
 
@@ -192,33 +212,18 @@ export default function QuoiPorterPage() {
         </p>
         <h2 className={`${sectionTitle} mt-4`}>Simple dès l’ouverture.</h2>
         <div className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
-          <details className="group py-6">
-            <summary className="list-none pr-8 text-lg font-semibold marker:hidden">
-              QuoiPorter a besoin d’un compte ?
-            </summary>
-            <p className="mt-4 max-w-2xl leading-7 text-slate-700">
-              Non. Autorisez votre position ou recherchez une ville ; elle reste
-              enregistrée sur votre téléphone.
-            </p>
-          </details>
-          <details className="group py-6">
-            <summary className="list-none pr-8 text-lg font-semibold marker:hidden">
-              L’app peut-elle afficher mon planning de la semaine ?
-            </summary>
-            <p className="mt-4 max-w-2xl leading-7 text-slate-700">
-              Oui. Les sept prochains jours sont accessibles par un simple
-              glissement afin de préparer une journée pluvieuse ou fraîche.
-            </p>
-          </details>
-          <details className="group py-6">
-            <summary className="list-none pr-8 text-lg font-semibold marker:hidden">
-              Mes données servent-elles à la publicité ?
-            </summary>
-            <p className="mt-4 max-w-2xl leading-7 text-slate-700">
-              Non. QuoiPorter ne contient ni publicité ni pistage. Consultez la
-              politique de confidentialité dans l’app ou sur le site.
-            </p>
-          </details>
+          {faqItems.map((item) => (
+            <details key={item.question} className="group py-6">
+              <summary className="list-none pr-8 marker:hidden">
+                <h3 className="inline text-lg font-semibold">
+                  {item.question}
+                </h3>
+              </summary>
+              <p className="mt-4 max-w-2xl leading-7 text-slate-700">
+                {item.answer}
+              </p>
+            </details>
+          ))}
         </div>
       </section>
     </main>

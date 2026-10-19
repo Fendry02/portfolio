@@ -16,6 +16,8 @@ export type CaseStudy = {
   image: string
   imageAlt: string
   href: string
+  /** Dedicated page on this site, when the project has one. */
+  productPage?: '/quoiporter'
   relatedService: RelatedService
   publishedAt: string
 }
@@ -101,6 +103,7 @@ export const caseStudies = [
     imageAlt:
       'Capture de QuoiPorter affichant une tenue conseillée selon la météo du jour',
     href: 'https://apps.apple.com/fr/app/quoiporter/id6801611537',
+    productPage: '/quoiporter',
     relatedService: '/services/application-web-sur-mesure-lyon',
     publishedAt: '2026-08-26',
   },

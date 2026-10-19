@@ -24,7 +24,7 @@ import {
 const pagePath = serviceRoutes.websiteCreationLyon
 const pageTitle = 'Création de site web à Lyon'
 const pageDescription =
-  'Création de site web professionnel à Lyon pour indépendants, artisans, cabinets et PME : stratégie, design, développement Next.js, SEO local, performance et mise en ligne.'
+  'Création de site web à Lyon pour indépendants, artisans, cabinets et PME : stratégie, design, développement Next.js, SEO local et mise en ligne.'
 
 const faqItems = [
   {

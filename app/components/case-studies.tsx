@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 import {
@@ -101,7 +102,7 @@ export default function CaseStudies() {
                 >
                   <Image
                     src={caseStudy.image}
-                    alt=""
+                    alt={caseStudy.imageAlt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 620px"
                     className="object-contain object-top"
@@ -158,15 +159,30 @@ export default function CaseStudies() {
                       </div>
                     ))}
                   </dl>
-                  <a
-                    href={caseStudy.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="interactive qclay-project-link mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)]"
-                  >
-                    Voir le site
-                    <span aria-hidden="true">↗</span>
-                  </a>
+                  <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
+                    <Link
+                      href={
+                        'productPage' in caseStudy
+                          ? caseStudy.productPage
+                          : `/realisations/${caseStudy.slug}`
+                      }
+                      className="interactive qclay-project-link inline-flex w-fit items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)]"
+                    >
+                      {'productPage' in caseStudy
+                        ? `Découvrir ${caseStudy.title}`
+                        : 'Lire l’étude de cas'}
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                    <a
+                      href={caseStudy.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="interactive qclay-project-link inline-flex w-fit items-center gap-1.5 text-sm font-medium text-base-content/70"
+                    >
+                      Voir le site
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
                 </article>
               )
             })}
