@@ -53,7 +53,7 @@ const pages = [
   },
   {
     path: '/jobs',
-    title: 'JavaScript Tech Lead and full-stack developer | Benoit Bruynbroeck',
+    title: 'JavaScript Tech Lead and full-stack developer',
     canonical: `${siteUrl}/jobs`,
     descriptionIncludes: 'JavaScript Tech Lead',
     mainLanguage: 'en',
@@ -69,7 +69,7 @@ const pages = [
     path: '/services/creation-site-web-lyon',
     title: 'Création de site web à Lyon | Benoit Bruynbroeck',
     canonical: `${siteUrl}/services/creation-site-web-lyon`,
-    descriptionIncludes: 'Création de site web professionnel à Lyon',
+    descriptionIncludes: 'Création de site web à Lyon',
     contentIncludes: ['développeur web freelance', 'Benoit Bruynbroeck'],
     requiredInternalLinks: [
       '/services/automatisation-n8n-lyon',
@@ -240,8 +240,7 @@ const pages = [
   },
   {
     path: '/blog/automatiser-processus-n8n-sans-boite-noire',
-    title:
-      'Automatiser un processus avec n8n sans créer une boîte noire | Benoit Bruynbroeck',
+    title: 'Automatiser un processus avec n8n sans créer une boîte noire',
     canonical: `${siteUrl}/blog/automatiser-processus-n8n-sans-boite-noire`,
     descriptionIncludes: 'automatisation n8n',
     h1Includes: 'Automatiser un processus',
@@ -259,8 +258,7 @@ const pages = [
   },
   {
     path: '/blog/creer-site-web-lyon-qui-aide-prendre-contact',
-    title:
-      'Créer un site web à Lyon qui aide vraiment à prendre contact | Benoit Bruynbroeck',
+    title: 'Créer un site web à Lyon qui aide vraiment à prendre contact',
     canonical: `${siteUrl}/blog/creer-site-web-lyon-qui-aide-prendre-contact`,
     descriptionIncludes: 'site professionnel',
     h1Includes: 'Créer un site web à Lyon',
@@ -339,7 +337,7 @@ for (const { slug, title, ...checks } of newGuides) {
   pages.push({
     ...checks,
     path: `/blog/${slug}`,
-    title: `${title} | Benoit Bruynbroeck`,
+    title: withBrandWhenItFits(title),
     canonical: `${siteUrl}/blog/${slug}`,
     requiredJsonLdTypes: ['BlogPosting', 'BreadcrumbList'],
   })
@@ -417,6 +415,21 @@ async function fetchResource(path, expectedContentType, expectedStatus = 200) {
 function readAttribute(tag, attributeName) {
   const pattern = new RegExp(`${attributeName}=["']([^"']+)["']`, 'i')
   return tag.match(pattern)?.[1]
+}
+
+// Mirrors buildPageMetadata: the brand suffix is dropped when it would push
+// the title past the 60 characters Google displays.
+function withBrandWhenItFits(title) {
+  const branded = withBrand(title)
+
+  return branded.length <= 60 ? branded : title
+}
+
+// Social cards have room for the brand, so og:title always carries it.
+function withBrand(title) {
+  return title.includes('Benoit Bruynbroeck')
+    ? title
+    : `${title} | Benoit Bruynbroeck`
 }
 
 function readTitle(html) {
@@ -583,7 +596,8 @@ async function auditPage(page) {
   )
 
   report(
-    readMeta(html, 'property', 'og:title') === page.title,
+    readMeta(html, 'property', 'og:title') ===
+      (page.socialTitle ?? withBrand(page.title)),
     `${page.path} has the expected Open Graph title`,
   )
   report(
