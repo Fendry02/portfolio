@@ -51,17 +51,20 @@ export default function Testimonials() {
         <div className="max-w-3xl">
           <h2
             id="testimonials-heading"
-            className="font-display text-[clamp(2.7rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
+            className="font-display text-[clamp(2.4rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.035em]"
           >
             Ce qu’en disent mes clients
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-base-content/65">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
             Des retours de dirigeants de PME locales que j’ai accompagnés sur
             leur présence en ligne.
           </p>
         </div>
 
-        <div className="qclay-reveal-grid mt-10 grid gap-6 md:grid-cols-2">
+        <div
+          className="qclay-reveal-grid mt-10 grid gap-6 md:grid-cols-2"
+          data-motion="settle"
+        >
           {testimonials.map((testimonial) => (
             <figure
               key={`${testimonial.name}-${testimonial.company}`}

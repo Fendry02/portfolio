@@ -20,9 +20,9 @@ export default function CustomAppLyonPage() {
       path={pagePath}
       title={pageTitle}
       description={pageDescription}
-      hero="Application web sur mesure à Lyon, pensée pour votre vrai métier."
-      intro="Je conçois des applications web qui remplacent un processus dispersé par un outil clair, fiable et utilisable au quotidien. Le but n’est pas d’ajouter un logiciel de plus, mais de faire circuler la bonne information au bon moment."
-      problemTitle="Un tableur partagé ne devrait pas devenir votre système d’information."
+      hero="Application web sur mesure à Lyon."
+      intro="Je conçois des applications web qui remplacent un processus dispersé par un outil clair, fiable et utilisable au quotidien. Le but : faire circuler la bonne information au bon moment, sans ajouter un logiciel de plus."
+      problemTitle="Quand le tableur partagé ne suffit plus."
       problem={[
         'Quand un processus métier repose sur des fichiers, des emails et plusieurs outils, les décisions deviennent lentes et les informations importantes se perdent. Une application sur mesure part de ce qui bloque réellement le travail, puis donne une forme simple aux étapes, données et règles utiles.',
         'Mon rôle est de cadrer le besoin avec vous, de construire une première version concrète et de l’améliorer avec les retours des personnes qui l’utilisent. Les connexions à vos outils existants et les automatisations ne sont ajoutées que lorsqu’elles réduisent une friction réelle.',

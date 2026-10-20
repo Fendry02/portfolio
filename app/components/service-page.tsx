@@ -5,7 +5,6 @@ import type { ReactNode } from 'react'
 import type { CaseStudy } from '@/app/lib/case-studies'
 import type { ServicePath } from '@/app/lib/service-navigation'
 import JsonLd from './json-ld'
-import QClayMotion from './qclay-motion'
 import {
   RelatedServiceLinks,
   ServiceBreadcrumbs,
@@ -36,8 +35,8 @@ type ServicePageProps = {
 }
 
 const sectionTitle =
-  'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
-const bodyText = 'text-base leading-7 text-base-content/65'
+  'font-display text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
+const bodyText = 'text-base leading-7 text-base-content/70'
 const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
 const btnGhost =
@@ -77,7 +76,6 @@ export default function ServicePage({
   return (
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
-      <QClayMotion />
       <ServiceBreadcrumbs title={title} />
 
       <section className="qclay-hero relative overflow-hidden">
@@ -100,7 +98,7 @@ export default function ServicePage({
             </div>
           </div>
 
-          <div className="qclay-reveal-stack flex min-h-72 items-center justify-center rounded-2xl border border-base-300 bg-base-200/50 p-8 text-[color:var(--brand-blue)] sm:min-h-80 lg:min-h-96">
+          <div className="qclay-reveal-stack flex min-h-72 items-center justify-center rounded-2xl bg-base-200/60 p-8 text-[color:var(--brand-blue)] sm:min-h-80 lg:min-h-96">
             {visual}
           </div>
         </div>
@@ -119,21 +117,15 @@ export default function ServicePage({
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
-          <h2 className={`max-w-2xl ${sectionTitle}`}>
-            Ce qui est inclus pour avancer sans ajouter de complexité.
-          </h2>
+          <h2 className={`max-w-2xl ${sectionTitle}`}>Ce qui est inclus.</h2>
           <ul className="qclay-reveal-grid mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => (
               <li
                 key={item}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5 text-sm font-medium leading-6 text-base-content/75"
+                className="rounded-xl bg-base-100 p-5 text-base font-medium leading-7 text-base-content/80"
               >
-                <span
-                  aria-hidden="true"
-                  className="mb-4 block h-1.5 w-8 rounded-full bg-[color:var(--brand-blue)]"
-                />
                 {item}
               </li>
             ))}
@@ -144,21 +136,18 @@ export default function ServicePage({
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className={`max-w-2xl ${sectionTitle}`}>
-            Une méthode qui rend les décisions visibles.
+            Comment on avance, étape par étape.
           </h2>
           <ol className="qclay-reveal-grid mt-10 grid gap-4 sm:grid-cols-2">
             {processSteps.map((step, index) => (
-              <li
-                key={step.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+              <li key={step.title} className="rounded-xl bg-base-200/60 p-5">
+                <p className="text-sm font-semibold text-[color:var(--brand-blue)]">
                   Étape {index + 1}
                 </p>
                 <h3 className="mt-2 text-lg font-semibold tracking-tight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-base-content/65">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {step.text}
                 </p>
               </li>
@@ -167,19 +156,19 @@ export default function ServicePage({
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
-          <h2 className={sectionTitle}>Pour les équipes qui veulent agir.</h2>
+          <h2 className={sectionTitle}>À qui ça s’adresse.</h2>
           <div className="qclay-reveal-grid grid gap-4 sm:grid-cols-2">
             {audiences.map((audience) => (
               <article
                 key={audience.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
+                className="rounded-xl bg-base-200/60 p-5"
               >
-                <h3 className="text-base font-semibold tracking-tight">
+                <h3 className="text-lg font-semibold tracking-tight">
                   {audience.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-base-content/60">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {audience.text}
                 </p>
               </article>
@@ -196,7 +185,7 @@ export default function ServicePage({
           <div className="mx-auto max-w-6xl">
             <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
               <h2 className={`max-w-2xl ${sectionTitle}`}>
-                Une réalisation qui montre cette approche en situation.
+                Un projet mené avec cette approche.
               </h2>
               <Link
                 href="/realisations"
@@ -210,9 +199,12 @@ export default function ServicePage({
                 <Link
                   key={caseStudy.slug}
                   href={`/realisations/${caseStudy.slug}`}
-                  className="interactive qclay-subtle-card group overflow-hidden rounded-xl border border-base-300 bg-base-100"
+                  className="interactive group overflow-hidden rounded-xl bg-base-200/60"
                 >
-                  <div className="relative aspect-[16/9] bg-base-200">
+                  <div
+                    className="relative aspect-[16/9] bg-base-200"
+                    data-motion="picture"
+                  >
                     <Image
                       src={caseStudy.image}
                       alt={caseStudy.imageAlt}
@@ -241,16 +233,14 @@ export default function ServicePage({
 
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
-          <h2 className={sectionTitle}>
-            Les questions à clarifier avant de démarrer.
-          </h2>
+          <h2 className={sectionTitle}>Questions avant de démarrer.</h2>
           <div className="qclay-reveal-grid divide-y divide-base-300 border-y border-base-300">
             {faqItems.map((item) => (
               <article key={item.question} className="py-6">
                 <h3 className="text-lg font-semibold tracking-tight">
                   {item.question}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-base-content/65">
+                <p className="mt-3 text-base leading-7 text-base-content/70">
                   {item.answer}
                 </p>
               </article>
@@ -259,7 +249,7 @@ export default function ServicePage({
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
           <h2 className={sectionTitle}>Parlons du problème à résoudre.</h2>
           <p className={`mt-5 ${bodyText}`}>

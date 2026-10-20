@@ -3,101 +3,116 @@
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
+import { gsap, ScrollTrigger, useGSAP } from '@/app/lib/gsap'
 import {
   getHeaderScrollState,
-  getPageScrollProgress,
-  getScrollStoryProgress,
   getScrollStoryStep,
 } from '@/app/lib/scroll-motion'
+import { choreographSections, countUp } from '@/app/lib/section-motion'
 
 export default function QClayMotion() {
   const pathname = usePathname()
 
+  useGSAP(
+    () => {
+      const root = document.documentElement
+      const reduceMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches
+      const header = document.querySelector<HTMLElement>('.qclay-site-header')
+      let headerState = { isHidden: false, anchorY: window.scrollY }
+
+      root.classList.add('qclay-motion-ready')
+      header?.classList.remove('is-hidden')
+
+      if (reduceMotion) {
+        return () => root.classList.remove('qclay-motion-ready')
+      }
+
+      ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+          const nextHeaderState = getHeaderScrollState(
+            self.scroll(),
+            headerState,
+          )
+
+          if (nextHeaderState.isHidden !== headerState.isHidden) {
+            header?.classList.toggle('is-hidden', nextHeaderState.isHidden)
+          }
+
+          headerState = nextHeaderState
+          root.style.setProperty(
+            '--qclay-page-progress',
+            self.progress.toFixed(4),
+          )
+        },
+      })
+
+      gsap.utils
+        .toArray<HTMLElement>('[data-qclay-scroll-story]')
+        .forEach((story) => {
+          const stepCount = Number(story.dataset.storySteps ?? 1)
+          const figure = story.querySelector<HTMLElement>('[data-motion-count]')
+          let hasCounted = false
+
+          story.dataset.storyStep = '0'
+          if (figure) figure.textContent = '0'
+          gsap.fromTo(
+            story,
+            { '--qclay-story-progress': 0 },
+            {
+              '--qclay-story-progress': 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: story,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: true,
+                onUpdate: (self) => {
+                  const step = getScrollStoryStep(self.progress, stepCount)
+
+                  story.dataset.storyStep = `${step}`
+                  // The figure counts up once, when its chapter comes on stage.
+                  if (figure && !hasCounted && step === stepCount - 1) {
+                    hasCounted = true
+                    countUp(figure)
+                  }
+                },
+              },
+            },
+          )
+        })
+
+      ScrollTrigger.batch('.qclay-scroll-reveal', {
+        start: 'top 88%',
+        once: true,
+        onEnter: (targets) =>
+          targets.forEach((target) => target.classList.add('is-visible')),
+      })
+
+      choreographSections()
+
+      return () => {
+        root.classList.remove('qclay-motion-ready')
+        root.style.removeProperty('--qclay-page-progress')
+        header?.classList.remove('is-hidden')
+      }
+    },
+    { dependencies: [pathname], revertOnUpdate: true },
+  )
+
   useEffect(() => {
-    const root = document.documentElement
-    const reduceMotion = window.matchMedia(
-      '(prefers-reduced-motion: reduce)',
-    ).matches
     const canUsePointerEffects = window.matchMedia(
       '(hover: hover) and (pointer: fine)',
     ).matches
-    const header = document.querySelector<HTMLElement>('.qclay-site-header')
-    let headerState = { isHidden: false, anchorY: window.scrollY }
 
-    root.classList.add('qclay-motion-ready')
-    header?.classList.remove('is-hidden')
-
-    if (reduceMotion) {
-      return () => root.classList.remove('qclay-motion-ready')
-    }
-
-    const scrollStories = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-qclay-scroll-story]'),
-    )
-    let scrollFrame = 0
-
-    const updateScrollScene = () => {
-      scrollFrame = 0
-      const nextHeaderState = getHeaderScrollState(window.scrollY, headerState)
-
-      if (nextHeaderState.isHidden !== headerState.isHidden) {
-        header?.classList.toggle('is-hidden', nextHeaderState.isHidden)
-      }
-
-      headerState = nextHeaderState
-      root.style.setProperty(
-        '--qclay-page-progress',
-        `${getPageScrollProgress(document.documentElement)}`,
-      )
-
-      scrollStories.forEach((story) => {
-        const progress = getScrollStoryProgress(
-          story.getBoundingClientRect(),
-          window.innerHeight,
-        )
-        const stepCount = Number(story.dataset.storySteps ?? 1)
-
-        story.style.setProperty('--qclay-story-progress', `${progress}`)
-        story.dataset.storyStep = `${getScrollStoryStep(progress, stepCount)}`
-      })
-    }
-
-    const requestScrollUpdate = () => {
-      if (!scrollFrame) {
-        scrollFrame = window.requestAnimationFrame(updateScrollScene)
-      }
-    }
-
-    updateScrollScene()
-    window.addEventListener('scroll', requestScrollUpdate, { passive: true })
-    window.addEventListener('resize', requestScrollUpdate, { passive: true })
-
-    const revealTargets = Array.from(
-      document.querySelectorAll<HTMLElement>('.qclay-scroll-reveal'),
-    )
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.16 },
-    )
-
-    revealTargets.forEach((target) => observer.observe(target))
-
-    if (!canUsePointerEffects) {
-      return () => {
-        root.classList.remove('qclay-motion-ready')
-        header?.classList.remove('is-hidden')
-        observer.disconnect()
-        window.removeEventListener('scroll', requestScrollUpdate)
-        window.removeEventListener('resize', requestScrollUpdate)
-        if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
-      }
+    if (
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      !canUsePointerEffects
+    ) {
+      return
     }
 
     const interactiveTargets = Array.from(
@@ -137,12 +152,6 @@ export default function QClayMotion() {
     window.addEventListener('mousemove', updatePointer, { passive: true })
 
     return () => {
-      root.classList.remove('qclay-motion-ready')
-      header?.classList.remove('is-hidden')
-      observer.disconnect()
-      window.removeEventListener('scroll', requestScrollUpdate)
-      window.removeEventListener('resize', requestScrollUpdate)
-      if (scrollFrame) window.cancelAnimationFrame(scrollFrame)
       window.removeEventListener('pointermove', updatePointer)
       window.removeEventListener('mousemove', updatePointer)
       if (frame) window.cancelAnimationFrame(frame)

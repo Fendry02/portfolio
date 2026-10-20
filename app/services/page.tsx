@@ -97,7 +97,7 @@ export default function ServicesPage() {
                 <p className="mt-4 text-base leading-7 text-base-content/70">
                   {situations[offer.url]}
                 </p>
-                <p className="mt-4 text-sm leading-6 text-base-content/60">
+                <p className="mt-4 text-base leading-7 text-base-content/70">
                   {offer.description}
                 </p>
                 <Link

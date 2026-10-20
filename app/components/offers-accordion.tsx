@@ -125,14 +125,13 @@ export default function OffersAccordion({ offers }: { offers: Offer[] }) {
                   </ul>
                   {offer.examples.length > 0 && (
                     <div
-                      className="mt-6 rounded-xl border px-4 py-3"
+                      className="mt-6 rounded-xl px-5 py-4"
                       style={{
-                        borderColor: offer.accent,
-                        backgroundColor: `color-mix(in oklch, ${offer.accent} 6%, transparent)`,
+                        backgroundColor: `color-mix(in oklch, ${offer.accent} 8%, transparent)`,
                       }}
                     >
                       <p
-                        className="text-xs font-semibold uppercase tracking-wide"
+                        className="text-sm font-semibold"
                         style={{ color: offer.accent }}
                       >
                         Par exemple

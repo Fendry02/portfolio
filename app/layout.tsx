@@ -4,12 +4,14 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata } from 'next'
 import { Caveat, Geist } from 'next/font/google'
 
+import 'lenis/dist/lenis.css'
 import './styles/global.css'
 
 import Header from './components/header'
 import Footer from './components/footer'
 import JsonLd from './components/json-ld'
 import QClayMotion from './components/qclay-motion'
+import SmoothScroll from './components/smooth-scroll'
 import {
   createJsonLdGraph,
   defaultOpenGraphImage,
@@ -52,6 +54,7 @@ export default function RootLayout({
           ])}
         />
         <Header />
+        <SmoothScroll />
         <QClayMotion />
         {children}
         <Footer />

@@ -19,9 +19,9 @@ export default function AiTrainingLyonPage() {
       path={pagePath}
       title={pageTitle}
       description={pageDescription}
-      hero="Formation IA à Lyon pour transformer des essais en usages utiles."
-      intro="J’aide vos équipes à identifier des cas d’usage concrets, à formuler de bonnes demandes et à garder le recul nécessaire sur les réponses produites. La formation s’ancre dans votre travail quotidien, pas dans une démonstration générique."
-      problemTitle="L’IA devient utile quand chaque personne sait quoi lui demander — et quoi vérifier."
+      hero="Formation IA à Lyon."
+      intro="J’aide vos équipes à identifier des cas d’usage concrets, à formuler de bonnes demandes et à garder le recul nécessaire sur les réponses produites. L’objectif : passer de quelques essais à des usages utiles, ancrés dans votre travail quotidien."
+      problemTitle="Quoi demander, quoi vérifier."
       problem={[
         'Les outils d’IA peuvent accélérer une recherche, une synthèse, une première rédaction ou la préparation d’un support. Sans cadre commun, ils créent aussi des résultats inégaux, des doutes sur les données et des essais qui ne deviennent jamais des habitudes.',
         'Une formation efficace part de situations réelles : les documents, outils et décisions de l’équipe. Nous travaillons les limites, la qualité des sources et les contrôles nécessaires pour que l’IA soutienne le jugement au lieu de le remplacer.',

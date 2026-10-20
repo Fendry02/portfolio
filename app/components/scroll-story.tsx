@@ -37,7 +37,7 @@ export default function ScrollStory() {
           <div className="max-w-3xl">
             <h1
               id="hero-heading"
-              className="font-display text-[clamp(3.2rem,8vw,7.2rem)] font-semibold leading-[0.92] tracking-[-0.045em] text-base-content"
+              className="font-display text-[clamp(3.2rem,7.4vw,6rem)] font-semibold leading-[0.94] tracking-[-0.04em] text-base-content"
             >
               <RevealWords segments={headline} baseDelayMs={80} stepMs={34} />
             </h1>
@@ -55,19 +55,19 @@ export default function ScrollStory() {
               <span aria-hidden="true">→</span>
             </a>
           </div>
-          <p className="qclay-story-scroll-hint mt-12 text-xs font-semibold uppercase tracking-[0.18em] text-base-content/55">
+          <p className="qclay-story-scroll-hint mt-12 text-sm text-base-content/60">
             Faites défiler pour entrer dans le projet
           </p>
         </div>
 
         <div className="qclay-story-frame qclay-story-frame--build mx-auto grid w-full max-w-6xl items-center gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
           <div>
-            <h2 className="font-display max-w-xl text-[clamp(2.8rem,6.2vw,6.2rem)] font-semibold leading-[0.94] tracking-[-0.045em] text-base-content">
-              Du cadre au déclic.
+            <h2 className="font-display max-w-xl text-[clamp(2.6rem,5.2vw,5rem)] font-semibold leading-[0.96] tracking-[-0.04em] text-base-content">
+              On commence par votre besoin.
             </h2>
             <p className="mt-7 max-w-md text-base leading-7 text-base-content/72 md:text-lg md:leading-8">
-              Chaque décision commence par rendre l’essentiel évident : votre
-              offre, vos priorités, puis le chemin le plus simple vers l’action.
+              Je pars de votre offre et de vos priorités, puis je cherche le
+              chemin le plus simple vers l’action.
             </p>
           </div>
           <div className="qclay-story-services grid gap-3 sm:grid-cols-3">
@@ -95,7 +95,7 @@ export default function ScrollStory() {
               sizes="(max-width: 640px) 288px, 320px"
               className="rounded-[38%_62%_55%_45%/48%_42%_58%_52%] object-cover object-[center_32%]"
             />
-            <div className="absolute -right-4 top-6 inline-flex items-center gap-1.5 rounded-full border border-base-content/10 bg-base-100/90 px-3 py-1.5 text-[11px] font-medium uppercase tracking-wider text-base-content/65 shadow-[0_14px_35px_oklch(20.8%_0.042_265.755/0.12)] backdrop-blur-md">
+            <div className="absolute -right-4 top-6 inline-flex items-center gap-1.5 rounded-full border border-base-content/10 bg-base-100/90 px-3 py-1.5 text-[13px] font-medium text-base-content/70 shadow-[0_14px_35px_oklch(20.8%_0.042_265.755/0.12)] backdrop-blur-md">
               <MapPinIcon
                 aria-hidden="true"
                 size={12}
@@ -103,19 +103,20 @@ export default function ScrollStory() {
                 strokeWidth={1.5}
                 color={accent}
               />
-              Lyon · France
+              Lyon, France
             </div>
           </div>
           <div>
-            <p className="font-display text-[clamp(3.2rem,7.5vw,7.2rem)] font-semibold leading-none tracking-[-0.055em] text-[color:var(--brand-blue)]">
-              10<span className="align-top text-[0.45em]">+</span>
+            <p className="font-display text-[clamp(3.2rem,7.5vw,6rem)] font-semibold leading-none tracking-[-0.04em] text-[color:var(--brand-blue)]">
+              <span data-motion-count="10">10</span>
+              <span className="align-top text-[0.45em]">+</span>
             </p>
-            <h2 className="font-display mt-4 max-w-xl text-[clamp(2.6rem,5.5vw,5.6rem)] font-semibold leading-[0.94] tracking-[-0.045em] text-base-content">
-              ans à transformer des idées en produits utiles.
+            <h2 className="font-display mt-4 max-w-xl text-[clamp(2.4rem,4.6vw,4.5rem)] font-semibold leading-[0.96] tracking-[-0.04em] text-base-content">
+              ans à livrer des produits utiles.
             </h2>
             <p className="mt-7 max-w-lg text-base leading-7 text-base-content/72 md:text-lg md:leading-8">
-              Avec un objectif clair : générer des clients, des revenus ou du
-              temps gagné — puis vous laisser la main sur une solution durable.
+              Avec un objectif clair : des clients, du chiffre ou du temps
+              gagné. Puis je vous laisse la main sur une solution durable.
             </p>
           </div>
         </div>

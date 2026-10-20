@@ -8,7 +8,6 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 
 import JsonLd from '@/app/components/json-ld'
-import QClayMotion from '@/app/components/qclay-motion'
 import {
   RelatedServiceLinks,
   ServiceBreadcrumbs,
@@ -146,10 +145,8 @@ const pageJsonLd = createJsonLdGraph([
   ]),
 ])
 
-const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const sectionTitle =
-  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+  'text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
 const bodyText = 'text-base leading-7 text-base-content/65'
 const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
@@ -160,22 +157,20 @@ export default function AutomationN8nLyonPage() {
   return (
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
-      <QClayMotion />
       <ServiceBreadcrumbs title={pageTitle} />
 
       <section className="qclay-hero relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 pb-16 pt-8 lg:grid-cols-[1.04fr_0.96fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack qclay-reveal-stack--hero flex flex-col justify-center">
-            <p className={eyebrow}>Automatisation de processus</p>
-            <h1 className="mt-4 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight">
-              Automatisation n8n à Lyon pour gagner du temps sans perdre le
-              contrôle.
+            <h1 className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight">
+              Automatisation n8n à Lyon.
             </h1>
             <p className={`mt-6 max-w-2xl ${bodyText} md:text-lg md:leading-8`}>
               Je suis Benoit Bruynbroeck, développeur web freelance à Lyon
               spécialisé dans les intégrations. Je conçois des workflows n8n sur
               mesure pour connecter vos outils, fiabiliser les échanges de
-              données et automatiser les tâches répétitives.
+              données et automatiser les tâches répétitives, sans perdre le
+              contrôle de vos processus.
             </p>
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row">
               <Link href="/#contact" className={btnBlue}>
@@ -195,7 +190,7 @@ export default function AutomationN8nLyonPage() {
           >
             <div className="flex items-center justify-between border-b border-base-300 pb-4">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-base-content/55">
+                <p className="text-sm font-medium text-base-content/60">
                   Workflow opérationnel
                 </p>
                 <p className="mt-1 text-xl font-semibold tracking-tight">n8n</p>
@@ -257,7 +252,7 @@ export default function AutomationN8nLyonPage() {
               </div>
             </div>
 
-            <p className="mt-6 border-t border-base-300 pt-4 text-sm leading-6 text-base-content/60">
+            <p className="mt-6 border-t border-base-300 pt-4 text-base leading-7 text-base-content/70">
               Déclencheurs, règles métier, contrôles et alertes réunis dans un
               flux documenté.
             </p>
@@ -265,7 +260,7 @@ export default function AutomationN8nLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-b border-base-300 px-6 py-16 lg:px-10 lg:py-20">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-16 lg:px-10 lg:py-20">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-5 sm:flex-row sm:items-center">
           <p className="max-w-2xl text-base leading-7 text-base-content/65">
             Découvrez les projets où la clarté du parcours et des informations a
@@ -282,14 +277,11 @@ export default function AutomationN8nLyonPage() {
 
       <section
         id="audit-processus"
-        className="qclay-section border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
-            <p className={eyebrow}>Le point de départ</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
-              Audit de vos processus et intégrations à Lyon.
-            </h2>
+            <h2 className={`${sectionTitle}`}>Audit de processus à Lyon.</h2>
           </div>
           <div className="space-y-6">
             <p className={bodyText}>
@@ -314,11 +306,10 @@ export default function AutomationN8nLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
-          <p className={eyebrow}>Exemple de parcours à adapter à vos outils</p>
-          <h2 className={`mt-3 max-w-3xl ${sectionTitle}`}>
-            Du formulaire de contact au suivi dans le CRM.
+          <h2 className={`max-w-3xl ${sectionTitle}`}>
+            Exemple : du formulaire au CRM.
           </h2>
           <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
@@ -339,15 +330,12 @@ export default function AutomationN8nLyonPage() {
                 text: 'Les échecs sont signalés. Une relance peut être proposée selon une règle validée avec l’équipe.',
               },
             ].map((step, index) => (
-              <li
-                key={step.title}
-                className="rounded-xl border border-base-300 p-5"
-              >
+              <li key={step.title} className="rounded-xl bg-base-200/70 p-5">
                 <p className="text-sm text-[color:var(--brand-blue)]">
                   Étape {index + 1}
                 </p>
                 <h3 className="mt-2 text-lg font-semibold">{step.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-base-content/65">
+                <p className="mt-3 text-base leading-7 text-base-content/70">
                   {step.text}
                 </p>
               </li>
@@ -363,9 +351,8 @@ export default function AutomationN8nLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
-            <p className={eyebrow}>Une automatisation durable</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
-              n8n comme socle d’intégration, pas comme boîte noire.
+            <h2 className={`${sectionTitle}`}>
+              n8n comme socle d’intégration lisible.
             </h2>
           </div>
 
@@ -392,11 +379,10 @@ export default function AutomationN8nLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Cas d’usage</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+            <h2 className={`${sectionTitle}`}>
               Des flux concrets autour de vos outils existants.
             </h2>
           </div>
@@ -405,12 +391,12 @@ export default function AutomationN8nLyonPage() {
             {useCases.map((item) => (
               <article
                 key={item.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
+                className="rounded-xl bg-base-200/70 p-5"
               >
                 <h3 className="text-lg font-semibold tracking-tight">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-base-content/65">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {item.text}
                 </p>
               </article>
@@ -422,22 +408,15 @@ export default function AutomationN8nLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Ce qui est inclus</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
-              Du diagnostic à un workflow n8n prêt à être exploité.
-            </h2>
+            <h2 className={`${sectionTitle}`}>Ce qui est inclus.</h2>
           </div>
 
           <ul className="qclay-reveal-grid mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => (
               <li
                 key={item}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5 text-sm font-medium leading-6 text-base-content/75"
+                className="rounded-xl bg-base-200/70 p-5 text-base font-medium leading-7 text-base-content/80"
               >
-                <span
-                  aria-hidden="true"
-                  className="mb-4 block h-1.5 w-8 rounded-full bg-[color:var(--brand-blue)]"
-                />
                 {item}
               </li>
             ))}
@@ -445,28 +424,24 @@ export default function AutomationN8nLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Méthode</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
+            <h2 className={`${sectionTitle}`}>
               Commencer petit, mesurer, puis étendre.
             </h2>
           </div>
 
           <ol className="qclay-reveal-grid mt-10 grid gap-4 sm:grid-cols-2">
             {processSteps.map((step, index) => (
-              <li
-                key={step.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+              <li key={step.title} className="rounded-xl bg-base-200/70 p-5">
+                <p className="text-sm font-semibold text-[color:var(--brand-blue)]">
                   Étape {index + 1}
                 </p>
                 <h3 className="mt-2 text-lg font-semibold tracking-tight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-base-content/65">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {step.text}
                 </p>
               </li>
@@ -478,10 +453,7 @@ export default function AutomationN8nLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
-            <p className={eyebrow}>Questions fréquentes</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
-              Avant d’automatiser avec n8n.
-            </h2>
+            <h2 className={`${sectionTitle}`}>Avant d’automatiser avec n8n.</h2>
           </div>
 
           <div className="qclay-reveal-grid divide-y divide-base-300 border-y border-base-300">
@@ -490,7 +462,7 @@ export default function AutomationN8nLyonPage() {
                 <h3 className="text-lg font-semibold tracking-tight">
                   {item.question}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-base-content/65">
+                <p className="mt-3 text-base leading-7 text-base-content/70">
                   {item.answer}
                 </p>
               </article>
@@ -502,18 +474,15 @@ export default function AutomationN8nLyonPage() {
       <RelatedServiceLinks servicePath={pagePath} />
       <ServiceResources servicePath={pagePath} />
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
-          <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-            Réponse sous 24h ouvrées
-          </div>
-          <h2 className={`mt-5 ${sectionTitle}`}>
+          <h2 className={sectionTitle}>
             Quel processus vous fait perdre du temps chaque semaine&nbsp;?
           </h2>
           <p className={`mt-5 ${bodyText}`}>
             Décrivez-moi les outils concernés, les actions répétitives et le
-            résultat attendu. Je vous réponds avec une première lecture du flux
-            et de son potentiel d’automatisation.
+            résultat attendu. Je vous réponds sous 24 h ouvrées avec une
+            première lecture du flux et de son potentiel d’automatisation.
           </p>
           <div className="mt-8 flex justify-center">
             <Link href="/#contact" className={btnBlue}>

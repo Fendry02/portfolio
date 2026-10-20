@@ -10,9 +10,6 @@ like a connected story, not isolated sections moving independently.
 
 | # | What is guaranteed | Test | Result |
 | --- | --- | --- | --- |
-| 1 | The document position maps continuously from 0 at the top to 1 at the bottom. | `app/lib/scroll-motion.test.ts` | PASS |
-| 2 | A non-scrolling document produces a stable scene value of 0. | `app/lib/scroll-motion.test.ts` | PASS |
-| 3 | A pinned story maps from its first to last frame as it traverses its scroll range. | `app/lib/scroll-motion.test.ts` | PASS |
 | 4 | The final story frame remains selected at exactly 100% progress. | `app/lib/scroll-motion.test.ts` | PASS |
 | 5 | The project gallery selects the most visible project. | `app/lib/project-gallery.test.ts` | PASS |
 | 6 | A project that leaves the viewport cannot remain selected. | `app/lib/project-gallery.test.ts` | PASS |
@@ -81,3 +78,23 @@ that same horizontal proportion instead of a viewport-driven tall canvas.
 The header now uses a small directional hysteresis: it hides after a deliberate
 downward read, stays stable through small movements, returns after a measured
 upward gesture, and remains visible for reduced-motion visitors.
+
+## Lenis + GSAP ScrollTrigger
+
+Smooth scrolling now comes from Lenis, driven by the GSAP ticker
+(`app/components/smooth-scroll.tsx`). Page progress, pinned-story progress and
+section reveals are computed by ScrollTrigger (`app/components/qclay-motion.tsx`)
+instead of hand-rolled scroll math, so the former page- and story-progress
+helpers (rows 1–3) and their tests were removed. The chapter-step and header
+hysteresis helpers are still pure and unit-tested. Lenis is disabled under
+`prefers-reduced-motion`, and anchors keep the 88px header offset.
+
+Section entrances are choreographed by kind of content in
+`app/lib/section-motion.ts`, replacing the CSS reveal that gave every section
+the same fade: headings rise line by line from a mask (GSAP SplitText) and pull
+their lead paragraph in, lists arrive row by row, testimonials settle, and
+pictures open from a clip mask. Each fires once at 88% of the viewport. Nothing
+already on screen at load is hidden again, and the CSS word/stack reveals that
+start below the fold are rewound and played when they enter. A headless pass
+over the home and service pages at 1440, 768 and 390px, with and without
+reduced motion, scrolled to the end and found no content left hidden.

@@ -65,17 +65,6 @@
   }
 }
 
-@keyframes qclay-scroll-rise {
-  from {
-    opacity: 0.98;
-    transform: translate3d(0, 8px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 /* ─── Brand logo entry ───────────────────────────────────────────────── */
 @keyframes brand-logo-enter {
   from {
@@ -550,35 +539,6 @@
   );
 }
 
-.qclay-logo-row > a {
-  opacity: 0;
-  animation: qclay-reveal 640ms var(--ease-qclay) both;
-}
-
-.qclay-logo-row > :nth-child(1) {
-  animation-delay: 80ms;
-}
-
-.qclay-logo-row > :nth-child(2) {
-  animation-delay: 140ms;
-}
-
-.qclay-logo-row > :nth-child(3) {
-  animation-delay: 200ms;
-}
-
-.qclay-logo-row > :nth-child(4) {
-  animation-delay: 260ms;
-}
-
-.qclay-logo-row > :nth-child(5) {
-  animation-delay: 320ms;
-}
-
-.qclay-logo-row > :nth-child(6) {
-  animation-delay: 380ms;
-}
-
 /* ─── Vertical offers, themed per offer ──────────────────────────────── */
 .qclay-offer {
   transition:
@@ -754,15 +714,6 @@
 
 .qclay-subtle-card > * {
   position: relative;
-}
-
-.qclay-motion-ready .qclay-scroll-reveal {
-  opacity: 1;
-  transform: none;
-}
-
-.qclay-motion-ready .qclay-scroll-reveal.is-visible {
-  animation: qclay-scroll-rise 460ms var(--ease-qclay) both;
 }
 
 /* ─── Hero scroll story ───────────────────────────────────────────────── */
@@ -946,9 +897,9 @@
 .qclay-story-services span {
   max-width: 13rem;
   margin-top: 0.75rem;
-  color: oklch(20.8% 0.042 265.755 / 0.65);
-  font-size: 0.9rem;
-  line-height: 1.45;
+  color: oklch(20.8% 0.042 265.755 / 0.7);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .qclay-story-progress {
@@ -1005,66 +956,6 @@
   .qclay-story-services > div {
     min-height: auto;
   }
-}
-
-/* ── Staggered arrival: direct items rise one-by-one when their section
-      enters. Index is passed inline via --qclay-reveal-i. ─────────────── */
-.qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-item {
-  opacity: 0;
-}
-
-.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-item {
-  animation: qclay-reveal 520ms var(--ease-qclay) both;
-  animation-delay: calc(80ms + var(--qclay-reveal-i, 0) * 70ms);
-}
-
-/* ── Auto-staggered grid: direct children rise in sequence when their
-      section enters. Add the class to a grid/list container; indices are
-      resolved via :nth-child, so no inline index is needed. ──────────── */
-.qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-grid > * {
-  opacity: 0;
-}
-
-.qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-grid > * {
-  animation: qclay-reveal 480ms var(--ease-qclay) both;
-  animation-delay: calc(70ms + var(--qclay-reveal-i, 0) * 55ms);
-}
-
-.qclay-reveal-grid > :nth-child(1) {
-  --qclay-reveal-i: 0;
-}
-.qclay-reveal-grid > :nth-child(2) {
-  --qclay-reveal-i: 1;
-}
-.qclay-reveal-grid > :nth-child(3) {
-  --qclay-reveal-i: 2;
-}
-.qclay-reveal-grid > :nth-child(4) {
-  --qclay-reveal-i: 3;
-}
-.qclay-reveal-grid > :nth-child(5) {
-  --qclay-reveal-i: 4;
-}
-.qclay-reveal-grid > :nth-child(6) {
-  --qclay-reveal-i: 5;
-}
-.qclay-reveal-grid > :nth-child(7) {
-  --qclay-reveal-i: 6;
-}
-.qclay-reveal-grid > :nth-child(8) {
-  --qclay-reveal-i: 7;
-}
-.qclay-reveal-grid > :nth-child(9) {
-  --qclay-reveal-i: 8;
-}
-.qclay-reveal-grid > :nth-child(10) {
-  --qclay-reveal-i: 9;
-}
-.qclay-reveal-grid > :nth-child(11) {
-  --qclay-reveal-i: 10;
-}
-.qclay-reveal-grid > :nth-child(12) {
-  --qclay-reveal-i: 11;
 }
 
 /* ── AI-augmented card: one-pass light sweep + staggered step reveal ── */
@@ -1326,23 +1217,6 @@
   z-index: 1;
 }
 
-.qclay-project-stage-topline,
-.qclay-project-stage-caption {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.qclay-project-stage-topline {
-  margin-bottom: 0.75rem;
-  color: oklch(32% 0.06 267 / 0.66);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .qclay-project-stage-screen {
   position: relative;
   aspect-ratio: 16 / 10;
@@ -1350,8 +1224,16 @@
   border: 1px solid oklch(20.8% 0.042 265.755 / 0.16);
   border-radius: 1.55rem;
   background:
-    radial-gradient(circle at 82% 12%, oklch(68% 0.18 288 / 0.28), transparent 30%),
-    radial-gradient(circle at 15% 94%, oklch(62% 0.14 178 / 0.2), transparent 38%),
+    radial-gradient(
+      circle at 82% 12%,
+      oklch(68% 0.18 288 / 0.28),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 15% 94%,
+      oklch(62% 0.14 178 / 0.2),
+      transparent 38%
+    ),
     color-mix(in oklch, var(--color-base-100) 72%, oklch(92% 0.05 280));
   box-shadow:
     inset 0 1px 0 oklch(100% 0 0 / 0.8),
@@ -1364,7 +1246,11 @@
   height: 24%;
   pointer-events: none;
   content: '';
-  background: linear-gradient(to top, oklch(20.8% 0.042 265.755 / 0.08), transparent);
+  background: linear-gradient(
+    to top,
+    oklch(20.8% 0.042 265.755 / 0.08),
+    transparent
+  );
 }
 
 .qclay-project-stage-image {
@@ -1399,22 +1285,6 @@
 
 .qclay-project-stage-image.is-active img {
   transform: scale(1);
-}
-
-.qclay-project-stage-caption {
-  min-height: 4.75rem;
-  padding: 1.15rem 0.2rem 0;
-  color: oklch(26% 0.05 267 / 0.64);
-}
-
-.qclay-project-stage-caption > :first-child {
-  max-width: 28ch;
-  font-size: 0.78rem;
-  line-height: 1.35;
-}
-
-.qclay-project-stage-caption > :last-child {
-  color: oklch(23% 0.052 267);
 }
 
 .qclay-project-list {
@@ -1453,14 +1323,6 @@
 
 .qclay-project-narrative[data-active='true']::before {
   transform: scaleX(1);
-}
-
-.qclay-project-number {
-  margin-bottom: 2.25rem;
-  color: oklch(37% 0.09 267 / 0.48);
-  font-size: 0.73rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
 }
 
 .qclay-project-link {
@@ -1578,10 +1440,13 @@
   color: inherit;
 }
 
-.qclay-contact-status {
-  border-color: oklch(100% 0 0 / 0.33);
-  color: oklch(100% 0 0 / 0.82);
-  background: oklch(100% 0 0 / 0.1);
+.qclay-flow-contact .qclay-word-accent {
+  color: oklch(100% 0 0);
+}
+
+.qclay-flow-contact .qclay-word-accent::after {
+  background-color: oklch(100% 0 0);
+  opacity: 0.4;
 }
 
 .qclay-contact-intro,
@@ -1597,7 +1462,6 @@
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: 1rem;
   background: oklch(100% 0 0 / 0.94);
-  box-shadow: 0 28px 70px oklch(20.8% 0.042 265.755 / 0.27);
 }
 
 body:has(.qclay-home) .qclay-site-footer {
@@ -1683,15 +1547,11 @@ body:has(.qclay-home) .qclay-site-footer img {
   .qclay-orbit,
   .qclay-float-badge,
   .qclay-tech-strip,
-  .qclay-logo-row > a,
   .qclay-ink,
   .qclay-ink::after,
   .qclay-ai-card::after,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-ai-step,
-  .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-item,
-  .qclay-motion-ready .qclay-scroll-reveal.is-visible .qclay-reveal-grid > *,
-  .qclay-motion-ready .qclay-scroll-reveal.is-visible,
   .qclay-offer.is-open .qov-shape,
   .qclay-spinner,
   .qclay-feedback-in {
@@ -1725,7 +1585,6 @@ body:has(.qclay-home) .qclay-site-footer img {
   .interactive:active,
   .qclay-tech-strip > div:hover,
   .qclay-tilt:hover,
-  .qclay-motion-ready .qclay-scroll-reveal,
   .qclay-story-frame {
     transform: none;
   }
@@ -1733,12 +1592,8 @@ body:has(.qclay-home) .qclay-site-footer img {
   .qclay-reveal-stack > *,
   .qclay-metrics > div,
   .qclay-portrait-wrap,
-  .qclay-logo-row > a,
   .qclay-ai-step,
   .qclay-motion-ready .qclay-scroll-reveal .qclay-ai-step,
-  .qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-item,
-  .qclay-motion-ready .qclay-scroll-reveal .qclay-reveal-grid > *,
-  .qclay-motion-ready .qclay-scroll-reveal,
   .qclay-story-frame,
   .qov-shape {
     opacity: 1;

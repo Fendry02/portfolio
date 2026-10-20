@@ -43,9 +43,6 @@ test('the project stage matches the horizontal 16:10 work captures', () => {
       /\.qclay-project-stage-screen\s*\{([\s\S]*?)\n\}/,
     )?.[1] ?? ''
 
-  assert.match(
-    stageScreenRule,
-    /aspect-ratio:\s*16\s*\/\s*10;/,
-  )
+  assert.match(stageScreenRule, /aspect-ratio:\s*16\s*\/\s*10;/)
   assert.doesNotMatch(stageScreenRule, /min-height:/)
 })

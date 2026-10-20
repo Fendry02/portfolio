@@ -2,13 +2,6 @@ function clamp(value: number, minimum: number, maximum: number) {
   return Math.min(Math.max(value, minimum), maximum)
 }
 
-type ScrollDocument = Pick<
-  HTMLElement,
-  'clientHeight' | 'scrollHeight' | 'scrollTop'
->
-
-type ScrollStoryRect = Pick<DOMRect, 'height' | 'top'>
-
 export type HeaderScrollState = {
   isHidden: boolean
   anchorY: number
@@ -40,32 +33,15 @@ export function getHeaderScrollState(
 
   if (
     safeScrollY >=
-    Math.max(headerTopOffset + headerHideDistance, visibleAnchorY + headerHideDistance)
+    Math.max(
+      headerTopOffset + headerHideDistance,
+      visibleAnchorY + headerHideDistance,
+    )
   ) {
     return { isHidden: true, anchorY: safeScrollY }
   }
 
   return { isHidden: false, anchorY: visibleAnchorY }
-}
-
-export function getPageScrollProgress(documentElement: ScrollDocument) {
-  const scrollableHeight =
-    documentElement.scrollHeight - documentElement.clientHeight
-
-  if (scrollableHeight <= 0) return 0
-
-  return Number(
-    clamp(documentElement.scrollTop / scrollableHeight, 0, 1).toFixed(4),
-  )
-}
-
-export function getScrollStoryProgress(
-  story: ScrollStoryRect,
-  viewportHeight: number,
-) {
-  const scrollDistance = Math.max(story.height - viewportHeight, 1)
-
-  return Number(clamp(-story.top / scrollDistance, 0, 1).toFixed(4))
 }
 
 export function getScrollStoryStep(progress: number, stepCount: number) {

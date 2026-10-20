@@ -5,7 +5,6 @@ import profile from '@/public/profile.jpg'
 import citizenplane from '@/public/works/citizenplane.webp'
 import businessDecision from '@/public/works/business-decision.webp'
 import openclassrooms from '@/public/works/openclassrooms.webp'
-import QClayMotion from '../components/qclay-motion'
 import JsonLd from '../components/json-ld'
 import {
   buildPageMetadata,
@@ -210,7 +209,6 @@ export default function Jobs() {
   return (
     <main lang="en" className="bg-base-100 text-base-content">
       <JsonLd data={jobsJsonLd} />
-      <QClayMotion />
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
         id="home"

@@ -5,7 +5,6 @@ import electreauCapture from '@/public/works/electreau-capture.webp'
 import petitNidCapture from '@/public/works/petitnid-capture.webp'
 import vikoCapture from '@/public/works/chezviko-capture.webp'
 import JsonLd from '@/app/components/json-ld'
-import QClayMotion from '@/app/components/qclay-motion'
 import {
   RelatedServiceLinks,
   ServiceBreadcrumbs,
@@ -127,10 +126,8 @@ const pageJsonLd = createJsonLdGraph([
   ]),
 ])
 
-const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const sectionTitle =
-  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+  'text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
 const bodyText = 'text-base leading-7 text-base-content/65'
 const accent = 'var(--brand-blue)'
 const btnBlue =
@@ -142,15 +139,13 @@ export default function WebsiteCreationLyonPage() {
   return (
     <main className="bg-base-100 text-base-content">
       <JsonLd data={pageJsonLd} />
-      <QClayMotion />
       <ServiceBreadcrumbs title={pageTitle} />
 
       <section className="qclay-hero relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack qclay-reveal-stack--hero flex flex-col justify-center">
-            <p className={eyebrow}>Service web local</p>
-            <h1 className="mt-4 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight">
-              Création de site web à Lyon pour une activité plus visible.
+            <h1 className="text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight">
+              Création de site web à Lyon.
             </h1>
             <p className={`mt-6 max-w-2xl ${bodyText} md:text-lg md:leading-8`}>
               Je suis Benoit Bruynbroeck, développeur web freelance à Lyon. Je
@@ -196,13 +191,13 @@ export default function WebsiteCreationLyonPage() {
                   />
                 </div>
                 <div className="p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+                  <p className="text-sm font-medium text-[color:var(--brand-blue)]">
                     {example.type}
                   </p>
                   <h2 className="mt-1 text-lg font-semibold tracking-tight">
                     {example.name}
                   </h2>
-                  <p className="mt-2 text-sm leading-6 text-base-content/65">
+                  <p className="mt-2 text-base leading-7 text-base-content/70">
                     {example.text}
                   </p>
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--brand-blue)]">
@@ -216,10 +211,10 @@ export default function WebsiteCreationLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <h2 className={`max-w-2xl ${sectionTitle}`}>
-            Des réalisations locales à lire dans leur contexte.
+            Des sites livrés à Lyon.
           </h2>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -245,7 +240,7 @@ export default function WebsiteCreationLyonPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
             <h2 className={sectionTitle}>
-              Un site web ne sert pas seulement à exister en ligne.
+              Un site doit donner envie d’appeler.
             </h2>
           </div>
 
@@ -275,26 +270,18 @@ export default function WebsiteCreationLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Ce qui est inclus</p>
-            <h2 className={`mt-3 ${sectionTitle}`}>
-              Une base complète pour lancer, mesurer et faire évoluer.
-            </h2>
+            <h2 className={`${sectionTitle}`}>Ce qui est inclus.</h2>
           </div>
 
           <ul className="qclay-reveal-grid mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {deliverables.map((item) => (
               <li
                 key={item}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5 text-sm font-medium leading-6 text-base-content/75"
+                className="rounded-xl bg-base-200/70 p-5 text-base font-medium leading-7 text-base-content/80"
               >
-                <span
-                  aria-hidden="true"
-                  className="mb-4 block h-1.5 w-8 rounded-full"
-                  style={{ backgroundColor: accent }}
-                />
                 {item}
               </li>
             ))}
@@ -305,21 +292,16 @@ export default function WebsiteCreationLyonPage() {
       <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <h2 className={sectionTitle}>
-              Un accompagnement simple, du cadrage à la mise en ligne.
-            </h2>
+            <h2 className={sectionTitle}>Du cadrage à la mise en ligne.</h2>
           </div>
 
           <ol className="qclay-reveal-grid mt-10 grid gap-4 sm:grid-cols-2">
             {processSteps.map((step) => (
-              <li
-                key={step.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
-              >
+              <li key={step.title} className="rounded-xl bg-base-200/70 p-5">
                 <h3 className="text-lg font-semibold tracking-tight">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-base-content/65">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {step.text}
                 </p>
               </li>
@@ -328,13 +310,10 @@ export default function WebsiteCreationLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.42fr_0.58fr]">
           <div>
-            <h2 className={sectionTitle}>
-              Une approche utile pour les activités qui doivent inspirer
-              confiance vite.
-            </h2>
+            <h2 className={sectionTitle}>Pour qui c’est fait.</h2>
           </div>
 
           <div className="qclay-reveal-grid grid gap-4 sm:grid-cols-2">
@@ -356,14 +335,11 @@ export default function WebsiteCreationLyonPage() {
                 text: 'Clarifier votre proposition pour appuyer la prospection et faciliter les premiers échanges commerciaux.',
               },
             ].map((item) => (
-              <div
-                key={item.title}
-                className="qclay-subtle-card rounded-xl border border-base-300 bg-base-100 p-5"
-              >
+              <div key={item.title} className="rounded-xl bg-base-200/70 p-5">
                 <p className="text-base font-semibold tracking-tight">
                   {item.title}
                 </p>
-                <p className="mt-2 text-sm leading-6 text-base-content/60">
+                <p className="mt-2 text-base leading-7 text-base-content/70">
                   {item.text}
                 </p>
               </div>
@@ -386,7 +362,7 @@ export default function WebsiteCreationLyonPage() {
                 <h3 className="text-lg font-semibold tracking-tight">
                   {item.question}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-base-content/65">
+                <p className="mt-3 text-base leading-7 text-base-content/70">
                   {item.answer}
                 </p>
               </article>
@@ -395,18 +371,13 @@ export default function WebsiteCreationLyonPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
-          <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-            Réponse sous 24h ouvrées
-          </div>
-          <h2 className={`mt-5 ${sectionTitle}`}>
-            Vous voulez un site plus clair, plus rapide, plus utile&nbsp;?
-          </h2>
+          <h2 className={sectionTitle}>Parlons de votre site.</h2>
           <p className={`mt-5 ${bodyText}`}>
             Envoyez-moi quelques lignes sur votre activité, vos clients et ce
-            que le site doit changer pour vous. Je vous réponds avec une
-            première lecture concrète.
+            que le site doit changer pour vous. Je vous réponds sous 24 h
+            ouvrées avec une première lecture concrète.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-2.5 sm:flex-row">
             <Link href="/#contact" className={btnBlue}>

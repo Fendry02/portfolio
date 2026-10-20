@@ -47,8 +47,7 @@ const legalLinks = [
 
 const linkClass =
   'interactive text-sm text-base-content/60 hover:text-base-content'
-const columnTitle =
-  'text-xs font-semibold uppercase tracking-[0.16em] text-base-content/60'
+const columnTitle = 'text-sm font-semibold text-base-content/80'
 
 export default function Footer() {
   return (
@@ -106,7 +105,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-base-300 pt-6 sm:flex-row sm:items-center">
-          <p className="text-xs text-base-content/60">
+          <p className="text-sm text-base-content/60">
             © {currentYear} {siteConfig.name}. Conçu et développé par mes soins.
           </p>
           <div className="flex items-center gap-3">

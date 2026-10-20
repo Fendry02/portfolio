@@ -11,7 +11,7 @@ type ServiceNavigationProps = {
 }
 
 const sectionTitle =
-  'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+  'font-display text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
 
 export function ServiceBreadcrumbs({ title }: { title: string }) {
   return (
@@ -42,14 +42,11 @@ export function RelatedServiceLinks({ servicePath }: ServiceNavigationProps) {
   const relatedServices = getRelatedServices(servicePath)
 
   return (
-    <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
+    <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65">
-            Selon votre besoin
-          </p>
-          <h2 className={`mt-3 ${sectionTitle}`}>
-            Deux prolongements possibles pour avancer sans bricoler.
+          <h2 className={`${sectionTitle}`}>
+            Deux services pour aller plus loin.
           </h2>
         </div>
         <div className="qclay-reveal-grid mt-10 grid gap-4 sm:grid-cols-2">
@@ -57,12 +54,12 @@ export function RelatedServiceLinks({ servicePath }: ServiceNavigationProps) {
             <Link
               key={service.href}
               href={service.href}
-              className="interactive qclay-subtle-card group rounded-xl border border-base-300 bg-base-100 p-5"
+              className="interactive group rounded-xl bg-base-200/70 hover:bg-base-200 p-5"
             >
               <h3 className="text-lg font-semibold tracking-tight group-hover:text-[color:var(--brand-blue)]">
                 {service.title}
               </h3>
-              <p className="mt-2 text-sm leading-6 text-base-content/65">
+              <p className="mt-2 text-base leading-7 text-base-content/70">
                 {service.description}
               </p>
               <span className="mt-5 inline-flex text-sm font-medium text-[color:var(--brand-blue)]">
@@ -87,10 +84,7 @@ export function ServiceResources({ servicePath }: ServiceNavigationProps) {
     <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65">
-            Pour approfondir
-          </p>
-          <h2 className={`mt-3 ${sectionTitle}`}>
+          <h2 className={`${sectionTitle}`}>
             Des guides pour préparer votre projet.
           </h2>
         </div>
@@ -99,12 +93,12 @@ export function ServiceResources({ servicePath }: ServiceNavigationProps) {
             <Link
               key={resource.href}
               href={resource.href}
-              className="interactive qclay-subtle-card group block rounded-xl border border-base-300 bg-base-100 p-5"
+              className="interactive group block rounded-xl bg-base-200/70 hover:bg-base-200 p-5"
             >
               <h3 className="text-lg font-semibold tracking-tight group-hover:text-[color:var(--brand-blue)]">
                 {resource.title}
               </h3>
-              <p className="mt-2 text-sm leading-6 text-base-content/65">
+              <p className="mt-2 text-base leading-7 text-base-content/70">
                 {resource.description}
               </p>
               <span className="mt-5 inline-flex text-sm font-medium text-[color:var(--brand-blue)]">

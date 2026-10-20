@@ -8,9 +8,8 @@ import { PROJECT_TYPES } from '@/app/lib/contact'
 const initialState: ContactState = { status: 'idle' }
 
 const fieldBase =
-  'w-full rounded-lg border bg-base-100 px-4 py-3 text-sm text-base-content transition focus:border-[color:var(--brand-blue)] focus:outline-none focus:ring-2 focus:ring-[color:var(--brand-blue)]'
-const labelBase =
-  'mb-1.5 block text-xs font-semibold uppercase tracking-[0.14em] text-base-content/65'
+  'w-full rounded-lg border bg-base-100 px-4 py-3 text-base text-base-content transition focus:border-[color:var(--brand-blue)] focus:outline-none focus:ring-2 focus:ring-[color:var(--brand-blue)]'
+const labelBase = 'mb-1.5 block text-sm font-medium text-base-content/75'
 
 function fieldClass(hasError: boolean): string {
   return `${fieldBase} ${hasError ? 'border-red-400' : 'border-base-300'}`
@@ -78,7 +77,7 @@ export default function ContactForm() {
           className={fieldClass(Boolean(errors.name))}
         />
         {errors.name && (
-          <p id="name-error" className="mt-1 text-xs text-red-600">
+          <p id="name-error" className="mt-1 text-sm text-red-600">
             {errors.name}
           </p>
         )}
@@ -99,7 +98,7 @@ export default function ContactForm() {
           className={fieldClass(Boolean(errors.email))}
         />
         {errors.email && (
-          <p id="email-error" className="mt-1 text-xs text-red-600">
+          <p id="email-error" className="mt-1 text-sm text-red-600">
             {errors.email}
           </p>
         )}
@@ -130,7 +129,7 @@ export default function ContactForm() {
           ))}
         </select>
         {errors.projectType && (
-          <p id="projectType-error" className="mt-1 text-xs text-red-600">
+          <p id="projectType-error" className="mt-1 text-sm text-red-600">
             {errors.projectType}
           </p>
         )}
@@ -150,7 +149,7 @@ export default function ContactForm() {
           className={`${fieldClass(Boolean(errors.message))} resize-y`}
         />
         {errors.message && (
-          <p id="message-error" className="mt-1 text-xs text-red-600">
+          <p id="message-error" className="mt-1 text-sm text-red-600">
             {errors.message}
           </p>
         )}

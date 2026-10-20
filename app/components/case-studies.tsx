@@ -11,7 +11,7 @@ import {
 import { caseStudies } from '@/app/lib/case-studies'
 
 const titleClass =
-  'font-display text-[clamp(2.7rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]'
+  'font-display text-[clamp(2.4rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.035em]'
 
 export default function CaseStudies() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -59,8 +59,6 @@ export default function CaseStudies() {
     return () => observer.disconnect()
   }, [])
 
-  const activeCaseStudy = caseStudies[activeIndex]
-
   return (
     <section
       id="portfolio"
@@ -69,28 +67,22 @@ export default function CaseStudies() {
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
         <div className="max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
-            Études de cas
-          </p>
-          <h2 id="realisations-heading" className={`${titleClass} mt-4`}>
-            Des projets qui prouvent le raisonnement
+          <h2 id="realisations-heading" className={titleClass}>
+            Quatre projets, vus de près.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-base-content/65">
-            Chaque projet part d’un blocage concret: inspirer confiance,
-            clarifier une offre, ou rendre une action évidente sur mobile.
+          <p className="mt-6 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
+            Chaque projet part d’un blocage concret : inspirer confiance,
+            clarifier une offre ou rendre une action évidente sur mobile.
           </p>
         </div>
 
         <div className="qclay-project-gallery mt-14 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(19rem,0.9fr)] lg:items-start lg:gap-12">
           <div className="qclay-project-stage lg:sticky lg:top-24">
-            <div className="qclay-project-stage-topline">
-              <span>La scène projet</span>
-              <span aria-hidden="true">
-                {String(activeIndex + 1).padStart(2, '0')} /{' '}
-                {String(caseStudies.length).padStart(2, '0')}
-              </span>
-            </div>
-            <div className="qclay-project-stage-screen" aria-hidden="true">
+            <div
+              className="qclay-project-stage-screen"
+              aria-hidden="true"
+              data-motion="picture"
+            >
               {caseStudies.map((caseStudy, index) => (
                 <figure
                   key={caseStudy.title}
@@ -110,12 +102,6 @@ export default function CaseStudies() {
                 </figure>
               ))}
             </div>
-            <div className="qclay-project-stage-caption">
-              <p>{activeCaseStudy.scope}</p>
-              <p className="font-display text-2xl font-semibold tracking-tight">
-                {activeCaseStudy.title}
-              </p>
-            </div>
           </div>
 
           <div className="qclay-project-list">
@@ -134,15 +120,12 @@ export default function CaseStudies() {
                   onMouseEnter={() => setActiveIndex(index)}
                   onFocusCapture={() => setActiveIndex(index)}
                 >
-                  <p className="qclay-project-number" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </p>
-                  <p className="text-sm font-medium text-[color:var(--brand-blue)]">
-                    {caseStudy.scope}
-                  </p>
-                  <h3 className="font-display mt-3 text-4xl font-semibold leading-none tracking-[-0.035em] text-base-content sm:text-5xl">
+                  <h3 className="font-display text-4xl font-semibold leading-none tracking-[-0.035em] text-base-content sm:text-5xl">
                     {caseStudy.title}
                   </h3>
+                  <p className="mt-3 text-base font-medium text-[color:var(--brand-blue)]">
+                    {caseStudy.scope}
+                  </p>
                   <dl className="mt-8 grid gap-5">
                     {[
                       ['Le blocage', caseStudy.challenge],
@@ -150,10 +133,10 @@ export default function CaseStudies() {
                       ['Ce que ça change', caseStudy.impact],
                     ].map(([label, text]) => (
                       <div key={label}>
-                        <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-base-content/50">
+                        <dt className="text-sm font-semibold text-base-content/60">
                           {label}
                         </dt>
-                        <dd className="mt-1.5 text-sm leading-6 text-base-content/72">
+                        <dd className="mt-1 text-base leading-7 text-base-content/75">
                           {text}
                         </dd>
                       </div>

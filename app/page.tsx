@@ -185,8 +185,12 @@ const homeJsonLd = createJsonLdGraph([
 ])
 
 /* ─── Shared typography tokens (kept consistent across sections) ───────── */
+const displayTitle =
+  'font-display text-[clamp(2.4rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.035em]'
 const sectionTitle =
   'font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+const leadText =
+  'text-base leading-7 text-base-content/70 md:text-lg md:leading-8'
 const contactHeading: readonly WordSegment[] = [
   { text: 'Parlons' },
   { text: 'de' },
@@ -216,14 +220,8 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
-                En 30 secondes
-              </p>
-              <h2
-                id="showreel-heading"
-                className="font-display mt-4 text-[clamp(2.4rem,5vw,5.25rem)] font-semibold leading-[0.96] tracking-[-0.04em]"
-              >
-                Mon travail, en mouvement.
+              <h2 id="showreel-heading" className={displayTitle}>
+                Mon travail en 30 secondes.
               </h2>
             </div>
             <p className="max-w-sm text-base leading-7 text-base-content/65 md:pb-2">
@@ -232,7 +230,7 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="mt-10 lg:mt-14">
+          <div className="mt-10 lg:mt-14" data-motion="picture">
             <Showreel />
           </div>
         </div>
@@ -244,14 +242,14 @@ export default async function Home() {
         className="qclay-trust qclay-flow-section qclay-flow-trust py-20 lg:py-28"
       >
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
-          <h2
-            id="trust-heading"
-            className="font-display max-w-3xl text-[clamp(2.4rem,5vw,5.25rem)] font-semibold leading-[0.96] tracking-[-0.04em]"
-          >
-            Des produits et des équipes qui ne peuvent pas se contenter de
-            l’à-peu-près.
+          <h2 id="trust-heading" className={displayTitle}>
+            Ils m’ont fait confiance.
           </h2>
-          <div className="qclay-logo-row mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <p className={`mt-6 max-w-2xl ${leadText}`}>
+            Des startups, des grands comptes et des artisans lyonnais avec qui
+            j’ai travaillé.
+          </p>
+          <div className="qclay-logo-row mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {trustLogos.map((entry) => (
               <a
                 key={entry.name}
@@ -268,10 +266,10 @@ export default async function Home() {
                   className="h-11 w-11 shrink-0 rounded-lg object-cover transition group-hover:scale-[1.03]"
                 />
                 <span>
-                  <span className="block text-sm font-semibold tracking-tight text-base-content">
+                  <span className="block text-base font-semibold tracking-tight text-base-content">
                     {entry.name}
                   </span>
-                  <span className="mt-0.5 block text-xs leading-5 text-base-content/55">
+                  <span className="mt-0.5 block text-sm leading-5 text-base-content/65">
                     {entry.proof}
                   </span>
                 </span>
@@ -289,13 +287,10 @@ export default async function Home() {
       >
         <div className="qclay-reveal-grid mx-auto max-w-6xl px-6 lg:px-10">
           <div className="max-w-3xl">
-            <h2
-              id="offers-heading"
-              className="font-display text-[clamp(2.6rem,5.5vw,5.75rem)] font-semibold leading-[0.95] tracking-[-0.04em]"
-            >
-              Sites web, applications et automatisation pour votre activité.
+            <h2 id="offers-heading" className={displayTitle}>
+              Quatre services, un seul interlocuteur.
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
+            <p className={`mt-6 max-w-2xl ${leadText}`}>
               J’accompagne les PME et indépendants à Lyon : création de site
               vitrine, application métier, automatisation n8n et formation IA.
               Chaque service commence par votre besoin et un périmètre clair.
@@ -309,7 +304,7 @@ export default async function Home() {
               <h3 className="font-display text-lg font-semibold tracking-tight">
                 Création de site web à Lyon
               </h3>
-              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+              <p className="mt-1.5 text-base leading-7 text-base-content/65">
                 Ma façon de cadrer, développer et référencer un site
                 professionnel local.
               </p>
@@ -326,7 +321,7 @@ export default async function Home() {
               <h3 className="font-display text-lg font-semibold tracking-tight">
                 Automatisation n8n à Lyon
               </h3>
-              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+              <p className="mt-1.5 text-base leading-7 text-base-content/65">
                 Des workflows fiables pour connecter vos outils et supprimer les
                 tâches répétitives.
               </p>
@@ -342,7 +337,7 @@ export default async function Home() {
               <h3 className="font-display text-lg font-semibold tracking-tight">
                 Application web sur mesure à Lyon
               </h3>
-              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+              <p className="mt-1.5 text-base leading-7 text-base-content/65">
                 Un outil métier adapté à vos utilisateurs, vos données et vos
                 logiciels existants.
               </p>
@@ -357,7 +352,7 @@ export default async function Home() {
               <h3 className="font-display text-lg font-semibold tracking-tight">
                 Formation IA à Lyon
               </h3>
-              <p className="mt-1.5 text-sm leading-6 text-base-content/60">
+              <p className="mt-1.5 text-base leading-7 text-base-content/65">
                 Des ateliers pratiques pour utiliser l’IA dans les tâches
                 quotidiennes et vérifier ses résultats.
               </p>
@@ -384,21 +379,21 @@ export default async function Home() {
 
       <section
         aria-labelledby="guides-heading"
-        className="border-y border-base-300 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <h2 id="guides-heading" className={sectionTitle}>
             Préparer votre projet web ou n8n.
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-base-content/65">
+          <p className={`mt-5 max-w-2xl ${leadText}`}>
             Des guides pour préciser le besoin, comprendre un devis et choisir
             la première étape.
           </p>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <div className="qclay-reveal-grid mt-10 grid gap-5 md:grid-cols-3">
             {latestPosts.map((post) => (
               <article
                 key={post.slug}
-                className="rounded-xl border border-base-300 p-6"
+                className="rounded-xl bg-base-200/60 p-6"
               >
                 <h3 className="text-xl font-semibold tracking-tight">
                   <Link
@@ -408,7 +403,7 @@ export default async function Home() {
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-4 text-sm leading-6 text-base-content/65">
+                <p className="mt-4 text-base leading-7 text-base-content/70">
                   {post.description}
                 </p>
               </article>
@@ -429,25 +424,21 @@ export default async function Home() {
         aria-labelledby="contact-heading"
         className="qclay-section qclay-flow-section qclay-flow-contact qclay-scroll-reveal cv-auto px-6 py-24 lg:px-10 lg:py-36"
       >
-        <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
-          <div className="qclay-contact-status inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium uppercase tracking-wider">
-            Réponse sous 24h ouvrées
-          </div>
-
-          <h2 id="contact-heading" className={`mt-5 ${sectionTitle}`}>
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <h2 id="contact-heading" className={sectionTitle}>
             <RevealWords segments={contactHeading} />
           </h2>
 
           <p className="qclay-contact-intro mt-4 max-w-xl text-base leading-7 md:text-lg md:leading-8">
-            Quelques lignes sur votre activité, votre objectif et vos
-            contraintes, je vous réponds avec une première lecture, sans
-            engagement.
+            Décrivez en quelques lignes votre activité, votre objectif et vos
+            contraintes. Je vous réponds sous 24 h ouvrées avec une première
+            lecture, sans engagement.
           </p>
 
           <div className="mt-8 w-full max-w-xl">
             <ContactForm />
 
-            <p className="qclay-contact-links mt-6 text-center text-sm">
+            <p className="qclay-contact-links mt-6 text-center text-base">
               Vous préférez l’email&nbsp;?{' '}
               <a
                 href="mailto:bruy.benoit@gmail.com"
