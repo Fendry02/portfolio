@@ -121,9 +121,9 @@ export default function ScrollStory() {
           </div>
         </div>
 
-        <div className="qclay-story-progress" aria-hidden="true">
-          <span />
-        </div>
+        <p className="qclay-story-count" aria-hidden="true">
+          <span data-story-count>1</span> sur 3
+        </p>
       </div>
     </section>
   )

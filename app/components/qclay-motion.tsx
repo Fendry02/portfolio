@@ -55,6 +55,7 @@ export default function QClayMotion() {
         .forEach((story) => {
           const stepCount = Number(story.dataset.storySteps ?? 1)
           const figure = story.querySelector<HTMLElement>('[data-motion-count]')
+          const count = story.querySelector<HTMLElement>('[data-story-count]')
           let hasCounted = false
 
           story.dataset.storyStep = '0'
@@ -73,7 +74,10 @@ export default function QClayMotion() {
                 onUpdate: (self) => {
                   const step = getScrollStoryStep(self.progress, stepCount)
 
-                  story.dataset.storyStep = `${step}`
+                  if (story.dataset.storyStep !== `${step}`) {
+                    story.dataset.storyStep = `${step}`
+                    if (count) count.textContent = `${step + 1}`
+                  }
                   // The figure counts up once, when its chapter comes on stage.
                   if (figure && !hasCounted && step === stepCount - 1) {
                     hasCounted = true

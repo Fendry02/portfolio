@@ -117,6 +117,9 @@ export default function Showreel() {
           ref={videoRef}
           className="qclay-showreel-video"
           src={isPortrait ? showreelVideo.portraitSrc : showreelVideo.src}
+          poster={
+            isPortrait ? showreelVideo.portraitPoster : showreelVideo.poster
+          }
           preload="none"
           playsInline
           controls={!isIdle && !isEnded && !muted}

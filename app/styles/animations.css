@@ -902,24 +902,14 @@
   line-height: 1.5;
 }
 
-.qclay-story-progress {
+.qclay-story-count {
   position: absolute;
   right: clamp(1.5rem, 4vw, 4rem);
   bottom: 2rem;
-  left: clamp(1.5rem, 4vw, 4rem);
   z-index: 2;
-  height: 1px;
-  background: oklch(20.8% 0.042 265.755 / 0.18);
-}
-
-.qclay-story-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--brand-blue);
-  transform: scaleX(var(--qclay-story-progress, 0));
-  transform-origin: left;
-  will-change: transform;
+  color: oklch(20.8% 0.042 265.755 / 0.65);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 767px) {
@@ -1617,7 +1607,7 @@ body:has(.qclay-home) .qclay-site-footer img {
 
   .qclay-hero-story-art,
   .qclay-story-frame:not(.qclay-story-frame--intro),
-  .qclay-story-progress {
+  .qclay-story-count {
     display: none;
   }
 
