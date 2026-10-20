@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 const sectionTitle =
-  'font-display text-[clamp(2.1rem,3.6vw,3.25rem)] font-semibold leading-[1.08] tracking-tight'
+  'font-display text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
 const bodyText = 'text-base leading-7 text-base-content/65'
 
 export default async function CaseStudyDetailPage({ params }: PageProps) {
@@ -90,17 +90,17 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
       <section className="qclay-hero px-6 pb-16 pt-16 lg:px-10 lg:pb-24 lg:pt-24">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="text-sm font-medium text-[color:var(--brand-blue)]">
-              {caseStudy.sector} · {caseStudy.city}
-            </p>
-            <h1 className="mt-4 text-[clamp(2.6rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.04em]">
+            <h1 className="text-[clamp(2.4rem,4.4vw,4rem)] font-semibold leading-[1] tracking-[-0.035em]">
               {caseStudy.client}, {caseStudy.sector.toLocaleLowerCase('fr')}
             </h1>
+            <p className="mt-4 text-base font-medium text-[color:var(--brand-blue)]">
+              {caseStudy.city}
+            </p>
             <p className={`mt-7 ${bodyText} md:text-lg md:leading-8`}>
               {caseStudy.scope}
             </p>
           </div>
-          <figure className="relative aspect-[16/10] overflow-hidden rounded-xl border border-base-300 bg-base-200">
+          <figure className="relative aspect-[16/10] overflow-hidden rounded-xl bg-base-200">
             <Image
               src={caseStudy.image}
               alt={caseStudy.imageAlt}
@@ -113,7 +113,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <h2 className={sectionTitle}>Le contexte</h2>
           <p className={bodyText}>
@@ -124,21 +124,21 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <h2 className={sectionTitle}>Le blocage</h2>
           <p className={bodyText}>{caseStudy.challenge}</p>
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-y border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <h2 className={sectionTitle}>La réponse</h2>
           <p className={bodyText}>{caseStudy.solution}</p>
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-b border-base-300 px-6 py-20 lg:px-10 lg:py-28">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <h2 className={sectionTitle}>Ce que cela change</h2>
           <p className={bodyText}>{caseStudy.impact}</p>
@@ -153,7 +153,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
               {caseStudy.stack.map((item) => (
                 <li
                   key={item}
-                  className="rounded-lg border border-base-300 px-3 py-2 text-sm font-medium text-base-content/70"
+                  className="rounded-lg bg-base-200/70 px-3 py-2 text-base font-medium text-base-content/75"
                 >
                   {item}
                 </li>
@@ -179,7 +179,7 @@ export default async function CaseStudyDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
           <h2 className={sectionTitle}>Un besoin comparable&nbsp;?</h2>
           <p className={`mt-5 ${bodyText}`}>

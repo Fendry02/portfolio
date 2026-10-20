@@ -98,34 +98,32 @@ export default async function BlogPostPage({ params }: PageProps) {
           >
             ← Tous les articles
           </Link>
-          <p className="mt-8 text-sm font-medium text-[color:var(--brand-blue)]">
-            {post.cluster === 'automation'
-              ? 'n8n et automatisation'
-              : 'Création de site web'}
-          </p>
-          <h1 className="mt-4 text-[clamp(2.5rem,5vw,4.75rem)] font-semibold leading-[0.98] tracking-[-0.04em]">
+          <h1 className="mt-8 text-[clamp(2.1rem,4.4vw,3.75rem)] font-semibold leading-[1.02] tracking-[-0.03em]">
             {post.title}
           </h1>
           <p className="mt-7 text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
             {post.description}
           </p>
-          <time
-            dateTime={post.datePublished}
-            className="mt-7 block text-sm text-base-content/55"
-          >
-            Publié le {formatDate(post.datePublished)}
-          </time>
+          <p className="mt-7 text-sm text-base-content/60">
+            {post.cluster === 'automation'
+              ? 'n8n et automatisation'
+              : 'Création de site web'}{' '}
+            · Publié le{' '}
+            <time dateTime={post.datePublished}>
+              {formatDate(post.datePublished)}
+            </time>
+          </p>
         </header>
 
         <div className="prose prose-lg mx-auto mt-14 max-w-3xl prose-headings:font-display prose-headings:tracking-tight prose-p:leading-8 prose-a:text-[color:var(--brand-blue)] prose-a:font-medium prose-a:no-underline hover:prose-a:underline">
           <Post />
         </div>
 
-        <aside className="mx-auto mt-16 max-w-3xl border-t border-base-300 pt-10">
+        <aside className="mx-auto mt-16 max-w-3xl rounded-2xl bg-base-200/70 p-8 sm:p-10">
           <h2 className="font-display text-2xl font-semibold tracking-tight">
             Aller plus loin sur ce sujet
           </h2>
-          <p className="mt-3 text-base leading-7 text-base-content/65">
+          <p className="mt-3 text-base leading-7 text-base-content/70">
             Si ce sujet rejoint un problème concret dans votre activité, le
             meilleur point de départ est d’en examiner le contexte et les
             contraintes.

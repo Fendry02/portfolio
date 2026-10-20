@@ -195,10 +195,8 @@ const principles = [
   },
 ]
 
-const eyebrow =
-  'text-xs font-semibold uppercase tracking-[0.18em] text-base-content/65'
 const heading2 =
-  'text-[clamp(2.25rem,3.6vw,3.5rem)] font-semibold leading-[1.08] tracking-tight'
+  'text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.025em]'
 const accent = 'var(--brand-blue)'
 const btnBlue =
   'interactive qclay-button inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--brand-blue)] px-5 py-3 text-sm font-medium text-white hover:bg-[color:var(--brand-blue-strong)]'
@@ -217,22 +215,19 @@ export default function Jobs() {
       >
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-16 pt-8 sm:gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20 lg:px-10 lg:pb-28 lg:pt-16">
           <div className="qclay-reveal-stack flex flex-col justify-center">
-            <p className={eyebrow}>English technical profile</p>
             <h1
               id="jobs-hero-heading"
-              className="mt-4 text-[clamp(2.25rem,6vw,4.25rem)] font-semibold leading-[1.05] tracking-tight"
+              className="text-[clamp(2.25rem,4.4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.025em]"
             >
-              Hi, I’m Benoit.{' '}
-              <span className="text-base-content/65">
-                JavaScript Tech Lead, full-stack developer and{' '}
-                <span style={{ color: accent }}>AI-augmented</span> builder.
-              </span>
+              Hi, I’m Benoit,{' '}
+              <span style={{ color: accent }}>JavaScript Tech Lead.</span>
             </h1>
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-base-content/65 md:text-lg md:leading-8">
-              I turn complex product ideas into scalable web platforms, from the
-              database up to the interface. I care about clean code, sane
-              architecture and shipping things that actually get used.
+            <p className="mt-6 max-w-xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
+              Full-stack developer and AI-augmented builder, I turn complex
+              product ideas into scalable web platforms, from the database up to
+              the interface. I care about clean code, sane architecture and
+              shipping things that actually get used.
             </p>
 
             <div className="mt-8 flex flex-col gap-2.5 sm:flex-row sm:items-center">
@@ -248,7 +243,7 @@ export default function Jobs() {
             <dl className="qclay-metrics mt-12 grid max-w-md grid-cols-3 gap-x-6 border-t border-base-300 pt-6">
               {stats.map((s) => (
                 <div key={s.label} className="qclay-metric">
-                  <dt className={eyebrow}>{s.label}</dt>
+                  <dt className="text-sm text-base-content/65">{s.label}</dt>
                   <dd className="mt-1.5 text-xl font-semibold tracking-tight">
                     {s.value}
                   </dd>
@@ -273,7 +268,7 @@ export default function Jobs() {
                 className="rounded-full object-cover object-[center_32%]"
               />
 
-              <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-base-content/65">
+              <div className="qclay-float-badge absolute right-0 top-4 inline-flex items-center gap-1.5 rounded-md border border-base-300 bg-base-100 px-2.5 py-1 text-[13px] font-medium text-base-content/70">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 16 16"
@@ -283,11 +278,11 @@ export default function Jobs() {
                 >
                   <path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5c0 3.2 4.05 7.92 4.22 8.12a.36.36 0 0 0 .56 0C8.45 13.92 12.5 9.2 12.5 6A4.5 4.5 0 0 0 8 1.5Zm0 6.25A1.75 1.75 0 1 1 8 4.25a1.75 1.75 0 0 1 0 3.5Z" />
                 </svg>
-                Lyon · France
+                Lyon, France
               </div>
             </div>
 
-            <dl className="mt-7 flex items-center gap-3.5 rounded-2xl border border-base-300 bg-base-100 px-5 py-3.5 shadow-[0_10px_30px_oklch(20.8%_0.042_265.755/0.06)]">
+            <dl className="mt-7 flex items-center gap-3.5 rounded-2xl bg-base-200/70 px-5 py-3.5">
               <dd
                 className="text-3xl font-bold leading-none tracking-tight"
                 style={{ color: accent }}
@@ -295,7 +290,7 @@ export default function Jobs() {
                 10
                 <span className="align-top text-xl">+</span>
               </dd>
-              <dt className="text-left text-[11px] font-semibold uppercase leading-snug tracking-[0.16em] text-base-content/65">
+              <dt className="text-left text-sm leading-snug text-base-content/70">
                 years
                 <br />
                 experience
@@ -314,13 +309,9 @@ export default function Jobs() {
           <div className="qclay-ai-card relative overflow-hidden rounded-2xl bg-base-content p-8 text-white md:p-12">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:gap-16">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-white/75">
-                  AI-augmented workflow
-                </div>
-
                 <h2
                   id="ai-heading"
-                  className="mt-5 text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-tight"
+                  className="text-[clamp(1.75rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-tight"
                 >
                   AI is wired into how I ship.
                 </h2>
@@ -344,7 +335,7 @@ export default function Jobs() {
                   ].map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md border border-white/15 px-2 py-0.5 text-xs font-medium text-white/70"
+                      className="rounded-md bg-white/10 px-2 py-0.5 text-sm font-medium text-white/80"
                     >
                       {tag}
                     </span>
@@ -361,7 +352,7 @@ export default function Jobs() {
                     <h3 className="text-base font-semibold leading-tight tracking-tight">
                       {p.title}
                     </h3>
-                    <p className="mt-1.5 text-sm leading-6 text-white/65">
+                    <p className="mt-1.5 text-base leading-7 text-white/70">
                       {p.text}
                     </p>
                   </li>
@@ -375,19 +366,17 @@ export default function Jobs() {
       {/* ──────────────────── APPROACH / PHILOSOPHY ──────────────────── */}
       <section
         aria-labelledby="approach-heading"
-        className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
+        className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:gap-16">
             <div>
-              <p className={eyebrow}>How I work</p>
-              <h2 id="approach-heading" className={`mt-3 ${heading2}`}>
+              <h2 id="approach-heading" className={heading2}>
                 Three principles, applied consistently.
               </h2>
-              <p className="mt-5 max-w-md text-sm leading-6 text-base-content/65">
-                Every line of code should serve a purpose. Every architecture
-                decision should be justified. Every solution should outlive the
-                meeting where it was decided.
+              <p className="mt-5 max-w-md text-base leading-7 text-base-content/70">
+                I keep code purposeful, justify architecture choices and build
+                solutions meant to last well past their first release.
               </p>
             </div>
 
@@ -397,7 +386,7 @@ export default function Jobs() {
                   <h3 className="text-base font-semibold tracking-tight">
                     {p.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-base-content/65">
+                  <p className="mt-2 text-base leading-7 text-base-content/70">
                     {p.text}
                   </p>
                 </li>
@@ -415,8 +404,7 @@ export default function Jobs() {
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Stack</p>
-            <h2 id="skills-heading" className={`mt-3 ${heading2}`}>
+            <h2 id="skills-heading" className={heading2}>
               From the database up to the browser.
             </h2>
           </div>
@@ -427,8 +415,10 @@ export default function Jobs() {
                 key={group.title}
                 className="flex flex-col py-8 lg:px-8 lg:first:pl-0 lg:last:pr-0"
               >
-                <p className={eyebrow}>{group.title}</p>
-                <p className="mt-2.5 text-sm leading-6 text-base-content/65">
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {group.title}
+                </h3>
+                <p className="mt-2.5 text-base leading-7 text-base-content/70">
                   {group.pitch}
                 </p>
 
@@ -436,12 +426,12 @@ export default function Jobs() {
                   {group.items.map((item) => (
                     <li
                       key={item.name}
-                      className="flex items-center justify-between text-sm"
+                      className="flex items-center justify-between text-base"
                     >
                       <span className="font-medium tracking-tight">
                         {item.name}
                       </span>
-                      <span className="font-mono text-xs text-base-content/50">
+                      <span className="text-sm tabular-nums text-base-content/60">
                         {item.detail}
                       </span>
                     </li>
@@ -461,8 +451,7 @@ export default function Jobs() {
       >
         <div className="mx-auto max-w-6xl">
           <div className="max-w-2xl">
-            <p className={eyebrow}>Experience</p>
-            <h2 id="experience-heading" className={`mt-3 ${heading2}`}>
+            <h2 id="experience-heading" className={heading2}>
               Roles, projects and teams I’ve worked with.
             </h2>
           </div>
@@ -470,7 +459,7 @@ export default function Jobs() {
           <ol className="qclay-reveal-grid mt-10 space-y-3">
             {roles.map((role) => (
               <li key={`${role.period}-${role.company}`}>
-                <article className="qclay-subtle-card group relative grid gap-5 rounded-xl border border-base-300 bg-base-100 p-5 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">
+                <article className="group relative grid gap-5 rounded-xl bg-base-100 p-5 md:grid-cols-[160px_1fr_minmax(0,120px)] md:items-start md:gap-7 md:p-6">
                   <div className="flex items-center gap-3 md:flex-col md:items-start md:gap-2.5">
                     {role.image ? (
                       <Image
@@ -483,29 +472,29 @@ export default function Jobs() {
                     ) : (
                       <div
                         aria-hidden="true"
-                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-base-300 font-mono text-xs font-semibold text-base-content/50"
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-base-200 text-sm font-semibold text-base-content/60"
                       >
                         {role.company.slice(0, 2).toUpperCase()}
                       </div>
                     )}
-                    <time className="font-mono text-[11px] uppercase tracking-wider text-base-content/65">
+                    <time className="text-sm tabular-nums text-base-content/65">
                       {role.period}
                     </time>
                   </div>
 
                   <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[color:var(--brand-blue)]">
+                    <p className="text-sm font-semibold text-[color:var(--brand-blue)]">
                       {role.company}
                     </p>
                     <h3 className="mt-1 text-xl font-semibold tracking-tight">
                       {role.title}
                     </h3>
-                    <p className="mt-2.5 text-sm leading-6 text-base-content/65">
+                    <p className="mt-2.5 text-base leading-7 text-base-content/70">
                       {role.summary}
                     </p>
 
                     {role.highlights.length > 0 && (
-                      <ul className="mt-4 space-y-1 text-sm text-base-content/70">
+                      <ul className="mt-4 space-y-1 text-base text-base-content/75">
                         {role.highlights.map((h) => (
                           <li key={h} className="flex items-start gap-2.5">
                             <span
@@ -523,7 +512,7 @@ export default function Jobs() {
                         {role.stack.map((s) => (
                           <span
                             key={s}
-                            className="rounded-md border border-base-300 px-2 py-0.5 text-xs font-medium text-base-content/65"
+                            className="rounded-md bg-base-200/70 px-2 py-0.5 text-sm font-medium text-base-content/70"
                           >
                             {s}
                           </span>
@@ -555,24 +544,19 @@ export default function Jobs() {
       <section
         id="contact"
         aria-labelledby="jobs-contact-heading"
-        className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 lg:px-10 lg:py-24"
+        className="qclay-section qclay-scroll-reveal cv-auto px-6 py-20 lg:px-10 lg:py-24"
       >
         <div className="qclay-reveal-stack mx-auto flex max-w-2xl flex-col items-center text-center">
-          <div className="qclay-pill inline-flex items-center gap-2 rounded-full border border-base-300 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-base-content/65">
-            <span className="status-dot" aria-hidden="true" />
-            Open to interesting work
-          </div>
-
           <h2
             id="jobs-contact-heading"
-            className="mt-5 text-[clamp(1.875rem,3.5vw,3rem)] font-semibold leading-[1.1] tracking-tight"
+            className="text-[clamp(1.875rem,3.5vw,3rem)] font-semibold leading-[1.1] tracking-tight"
           >
             Let’s talk.
           </h2>
 
           <p className="mt-4 max-w-xl text-base leading-7 text-base-content/65">
-            Whether you’re hiring, scoping a project or just want to chat about
-            JavaScript, drop me a line.
+            I’m open to interesting work. Whether you’re hiring, scoping a
+            project or just want to chat about JavaScript, drop me a line.
           </p>
 
           <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:justify-center">

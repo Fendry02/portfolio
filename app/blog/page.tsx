@@ -63,26 +63,25 @@ export default async function BlogIndexPage() {
 
       <section className="qclay-hero px-6 pb-16 pt-16 lg:px-10 lg:pb-24 lg:pt-24">
         <div className="mx-auto max-w-6xl">
-          <h1 className="max-w-4xl text-[clamp(2.6rem,6vw,5.25rem)] font-semibold leading-[0.98] tracking-[-0.04em]">
-            Conseils n8n et création de site web, pour des décisions plus
-            simples.
+          <h1 className="max-w-4xl text-[clamp(2.4rem,5.4vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
+            Conseils n8n et création de site web.
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
-            Des méthodes concrètes pour rendre un processus plus fiable,
-            clarifier une présence en ligne et savoir où l’automatisation peut
-            réellement aider.
+            Des méthodes concrètes pour décider plus simplement : rendre un
+            processus plus fiable, clarifier une présence en ligne et savoir où
+            l’automatisation peut réellement aider.
           </p>
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-16 lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className={sectionTitle}>Les derniers articles</h2>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <div className="qclay-reveal-grid mt-10 grid gap-5 md:grid-cols-2">
             {posts.map((post) => (
               <article
                 key={post.slug}
-                className="qclay-subtle-card flex flex-col rounded-xl border border-base-300 bg-base-100 p-6"
+                className="flex flex-col rounded-xl bg-base-200/70 p-6"
               >
                 <p className="text-sm font-medium text-[color:var(--brand-blue)]">
                   {post.cluster === 'automation'
@@ -97,7 +96,7 @@ export default async function BlogIndexPage() {
                     {post.title}
                   </Link>
                 </h3>
-                <p className="mt-4 text-sm leading-6 text-base-content/65">
+                <p className="mt-4 text-base leading-7 text-base-content/70">
                   {post.description}
                 </p>
                 <div className="mt-7 flex items-center justify-between gap-4">

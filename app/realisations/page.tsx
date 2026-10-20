@@ -57,23 +57,23 @@ export default function CaseStudiesPage() {
 
       <section className="qclay-hero px-6 pb-16 pt-16 lg:px-10 lg:pb-24 lg:pt-24">
         <div className="mx-auto max-w-6xl">
-          <h1 className="max-w-4xl text-[clamp(2.6rem,6vw,5.25rem)] font-semibold leading-[0.98] tracking-[-0.04em]">
-            Des réalisations qui partent d’un problème concret.
+          <h1 className="max-w-4xl text-[clamp(2.4rem,5.4vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.035em]">
+            Des réalisations concrètes.
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-base-content/70 md:text-lg md:leading-8">
-            Chaque étude de cas montre le contexte, le blocage et la réponse
-            apportée — sans prétendre transformer un projet en recette
+            Chaque étude de cas part d’un problème réel et montre le contexte,
+            le blocage et la réponse apportée, sans en faire une recette
             universelle.
           </p>
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-16 lg:px-10 lg:py-24">
-        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <section className="qclay-section qclay-scroll-reveal cv-auto px-6 py-16 lg:px-10 lg:py-24">
+        <div className="qclay-reveal-grid mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
           {caseStudies.map((caseStudy) => (
             <article
               key={caseStudy.slug}
-              className="qclay-subtle-card group overflow-hidden rounded-xl border border-base-300 bg-base-100"
+              className="group overflow-hidden rounded-xl bg-base-200/70"
             >
               <div className="relative aspect-[16/10] bg-base-200">
                 <Image
@@ -91,7 +91,7 @@ export default function CaseStudiesPage() {
                 <h2 className="mt-2 text-2xl font-semibold tracking-tight">
                   {caseStudy.client}
                 </h2>
-                <p className="mt-4 text-sm leading-6 text-base-content/65">
+                <p className="mt-4 text-base leading-7 text-base-content/70">
                   {caseStudy.challenge}
                 </p>
                 <Link
@@ -106,12 +106,12 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      <section className="qclay-section qclay-scroll-reveal cv-auto border-t border-base-300 px-6 py-20 text-center lg:px-10 lg:py-24">
+      <section className="qclay-section qclay-scroll-reveal cv-auto bg-base-200/50 px-6 py-20 text-center lg:px-10 lg:py-24">
         <div className="qclay-reveal-stack mx-auto max-w-2xl">
           <h2 className={sectionTitle}>
             Un projet à clarifier ou à construire&nbsp;?
           </h2>
-          <p className="mt-5 text-base leading-7 text-base-content/65">
+          <p className="mt-5 text-base leading-7 text-base-content/70">
             Décrivez le point qui bloque aujourd’hui. Nous verrons ensemble si
             un site, une application ou une automatisation peut vraiment le
             faire avancer.
