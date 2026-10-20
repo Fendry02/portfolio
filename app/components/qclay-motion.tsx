@@ -43,10 +43,6 @@ export default function QClayMotion() {
           }
 
           headerState = nextHeaderState
-          root.style.setProperty(
-            '--qclay-page-progress',
-            self.progress.toFixed(4),
-          )
         },
       })
 
@@ -60,8 +56,13 @@ export default function QClayMotion() {
 
           story.dataset.storyStep = '0'
           if (figure) figure.textContent = '0'
+          // Only the backdrop shapes read the progress: setting it on their
+          // container keeps the per-frame style recalc off the text frames.
+          const art =
+            story.querySelector<HTMLElement>('.qclay-hero-story-art') ?? story
+
           gsap.fromTo(
-            story,
+            art,
             { '--qclay-story-progress': 0 },
             {
               '--qclay-story-progress': 1,
@@ -100,7 +101,6 @@ export default function QClayMotion() {
 
       return () => {
         root.classList.remove('qclay-motion-ready')
-        root.style.removeProperty('--qclay-page-progress')
         header?.classList.remove('is-hidden')
       }
     },
