@@ -1,0 +1,47 @@
+---
+title: 'Héberger n8n : n8n Cloud ou votre propre serveur ?'
+description: 'n8n Cloud, serveur loué ou serveur interne : ce que chaque hébergement implique pour la maintenance, les sauvegardes et le RGPD de votre entreprise.'
+datePublished: '2026-10-26'
+dateModified: '2026-10-26'
+servicePath: '/services/automatisation-n8n-lyon'
+cluster: 'automation'
+---
+
+Un workflow n8n manipule des contacts, des factures et parfois des documents internes. Avant de construire le premier flux, il faut donc décider où il tournera. Le choix porte moins sur la technique que sur une question d’organisation : qui s’occupe de l’instance quand personne ne la regarde ?
+
+## Trois façons d’héberger n8n
+
+**n8n Cloud.** L’éditeur héberge et met à jour l’instance pour vous. D’après la [page tarifs de n8n](https://n8n.io/pricing/), les données des offres Cloud sont stockées dans l’Union européenne, sur des serveurs à Francfort. Vous payez selon le nombre d’exécutions mensuelles et vous n’avez aucun serveur à surveiller.
+
+**Un serveur loué.** La version Community de n8n est gratuite et s’installe sur une machine virtuelle chez un hébergeur, par exemple OVHcloud ou Scaleway pour rester en France. Le serveur coûte quelques euros à quelques dizaines d’euros par mois selon la puissance. Le temps d’exploitation, lui, n’apparaît sur aucune facture d’hébergement.
+
+**Un serveur de l’entreprise.** Certaines structures ont déjà une infrastructure interne et une personne pour l’administrer. n8n y trouve sa place, à condition que le serveur puisse recevoir les webhooks des outils en ligne lorsque vos flux en ont besoin.
+
+## Ce que l’auto-hébergement demande vraiment
+
+La [documentation d’hébergement](https://docs.n8n.io/hosting/) recommande Docker Compose pour une installation de production. L’installation elle-même va vite ; c’est l’exploitation qui demande de la discipline.
+
+Une instance qu’on peut confier à une PME comprend au minimum :
+
+- un accès en HTTPS derrière un proxy, avec des comptes nominatifs et non un identifiant partagé ;
+- une base PostgreSQL plutôt que la base SQLite installée par défaut, dès que les exécutions s’accumulent ;
+- des sauvegardes testées de la base et de la clé `N8N_ENCRYPTION_KEY`, qui chiffre les identifiants enregistrés ([documentation de la clé](https://docs.n8n.io/hosting/configuration/configuration-examples/encryption-key/)) : sans elle, une sauvegarde restaurée ne permet plus de se connecter aux outils ;
+- un calendrier de mises à jour et une alerte si l’instance ou un workflow tombe en panne.
+
+Sans ces points, on obtient une installation qui fonctionne jusqu’au premier incident. Le risque typique : un serveur monté pour un essai qui devient indispensable sans que personne ait prévu de le sauvegarder ni de le suivre.
+
+## Le RGPD ne se règle pas avec l’adresse du serveur
+
+Héberger n8n en France aide, mais vos données ne restent pas dans n8n. Un workflow qui lit Gmail, écrit dans HubSpot et appelle une API d’IA transmet des données personnelles à chacun de ces services. Chacun doit figurer parmi vos sous-traitants, avec sa propre localisation et ses propres garanties.
+
+n8n conserve aussi une copie des données traitées dans l’historique des exécutions. Par défaut, la [purge des exécutions](https://docs.n8n.io/hosting/scaling/execution-data/) supprime les exécutions terminées après 14 jours. En auto-hébergement, vous pouvez raccourcir ce délai avec `EXECUTIONS_DATA_MAX_AGE`, ou ne garder que les exécutions en erreur avec `EXECUTIONS_DATA_SAVE_ON_SUCCESS=none`. Pour un flux qui traite des candidatures ou des données de santé, ce réglage compte davantage que le pays du serveur.
+
+Un dernier point concerne la licence. La [Sustainable Use License](https://docs.n8n.io/n8n-community-license/sustainable-use-license/) autorise l’usage de n8n pour les besoins internes de l’entreprise, y compris avec l’aide d’un prestataire qui installe et maintient l’instance. Elle interdit en revanche de proposer n8n à vos propres clients pour qu’ils y connectent leurs comptes. Si c’est votre projet, lisez la licence avant de commencer.
+
+## Mon conseil selon votre situation
+
+Sans personne pour suivre un serveur, choisissez n8n Cloud. Vous payez plus cher à volume égal, mais vous achetez surtout l’absence de panne silencieuse un vendredi soir.
+
+Avec des volumes importants, des données sensibles ou une obligation de les garder sur votre infrastructure, l’auto-hébergement se justifie, à condition de prévoir dès le devis l’installation, les sauvegardes, les mises à jour et la surveillance. Le guide [prix d’une automatisation n8n](/blog/prix-automatisation-n8n) détaille ces postes. Si vous hésitez encore entre deux outils, lisez [n8n ou Make pour une PME](/blog/n8n-ou-make-pme).
+
+Mon [accompagnement en automatisation n8n à Lyon](/services/automatisation-n8n-lyon) inclut ce choix d’hébergement et sa documentation, pour que votre équipe sache qui fait quoi le jour où un flux s’arrête.

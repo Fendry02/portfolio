@@ -1,0 +1,55 @@
+---
+title: 'n8n ou Make : lequel choisir pour une PME ?'
+description: 'n8n ou Make pour automatiser les tâches d’une PME ? Facturation, hébergement des données, prise en main et maintenance : les critères pour trancher.'
+datePublished: '2026-10-26'
+dateModified: '2026-10-26'
+servicePath: '/services/automatisation-n8n-lyon'
+cluster: 'automation'
+---
+
+n8n et Make relient vos outils sans développer une application complète : un formulaire alimente le CRM, une facture part en comptabilité, une alerte arrive au bon responsable. Les deux font très bien ce travail. Ce qui les sépare, c’est la manière de compter l’usage, l’endroit où tournent vos données et la personne qui devra maintenir les scénarios dans deux ans.
+
+Je travaille surtout avec n8n. Cet article explique aussi dans quels cas je conseillerais Make.
+
+## Deux façons de compter l’usage
+
+n8n facture à l’exécution : un passage complet dans le workflow compte pour une exécution, qu’il contienne trois étapes ou trente. Make utilise des crédits, et la plupart des actions sur une application (lire, chercher, créer ou modifier une donnée) en consomment un chacune.
+
+Prenons un flux courant. Une demande arrive par formulaire, le workflow cherche le contact dans le CRM pour éviter un doublon, le crée ou le met à jour, ajoute une note puis prévient un commercial. Chez n8n, chaque demande représente une exécution. Chez Make, elle consomme un crédit par action, soit quatre ou cinq pour ce parcours.
+
+L’écart grandit avec les boucles. Une synchronisation qui parcourt 200 lignes toutes les heures fait une exécution par heure dans n8n ; dans Make, chaque ligne traitée consomme ses propres crédits. Pour un flux simple et peu fréquent, cet écart ne compte presque pas. Pour des traitements par lots, il pèse souvent plus lourd que le prix d’entrée de l’abonnement.
+
+Les grilles évoluent régulièrement. Avant de choisir, estimez votre volume mensuel puis comparez-le aux [tarifs de n8n](https://n8n.io/pricing/) et aux [tarifs de Make](https://www.make.com/en/pricing) du moment.
+
+## Où tournent vos données
+
+Make est un service en ligne uniquement. À l’inscription, l’organisation est rattachée à une zone, européenne ou américaine, et la [documentation de Make](https://help.make.com/ai-providers-and-data-zones-in-make) précise que certains modèles d’IA restent traités hors de l’Union européenne même dans une zone EU. Vérifiez la zone avant de construire vos premiers scénarios plutôt qu’après.
+
+n8n laisse le choix. La version Cloud stocke les données en Europe, sur des serveurs à Francfort ; la version Community s’installe gratuitement sur votre propre serveur, ce qui garde les données d’exécution chez vous. Ce choix a un coût : quelqu’un doit installer, sauvegarder et mettre à jour l’instance. Le détail se trouve dans le guide [héberger n8n : Cloud ou serveur](/blog/heberger-n8n-cloud-ou-serveur).
+
+## Qui construit et qui maintient
+
+Make est plus accessible à une personne non technique. Son éditeur visuel montre bien le chemin des données, et ses modules couvrent beaucoup d’applications grand public avec peu de paramétrage.
+
+n8n demande un peu plus de rigueur au départ. En contrepartie, un nœud peut contenir du code JavaScript ou Python lorsqu’une règle métier ne rentre pas dans un connecteur, et un appel HTTP permet de joindre une API sans attendre qu’un module existe. Dès que les règles se compliquent, je trouve un workflow n8n plus simple à tester et à documenter.
+
+Posez la question franchement : qui modifiera le scénario quand le CRM changera de champ ? Si la réponse est une assistante ou un responsable commercial sans aide technique, Make part avec un avantage. Si un prestataire ou une personne à l’aise avec les API suit les flux, n8n donne plus de marge.
+
+## Mes recommandations
+
+Je conseille Make lorsque les flux sont simples, peu nombreux et peu fréquents, que l’équipe veut les modifier elle-même et que l’hébergement dans une zone européenne du service suffit.
+
+Je conseille n8n lorsque :
+
+- les volumes ou les boucles feraient grimper la consommation de crédits ;
+- les données doivent rester sur un serveur que vous contrôlez ;
+- les règles métier demandent du code ou des appels d’API spécifiques ;
+- plusieurs workflows doivent partager des conventions, des alertes et une documentation communes.
+
+Changer d’outil plus tard coûte cher. Les deux exportent leurs scénarios au format JSON, mais ces formats ne sont pas compatibles entre eux : passer de l’un à l’autre revient à reconstruire chaque flux et à refaire les tests.
+
+## Avant de choisir
+
+Listez les deux ou trois processus que vous voulez automatiser, avec le volume mensuel, les outils concernés et les données personnelles qui transitent. Avec ces éléments, le choix se fait souvent en une réunion. Le guide [prix d’une automatisation n8n](/blog/prix-automatisation-n8n) détaille les postes à prévoir, et l’[audit de vos outils et processus](/blog/audit-informatique-lyon-processus-automatisation) aide à choisir le premier flux.
+
+Si vous êtes à Lyon ou dans les environs, mon [accompagnement en automatisation n8n](/services/automatisation-n8n-lyon) commence par ce cadrage. Quand Make convient mieux à votre équipe, je vous le dis.

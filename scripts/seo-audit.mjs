@@ -101,6 +101,8 @@ const pages = [
       '/blog/automatiser-processus-n8n-sans-boite-noire',
       '/blog/audit-informatique-lyon-processus-automatisation',
       '/blog/prix-automatisation-n8n',
+      '/blog/n8n-ou-make-pme',
+      '/blog/heberger-n8n-cloud-ou-serveur',
       '/services',
     ],
     requiredJsonLdTypes: [
@@ -329,6 +331,36 @@ const newGuides = [
       '/services/creation-site-web-lyon',
       '/realisations/electreau-lyon',
       '/realisations/chez-viko',
+    ],
+  },
+  {
+    slug: 'n8n-ou-make-pme',
+    title: 'n8n ou Make : lequel choisir pour une PME ?',
+    descriptionIncludes: 'n8n ou Make',
+    h1Includes: 'n8n ou Make',
+    contentIncludes: [
+      'Deux façons de compter l’usage',
+      'Où tournent vos données',
+    ],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/blog/heberger-n8n-cloud-ou-serveur',
+      '/blog/prix-automatisation-n8n',
+    ],
+  },
+  {
+    slug: 'heberger-n8n-cloud-ou-serveur',
+    title: 'Héberger n8n : n8n Cloud ou votre propre serveur ?',
+    descriptionIncludes: 'n8n Cloud',
+    h1Includes: 'Héberger n8n',
+    contentIncludes: [
+      'Ce que l’auto-hébergement demande vraiment',
+      'Le RGPD ne se règle pas avec l’adresse du serveur',
+    ],
+    requiredInternalLinks: [
+      '/services/automatisation-n8n-lyon',
+      '/blog/n8n-ou-make-pme',
+      '/blog/prix-automatisation-n8n',
     ],
   },
 ]
@@ -641,6 +673,8 @@ async function auditSitemap() {
     '/blog/audit-informatique-lyon-processus-automatisation',
     '/blog/prix-automatisation-n8n',
     '/blog/prix-site-vitrine-lyon',
+    '/blog/n8n-ou-make-pme',
+    '/blog/heberger-n8n-cloud-ou-serveur',
   ]) {
     report(locs.includes(publicUrl(path)), `sitemap includes ${path}`)
   }

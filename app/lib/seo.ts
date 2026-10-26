@@ -137,7 +137,7 @@ export const routeRegistry = [
   },
   {
     path: serviceRoutes.automationN8nLyon,
-    lastModified: lastModified('2026-10-02'),
+    lastModified: lastModified('2026-10-26'),
     changeFrequency: 'monthly',
     priority: 0.9,
   },

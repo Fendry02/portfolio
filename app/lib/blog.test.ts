@@ -9,6 +9,8 @@ test('blog posts are read from MDX frontmatter and sorted by publication date', 
   assert.deepEqual(
     posts.map((post) => post.slug),
     [
+      'heberger-n8n-cloud-ou-serveur',
+      'n8n-ou-make-pme',
       'audit-informatique-lyon-processus-automatisation',
       'prix-automatisation-n8n',
       'prix-site-vitrine-lyon',

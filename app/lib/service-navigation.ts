@@ -109,6 +109,18 @@ const serviceResources: Partial<
       description:
         'Distinguer le cadrage, les intégrations et les tests de l’hébergement et de la maintenance.',
     },
+    {
+      href: '/blog/n8n-ou-make-pme',
+      title: 'n8n ou Make : lequel choisir pour une PME ?',
+      description:
+        'Comparer la facturation, l’hébergement des données et la maintenance avant de choisir l’outil.',
+    },
+    {
+      href: '/blog/heberger-n8n-cloud-ou-serveur',
+      title: 'Héberger n8n : n8n Cloud ou votre propre serveur ?',
+      description:
+        'Mesurer ce que l’auto-hébergement demande en sauvegardes, mises à jour et conformité RGPD.',
+    },
   ],
 }
 
